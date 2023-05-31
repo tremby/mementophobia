@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Mementophobia: Phasmophobia helper tool</title>
+		<script async defer src="script.js"></script>
+		<link rel="stylesheet" href="style.css">
+		<link href="https://fonts.cdnfonts.com/css/october-crow" rel="stylesheet">
+	</head>
+	<body>
+		<h1>Mementophobia</h1>
+		<div class="top-flex">
+			<div>
+				<h2>Preferences</h2>
+				<form id="preferences">
+					<fieldset>
+						<label for="temperature-unit">Temperature unit</label>
+						<select id="temperature-unit" name="temperature-unit">
+							<option value="C" selected>Celsius</option>
+							<option value="F">Fahrenheit</option>
+						</select>
+					</fieldset>
+				</form>
+			</div>
+			<form id="game-setup-form">
+				<header>
+					<h2>Game setup</h2>
+					<button type="reset">Reset game setup</button>
+				</header>
+				<div class="game-setup-grid">
+					<fieldset>
+						<label for="evidence-num">Collectable evidence</label>
+						<select id="evidence-num">
+							<option value="0">None</option>
+							<option value="1">1 (insanity)</option>
+							<option value="2">2 (nightmare)</option>
+							<option value="3" selected>3 (default)</option>
+						</select>
+					</fieldset>
+					<fieldset>
+						<label for="ghost-speed">Ghost speed setting</label>
+						<select id="ghost-speed">
+							<option value="50">50%</option>
+							<option value="75">75%</option>
+							<option value="100" selected>100%</option>
+							<option value="125">125%</option>
+							<option value="150">150%</option>
+						</select>
+					</fieldset>
+				</div>
+			</form>
+			<div>
+				<h2>Smudge timer</h2>
+				<div id="timer-grid">
+					<button type="button" id="timer-start-stop">Start/stop</button>
+					<output id="timer-readout" for="timer-start-stop timer-adjust">0.0</output>
+					<div id="timer-controls">
+						<label for="timer-adjust">Adjust</label> by
+						<input type="range" id="timer-adjust" min="0" max="10" step="1" value="0">
+						<output id="timer-adjust-readout" for="timer-adjust">0 sec</output>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<form id="observations-form">
+			<header>
+				<h2>Observations</h2>
+				<button type="reset">Reset observations</button>
+			</header>
+			<div id="observations-grid">
+				<section id="primary-evidence-cell">
+					<h3>Primary evidence</h3>
+					<div id="primary-evidence" class="evidence-list">
+						<fieldset id="emf-level-5" data-name="EMF level 5">
+							<legend>EMF level 5</legend>
+							<label><input type="radio" name="emf-level-5" value="unknown" checked> unknown</label>
+							<label><input type="radio" name="emf-level-5" value="yes"> confirmed</label>
+							<label><input type="radio" name="emf-level-5" value="no"> ruled out</label>
+						</fieldset>
+						<fieldset id="fingerprints" data-name="fingerprints">
+							<legend>Fingerprints</legend>
+							<label><input type="radio" name="fingerprints" value="unknown" checked> unknown</label>
+							<label><input type="radio" name="fingerprints" value="yes"> confirmed</label>
+							<label><input type="radio" name="fingerprints" value="no"> ruled out</label>
+						</fieldset>
+						<fieldset id="ghost-writing" data-name="ghost writing">
+							<legend>Ghost writing</legend>
+							<label><input type="radio" name="ghost-writing" value="unknown" checked> unknown</label>
+							<label><input type="radio" name="ghost-writing" value="yes"> confirmed</label>
+							<label><input type="radio" name="ghost-writing" value="no"> ruled out</label>
+						</fieldset>
+						<fieldset id="freezing-temperatures" data-name="freezing temperatures">
+							<legend>Freezing temperatures</legend>
+							<label><input type="radio" name="freezing-temperatures" value="unknown" checked> unknown</label>
+							<label><input type="radio" name="freezing-temperatures" value="yes"> confirmed</label>
+							<label><input type="radio" name="freezing-temperatures" value="no"> ruled out</label>
+						</fieldset>
+						<fieldset id="dots-projector" data-name="DOTS projector">
+							<legend>Dots projector</legend>
+							<label><input type="radio" name="dots-projector" value="unknown" checked> unknown</label>
+							<label><input type="radio" name="dots-projector" value="yes"> confirmed</label>
+							<label><input type="radio" name="dots-projector" value="no"> ruled out</label>
+						</fieldset>
+						<fieldset id="ghost-orb" data-name="ghost orb">
+							<legend>Ghost orb</legend>
+							<label><input type="radio" name="ghost-orb" value="unknown" checked> unknown</label>
+							<label><input type="radio" name="ghost-orb" value="yes"> confirmed</label>
+							<label><input type="radio" name="ghost-orb" value="no"> ruled out</label>
+						</fieldset>
+						<fieldset id="spirit-box" data-name="spirit box">
+							<legend>Spirit box</legend>
+							<label><input type="radio" name="spirit-box" value="unknown" checked> unknown</label>
+							<label><input type="radio" name="spirit-box" value="yes"> confirmed</label>
+							<label><input type="radio" name="spirit-box" value="no"> ruled out</label>
+						</fieldset>
+					</div>
+				</section>
+
+				<section id="secondary-evidence-wrapper">
+					<details>
+						<summary>
+							<h3>Secondary evidence</h3>
+						</summary>
+
+						<div id="secondary-evidence" class="evidence-list">
+							<h4>Hunt</h4>
+							<!-- hunt speed -->
+							<fieldset id="speed-normal">
+								<legend>Normal speed during hunt, speeds up gradually with line of sight</legend>
+								<label><input type="radio" name="speed-normal" value="unknown" checked> unknown</label>
+								<label><input type="radio" name="speed-normal" value="yes"> confirmed</label>
+								<label><input type="radio" name="speed-normal" value="no"> ruled out</label>
+							</fieldset>
+							<fieldset id="speedup-near-active-electronics">
+								<legend>Speeds up suddenly near active electronics</legend>
+								<label><input type="radio" name="speedup-near-active-electronics" value="unknown" checked> unknown</label>
+								<label><input type="radio" name="speedup-near-active-electronics" value="yes"> confirmed</label>
+								<label><input type="radio" name="speedup-near-active-electronics" value="no"> ruled out</label>
+							</fieldset>
+
+							<!-- hunt appearance -->
+							<fieldset id="blink" class="complex">
+								<legend>Blinks during hunt (periods of invisibility)</legend>
+								<label><input type="radio" name="blink" value="unknown" checked> unknown</label>
+								<label><input type="radio" name="blink" value="short"> short</label>
+								<label><input type="radio" name="blink" value="normal"> normal</label>
+								<label><input type="radio" name="blink" value="long"> long</label>
+							</fieldset>
+							<fieldset id="shapeshifter">
+								<legend>Shapeshifts during hunts</legend>
+								<label><input type="radio" name="shapeshifter" value="unknown" checked> unknown</label>
+								<label><input type="radio" name="shapeshifter" value="yes"> confirmed</label>
+								<label><input type="radio" name="shapeshifter" value="no"> ruled out</label>
+							</fieldset>
+							<fieldset id="footsteps-quiet">
+								<legend>Footstep volume</legend>
+								<label><input type="radio" name="footsteps-quiet" value="unknown" checked> unknown</label>
+								<label><input type="radio" name="footsteps-quiet" value="yes"> quiet (audible within 12 m)</label>
+								<label><input type="radio" name="footsteps-quiet" value="no"> normal (audible within 20 m)</label>
+								<details>
+									<summary>Info</summary>
+									<p>For comparison, all ghosts but the raiju cause electronics interference within 10 m.</p>
+								</details>
+							</fieldset>
+
+							<!-- hunt behaviour -->
+							<fieldset id="targets-specific-player">
+								<legend>Targets a specific player</legend>
+								<label><input type="radio" name="targets-specific-player" value="unknown" checked> unknown</label>
+								<label><input type="radio" name="targets-specific-player" value="yes"> confirmed</label>
+								<label><input type="radio" name="targets-specific-player" value="no"> ruled out</label>
+							</fieldset>
+							<fieldset id="omniscient">
+								<legend>Can always find the player</legend>
+								<label><input type="radio" name="omniscient" value="unknown" checked> unknown</label>
+								<label><input type="radio" name="omniscient" value="yes"> confirmed</label>
+								<label><input type="radio" name="omniscient" value="no"> ruled out</label>
+							</fieldset>
+							<fieldset id="detects-player-held-electronics-at-medium-range">
+								<legend>Player-held electronics detection range</legend>
+								<label><input type="radio" name="detects-player-held-electronics-at-medium-range" value="unknown" checked> unknown</label>
+								<label><input type="radio" name="detects-player-held-electronics-at-medium-range" value="yes"> normal (7.5 m)</label>
+								<label><input type="radio" name="detects-player-held-electronics-at-medium-range" value="no"> close (2.5 m)</label>
+							</fieldset>
+							<fieldset id="electronic-interference-range-long">
+								<legend>Electronic interference range</legend>
+								<label><input type="radio" name="electronic-interference-range-long" value="unknown" checked> unknown</label>
+								<label><input type="radio" name="electronic-interference-range-long" value="yes"> long (15 m)</label>
+								<label><input type="radio" name="electronic-interference-range-long" value="no"> normal (10 m)</label>
+							</fieldset>
+							<fieldset id="frequent-throws-during-hunt">
+								<legend>Always throws things every ½ second during hunt</legend>
+								<label><input type="radio" name="frequent-throws-during-hunt" value="unknown" checked> unknown</label>
+								<label><input type="radio" name="frequent-throws-during-hunt" value="yes"> confirmed</label>
+								<label><input type="radio" name="frequent-throws-during-hunt" value="no"> ruled out</label>
+								<details>
+									<summary>Info</summary>
+									<p>Most ghosts have only a 50% chance to throw an item every ½ second.</p>
+								</details>
+							</fieldset>
+
+							<!-- smudge-related -->
+							<fieldset id="smudge-blind-long">
+								<legend>Smudge blindness</legend>
+								<label><input type="radio" name="smudge-blind-long" value="unknown" checked> unknown</label>
+								<label><input type="radio" name="smudge-blind-long" value="no"> normal (6 sec)</label>
+								<label><input type="radio" name="smudge-blind-long" value="yes"> long (12 sec)</label>
+							</fieldset>
+							<fieldset id="smudge-hunt" class="complex">
+								<legend>Smudge hunt suspension</legend>
+								<label><input type="radio" name="smudge-hunt" value="unknown" checked> unknown</label>
+								<label><input type="radio" name="smudge-hunt" value="short"> short (60 sec)</label>
+								<label><input type="radio" name="smudge-hunt" value="normal"> normal (90 sec)</label>
+								<label><input type="radio" name="smudge-hunt" value="long"> long (180 sec)</label>
+								<details>
+									<summary>Info</summary>
+									<p>
+										Beware that a ghost waiting a long time to hunt after being smudged
+										does not necessarily mean it was unable to hunt earlier,
+										since hunts are not guaranteed.
+									</p>
+								</details>
+							</fieldset>
+
+							<h4>Ghost events</h4>
+							<!-- ghost events -->
+							<fieldset id="disappears-from-photo">
+								<legend>Disappears when a photo is taken during a ghost event</legend>
+								<label><input type="radio" name="disappears-from-photo" value="unknown" checked> unknown</label>
+								<label><input type="radio" name="disappears-from-photo" value="yes"> confirmed</label>
+								<label><input type="radio" name="disappears-from-photo" value="no"> ruled out</label>
+								<details>
+									<summary>Info</summary>
+									<p>
+										This can be confirmed if, when a photo is taken of the ghost, it disappears but the event (sound, etc) continues.
+										The ghost will also be absent from the photo in the journal, and it will have no interference glitches.
+									</p>
+								</details>
+							</fieldset>
+							<fieldset id="can-do-airball">
+								<legend>Can do <a href="https://phasmophobia.fandom.com/wiki/Ghost_Event?so=search#Airball/smoke_ball" target="_blank" rel="noopener">“airball” ghost event</a></legend>
+								<label><input type="radio" name="can-do-airball" value="unknown" checked> unknown</label>
+								<label><input type="radio" name="can-do-airball" value="yes"> confirmed</label>
+								<label><input type="radio" name="can-do-airball" value="no"> ruled out</label>
+							</fieldset>
+
+							<h4>Behaviour</h4>
+							<fieldset id="steps-in-salt">
+								<legend>Steps in salt</legend>
+								<label><input type="radio" name="steps-in-salt" value="unknown" checked> unknown</label>
+								<label><input type="radio" name="steps-in-salt" value="yes"> confirmed</label>
+								<label><input type="radio" name="steps-in-salt" value="no"> ruled out</label>
+							</fieldset>
+							<fieldset id="follows-player">
+								<legend>Seems to follow a player</legend>
+								<label><input type="radio" name="follows-player" value="unknown" checked> unknown</label>
+								<label><input type="radio" name="follows-player" value="yes"> confirmed</label>
+								<label><input type="radio" name="follows-player" value="no"> ruled out</label>
+							</fieldset>
+							<fieldset id="dots-projector-naked-eye">
+								<legend>Can see interaction with DOTS projector with the naked eye</legend>
+								<label><input type="radio" name="dots-projector-naked-eye" value="unknown" checked> unknown</label>
+								<label><input type="radio" name="dots-projector-naked-eye" value="yes"> confirmed</label>
+								<label><input type="radio" name="dots-projector-naked-eye" value="no"> ruled out</label>
+							</fieldset>
+							<fieldset id="candle-as-crucifix">
+								<legend>Uses candles as crucifixes</legend>
+								<label><input type="radio" name="candle-as-crucifix" value="unknown" checked> unknown</label>
+								<label><input type="radio" name="candle-as-crucifix" value="yes"> confirmed</label>
+								<label><input type="radio" name="candle-as-crucifix" value="no"> ruled out</label>
+								<details>
+									<summary>Info</summary>
+									<p>
+										Put a crucifix and candle very close together and keep the candle lit.
+										If the crucifix burns while the candle is still lit, this can be ruled out, since ghosts with this trait put out the candle with a higher priority.
+									</p>
+								</details>
+							</fieldset>
+							<fieldset id="paramic-scream">
+								<legend>Screams into the parabolic microphone</legend>
+								<label><input type="radio" name="paramic-scream" value="unknown" checked> unknown</label>
+								<label><input type="radio" name="paramic-scream" value="yes"> confirmed</label>
+								<label><input type="radio" name="paramic-scream" value="no"> ruled out</label>
+							</fieldset>
+							<fieldset id="can-turn-off-fuse-box">
+								<legend>Can turn off the fuse box</legend>
+								<label><input type="radio" name="can-turn-off-fuse-box" value="unknown" checked> unknown</label>
+								<label><input type="radio" name="can-turn-off-fuse-box" value="yes"> confirmed</label>
+								<label><input type="radio" name="can-turn-off-fuse-box" value="no"> ruled out</label>
+							</fieldset>
+							<fieldset id="can-turn-on-fuse-box">
+								<legend>Can turn on the fuse box</legend>
+								<label><input type="radio" name="can-turn-on-fuse-box" value="unknown" checked> unknown</label>
+								<label><input type="radio" name="can-turn-on-fuse-box" value="yes"> confirmed</label>
+								<label><input type="radio" name="can-turn-on-fuse-box" value="no"> ruled out</label>
+							</fieldset>
+							<fieldset id="can-multi-throw">
+								<legend>Can perform a <a href="https://phasmophobia.fandom.com/wiki/Poltergeist#Ability" target="_blank" rel="noopener">multi-throw</a></legend>
+								<label><input type="radio" name="can-multi-throw" value="unknown" checked> unknown</label>
+								<label><input type="radio" name="can-multi-throw" value="yes"> confirmed</label>
+								<label><input type="radio" name="can-multi-throw" value="no"> ruled out</label>
+							</fieldset>
+							<fieldset id="sometimes-hides-fingerprints">
+								<legend>Sometimes hides fingerprints</legend>
+								<label><input type="radio" name="sometimes-hides-fingerprints" value="unknown" checked> unknown</label>
+								<label><input type="radio" name="sometimes-hides-fingerprints" value="yes"> confirmed</label>
+								<label><input type="radio" name="sometimes-hides-fingerprints" value="no"> ruled out</label>
+								<details>
+									<summary>Info</summary>
+									<p>
+										For most ghosts, if they are going to exhibit fingerprints evidence, they will <em>always</em> leave it when interacting with suitable objects.
+										Certain ghosts have a reduced rate, however.
+									</p>
+									<p>
+										This should only be confirmed if fingerprint evidence has been seen, and then later an interaction is observed which is suitable for fingerprints but does not leave any.
+									</p>
+								</details>
+							</fieldset>
+							<fieldset id="six-fingered-handprints">
+								<legend>Can leave 6-fingered handprints</legend>
+								<label><input type="radio" name="six-fingered-handprints" value="unknown" checked> unknown</label>
+								<label><input type="radio" name="six-fingered-handprints" value="yes"> confirmed</label>
+								<label><input type="radio" name="six-fingered-handprints" value="no"> ruled out</label>
+							</fieldset>
+						</div>
+					</details>
+				</section>
+
+				<section id="possible-ghosts-cell">
+					<header>
+						<h3>Possible ghosts</h3>
+						<button type="button" id="reset-manual-rule-outs">Uncross all</button>
+					</header>
+					<ol id="ghosts">
+						<li id="spirit" class="no-frequent-throws-during-hunt no-electronic-interference-range-long no-follows-player no-omniscient no-sometimes-hides-fingerprints no-six-fingered-handprints no-shapeshifter no-can-multi-throw detects-player-held-electronics-at-medium-range can-turn-off-fuse-box can-turn-on-fuse-box no-paramic-scream no-targets-specific-player can-do-airball speed-normal speedup-los no-speedup-near-active-electronics blink-normal no-smudge-hunt-normal no-smudge-hunt-short smudge-hunt-long no-footsteps-quiet steps-in-salt no-disappears-from-photo dots-projector-naked-eye no-candle-as-crucifix no-smudge-blind-long ghost-writing emf-level-5 spirit-box"><input type="checkbox" id="spirit-manually-ruled-out"><label for="spirit-manually-ruled-out" tabindex="0">Spirit</label></li>
+						<li id="wraith" class="no-frequent-throws-during-hunt no-electronic-interference-range-long follows-player no-omniscient no-sometimes-hides-fingerprints no-six-fingered-handprints no-shapeshifter no-can-multi-throw detects-player-held-electronics-at-medium-range can-turn-off-fuse-box can-turn-on-fuse-box no-paramic-scream no-targets-specific-player can-do-airball speed-normal speedup-los no-speedup-near-active-electronics blink-normal smudge-hunt-normal no-smudge-hunt-short no-smudge-hunt-long no-footsteps-quiet no-steps-in-salt no-disappears-from-photo dots-projector-naked-eye no-candle-as-crucifix no-smudge-blind-long dots-projector emf-level-5 spirit-box"><input type="checkbox" id="wraith-manually-ruled-out"><label for="wraith-manually-ruled-out" tabindex="0">Wraith</label></li>
+						<li id="phantom" class="no-frequent-throws-during-hunt no-electronic-interference-range-long follows-player no-omniscient no-sometimes-hides-fingerprints no-six-fingered-handprints no-shapeshifter no-can-multi-throw detects-player-held-electronics-at-medium-range can-turn-off-fuse-box can-turn-on-fuse-box no-paramic-scream no-targets-specific-player can-do-airball speed-normal speedup-los no-speedup-near-active-electronics blink-long smudge-hunt-normal no-smudge-hunt-short no-smudge-hunt-long no-footsteps-quiet steps-in-salt disappears-from-photo dots-projector-naked-eye no-candle-as-crucifix no-smudge-blind-long dots-projector fingerprints spirit-box"><input type="checkbox" id="phantom-manually-ruled-out"><label for="phantom-manually-ruled-out" tabindex="0">Phantom</label></li>
+						<li id="poltergeist" class="frequent-throws-during-hunt no-electronic-interference-range-long no-follows-player no-omniscient no-sometimes-hides-fingerprints no-six-fingered-handprints no-shapeshifter can-multi-throw detects-player-held-electronics-at-medium-range can-turn-off-fuse-box can-turn-on-fuse-box no-paramic-scream no-targets-specific-player can-do-airball speed-normal speedup-los no-speedup-near-active-electronics blink-normal smudge-hunt-normal no-smudge-hunt-short no-smudge-hunt-long no-footsteps-quiet steps-in-salt no-disappears-from-photo dots-projector-naked-eye no-candle-as-crucifix no-smudge-blind-long ghost-writing fingerprints spirit-box"><input type="checkbox" id="poltergeist-manually-ruled-out"><label for="poltergeist-manually-ruled-out" tabindex="0">Poltergeist</label></li>
+						<li id="banshee" class="no-frequent-throws-during-hunt no-electronic-interference-range-long follows-player no-omniscient no-sometimes-hides-fingerprints no-six-fingered-handprints no-shapeshifter no-can-multi-throw detects-player-held-electronics-at-medium-range can-turn-off-fuse-box can-turn-on-fuse-box paramic-scream targets-specific-player can-do-airball speed-normal speedup-los no-speedup-near-active-electronics blink-normal smudge-hunt-normal no-smudge-hunt-short no-smudge-hunt-long no-footsteps-quiet steps-in-salt no-disappears-from-photo dots-projector-naked-eye no-candle-as-crucifix no-smudge-blind-long dots-projector ghost-orb fingerprints"><input type="checkbox" id="banshee-manually-ruled-out"><label for="banshee-manually-ruled-out" tabindex="0">Banshee</label></li>
+						<li id="jinn" class="no-frequent-throws-during-hunt no-electronic-interference-range-long no-follows-player no-omniscient no-sometimes-hides-fingerprints no-six-fingered-handprints no-shapeshifter no-can-multi-throw detects-player-held-electronics-at-medium-range no-can-turn-off-fuse-box can-turn-on-fuse-box no-paramic-scream no-targets-specific-player can-do-airball no-speed-normal speedup-los no-speedup-near-active-electronics blink-normal smudge-hunt-normal no-smudge-hunt-short no-smudge-hunt-long no-footsteps-quiet steps-in-salt no-disappears-from-photo dots-projector-naked-eye no-candle-as-crucifix no-smudge-blind-long emf-level-5 fingerprints freezing-temperatures"><input type="checkbox" id="jinn-manually-ruled-out"><label for="jinn-manually-ruled-out" tabindex="0">Jinn</label></li>
+						<li id="mare" class="no-frequent-throws-during-hunt no-electronic-interference-range-long no-follows-player no-omniscient no-sometimes-hides-fingerprints no-six-fingered-handprints no-shapeshifter no-can-multi-throw detects-player-held-electronics-at-medium-range can-turn-off-fuse-box no-can-turn-on-fuse-box no-paramic-scream no-targets-specific-player can-do-airball speed-normal speedup-los no-speedup-near-active-electronics blink-normal smudge-hunt-normal no-smudge-hunt-short no-smudge-hunt-long no-footsteps-quiet steps-in-salt no-disappears-from-photo dots-projector-naked-eye no-candle-as-crucifix no-smudge-blind-long ghost-writing ghost-orb spirit-box"><input type="checkbox" id="mare-manually-ruled-out"><label for="mare-manually-ruled-out" tabindex="0">Mare</label></li>
+						<li id="revenant" class="no-frequent-throws-during-hunt no-electronic-interference-range-long no-follows-player no-omniscient no-sometimes-hides-fingerprints no-six-fingered-handprints no-shapeshifter no-can-multi-throw detects-player-held-electronics-at-medium-range can-turn-off-fuse-box can-turn-on-fuse-box no-paramic-scream no-targets-specific-player can-do-airball no-speed-normal blink-normal no-speedup-near-active-electronics smudge-hunt-normal no-smudge-hunt-short no-smudge-hunt-long no-footsteps-quiet steps-in-salt no-disappears-from-photo dots-projector-naked-eye no-candle-as-crucifix no-smudge-blind-long ghost-writing ghost-orb freezing-temperatures"><input type="checkbox" id="revenant-manually-ruled-out"><label for="revenant-manually-ruled-out" tabindex="0">Revenant</label></li>
+						<li id="shade" class="no-frequent-throws-during-hunt no-electronic-interference-range-long no-follows-player no-omniscient no-sometimes-hides-fingerprints no-six-fingered-handprints no-shapeshifter no-can-multi-throw detects-player-held-electronics-at-medium-range can-turn-off-fuse-box can-turn-on-fuse-box no-paramic-scream no-targets-specific-player can-do-airball speed-normal speedup-los no-speedup-near-active-electronics blink-normal smudge-hunt-normal no-smudge-hunt-short no-smudge-hunt-long no-footsteps-quiet steps-in-salt no-disappears-from-photo dots-projector-naked-eye no-candle-as-crucifix no-smudge-blind-long ghost-writing emf-level-5 freezing-temperatures"><input type="checkbox" id="shade-manually-ruled-out"><label for="shade-manually-ruled-out" tabindex="0">Shade</label></li>
+						<li id="demon" class="no-frequent-throws-during-hunt no-electronic-interference-range-long no-follows-player no-omniscient no-sometimes-hides-fingerprints no-six-fingered-handprints no-shapeshifter no-can-multi-throw detects-player-held-electronics-at-medium-range can-turn-off-fuse-box can-turn-on-fuse-box no-paramic-scream no-targets-specific-player can-do-airball speed-normal speedup-los no-speedup-near-active-electronics blink-normal no-smudge-hunt-normal smudge-hunt-short no-smudge-hunt-long no-footsteps-quiet steps-in-salt no-disappears-from-photo dots-projector-naked-eye no-candle-as-crucifix no-smudge-blind-long ghost-writing fingerprints freezing-temperatures"><input type="checkbox" id="demon-manually-ruled-out"><label for="demon-manually-ruled-out" tabindex="0">Demon</label></li>
+						<li id="yurei" class="no-frequent-throws-during-hunt no-electronic-interference-range-long no-follows-player no-omniscient no-sometimes-hides-fingerprints no-six-fingered-handprints no-shapeshifter no-can-multi-throw detects-player-held-electronics-at-medium-range can-turn-off-fuse-box can-turn-on-fuse-box no-paramic-scream no-targets-specific-player can-do-airball speed-normal speedup-los no-speedup-near-active-electronics blink-normal smudge-hunt-normal no-smudge-hunt-short no-smudge-hunt-long no-footsteps-quiet steps-in-salt no-disappears-from-photo dots-projector-naked-eye no-candle-as-crucifix no-smudge-blind-long dots-projector ghost-orb freezing-temperatures"><input type="checkbox" id="yurei-manually-ruled-out"><label for="yurei-manually-ruled-out" tabindex="0">Yurei</label></li>
+						<li id="oni" class="no-frequent-throws-during-hunt no-electronic-interference-range-long no-follows-player no-omniscient no-sometimes-hides-fingerprints no-six-fingered-handprints no-shapeshifter no-can-multi-throw detects-player-held-electronics-at-medium-range can-turn-off-fuse-box can-turn-on-fuse-box no-paramic-scream no-targets-specific-player no-can-do-airball speed-normal speedup-los no-speedup-near-active-electronics blink-short smudge-hunt-normal no-smudge-hunt-short no-smudge-hunt-long no-footsteps-quiet steps-in-salt no-disappears-from-photo dots-projector-naked-eye no-candle-as-crucifix no-smudge-blind-long dots-projector emf-level-5 freezing-temperatures"><input type="checkbox" id="oni-manually-ruled-out"><label for="oni-manually-ruled-out" tabindex="0">Oni</label></li>
+						<li id="yokai" class="no-frequent-throws-during-hunt no-electronic-interference-range-long no-follows-player no-omniscient no-sometimes-hides-fingerprints no-six-fingered-handprints no-shapeshifter no-can-multi-throw no-detects-player-held-electronics-at-medium-range can-turn-off-fuse-box can-turn-on-fuse-box no-paramic-scream no-targets-specific-player can-do-airball speed-normal speedup-los no-speedup-near-active-electronics blink-normal smudge-hunt-normal no-smudge-hunt-short no-smudge-hunt-long no-footsteps-quiet steps-in-salt no-disappears-from-photo dots-projector-naked-eye no-candle-as-crucifix no-smudge-blind-long dots-projector ghost-orb spirit-box"><input type="checkbox" id="yokai-manually-ruled-out"><label for="yokai-manually-ruled-out" tabindex="0">Yokai</label></li>
+						<li id="hantu" class="no-frequent-throws-during-hunt no-electronic-interference-range-long no-follows-player no-omniscient no-sometimes-hides-fingerprints no-six-fingered-handprints no-shapeshifter no-can-multi-throw detects-player-held-electronics-at-medium-range can-turn-off-fuse-box can-turn-on-fuse-box no-paramic-scream no-targets-specific-player can-do-airball no-speed-normal no-speedup-los no-speedup-near-active-electronics blink-normal smudge-hunt-normal no-smudge-hunt-short no-smudge-hunt-long no-footsteps-quiet steps-in-salt no-disappears-from-photo dots-projector-naked-eye no-candle-as-crucifix no-smudge-blind-long guaranteed-freezing-temperatures ghost-orb fingerprints freezing-temperatures"><input type="checkbox" id="hantu-manually-ruled-out"><label for="hantu-manually-ruled-out" tabindex="0">Hantu</label></li>
+						<li id="goryo" class="no-frequent-throws-during-hunt no-electronic-interference-range-long no-follows-player no-omniscient no-sometimes-hides-fingerprints no-six-fingered-handprints no-shapeshifter no-can-multi-throw detects-player-held-electronics-at-medium-range can-turn-off-fuse-box can-turn-on-fuse-box no-paramic-scream no-targets-specific-player can-do-airball speed-normal speedup-los no-speedup-near-active-electronics blink-normal smudge-hunt-normal no-smudge-hunt-short no-smudge-hunt-long no-footsteps-quiet steps-in-salt no-disappears-from-photo guaranteed-dots-projector no-dots-projector-naked-eye no-candle-as-crucifix no-smudge-blind-long dots-projector emf-level-5 fingerprints"><input type="checkbox" id="goryo-manually-ruled-out"><label for="goryo-manually-ruled-out" tabindex="0">Goryo</label></li>
+						<li id="myling" class="no-frequent-throws-during-hunt no-electronic-interference-range-long no-follows-player no-omniscient no-sometimes-hides-fingerprints no-six-fingered-handprints no-shapeshifter no-can-multi-throw detects-player-held-electronics-at-medium-range can-turn-off-fuse-box can-turn-on-fuse-box no-paramic-scream no-targets-specific-player can-do-airball speed-normal speedup-los no-speedup-near-active-electronics blink-normal smudge-hunt-normal no-smudge-hunt-short no-smudge-hunt-long footsteps-quiet steps-in-salt no-disappears-from-photo dots-projector-naked-eye no-candle-as-crucifix no-smudge-blind-long ghost-writing emf-level-5 fingerprints"><input type="checkbox" id="myling-manually-ruled-out"><label for="myling-manually-ruled-out" tabindex="0">Myling</label></li>
+						<li id="onryo" class="no-frequent-throws-during-hunt no-electronic-interference-range-long no-follows-player no-omniscient no-sometimes-hides-fingerprints no-six-fingered-handprints no-shapeshifter no-can-multi-throw detects-player-held-electronics-at-medium-range can-turn-off-fuse-box can-turn-on-fuse-box no-paramic-scream no-targets-specific-player can-do-airball speed-normal speedup-los no-speedup-near-active-electronics blink-normal smudge-hunt-normal no-smudge-hunt-short no-smudge-hunt-long no-footsteps-quiet steps-in-salt no-disappears-from-photo dots-projector-naked-eye candle-as-crucifix no-smudge-blind-long ghost-orb freezing-temperatures spirit-box"><input type="checkbox" id="onryo-manually-ruled-out"><label for="onryo-manually-ruled-out" tabindex="0">Onryo</label></li>
+						<li id="the-twins" class="no-frequent-throws-during-hunt no-electronic-interference-range-long no-follows-player no-omniscient no-sometimes-hides-fingerprints no-six-fingered-handprints no-shapeshifter no-can-multi-throw detects-player-held-electronics-at-medium-range can-turn-off-fuse-box can-turn-on-fuse-box no-paramic-scream no-targets-specific-player can-do-airball no-speed-normal speedup-los no-speedup-near-active-electronics blink-normal smudge-hunt-normal no-smudge-hunt-short no-smudge-hunt-long no-footsteps-quiet steps-in-salt no-disappears-from-photo dots-projector-naked-eye no-candle-as-crucifix no-smudge-blind-long emf-level-5 freezing-temperatures spirit-box"><input type="checkbox" id="the-twins-manually-ruled-out"><label for="the-twins-manually-ruled-out" tabindex="0">The Twins</label></li>
+						<li id="raiju" class="no-frequent-throws-during-hunt electronic-interference-range-long no-follows-player no-omniscient no-sometimes-hides-fingerprints no-six-fingered-handprints no-shapeshifter no-can-multi-throw detects-player-held-electronics-at-medium-range can-turn-off-fuse-box can-turn-on-fuse-box no-paramic-scream no-targets-specific-player can-do-airball speed-normal speedup-los speedup-near-active-electronics blink-normal smudge-hunt-normal no-smudge-hunt-short no-smudge-hunt-long no-footsteps-quiet steps-in-salt no-disappears-from-photo dots-projector-naked-eye no-candle-as-crucifix no-smudge-blind-long dots-projector emf-level-5 ghost-orb"><input type="checkbox" id="raiju-manually-ruled-out"><label for="raiju-manually-ruled-out" tabindex="0">Raiju</label></li>
+						<li id="obake" class="no-frequent-throws-during-hunt no-electronic-interference-range-long no-follows-player no-omniscient sometimes-hides-fingerprints six-fingered-handprints shapeshifter no-can-multi-throw detects-player-held-electronics-at-medium-range can-turn-off-fuse-box can-turn-on-fuse-box no-paramic-scream no-targets-specific-player can-do-airball speed-normal speedup-los no-speedup-near-active-electronics blink-normal smudge-hunt-normal no-smudge-hunt-short no-smudge-hunt-long no-footsteps-quiet hunt-shapeshift steps-in-salt no-disappears-from-photo dots-projector-naked-eye no-candle-as-crucifix no-smudge-blind-long guaranteed-fingerprints emf-level-5 ghost-orb fingerprints"><input type="checkbox" id="obake-manually-ruled-out"><label for="obake-manually-ruled-out" tabindex="0">Obake</label></li>
+						<li id="the-mimic" class="frequent-throws-during-hunt no-frequent-throws-during-hunt electronic-interference-range-long no-electronic-interference-range-long follows-player no-follows-player omniscient no-omniscient sometimes-hides-fingerprints no-sometimes-hides-fingerprints six-fingered-handprints no-six-fingered-handprints shapeshifter no-shapeshifter can-multi-throw no-can-multi-throw detects-player-held-electronics-at-medium-range no-detects-player-held-electronics-at-medium-range can-turn-off-fuse-box can-turn-on-fuse-box paramic-scream no-paramic-scream targets-specific-player no-targets-specific-player can-do-airball speed-normal no-speed-normal speedup-los no-speedup-los speedup-near-active-electronics no-speedup-near-active-electronics blink-normal blink-short blink-long smudge-hunt-normal no-smudge-hunt-normal smudge-hunt-long no-smudge-hunt-long smudge-hunt-short no-smudge-hunt-short smudge-blind-long no-smudge-blind-long footsteps-quiet no-footsteps-quiet steps-in-salt disappears-from-photo no-disappears-from-photo dots-projector-naked-eye no-dots-projector-naked-eye candle-as-crucifix no-candle-as-crucifix fingerprints freezing-temperatures spirit-box special-ghost-orb"><input type="checkbox" id="the-mimic-manually-ruled-out"><label for="the-mimic-manually-ruled-out" tabindex="0">The Mimic</label></li>
+						<li id="moroi" class="no-frequent-throws-during-hunt no-electronic-interference-range-long no-follows-player no-omniscient no-sometimes-hides-fingerprints no-six-fingered-handprints no-shapeshifter no-can-multi-throw detects-player-held-electronics-at-medium-range can-turn-off-fuse-box can-turn-on-fuse-box no-paramic-scream no-targets-specific-player can-do-airball no-speed-normal speedup-los no-speedup-near-active-electronics blink-normal smudge-hunt-normal no-smudge-hunt-short no-smudge-hunt-long smudge-blind-long no-footsteps-quiet steps-in-salt no-disappears-from-photo dots-projector-naked-eye no-candle-as-crucifix guaranteed-spirit-box ghost-writing freezing-temperatures spirit-box"><input type="checkbox" id="moroi-manually-ruled-out"><label for="moroi-manually-ruled-out" tabindex="0">Moroi</label></li>
+						<li id="deogen" class="no-frequent-throws-during-hunt no-electronic-interference-range-long no-follows-player omniscient no-sometimes-hides-fingerprints no-six-fingered-handprints no-shapeshifter no-can-multi-throw detects-player-held-electronics-at-medium-range can-turn-off-fuse-box can-turn-on-fuse-box no-paramic-scream no-targets-specific-player can-do-airball no-speed-normal no-speedup-los no-speedup-near-active-electronics blink-normal smudge-hunt-normal no-smudge-hunt-short no-smudge-hunt-long no-footsteps-quiet steps-in-salt no-disappears-from-photo guaranteed-spirit-box dots-projector-naked-eye no-candle-as-crucifix no-smudge-blind-long dots-projector ghost-writing spirit-box"><input type="checkbox" id="deogen-manually-ruled-out"><label for="deogen-manually-ruled-out" tabindex="0">Deogen</label></li>
+						<li id="thaye" class="no-frequent-throws-during-hunt no-electronic-interference-range-long no-follows-player no-omniscient no-sometimes-hides-fingerprints no-six-fingered-handprints no-shapeshifter no-can-multi-throw detects-player-held-electronics-at-medium-range can-turn-off-fuse-box can-turn-on-fuse-box no-paramic-scream no-targets-specific-player can-do-airball no-speed-normal no-speedup-los no-speedup-near-active-electronics blink-normal smudge-hunt-normal no-smudge-hunt-short no-smudge-hunt-long no-footsteps-quiet steps-in-salt no-disappears-from-photo dots-projector-naked-eye no-candle-as-crucifix no-smudge-blind-long dots-projector ghost-writing ghost-orb"><input type="checkbox" id="thaye-manually-ruled-out"><label for="thaye-manually-ruled-out" tabindex="0">Thaye</label></li>
+					</ol>
+				</div>
+			</section>
+
+			<section id="ghost-speed">
+				<h3>Ghost speed during hunts</h3>
+				<div id="ghost-speed-factors">
+					<fieldset>
+						<legend><label for="line-of-sight">Time with line of sight</label></legend>
+						<div class="centred-flex">
+							<label for="line-of-sight-known" class="visually-hidden">known</label>
+							<input id="line-of-sight-known" type="checkbox">
+							<input id="line-of-sight" type="range" list="line-of-sight-markers" min="0" max="13" step="1" value="0" disabled>
+							<datalist id="line-of-sight-markers">
+								<option value="0"></option>
+								<option value="5"></option>
+								<option value="10"></option>
+								<option value="13"></option>
+							</datalist>
+							<output id="line-of-sight-readout" for="line-of-sight-known line-of-sight">unknown</output>
+						</div>
+					</fieldset>
+					<fieldset>
+						<legend><label for="sanity">Sanity level</label></legend>
+						<div class="centred-flex">
+							<label for="sanity-known" class="visually-hidden">known</label>
+							<input id="sanity-known" type="checkbox">
+							<input id="sanity" type="range" list="sanity-markers" min="0" max="100" step="5" value="100" disabled>
+							<datalist id="sanity-markers">
+								<option value="0"></option>
+								<option value="25"></option>
+								<option value="50"></option>
+								<option value="75"></option>
+								<option value="100"></option>
+							</datalist>
+							<output id="sanity-readout" for="sanity-known sanity">unknown</output>
+						</div>
+					</fieldset>
+					<fieldset>
+						<legend><label for="ghost-distance">Distance to ghost</label></legend>
+						<div class="centred-flex">
+							<label for="ghost-distance-known" class="visually-hidden">known</label>
+							<input id="ghost-distance-known" type="checkbox">
+							<input id="ghost-distance" type="range" list="ghost-distance-markers" min="0" max="25" step="0.5" value="10" disabled>
+							<datalist id="ghost-distance-markers">
+								<option value="0"></option>
+								<option value="5"></option>
+								<option value="10"></option>
+								<option value="15"></option>
+								<option value="20"></option>
+								<option value="25"></option>
+							</datalist>
+							<output id="ghost-distance-readout" for="ghost-distance-known ghost-distance">unknown</output>
+						</div>
+					</fieldset>
+					<fieldset>
+						<legend>Ghost detected player-held electronics</legend>
+						<label><input type="radio" name="detected-held-electronics" value="unknown" checked> unknown</label>
+						<label><input type="radio" name="detected-held-electronics" value="yes"> yes</label>
+						<label><input type="radio" name="detected-held-electronics" value="no"> no</label>
+					</fieldset>
+					<fieldset>
+						<legend>Ghost is near active electronics</legend>
+						<label><input type="radio" name="near-electronics" value="unknown" checked> unknown</label>
+						<label><input type="radio" name="near-electronics" value="yes"> yes</label>
+						<label><input type="radio" name="near-electronics" value="no"> no</label>
+					</fieldset>
+					<fieldset>
+						<legend><label for="fuse-box">Fuse box is on</label></legend>
+						<label><input type="radio" name="fuse-box-on" value="unknown" checked> unknown</label>
+						<label><input type="radio" name="fuse-box-on" value="yes"> yes</label>
+						<label><input type="radio" name="fuse-box-on" value="no"> no</label>
+					</fieldset>
+					<fieldset>
+						<legend><label for="temperature">Temperature</label></legend>
+						<div class="centred-flex">
+							<label for="temperature-known" class="visually-hidden">known</label>
+							<input id="temperature-known" type="checkbox">
+							<input id="temperature" type="range" list="temperature-markers" min="-5" max="30" step="1" value="16" disabled>
+							<datalist id="temperature-markers">
+								<option value="1"></option>
+								<option value="4"></option>
+								<option value="7"></option>
+								<option value="10"></option>
+								<option value="13"></option>
+								<option value="16"></option>
+								<option value="19"></option>
+							</datalist>
+							<output id="temperature-readout" for="temperature-known temperature temperature-unit">unknown</output>
+						</div>
+					</fieldset>
+					<fieldset>
+						<legend><label for="time-spent-near-ghost">Total time spent in the same room as the ghost</label></legend>
+						<div class="centred-flex">
+							<label for="time-spent-near-ghost-known" class="visually-hidden">known</label>
+							<input id="time-spent-near-ghost-known" type="checkbox">
+							<input id="time-spent-near-ghost" type="range" min="0" max="25" step="1" value="0" disabled>
+							<output id="time-spent-near-ghost-readout" for="time-spent-near-ghost-known time-spent-near-ghost">unknown</output>
+						</div>
+					</fieldset>
+					<fieldset>
+						<legend><label for="ghost-smudged">Ghost is smudged</label></legend>
+						<label><input type="radio" name="ghost-smudged" value="unknown" checked> unknown</label>
+						<label><input type="radio" name="ghost-smudged" value="yes"> yes</label>
+						<label><input type="radio" name="ghost-smudged" value="no"> no</label>
+					</fieldset>
+				</div>
+				<div id="tap-target" tabindex="0">
+					<div>
+						<div id="tap-button-box">
+							<div class="flex">
+								<button id="tap" type="button">Tap</button>
+								<span class="help">or give focus then tap space or any alphabetic key</span>
+							</div>
+							<div>
+								<p>
+									<button id="reset-tempo" type="button">Reset</button>
+									<span class="help">or hit escape, or wait a moment then start tapping again</span>
+								</p>
+								<p>
+									<button id="narrow-by-tempo" type="button" disabled>Rule out ghosts by tempo</button>
+									<span class="help">using the adjusted average tempo ± 5%</span>
+								</p>
+							</div>
+							<fieldset>
+								<div>
+									Average tempo:
+									<output id="average-tempo" for="tap"></output>
+								</div>
+								<div id="adjusted-average-tempo-box" hidden>
+									Adjusted to 100% ghost speed:
+									<output id="adjusted-average-tempo" for="tap ghost-speed"></output>
+								</div>
+							</fieldset>
+						</div>
+					</div>
+					<div id="chart">
+						<div class="ghost" data-ghost="spirit"><div class="range-area"></div><div class="range"></div><div class="label">Spirit <button type="button" aria-label="Rule this ghost out">&times;</button></div><div class="markers"></div></div>
+						<div class="ghost" data-ghost="wraith"><div class="range-area"></div><div class="range"></div><div class="label">Wraith <button type="button" aria-label="Rule this ghost out">&times;</button></div><div class="markers"></div></div>
+						<div class="ghost" data-ghost="phantom"><div class="range-area"></div><div class="range"></div><div class="label">Phantom <button type="button" aria-label="Rule this ghost out">&times;</button></div><div class="markers"></div></div>
+						<div class="ghost" data-ghost="poltergeist"><div class="range-area"></div><div class="range"></div><div class="label">Poltergeist <button type="button" aria-label="Rule this ghost out">&times;</button></div><div class="markers"></div></div>
+						<div class="ghost" data-ghost="banshee"><div class="range-area"></div><div class="range"></div><div class="label">Banshee <button type="button" aria-label="Rule this ghost out">&times;</button></div><div class="markers"></div></div>
+						<div class="ghost" data-ghost="jinn"><div class="range-area"></div><div class="range"></div><div class="label">Jinn <button type="button" aria-label="Rule this ghost out">&times;</button></div><div class="markers"></div></div>
+						<div class="ghost" data-ghost="mare"><div class="range-area"></div><div class="range"></div><div class="label">Mare <button type="button" aria-label="Rule this ghost out">&times;</button></div><div class="markers"></div></div>
+						<div class="ghost" data-ghost="revenant"><div class="range-area"></div><div class="range"></div><div class="label">Revenant <button type="button" aria-label="Rule this ghost out">&times;</button></div><div class="markers"></div></div>
+						<div class="ghost" data-ghost="shade"><div class="range-area"></div><div class="range"></div><div class="label">Shade <button type="button" aria-label="Rule this ghost out">&times;</button></div><div class="markers"></div></div>
+						<div class="ghost" data-ghost="demon"><div class="range-area"></div><div class="range"></div><div class="label">Demon <button type="button" aria-label="Rule this ghost out">&times;</button></div><div class="markers"></div></div>
+						<div class="ghost" data-ghost="yurei"><div class="range-area"></div><div class="range"></div><div class="label">Yurei <button type="button" aria-label="Rule this ghost out">&times;</button></div><div class="markers"></div></div>
+						<div class="ghost" data-ghost="oni"><div class="range-area"></div><div class="range"></div><div class="label">Oni <button type="button" aria-label="Rule this ghost out">&times;</button></div><div class="markers"></div></div>
+						<div class="ghost" data-ghost="yokai"><div class="range-area"></div><div class="range"></div><div class="label">Yokai <button type="button" aria-label="Rule this ghost out">&times;</button></div><div class="markers"></div></div>
+						<div class="ghost" data-ghost="hantu"><div class="range-area"></div><div class="range"></div><div class="label">Hantu <button type="button" aria-label="Rule this ghost out">&times;</button></div><div class="markers"></div></div>
+						<div class="ghost" data-ghost="goryo"><div class="range-area"></div><div class="range"></div><div class="label">Goryo <button type="button" aria-label="Rule this ghost out">&times;</button></div><div class="markers"></div></div>
+						<div class="ghost" data-ghost="myling"><div class="range-area"></div><div class="range"></div><div class="label">Myling <button type="button" aria-label="Rule this ghost out">&times;</button></div><div class="markers"></div></div>
+						<div class="ghost" data-ghost="onryo"><div class="range-area"></div><div class="range"></div><div class="label">Onryo <button type="button" aria-label="Rule this ghost out">&times;</button></div><div class="markers"></div></div>
+						<div class="ghost" data-ghost="the-twins"><div class="range-area"></div><div class="range"></div><div class="label">The Twins <button type="button" aria-label="Rule this ghost out">&times;</button></div><div class="markers"></div></div>
+						<div class="ghost" data-ghost="raiju"><div class="range-area"></div><div class="range"></div><div class="label">Raiju <button type="button" aria-label="Rule this ghost out">&times;</button></div><div class="markers"></div></div>
+						<div class="ghost" data-ghost="obake"><div class="range-area"></div><div class="range"></div><div class="label">Obake <button type="button" aria-label="Rule this ghost out">&times;</button></div><div class="markers"></div></div>
+						<div class="ghost" data-ghost="the-mimic"><div class="range-area"></div><div class="range"></div><div class="label">The Mimic <button type="button" aria-label="Rule this ghost out">&times;</button></div><div class="markers"></div></div>
+						<div class="ghost" data-ghost="moroi"><div class="range-area"></div><div class="range"></div><div class="label">Moroi <button type="button" aria-label="Rule this ghost out">&times;</button></div><div class="markers"></div></div>
+						<div class="ghost" data-ghost="deogen"><div class="range-area"></div><div class="range"></div><div class="label">Deogen <button type="button" aria-label="Rule this ghost out">&times;</button></div><div class="markers"></div></div>
+						<div class="ghost" data-ghost="thaye"><div class="range-area"></div><div class="range"></div><div class="label">Thaye <button type="button" aria-label="Rule this ghost out">&times;</button></div><div class="markers"></div></div>
+						<canvas id="tap-trace"></canvas>
+					</div>
+				</div>
+			</section>
+		</form>
+
+		<footer>
+			<p>Built by beans. See the <a href="https://github.com/tremby/mementophobia">source code</a>. Patches welcome.</p>
+		</footer>
+	</body>
+</html>

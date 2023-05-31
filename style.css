@@ -1,0 +1,336 @@
+:root {
+	--fieldset-gap: 0.5rem;
+	--background: #1b1b1b;
+	--foreground: white;
+	--accent: goldenrod;
+
+	color-scheme: dark;
+	accent-color: var(--accent);
+	font-family: sans-serif;
+	background-color: var(--background);
+	color: var(--foreground);;
+}
+
+.visually-hidden {
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
+}
+
+.help {
+	font-size: 85%;
+}
+
+fieldset {
+	/* Firefox's default is reasonable, Chrome's not so much */
+	border: 1px solid #333;
+}
+
+a {
+	color: #8cb4ff;
+}
+
+h1 {
+	color: var(--accent);
+	font-family: "October Crow", sans-serif;
+}
+
+label {
+	display: inline-block;
+}
+
+details {
+	margin-top: 1rem;
+}
+
+summary :is(h1, h2, h3, h4) {
+	display: inline;
+}
+
+input[disabled] {
+	opacity: 0.3;
+}
+
+.top-flex {
+	display: flex;
+	gap: 1rem;
+	flex-direction: column;
+}
+@media screen and (min-width: 80rem) {
+	.top-flex {
+		flex-direction: row;
+	}
+}
+
+.centred-flex {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+#ghosts {
+	display: grid;
+	grid-template-columns: repeat(3, auto);
+	gap: 1rem;
+}
+#ghosts li.impossible {
+	opacity: 0.3;
+}
+#ghosts input:checked + label {
+	text-decoration: line-through 2px;
+}
+#ghosts input {
+	display: none;
+}
+
+#chart {
+	height: min(60rem, 80vh);
+	position: relative;
+	--expanded-hit: 4px;
+	background-color: rgba(0, 0, 0, 0.2);
+	box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.2);
+	border-radius: 5px;
+	margin-block: 0.5rem;
+}
+#chart .ghost {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+}
+#chart .ghost .label {
+	position: absolute;
+	transform: translateY(50%);
+	pointer-events: auto;
+	background-color: var(--background);
+	border: 2px solid currentColor;
+	z-index: 2;
+	--extra-padding: 2px;
+	padding: calc(0.2rem + var(--extra-padding));
+	left: calc(var(--index, 0) * (100% - 4em) / 24);
+	border-radius: 4px;
+	font-size: 90%;
+}
+#chart .ghost .label button {
+	font-size: 70%;
+	padding: 0 0.2em;
+	opacity: 0;
+}
+#chart .ghost .label:hover button,
+#chart .ghost .label button:focus-visible {
+	opacity: 1;
+}
+#chart .ghost .range-area {
+	position: absolute;
+	left: 0;
+	width: 100%;
+	background-color: currentColor;
+	opacity: 0.1;
+	mix-blend-mode: screen;
+	z-index: 0;
+}
+#chart .ghost .range {
+	pointer-events: auto;
+	position: absolute;
+	width: 2px;
+	background-color: currentColor;
+	left: calc(0.5rem + var(--index, 0) * (100% - 4em) / 24);
+	z-index: 1;
+}
+#chart .ghost .range::before {
+	/* Expanded hit area */
+	position: absolute;
+	content: "";
+	left: calc(0px - var(--expanded-hit));
+	right: calc(0px - var(--expanded-hit));
+	top: 0;
+	height: 100%;
+}
+#chart .ghost .markers > div {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 2px;
+	background-color: currentColor;
+	pointer-events: auto;
+	z-index: 1;
+}
+#chart .ghost .markers > div::before {
+	/* Expanded hit area */
+	position: absolute;
+	content: "";
+	left: 0;
+	top: calc(0px - var(--expanded-hit));
+	bottom: calc(0px - var(--expanded-hit));
+	width: 100%;
+}
+#chart .ghost:is(:hover, :focus-within) {
+	z-index: 3;
+}
+#chart .ghost:is(:hover, :focus-within) .label {
+	--extra-padding: 0px;
+	border-width: 4px;
+}
+#chart .ghost:is(:hover, :focus-within) .range {
+	transform: scaleX(200%);
+}
+#chart .ghost:is(:hover, :focus-within) .markers > div {
+	transform: scaleY(200%);
+}
+#tap-target:is(:focus, :focus-within) {
+	outline: 5px auto Highlight;
+	outline: 5px auto -webkit-focus-ring-color;
+}
+#tap-trace {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+	z-index: 2;
+}
+
+.evidence-list {
+	display: grid;
+	gap: var(--fieldset-gap);
+}
+.evidence-list h4 {
+	grid-column: 1 / -1;
+	margin-bottom: 0;
+}
+#primary-evidence {
+	grid-template-rows: repeat(4, auto);
+	grid-auto-flow: column;
+}
+#secondary-evidence {
+	grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
+}
+.evidence-list fieldset {
+	opacity: 0.3;
+}
+.evidence-list fieldset:is(.investigate, .investigated) {
+	opacity: 1;
+}
+.evidence-list fieldset.investigate {
+	border-color: darkgoldenrod;
+}
+#ghost-speed-factors {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
+	gap: var(--fieldset-gap);
+}
+.game-setup-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
+	gap: var(--fieldset-gap);
+}
+
+header {
+	display: flex;
+	gap: 1rem;
+	align-items: baseline;
+}
+
+#tap {
+	font-size: 3rem;
+	padding: 1rem;
+}
+#tap-button-box {
+	display: grid;
+	gap: 1rem;
+	align-items: center;
+	flex-wrap: wrap;
+	margin-block: 0.5rem;
+}
+@media screen and (min-width: 40rem) {
+	#tap-button-box {
+		grid-template-columns: auto auto;
+	}
+}
+@media screen and (min-width: 60rem) {
+	#tap-button-box {
+		grid-template-columns: auto auto auto;
+	}
+}
+#tap-button-box .flex {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+#tap-button-box span {
+	opacity: 0.5;
+}
+#tap-button-box output {
+	display: inline-block;
+	min-width: 3em;
+}
+
+#observations-grid {
+	display: grid;
+	gap: 0 2rem;
+	grid-template-areas: "primary" "secondary-heading" "secondary-body" "ghosts";
+}
+#primary-evidence-cell {
+	grid-area: primary;
+}
+#secondary-evidence-wrapper, #secondary-evidence-wrapper > details {
+	display: contents;
+}
+#secondary-evidence-wrapper > details > summary {
+	grid-area: secondary-heading;
+	align-self: end;
+}
+#secondary-evidence {
+	grid-area: secondary-body;
+}
+#possible-ghosts-cell {
+	grid-area: ghosts;
+}
+@media screen and (min-width: 80rem) {
+	#observations-grid {
+		grid-template-areas: "primary ghosts" "secondary-heading ghosts" "secondary-body secondary-body";
+	}
+}
+
+#timer-grid {
+	display: grid;
+	gap: 0.5rem;
+	grid-template-columns: auto auto;
+	grid-template-areas: "button readout" "controls controls";
+}
+#timer-start-stop {
+	grid-area: button;
+}
+#timer-readout {
+	grid-area: readout;
+	text-align: center;
+	font-size: 3rem;
+	font-variant-numeric: tabular-nums;
+	min-width: 3em;
+}
+#timer-readout.safe {
+	color: green;
+}
+#timer-readout.caution {
+	color: orange;
+}
+#timer-readout.danger {
+	color: red;
+}
+#timer-controls {
+	grid-area: controls;
+}
+
+footer {
+	font-size: 85%;
+	opacity: 0.6;
+	padding: 4rem 0;
+}
