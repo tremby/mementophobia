@@ -1,5 +1,7 @@
 This is a helper tool for the game [Phasmophobia](https://www.kineticgames.co.uk/phasmophobia).
 
+[Go use the tool](https://mementophobia.netlify.app/)
+
 Current state
 -------------
 
@@ -11,8 +13,8 @@ The moderators on the Discord server don't seem to much care,
 so it's hard to get definitive answers.
 As such, some assumptions have been made,
 based on observations and common sense.
-There are some notes about them in the comments in the source code.
 They may not all be correct.
+There are some notes about them in the comments in the source code.
 
 Future plans
 ------------
