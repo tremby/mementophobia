@@ -387,6 +387,11 @@ function evidenceName(evidence) {
 	return byId(evidence).dataset.name;
 }
 
+function setWith(baseSet, newMember) {
+	const newSet = new Set(baseSet);
+	newSet.add(newMember);
+	return newSet;
+}
 function setExclude(a, ...others) {
 	const newSet = new Set(a);
 	for (const toExclude of others)
@@ -526,6 +531,18 @@ function updateEvidence() {
 	const remainingGhostContainers = ghostContainers.filter((ghostContainer) => !ghostContainer.classList.contains("impossible") && !ghostContainer.querySelector("input").checked);
 	console.timeEnd("find remaining");
 
+	function narrowedDownWith(confirmedEvidence, ruledOutEvidence, secondaryClasses) {
+		let removesAtLeastOne = false;
+		let leavesAtLeastOne = false;
+		for (const ghostContainer of remainingGhostContainers) {
+			if (ghostImpossible(numCollectable, ghostContainer, confirmedEvidence, ruledOutEvidence, secondaryClasses, false))
+				removesAtLeastOne = true;
+			else leavesAtLeastOne = true;
+			if (removesAtLeastOne && leavesAtLeastOne) return true;
+		}
+		return false;
+	}
+
 	console.time("primary");
 	// Loop through primary evidence types
 	for (const evidenceContainer of document.querySelectorAll("#primary-evidence fieldset")) {
@@ -540,40 +557,13 @@ function updateEvidence() {
 			continue;
 		}
 
+		// If there's only one ghost left, or none,
+		// refining this evidence wouldn't be useful
 		if (remainingGhostContainers.length <= 1) continue;
 
 		// Would any further ghosts be ruled out if this evidence were refined?
-		let useful = false;
-		{
-			let removesAtLeastOne = false;
-			let leavesAtLeastOne = false;
-			for (const ghostContainer of remainingGhostContainers) {
-				const confirmedPlus = new Set(confirmedEvidence);
-				confirmedPlus.add(evidence);
-				if (ghostImpossible(numCollectable, ghostContainer, confirmedPlus, ruledOutEvidence, secondaryClasses, false))
-					removesAtLeastOne = true;
-				else leavesAtLeastOne = true;
-				if (removesAtLeastOne && leavesAtLeastOne) {
-					useful = true;
-					break;
-				}
-			}
-		}
-		if (!useful) {
-			let removesAtLeastOne = false;
-			let leavesAtLeastOne = false;
-			for (const ghostContainer of remainingGhostContainers) {
-				const ruledOutPlus = new Set(ruledOutEvidence);
-				ruledOutPlus.add(evidence);
-				if (ghostImpossible(numCollectable, ghostContainer, confirmedEvidence, ruledOutPlus, secondaryClasses, false))
-					removesAtLeastOne = true;
-				else leavesAtLeastOne = true;
-				if (removesAtLeastOne && leavesAtLeastOne) {
-					useful = true;
-					break;
-				}
-			}
-		}
+		const useful = narrowedDownWith(setWith(confirmedEvidence, evidence), ruledOutEvidence, secondaryClasses)
+			|| narrowedDownWith(confirmedEvidence, setWith(ruledOutEvidence, evidence), secondaryClasses);;
 		evidenceContainer.classList.toggle("investigate", useful);
 	}
 	console.timeEnd("primary");
@@ -592,61 +582,22 @@ function updateEvidence() {
 			continue;
 		}
 
+		// If there's only one ghost left, or none,
+		// refining this evidence wouldn't be useful
 		if (remainingGhostContainers.length <= 1) continue;
 
 		// Would any further ghosts be ruled out if this evidence were refined?
 		let useful = false;
 		if (evidenceContainer.classList.contains("complex")) {
-			const secondaryPlus = new Set(secondaryClasses);
-			options: for (const radio of evidenceContainer.querySelectorAll(`[type="radio"]:not([value="unknown"])`)) {
-				let removesAtLeastOne = false;
-				let leavesAtLeastOne = false;
-				secondaryPlus.add(`${evidence}-${radio.value}`);
-				for (const ghostContainer of remainingGhostContainers) {
-					if (ghostImpossible(numCollectable, ghostContainer, confirmedEvidence, ruledOutEvidence, secondaryPlus, false))
-						removesAtLeastOne = true;
-					else leavesAtLeastOne = true;
-					if (removesAtLeastOne && leavesAtLeastOne) {
-						useful = true;
-						break options;
-					}
-				}
-				secondaryPlus.delete(`${evidence}-${radio.value}`);
+			// For each option, check if choosing it would be useful
+			for (const radio of evidenceContainer.querySelectorAll(`[type="radio"]:not([value="unknown"])`)) {
+				useful = narrowedDownWith(confirmedEvidence, ruledOutEvidence, setWith(secondaryClasses, `${evidence}-${radio.value}`));
+				if (useful) break;
 			}
 		} else {
-			{
-				// Check if confirming it is useful
-				let removesAtLeastOne = false;
-				let leavesAtLeastOne = false;
-				const secondaryPlus = new Set(secondaryClasses);
-				secondaryPlus.add(evidence);
-				for (const ghostContainer of remainingGhostContainers) {
-					if (ghostImpossible(numCollectable, ghostContainer, confirmedEvidence, ruledOutEvidence, secondaryPlus, false))
-						removesAtLeastOne = true;
-					else leavesAtLeastOne = true;
-					if (removesAtLeastOne && leavesAtLeastOne) {
-						useful = true;
-						break;
-					}
-				}
-			}
-
-			if (!useful) {
-				// Check if ruling it out is useful
-				let removesAtLeastOne = false;
-				let leavesAtLeastOne = false;
-				const secondaryPlus = new Set(secondaryClasses);
-				secondaryPlus.add(`no-${evidence}`);
-				for (const ghostContainer of remainingGhostContainers) {
-					if (ghostImpossible(numCollectable, ghostContainer, confirmedEvidence, ruledOutEvidence, secondaryPlus, false))
-						removesAtLeastOne = true;
-					else leavesAtLeastOne = true;
-					if (removesAtLeastOne && leavesAtLeastOne) {
-						useful = true;
-						break;
-					}
-				}
-			}
+			// Check if confirming it or ruling it out is useful
+			useful = narrowedDownWith(confirmedEvidence, ruledOutEvidence, setWith(secondaryClasses, evidence))
+				|| narrowedDownWith(confirmedEvidence, ruledOutEvidence, setWith(secondaryClasses, `no-${evidence}`));
 		}
 
 		// Evidence is worth investigating if refining it could lead to cutting down
