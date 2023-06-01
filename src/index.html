@@ -140,10 +140,17 @@
 							<h4>Hunt</h4>
 							<!-- hunt speed -->
 							<fieldset id="speed-normal">
-								<legend>Normal speed during hunt, speeds up gradually with line of sight</legend>
+								<legend>Normal speed when players undetected</legend>
 								<label><input type="radio" name="speed-normal" value="unknown" checked> unknown</label>
 								<label><input type="radio" name="speed-normal" value="yes"> confirmed</label>
 								<label><input type="radio" name="speed-normal" value="no"> ruled out</label>
+							</fieldset>
+							<fieldset id="los-speedup" class="complex">
+								<legend>Speedup during line-of-sight</legend>
+								<label><input type="radio" name="los-speedup" value="unknown" checked> unknown</label>
+								<label><input type="radio" name="los-speedup" value="gradual"> gradual</label>
+								<label><input type="radio" name="los-speedup" value="sudden"> sudden</label>
+								<label><input type="radio" name="los-speedup" value="none"> none</label>
 							</fieldset>
 							<fieldset id="speedup-near-active-electronics">
 								<legend>Speeds up suddenly near active electronics</legend>
@@ -365,7 +372,7 @@
 								no-targets-specific-player
 								can-do-airball
 								speed-normal
-								speedup-los-gradual
+								los-speedup-gradual
 								no-speedup-near-active-electronics
 								blink-normal
 								smudge-hunt-long
@@ -399,7 +406,7 @@
 								no-targets-specific-player
 								can-do-airball
 								speed-normal
-								speedup-los-gradual
+								los-speedup-gradual
 								no-speedup-near-active-electronics
 								blink-normal
 								smudge-hunt-normal
@@ -433,7 +440,7 @@
 								no-targets-specific-player
 								can-do-airball
 								speed-normal
-								speedup-los-gradual
+								los-speedup-gradual
 								no-speedup-near-active-electronics
 								blink-long
 								smudge-hunt-normal
@@ -467,7 +474,7 @@
 								no-targets-specific-player
 								can-do-airball
 								speed-normal
-								speedup-los-gradual
+								los-speedup-gradual
 								no-speedup-near-active-electronics
 								blink-normal
 								smudge-hunt-normal
@@ -501,7 +508,7 @@
 								targets-specific-player
 								can-do-airball
 								speed-normal
-								speedup-los-gradual
+								los-speedup-gradual
 								no-speedup-near-active-electronics
 								blink-normal
 								smudge-hunt-normal
@@ -535,7 +542,7 @@
 								no-targets-specific-player
 								can-do-airball
 								speed-normal no-speed-normal
-								speedup-los-gradual speedup-los-sudden
+								los-speedup-gradual los-speedup-sudden
 								no-speedup-near-active-electronics
 								blink-normal
 								smudge-hunt-normal
@@ -569,7 +576,7 @@
 								no-targets-specific-player
 								can-do-airball
 								speed-normal
-								speedup-los-gradual
+								los-speedup-gradual
 								no-speedup-near-active-electronics
 								blink-normal
 								smudge-hunt-normal
@@ -603,7 +610,7 @@
 								no-targets-specific-player
 								can-do-airball
 								no-speed-normal
-								speedup-los-sudden
+								los-speedup-sudden
 								blink-normal
 								no-speedup-near-active-electronics
 								smudge-hunt-normal
@@ -637,7 +644,7 @@
 								no-targets-specific-player
 								can-do-airball
 								speed-normal
-								speedup-los-gradual
+								los-speedup-gradual
 								no-speedup-near-active-electronics
 								blink-normal
 								smudge-hunt-normal
@@ -671,7 +678,7 @@
 								no-targets-specific-player
 								can-do-airball
 								speed-normal
-								speedup-los-gradual
+								los-speedup-gradual
 								no-speedup-near-active-electronics
 								blink-normal
 								smudge-hunt-short
@@ -705,7 +712,7 @@
 								no-targets-specific-player
 								can-do-airball
 								speed-normal
-								speedup-los-gradual
+								los-speedup-gradual
 								no-speedup-near-active-electronics
 								blink-normal
 								smudge-hunt-normal
@@ -739,7 +746,7 @@
 								no-targets-specific-player
 								no-can-do-airball
 								speed-normal
-								speedup-los-gradual
+								los-speedup-gradual
 								no-speedup-near-active-electronics
 								blink-short
 								smudge-hunt-normal
@@ -773,7 +780,7 @@
 								no-targets-specific-player
 								can-do-airball
 								speed-normal
-								speedup-los-gradual
+								los-speedup-gradual
 								no-speedup-near-active-electronics
 								blink-normal
 								smudge-hunt-normal
@@ -807,7 +814,7 @@
 								no-targets-specific-player
 								can-do-airball
 								no-speed-normal
-								speedup-los-none
+								los-speedup-none
 								no-speedup-near-active-electronics
 								blink-normal
 								smudge-hunt-normal
@@ -841,7 +848,7 @@
 								no-targets-specific-player
 								can-do-airball
 								speed-normal
-								speedup-los-gradual
+								los-speedup-gradual
 								no-speedup-near-active-electronics
 								blink-normal
 								smudge-hunt-normal
@@ -875,7 +882,7 @@
 								no-targets-specific-player
 								can-do-airball
 								speed-normal
-								speedup-los-gradual
+								los-speedup-gradual
 								no-speedup-near-active-electronics
 								blink-normal
 								smudge-hunt-normal
@@ -909,7 +916,7 @@
 								no-targets-specific-player
 								can-do-airball
 								speed-normal
-								speedup-los-gradual
+								los-speedup-gradual
 								no-speedup-near-active-electronics
 								blink-normal
 								smudge-hunt-normal
@@ -943,7 +950,7 @@
 								no-targets-specific-player
 								can-do-airball
 								no-speed-normal
-								speedup-los-gradual
+								los-speedup-gradual
 								no-speedup-near-active-electronics
 								blink-normal
 								smudge-hunt-normal
@@ -977,7 +984,7 @@
 								no-targets-specific-player
 								can-do-airball
 								speed-normal no-speed-normal
-								speedup-los-gradual speedup-los-none
+								los-speedup-gradual los-speedup-none
 								speedup-near-active-electronics
 								blink-normal
 								smudge-hunt-normal
@@ -1011,7 +1018,7 @@
 								no-targets-specific-player
 								can-do-airball
 								speed-normal
-								speedup-los-gradual
+								los-speedup-gradual
 								no-speedup-near-active-electronics
 								blink-normal
 								smudge-hunt-normal
@@ -1045,7 +1052,7 @@
 								targets-specific-player no-targets-specific-player
 								can-do-airball
 								speed-normal no-speed-normal
-								speedup-los-gradual speedup-los-sudden speedup-los-none
+								los-speedup-gradual los-speedup-sudden los-speedup-none
 								speedup-near-active-electronics no-speedup-near-active-electronics
 								blink-normal blink-short blink-long
 								smudge-hunt-normal smudge-hunt-long smudge-hunt-short
@@ -1079,7 +1086,7 @@
 								no-targets-specific-player
 								can-do-airball
 								no-speed-normal
-								speedup-los-gradual
+								los-speedup-gradual
 								no-speedup-near-active-electronics
 								blink-normal
 								smudge-hunt-normal
@@ -1113,7 +1120,7 @@
 								no-targets-specific-player
 								can-do-airball
 								no-speed-normal
-								speedup-los-none
+								los-speedup-none
 								no-speedup-near-active-electronics
 								blink-normal
 								smudge-hunt-normal
@@ -1147,7 +1154,7 @@
 								no-targets-specific-player
 								can-do-airball
 								no-speed-normal
-								speedup-los-none
+								los-speedup-none
 								no-speedup-near-active-electronics
 								blink-normal
 								smudge-hunt-normal
