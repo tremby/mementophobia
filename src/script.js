@@ -1169,7 +1169,6 @@ function updateSpeedMarkers() {
 		const colorC = 40 + 30 * (index % 8) / 7;
 		const colorH = index / speedMarkers.length + (index % 2) / 2;
 		const color = `oklch(${colorL}% ${colorC / 100 * 0.4} ${colorH}turn)`; // Chrome 113 doesn't seem to like percentage chroma
-		console.log("setting", ghostContainer, "color to", color);
 		ghostContainer.style.color = color;
 		const markersContainer = ghostContainer.querySelector(".markers");
 		markersContainer.replaceChildren(...ghost.speeds.map((speed) => {
