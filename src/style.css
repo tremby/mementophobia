@@ -315,15 +315,19 @@ header {
 	font-size: 3rem;
 	font-variant-numeric: tabular-nums;
 	min-width: 3em;
+	border-radius: 5px;
+	background-color: rgba(0, 0, 0, 0.2);
+	box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.2);
+	padding-block: 0.5rem;
 }
 #timer-readout.safe {
-	color: green;
+	color: oklch(70% 0.2 140deg);
 }
 #timer-readout.caution {
-	color: orange;
+	color: goldenrod;
 }
 #timer-readout.danger {
-	color: red;
+	color: oklch(60% 0.25 30deg);
 }
 #timer-controls {
 	grid-area: controls;
