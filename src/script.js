@@ -499,6 +499,7 @@ function getRequiredSecondaryClasses() {
 }
 
 function updateEvidence() {
+	console.time("update evidence total");
 	console.time("setup");
 	const numCollectable = getEvidenceNum();
 	const checkedEvidenceRadios = Array.from(document.querySelectorAll(`#primary-evidence [type="radio"]:checked`));
@@ -657,6 +658,7 @@ function updateEvidence() {
 	console.time("speed");
 	updateSpeedMarkers();
 	console.timeEnd("speed");
+	console.timeEnd("update evidence total");
 }
 
 function resetTempo() {
