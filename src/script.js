@@ -597,10 +597,10 @@ function updateEvidence() {
 		// Would any further ghosts be ruled out if this evidence were refined?
 		let useful = false;
 		if (evidenceContainer.classList.contains("complex")) {
-			let removesAtLeastOne = false;
-			let leavesAtLeastOne = false;
 			const secondaryPlus = new Set(secondaryClasses);
 			options: for (const radio of evidenceContainer.querySelectorAll(`[type="radio"]:not([value="unknown"])`)) {
+				let removesAtLeastOne = false;
+				let leavesAtLeastOne = false;
 				secondaryPlus.add(`${evidence}-${radio.value}`);
 				for (const ghostContainer of remainingGhostContainers) {
 					if (ghostImpossible(numCollectable, ghostContainer, confirmedEvidence, ruledOutEvidence, secondaryPlus, false))
