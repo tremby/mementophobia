@@ -649,8 +649,8 @@ function updateTempos() {
 		const formatter = new Intl.NumberFormat("en", { maximumSignificantDigits: 4 });
 		const tempo = getAverageTempo();
 		const adjustedTempo = tempo / getSpeedMultiplier();
-		byId("average-tempo").innerText = formatter.format(tempo);
-		byId("adjusted-average-tempo").innerText = formatter.format(adjustedTempo);
+		byId("average-tempo").innerText = `${formatter.format(tempo)} bpm`;
+		byId("adjusted-average-tempo").innerText = `${formatter.format(adjustedTempo)} bpm`;
 	}
 }
 
