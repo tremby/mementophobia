@@ -491,14 +491,8 @@ function getRequiredSecondaryClasses() {
 		if (evidenceContainer.querySelector(`[type="radio"][value="unknown"]`).checked)
 			continue;
 
-		if (evidenceContainer.classList.contains("complex")) {
-			const value = evidenceContainer.querySelector(`[type="radio"]:checked`).value;
-			classes.add(`${evidenceContainer.id}-${value}`);
-		} else {
-			const state = radioTristate(evidenceContainer.id);
-			if (state) classes.add(evidenceContainer.id);
-			else classes.add(`no-${evidenceContainer.id}`);
-		}
+		const value = evidenceContainer.querySelector(`[type="radio"]:checked`).value;
+		classes.add(`${evidenceContainer.id}-${value}`);
 	}
 
 	return classes;
@@ -587,23 +581,14 @@ function updateEvidence() {
 		// refining this evidence wouldn't be useful
 		if (remainingGhostContainers.length <= 1) continue;
 
-		// Would any further ghosts be ruled out if this evidence were refined?
-		let useful = false;
-		if (evidenceContainer.classList.contains("complex")) {
-			// For each option, check if choosing it would be useful
-			for (const radio of evidenceContainer.querySelectorAll(`[type="radio"]:not([value="unknown"])`)) {
-				useful = narrowedDownWith(confirmedEvidence, ruledOutEvidence, setWith(secondaryClasses, `${evidence}-${radio.value}`));
-				if (useful) break;
+		// For each option, check if choosing it would rule out some but not all
+		// remaining ghosts
+		for (const radio of evidenceContainer.querySelectorAll(`[type="radio"]:not([value="unknown"])`)) {
+			if (narrowedDownWith(confirmedEvidence, ruledOutEvidence, setWith(secondaryClasses, `${evidence}-${radio.value}`))) {
+				evidenceContainer.classList.add("investigate");
+				break;
 			}
-		} else {
-			// Check if confirming it or ruling it out is useful
-			useful = narrowedDownWith(confirmedEvidence, ruledOutEvidence, setWith(secondaryClasses, evidence))
-				|| narrowedDownWith(confirmedEvidence, ruledOutEvidence, setWith(secondaryClasses, `no-${evidence}`));
 		}
-
-		// Evidence is worth investigating if refining it could lead to cutting down
-		// the list, without eliminating every single ghost
-		evidenceContainer.classList.toggle("investigate", useful);
 	}
 	console.timeEnd("secondary");
 

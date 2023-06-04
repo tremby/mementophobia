@@ -145,7 +145,7 @@
 								<label><input type="radio" name="speed-normal" value="yes"> confirmed</label>
 								<label><input type="radio" name="speed-normal" value="no"> ruled out</label>
 							</fieldset>
-							<fieldset id="los-speedup" class="complex">
+							<fieldset id="los-speedup">
 								<legend>Speedup during line-of-sight</legend>
 								<label><input type="radio" name="los-speedup" value="unknown" checked> unknown</label>
 								<label><input type="radio" name="los-speedup" value="gradual"> gradual</label>
@@ -160,7 +160,7 @@
 							</fieldset>
 
 							<!-- hunt appearance -->
-							<fieldset id="blink" class="complex">
+							<fieldset id="blink">
 								<legend>Blinks during hunt (periods of invisibility)</legend>
 								<label><input type="radio" name="blink" value="unknown" checked> unknown</label>
 								<label><input type="radio" name="blink" value="short"> short</label>
@@ -173,11 +173,11 @@
 								<label><input type="radio" name="shapeshifter" value="yes"> confirmed</label>
 								<label><input type="radio" name="shapeshifter" value="no"> ruled out</label>
 							</fieldset>
-							<fieldset id="footsteps-quiet">
+							<fieldset id="footstep-volume">
 								<legend>Footstep volume</legend>
-								<label><input type="radio" name="footsteps-quiet" value="unknown" checked> unknown</label>
-								<label><input type="radio" name="footsteps-quiet" value="yes"> quiet (audible within 12 m)</label>
-								<label><input type="radio" name="footsteps-quiet" value="no"> normal (audible within 20 m)</label>
+								<label><input type="radio" name="footstep-volume" value="unknown" checked> unknown</label>
+								<label><input type="radio" name="footstep-volume" value="quiet"> quiet (audible within 12 m)</label>
+								<label><input type="radio" name="footstep-volume" value="normal"> normal (audible within 20 m)</label>
 								<details>
 									<summary>Info</summary>
 									<p>For comparison, all ghosts but the raiju cause electronic interference within 10 m.</p>
@@ -190,6 +190,15 @@
 								<label><input type="radio" name="targets-specific-player" value="unknown" checked> unknown</label>
 								<label><input type="radio" name="targets-specific-player" value="yes"> confirmed</label>
 								<label><input type="radio" name="targets-specific-player" value="no"> ruled out</label>
+								<details>
+									<summary>Info</summary>
+									<p>
+										For ghosts which target a specific player,
+										a player is chosen at the start of the game (or after a previous target dies),
+										and as long as this target player is in the investigation area during a hunt,
+										only that player will be noticed or harmed by the ghost.
+									</p>
+								</details>
 							</fieldset>
 							<fieldset id="omniscient">
 								<legend>Can always find the player</legend>
@@ -197,17 +206,17 @@
 								<label><input type="radio" name="omniscient" value="yes"> confirmed</label>
 								<label><input type="radio" name="omniscient" value="no"> ruled out</label>
 							</fieldset>
-							<fieldset id="detects-player-held-electronics-at-medium-range">
+							<fieldset id="player-held-electronics-detection-range">
 								<legend>Player-held electronics detection range</legend>
-								<label><input type="radio" name="detects-player-held-electronics-at-medium-range" value="unknown" checked> unknown</label>
-								<label><input type="radio" name="detects-player-held-electronics-at-medium-range" value="yes"> normal (7.5 m)</label>
-								<label><input type="radio" name="detects-player-held-electronics-at-medium-range" value="no"> close (2.5 m)</label>
+								<label><input type="radio" name="player-held-electronics-detection-range" value="unknown" checked> unknown</label>
+								<label><input type="radio" name="player-held-electronics-detection-range" value="normal"> normal (7.5 m)</label>
+								<label><input type="radio" name="player-held-electronics-detection-range" value="short"> close (2.5 m)</label>
 							</fieldset>
-							<fieldset id="electronic-interference-range-long">
+							<fieldset id="electronic-interference-range">
 								<legend>Electronic interference range</legend>
-								<label><input type="radio" name="electronic-interference-range-long" value="unknown" checked> unknown</label>
-								<label><input type="radio" name="electronic-interference-range-long" value="yes"> long (15 m)</label>
-								<label><input type="radio" name="electronic-interference-range-long" value="no"> normal (10 m)</label>
+								<label><input type="radio" name="electronic-interference-range" value="unknown" checked> unknown</label>
+								<label><input type="radio" name="electronic-interference-range" value="long"> long (15 m)</label>
+								<label><input type="radio" name="electronic-interference-range" value="normal"> normal (10 m)</label>
 							</fieldset>
 							<fieldset id="frequent-throws-during-hunt">
 								<legend>Always throws things every ½ second during hunt</legend>
@@ -221,11 +230,11 @@
 							</fieldset>
 
 							<!-- smudge-related -->
-							<fieldset id="smudge-blind-long">
-								<legend>Smudge blindness</legend>
-								<label><input type="radio" name="smudge-blind-long" value="unknown" checked> unknown</label>
-								<label><input type="radio" name="smudge-blind-long" value="no"> normal (6 sec)</label>
-								<label><input type="radio" name="smudge-blind-long" value="yes"> long (12 sec)</label>
+							<fieldset id="smudge-blindness-duration">
+								<legend>Smudge blindness duration</legend>
+								<label><input type="radio" name="smudge-blindness-duration" value="unknown" checked> unknown</label>
+								<label><input type="radio" name="smudge-blindness-duration" value="normal"> normal (6 sec)</label>
+								<label><input type="radio" name="smudge-blindness-duration" value="long"> long (12 sec)</label>
 								<details>
 									<summary>Info</summary>
 									<p>
@@ -234,12 +243,12 @@
 									</p>
 								</details>
 							</fieldset>
-							<fieldset id="smudge-hunt" class="complex">
+							<fieldset id="smudge-hunt-suspension">
 								<legend>Smudge hunt suspension</legend>
-								<label><input type="radio" name="smudge-hunt" value="unknown" checked> unknown</label>
-								<label><input type="radio" name="smudge-hunt" value="short"> short (60 sec)</label>
-								<label><input type="radio" name="smudge-hunt" value="normal"> normal (90 sec)</label>
-								<label><input type="radio" name="smudge-hunt" value="long"> long (180 sec)</label>
+								<label><input type="radio" name="smudge-hunt-suspension" value="unknown" checked> unknown</label>
+								<label><input type="radio" name="smudge-hunt-suspension" value="short"> short (60 sec)</label>
+								<label><input type="radio" name="smudge-hunt-suspension" value="normal"> normal (90 sec)</label>
+								<label><input type="radio" name="smudge-hunt-suspension" value="long"> long (180 sec)</label>
 								<details>
 									<summary>Info</summary>
 									<p>
@@ -305,8 +314,12 @@
 								<details>
 									<summary>Info</summary>
 									<p>
-										Put a crucifix and candle very close together and keep the candle lit.
-										If the crucifix burns while the candle is still lit, this can be ruled out, since ghosts with this trait put out the candle with a higher priority.
+										To attempt to find this evidence, keep candles lit around the favourite room at low sanity.
+										If hunts are suspended or only then happen from outside the area, this evidence can be ruled in with decent confidence.
+									</p>
+									<p>
+										A way to rule this out is to put one or more candles near a crucifix and keep them lit.
+										If the crucifix burns while at least one candle is still lit, this evidence can be ruled out, since ghosts with this trait put out the candle with a higher priority.
 									</p>
 								</details>
 							</fieldset>
@@ -376,33 +389,33 @@
 							id="spirit"
 							class="
 								ghost-writing emf-level-5 spirit-box
-								can-change-favourite-room
-								no-frequent-throws-during-hunt
-								no-electronic-interference-range-long
-								no-follows-player
-								no-omniscient
-								no-sometimes-hides-fingerprints
-								no-six-fingered-handprints
-								no-shapeshifter
-								no-can-multi-throw
-								detects-player-held-electronics-at-medium-range
-								can-turn-off-fuse-box
-								can-turn-on-fuse-box
-								can-turn-on-lights
-								no-paramic-scream
-								no-targets-specific-player
-								can-do-airball
-								speed-normal
+								can-change-favourite-room-yes
+								frequent-throws-during-hunt-no
+								electronic-interference-range-normal
+								follows-player-no
+								omniscient-no
+								sometimes-hides-fingerprints-no
+								six-fingered-handprints-no
+								shapeshifter-no
+								can-multi-throw-no
+								player-held-electronics-detection-range-normal
+								can-turn-off-fuse-box-yes
+								can-turn-on-fuse-box-yes
+								can-turn-on-lights-yes
+								paramic-scream-no
+								targets-specific-player-no
+								can-do-airball-yes
+								speed-normal-yes
 								los-speedup-gradual
-								no-speedup-near-active-electronics
+								speedup-near-active-electronics-no
 								blink-normal
-								smudge-hunt-long
-								no-footsteps-quiet
-								steps-in-salt
-								no-disappears-from-photo
-								dots-projector-naked-eye
-								no-candle-as-crucifix
-								no-smudge-blind-long
+								smudge-hunt-suspension-long
+								footstep-volume-normal
+								steps-in-salt-yes
+								disappears-from-photo-no
+								dots-projector-naked-eye-na
+								candle-as-crucifix-no
+								smudge-blindness-duration-normal
 							"
 						>
 							<input type="checkbox" id="spirit-manually-ruled-out">
@@ -412,33 +425,33 @@
 							id="wraith"
 							class="
 								dots-projector emf-level-5 spirit-box
-								can-change-favourite-room
-								no-frequent-throws-during-hunt
-								no-electronic-interference-range-long
-								follows-player
-								no-omniscient
-								no-sometimes-hides-fingerprints
-								no-six-fingered-handprints
-								no-shapeshifter
-								no-can-multi-throw
-								detects-player-held-electronics-at-medium-range
-								can-turn-off-fuse-box
-								can-turn-on-fuse-box
-								can-turn-on-lights
-								no-paramic-scream
-								no-targets-specific-player
-								can-do-airball
-								speed-normal
+								can-change-favourite-room-yes
+								frequent-throws-during-hunt-no
+								electronic-interference-range-normal
+								follows-player-yes
+								omniscient-no
+								sometimes-hides-fingerprints-no
+								six-fingered-handprints-no
+								shapeshifter-no
+								can-multi-throw-no
+								player-held-electronics-detection-range-normal
+								can-turn-off-fuse-box-yes
+								can-turn-on-fuse-box-yes
+								can-turn-on-lights-yes
+								paramic-scream-no
+								targets-specific-player-no
+								can-do-airball-yes
+								speed-normal-yes
 								los-speedup-gradual
-								no-speedup-near-active-electronics
+								speedup-near-active-electronics-no
 								blink-normal
-								smudge-hunt-normal
-								no-footsteps-quiet
-								no-steps-in-salt
-								no-disappears-from-photo
-								dots-projector-naked-eye
-								no-candle-as-crucifix
-								no-smudge-blind-long
+								smudge-hunt-suspension-normal
+								footstep-volume-normal
+								steps-in-salt-no
+								disappears-from-photo-no
+								dots-projector-naked-eye-yes
+								candle-as-crucifix-no
+								smudge-blindness-duration-normal
 							"
 						>
 							<input type="checkbox" id="wraith-manually-ruled-out">
@@ -448,33 +461,33 @@
 							id="phantom"
 							class="
 								dots-projector fingerprints spirit-box
-								can-change-favourite-room
-								no-frequent-throws-during-hunt
-								no-electronic-interference-range-long
-								follows-player
-								no-omniscient
-								no-sometimes-hides-fingerprints
-								no-six-fingered-handprints
-								no-shapeshifter
-								no-can-multi-throw
-								detects-player-held-electronics-at-medium-range
-								can-turn-off-fuse-box
-								can-turn-on-fuse-box
-								can-turn-on-lights
-								no-paramic-scream
-								no-targets-specific-player
-								can-do-airball
-								speed-normal
+								can-change-favourite-room-yes
+								frequent-throws-during-hunt-no
+								electronic-interference-range-normal
+								follows-player-yes
+								omniscient-no
+								sometimes-hides-fingerprints-no
+								six-fingered-handprints-no
+								shapeshifter-no
+								can-multi-throw-no
+								player-held-electronics-detection-range-normal
+								can-turn-off-fuse-box-yes
+								can-turn-on-fuse-box-yes
+								can-turn-on-lights-yes
+								paramic-scream-no
+								targets-specific-player-no
+								can-do-airball-yes
+								speed-normal-yes
 								los-speedup-gradual
-								no-speedup-near-active-electronics
+								speedup-near-active-electronics-no
 								blink-long
-								smudge-hunt-normal
-								no-footsteps-quiet
-								steps-in-salt
-								disappears-from-photo
-								dots-projector-naked-eye
-								no-candle-as-crucifix
-								no-smudge-blind-long
+								smudge-hunt-suspension-normal
+								footstep-volume-normal
+								steps-in-salt-yes
+								disappears-from-photo-yes
+								dots-projector-naked-eye-yes
+								candle-as-crucifix-no
+								smudge-blindness-duration-normal
 							"
 						>
 							<input type="checkbox" id="phantom-manually-ruled-out">
@@ -484,33 +497,33 @@
 							id="poltergeist"
 							class="
 								ghost-writing fingerprints spirit-box
-								can-change-favourite-room
-								frequent-throws-during-hunt
-								no-electronic-interference-range-long
-								no-follows-player
-								no-omniscient
-								no-sometimes-hides-fingerprints
-								no-six-fingered-handprints
-								no-shapeshifter
-								can-multi-throw
-								detects-player-held-electronics-at-medium-range
-								can-turn-off-fuse-box
-								can-turn-on-fuse-box
-								can-turn-on-lights
-								no-paramic-scream
-								no-targets-specific-player
-								can-do-airball
-								speed-normal
+								can-change-favourite-room-yes
+								frequent-throws-during-hunt-yes
+								electronic-interference-range-normal
+								follows-player-no
+								omniscient-no
+								sometimes-hides-fingerprints-no
+								six-fingered-handprints-no
+								shapeshifter-no
+								can-multi-throw-yes
+								player-held-electronics-detection-range-normal
+								can-turn-off-fuse-box-yes
+								can-turn-on-fuse-box-yes
+								can-turn-on-lights-yes
+								paramic-scream-no
+								targets-specific-player-no
+								can-do-airball-yes
+								speed-normal-yes
 								los-speedup-gradual
-								no-speedup-near-active-electronics
+								speedup-near-active-electronics-no
 								blink-normal
-								smudge-hunt-normal
-								no-footsteps-quiet
-								steps-in-salt
-								no-disappears-from-photo
-								dots-projector-naked-eye
-								no-candle-as-crucifix
-								no-smudge-blind-long
+								smudge-hunt-suspension-normal
+								footstep-volume-normal
+								steps-in-salt-yes
+								disappears-from-photo-no
+								dots-projector-naked-eye-na
+								candle-as-crucifix-no
+								smudge-blindness-duration-normal
 							"
 						>
 							<input type="checkbox" id="poltergeist-manually-ruled-out">
@@ -520,33 +533,33 @@
 							id="banshee"
 							class="
 								dots-projector ghost-orb fingerprints
-								can-change-favourite-room
-								no-frequent-throws-during-hunt
-								no-electronic-interference-range-long
-								follows-player
-								no-omniscient
-								no-sometimes-hides-fingerprints
-								no-six-fingered-handprints
-								no-shapeshifter
-								no-can-multi-throw
-								detects-player-held-electronics-at-medium-range
-								can-turn-off-fuse-box
-								can-turn-on-fuse-box
-								can-turn-on-lights
-								paramic-scream
-								targets-specific-player
-								can-do-airball
-								speed-normal
+								can-change-favourite-room-yes
+								frequent-throws-during-hunt-no
+								electronic-interference-range-normal
+								follows-player-yes
+								omniscient-no
+								sometimes-hides-fingerprints-no
+								six-fingered-handprints-no
+								shapeshifter-no
+								can-multi-throw-no
+								player-held-electronics-detection-range-normal
+								can-turn-off-fuse-box-yes
+								can-turn-on-fuse-box-yes
+								can-turn-on-lights-yes
+								paramic-scream-yes
+								targets-specific-player-yes
+								can-do-airball-yes
+								speed-normal-yes
 								los-speedup-gradual
-								no-speedup-near-active-electronics
+								speedup-near-active-electronics-no
 								blink-normal
-								smudge-hunt-normal
-								no-footsteps-quiet
-								steps-in-salt
-								no-disappears-from-photo
-								dots-projector-naked-eye
-								no-candle-as-crucifix
-								no-smudge-blind-long
+								smudge-hunt-suspension-normal
+								footstep-volume-normal
+								steps-in-salt-yes
+								disappears-from-photo-no
+								dots-projector-naked-eye-yes
+								candle-as-crucifix-no
+								smudge-blindness-duration-normal
 							"
 						>
 							<input type="checkbox" id="banshee-manually-ruled-out">
@@ -556,33 +569,33 @@
 							id="jinn"
 							class="
 								emf-level-5 fingerprints freezing-temperatures
-								can-change-favourite-room
-								no-frequent-throws-during-hunt
-								no-electronic-interference-range-long
-								no-follows-player
-								no-omniscient
-								no-sometimes-hides-fingerprints
-								no-six-fingered-handprints
-								no-shapeshifter
-								no-can-multi-throw
-								detects-player-held-electronics-at-medium-range
-								no-can-turn-off-fuse-box
-								can-turn-on-fuse-box
-								can-turn-on-lights
-								no-paramic-scream
-								no-targets-specific-player
-								can-do-airball
-								speed-normal no-speed-normal
+								can-change-favourite-room-yes
+								frequent-throws-during-hunt-no
+								electronic-interference-range-normal
+								follows-player-no
+								omniscient-no
+								sometimes-hides-fingerprints-no
+								six-fingered-handprints-no
+								shapeshifter-no
+								can-multi-throw-no
+								player-held-electronics-detection-range-normal
+								can-turn-off-fuse-box-no
+								can-turn-on-fuse-box-yes
+								can-turn-on-lights-yes
+								paramic-scream-no
+								targets-specific-player-no
+								can-do-airball-yes
+								speed-normal-yes speed-normal-no
 								los-speedup-gradual los-speedup-sudden
-								no-speedup-near-active-electronics
+								speedup-near-active-electronics-no
 								blink-normal
-								smudge-hunt-normal
-								no-footsteps-quiet
-								steps-in-salt
-								no-disappears-from-photo
-								dots-projector-naked-eye
-								no-candle-as-crucifix
-								no-smudge-blind-long
+								smudge-hunt-suspension-normal
+								footstep-volume-normal
+								steps-in-salt-yes
+								disappears-from-photo-no
+								dots-projector-naked-eye-na
+								candle-as-crucifix-no
+								smudge-blindness-duration-normal
 							"
 						>
 							<input type="checkbox" id="jinn-manually-ruled-out">
@@ -592,33 +605,33 @@
 							id="mare"
 							class="
 								ghost-writing ghost-orb spirit-box
-								can-change-favourite-room
-								no-frequent-throws-during-hunt
-								no-electronic-interference-range-long
-								no-follows-player
-								no-omniscient
-								no-sometimes-hides-fingerprints
-								no-six-fingered-handprints
-								no-shapeshifter
-								no-can-multi-throw
-								detects-player-held-electronics-at-medium-range
-								can-turn-off-fuse-box
-								no-can-turn-on-fuse-box
-								no-can-turn-on-lights
-								no-paramic-scream
-								no-targets-specific-player
-								can-do-airball
-								speed-normal
+								can-change-favourite-room-yes
+								frequent-throws-during-hunt-no
+								electronic-interference-range-normal
+								follows-player-no
+								omniscient-no
+								sometimes-hides-fingerprints-no
+								six-fingered-handprints-no
+								shapeshifter-no
+								can-multi-throw-no
+								player-held-electronics-detection-range-normal
+								can-turn-off-fuse-box-yes
+								can-turn-on-fuse-box-no
+								can-turn-on-lights-no
+								paramic-scream-no
+								targets-specific-player-no
+								can-do-airball-yes
+								speed-normal-yes
 								los-speedup-gradual
-								no-speedup-near-active-electronics
+								speedup-near-active-electronics-no
 								blink-normal
-								smudge-hunt-normal
-								no-footsteps-quiet
-								steps-in-salt
-								no-disappears-from-photo
-								dots-projector-naked-eye
-								no-candle-as-crucifix
-								no-smudge-blind-long
+								smudge-hunt-suspension-normal
+								footstep-volume-normal
+								steps-in-salt-yes
+								disappears-from-photo-no
+								dots-projector-naked-eye-na
+								candle-as-crucifix-no
+								smudge-blindness-duration-normal
 							"
 						>
 							<input type="checkbox" id="mare-manually-ruled-out">
@@ -628,33 +641,33 @@
 							id="revenant"
 							class="
 								ghost-writing ghost-orb freezing-temperatures
-								can-change-favourite-room
-								no-frequent-throws-during-hunt
-								no-electronic-interference-range-long
-								no-follows-player
-								no-omniscient
-								no-sometimes-hides-fingerprints
-								no-six-fingered-handprints
-								no-shapeshifter
-								no-can-multi-throw
-								detects-player-held-electronics-at-medium-range
-								can-turn-off-fuse-box
-								can-turn-on-fuse-box
-								can-turn-on-lights
-								no-paramic-scream
-								no-targets-specific-player
-								can-do-airball
-								no-speed-normal
+								can-change-favourite-room-yes
+								frequent-throws-during-hunt-no
+								electronic-interference-range-normal
+								follows-player-no
+								omniscient-no
+								sometimes-hides-fingerprints-no
+								six-fingered-handprints-no
+								shapeshifter-no
+								can-multi-throw-no
+								player-held-electronics-detection-range-normal
+								can-turn-off-fuse-box-yes
+								can-turn-on-fuse-box-yes
+								can-turn-on-lights-yes
+								paramic-scream-no
+								targets-specific-player-no
+								can-do-airball-yes
+								speed-normal-no
 								los-speedup-sudden
 								blink-normal
-								no-speedup-near-active-electronics
-								smudge-hunt-normal
-								no-footsteps-quiet
-								steps-in-salt
-								no-disappears-from-photo
-								dots-projector-naked-eye
-								no-candle-as-crucifix
-								no-smudge-blind-long
+								speedup-near-active-electronics-no
+								smudge-hunt-suspension-normal
+								footstep-volume-normal
+								steps-in-salt-yes
+								disappears-from-photo-no
+								dots-projector-naked-eye-na
+								candle-as-crucifix-no
+								smudge-blindness-duration-normal
 							"
 						>
 							<input type="checkbox" id="revenant-manually-ruled-out">
@@ -664,33 +677,33 @@
 							id="shade"
 							class="
 								ghost-writing emf-level-5 freezing-temperatures
-								can-change-favourite-room
-								no-frequent-throws-during-hunt
-								no-electronic-interference-range-long
-								no-follows-player
-								no-omniscient
-								no-sometimes-hides-fingerprints
-								no-six-fingered-handprints
-								no-shapeshifter
-								no-can-multi-throw
-								detects-player-held-electronics-at-medium-range
-								can-turn-off-fuse-box
-								can-turn-on-fuse-box
-								can-turn-on-lights
-								no-paramic-scream
-								no-targets-specific-player
-								can-do-airball
-								speed-normal
+								can-change-favourite-room-yes
+								frequent-throws-during-hunt-no
+								electronic-interference-range-normal
+								follows-player-no
+								omniscient-no
+								sometimes-hides-fingerprints-no
+								six-fingered-handprints-no
+								shapeshifter-no
+								can-multi-throw-no
+								player-held-electronics-detection-range-normal
+								can-turn-off-fuse-box-yes
+								can-turn-on-fuse-box-yes
+								can-turn-on-lights-yes
+								paramic-scream-no
+								targets-specific-player-no
+								can-do-airball-yes
+								speed-normal-yes
 								los-speedup-gradual
-								no-speedup-near-active-electronics
+								speedup-near-active-electronics-no
 								blink-normal
-								smudge-hunt-normal
-								no-footsteps-quiet
-								steps-in-salt
-								no-disappears-from-photo
-								dots-projector-naked-eye
-								no-candle-as-crucifix
-								no-smudge-blind-long
+								smudge-hunt-suspension-normal
+								footstep-volume-normal
+								steps-in-salt-yes
+								disappears-from-photo-no
+								dots-projector-naked-eye-na
+								candle-as-crucifix-no
+								smudge-blindness-duration-normal
 							"
 						>
 							<input type="checkbox" id="shade-manually-ruled-out">
@@ -700,33 +713,33 @@
 							id="demon"
 							class="
 								ghost-writing fingerprints freezing-temperatures
-								can-change-favourite-room
-								no-frequent-throws-during-hunt
-								no-electronic-interference-range-long
-								no-follows-player
-								no-omniscient
-								no-sometimes-hides-fingerprints
-								no-six-fingered-handprints
-								no-shapeshifter
-								no-can-multi-throw
-								detects-player-held-electronics-at-medium-range
-								can-turn-off-fuse-box
-								can-turn-on-fuse-box
-								can-turn-on-lights
-								no-paramic-scream
-								no-targets-specific-player
-								can-do-airball
-								speed-normal
+								can-change-favourite-room-yes
+								frequent-throws-during-hunt-no
+								electronic-interference-range-normal
+								follows-player-no
+								omniscient-no
+								sometimes-hides-fingerprints-no
+								six-fingered-handprints-no
+								shapeshifter-no
+								can-multi-throw-no
+								player-held-electronics-detection-range-normal
+								can-turn-off-fuse-box-yes
+								can-turn-on-fuse-box-yes
+								can-turn-on-lights-yes
+								paramic-scream-no
+								targets-specific-player-no
+								can-do-airball-yes
+								speed-normal-yes
 								los-speedup-gradual
-								no-speedup-near-active-electronics
+								speedup-near-active-electronics-no
 								blink-normal
-								smudge-hunt-short
-								no-footsteps-quiet
-								steps-in-salt
-								no-disappears-from-photo
-								dots-projector-naked-eye
-								no-candle-as-crucifix
-								no-smudge-blind-long
+								smudge-hunt-suspension-short
+								footstep-volume-normal
+								steps-in-salt-yes
+								disappears-from-photo-no
+								dots-projector-naked-eye-na
+								candle-as-crucifix-no
+								smudge-blindness-duration-normal
 							"
 						>
 							<input type="checkbox" id="demon-manually-ruled-out">
@@ -736,33 +749,33 @@
 							id="yurei"
 							class="
 								dots-projector ghost-orb freezing-temperatures
-								can-change-favourite-room
-								no-frequent-throws-during-hunt
-								no-electronic-interference-range-long
-								no-follows-player
-								no-omniscient
-								no-sometimes-hides-fingerprints
-								no-six-fingered-handprints
-								no-shapeshifter
-								no-can-multi-throw
-								detects-player-held-electronics-at-medium-range
-								can-turn-off-fuse-box
-								can-turn-on-fuse-box
-								can-turn-on-lights
-								no-paramic-scream
-								no-targets-specific-player
-								can-do-airball
-								speed-normal
+								can-change-favourite-room-yes
+								frequent-throws-during-hunt-no
+								electronic-interference-range-normal
+								follows-player-no
+								omniscient-no
+								sometimes-hides-fingerprints-no
+								six-fingered-handprints-no
+								shapeshifter-no
+								can-multi-throw-no
+								player-held-electronics-detection-range-normal
+								can-turn-off-fuse-box-yes
+								can-turn-on-fuse-box-yes
+								can-turn-on-lights-yes
+								paramic-scream-no
+								targets-specific-player-no
+								can-do-airball-yes
+								speed-normal-yes
 								los-speedup-gradual
-								no-speedup-near-active-electronics
+								speedup-near-active-electronics-no
 								blink-normal
-								smudge-hunt-normal
-								no-footsteps-quiet
-								steps-in-salt
-								no-disappears-from-photo
-								dots-projector-naked-eye
-								no-candle-as-crucifix
-								no-smudge-blind-long
+								smudge-hunt-suspension-normal
+								footstep-volume-normal
+								steps-in-salt-yes
+								disappears-from-photo-no
+								dots-projector-naked-eye-yes
+								candle-as-crucifix-no
+								smudge-blindness-duration-normal
 							"
 						>
 							<input type="checkbox" id="yurei-manually-ruled-out">
@@ -772,33 +785,33 @@
 							id="oni"
 							class="
 								dots-projector emf-level-5 freezing-temperatures
-								can-change-favourite-room
-								no-frequent-throws-during-hunt
-								no-electronic-interference-range-long
-								no-follows-player
-								no-omniscient
-								no-sometimes-hides-fingerprints
-								no-six-fingered-handprints
-								no-shapeshifter
-								no-can-multi-throw
-								detects-player-held-electronics-at-medium-range
-								can-turn-off-fuse-box
-								can-turn-on-fuse-box
-								can-turn-on-lights
-								no-paramic-scream
-								no-targets-specific-player
-								no-can-do-airball
-								speed-normal
+								can-change-favourite-room-yes
+								frequent-throws-during-hunt-no
+								electronic-interference-range-normal
+								follows-player-no
+								omniscient-no
+								sometimes-hides-fingerprints-no
+								six-fingered-handprints-no
+								shapeshifter-no
+								can-multi-throw-no
+								player-held-electronics-detection-range-normal
+								can-turn-off-fuse-box-yes
+								can-turn-on-fuse-box-yes
+								can-turn-on-lights-yes
+								paramic-scream-no
+								targets-specific-player-no
+								can-do-airball-no
+								speed-normal-yes
 								los-speedup-gradual
-								no-speedup-near-active-electronics
+								speedup-near-active-electronics-no
 								blink-short
-								smudge-hunt-normal
-								no-footsteps-quiet
-								steps-in-salt
-								no-disappears-from-photo
-								dots-projector-naked-eye
-								no-candle-as-crucifix
-								no-smudge-blind-long
+								smudge-hunt-suspension-normal
+								footstep-volume-normal
+								steps-in-salt-yes
+								disappears-from-photo-no
+								dots-projector-naked-eye-yes
+								candle-as-crucifix-no
+								smudge-blindness-duration-normal
 							"
 						>
 							<input type="checkbox" id="oni-manually-ruled-out">
@@ -808,33 +821,33 @@
 							id="yokai"
 							class="
 								dots-projector ghost-orb spirit-box
-								can-change-favourite-room
-								no-frequent-throws-during-hunt
-								no-electronic-interference-range-long
-								no-follows-player
-								no-omniscient
-								no-sometimes-hides-fingerprints
-								no-six-fingered-handprints
-								no-shapeshifter
-								no-can-multi-throw
-								no-detects-player-held-electronics-at-medium-range
-								can-turn-off-fuse-box
-								can-turn-on-fuse-box
-								can-turn-on-lights
-								no-paramic-scream
-								no-targets-specific-player
-								can-do-airball
-								speed-normal
+								can-change-favourite-room-yes
+								frequent-throws-during-hunt-no
+								electronic-interference-range-normal
+								follows-player-no
+								omniscient-no
+								sometimes-hides-fingerprints-no
+								six-fingered-handprints-no
+								shapeshifter-no
+								can-multi-throw-no
+								player-held-electronics-detection-range-short
+								can-turn-off-fuse-box-yes
+								can-turn-on-fuse-box-yes
+								can-turn-on-lights-yes
+								paramic-scream-no
+								targets-specific-player-no
+								can-do-airball-yes
+								speed-normal-yes
 								los-speedup-gradual
-								no-speedup-near-active-electronics
+								speedup-near-active-electronics-no
 								blink-normal
-								smudge-hunt-normal
-								no-footsteps-quiet
-								steps-in-salt
-								no-disappears-from-photo
-								dots-projector-naked-eye
-								no-candle-as-crucifix
-								no-smudge-blind-long
+								smudge-hunt-suspension-normal
+								footstep-volume-normal
+								steps-in-salt-yes
+								disappears-from-photo-no
+								dots-projector-naked-eye-yes
+								candle-as-crucifix-no
+								smudge-blindness-duration-normal
 							"
 						>
 							<input type="checkbox" id="yokai-manually-ruled-out">
@@ -844,33 +857,33 @@
 							id="hantu"
 							class="
 								ghost-orb fingerprints freezing-temperatures guaranteed-freezing-temperatures
-								can-change-favourite-room
-								no-frequent-throws-during-hunt
-								no-electronic-interference-range-long
-								no-follows-player
-								no-omniscient
-								no-sometimes-hides-fingerprints
-								no-six-fingered-handprints
-								no-shapeshifter
-								no-can-multi-throw
-								detects-player-held-electronics-at-medium-range
-								can-turn-off-fuse-box
-								can-turn-on-fuse-box
-								can-turn-on-lights
-								no-paramic-scream
-								no-targets-specific-player
-								can-do-airball
-								no-speed-normal
+								can-change-favourite-room-yes
+								frequent-throws-during-hunt-no
+								electronic-interference-range-normal
+								follows-player-no
+								omniscient-no
+								sometimes-hides-fingerprints-no
+								six-fingered-handprints-no
+								shapeshifter-no
+								can-multi-throw-no
+								player-held-electronics-detection-range-normal
+								can-turn-off-fuse-box-yes
+								can-turn-on-fuse-box-yes
+								can-turn-on-lights-yes
+								paramic-scream-no
+								targets-specific-player-no
+								can-do-airball-yes
+								speed-normal-no
 								los-speedup-none
-								no-speedup-near-active-electronics
+								speedup-near-active-electronics-no
 								blink-normal
-								smudge-hunt-normal
-								no-footsteps-quiet
-								steps-in-salt
-								no-disappears-from-photo
-								dots-projector-naked-eye
-								no-candle-as-crucifix
-								no-smudge-blind-long
+								smudge-hunt-suspension-normal
+								footstep-volume-normal
+								steps-in-salt-yes
+								disappears-from-photo-no
+								dots-projector-naked-eye-na
+								candle-as-crucifix-no
+								smudge-blindness-duration-normal
 							"
 						>
 							<input type="checkbox" id="hantu-manually-ruled-out">
@@ -880,33 +893,33 @@
 							id="goryo"
 							class="
 								dots-projector emf-level-5 fingerprints guaranteed-dots-projector
-								no-can-change-favourite-room
-								no-frequent-throws-during-hunt
-								no-electronic-interference-range-long
-								no-follows-player
-								no-omniscient
-								no-sometimes-hides-fingerprints
-								no-six-fingered-handprints
-								no-shapeshifter
-								no-can-multi-throw
-								detects-player-held-electronics-at-medium-range
-								can-turn-off-fuse-box
-								can-turn-on-fuse-box
-								can-turn-on-lights
-								no-paramic-scream
-								no-targets-specific-player
-								can-do-airball
-								speed-normal
+								can-change-favourite-room-no
+								frequent-throws-during-hunt-no
+								electronic-interference-range-normal
+								follows-player-no
+								omniscient-no
+								sometimes-hides-fingerprints-no
+								six-fingered-handprints-no
+								shapeshifter-no
+								can-multi-throw-no
+								player-held-electronics-detection-range-normal
+								can-turn-off-fuse-box-yes
+								can-turn-on-fuse-box-yes
+								can-turn-on-lights-yes
+								paramic-scream-no
+								targets-specific-player-no
+								can-do-airball-yes
+								speed-normal-yes
 								los-speedup-gradual
-								no-speedup-near-active-electronics
+								speedup-near-active-electronics-no
 								blink-normal
-								smudge-hunt-normal
-								no-footsteps-quiet
-								steps-in-salt
-								no-disappears-from-photo
-								no-dots-projector-naked-eye
-								no-candle-as-crucifix
-								no-smudge-blind-long
+								smudge-hunt-suspension-normal
+								footstep-volume-normal
+								steps-in-salt-yes
+								disappears-from-photo-no
+								dots-projector-naked-eye-no
+								candle-as-crucifix-no
+								smudge-blindness-duration-normal
 							"
 						>
 							<input type="checkbox" id="goryo-manually-ruled-out">
@@ -916,33 +929,33 @@
 							id="myling"
 							class="
 								ghost-writing emf-level-5 fingerprints
-								can-change-favourite-room
-								no-frequent-throws-during-hunt
-								no-electronic-interference-range-long
-								no-follows-player
-								no-omniscient
-								no-sometimes-hides-fingerprints
-								no-six-fingered-handprints
-								no-shapeshifter
-								no-can-multi-throw
-								detects-player-held-electronics-at-medium-range
-								can-turn-off-fuse-box
-								can-turn-on-fuse-box
-								can-turn-on-lights
-								no-paramic-scream
-								no-targets-specific-player
-								can-do-airball
-								speed-normal
+								can-change-favourite-room-yes
+								frequent-throws-during-hunt-no
+								electronic-interference-range-normal
+								follows-player-no
+								omniscient-no
+								sometimes-hides-fingerprints-no
+								six-fingered-handprints-no
+								shapeshifter-no
+								can-multi-throw-no
+								player-held-electronics-detection-range-normal
+								can-turn-off-fuse-box-yes
+								can-turn-on-fuse-box-yes
+								can-turn-on-lights-yes
+								paramic-scream-no
+								targets-specific-player-no
+								can-do-airball-yes
+								speed-normal-yes
 								los-speedup-gradual
-								no-speedup-near-active-electronics
+								speedup-near-active-electronics-no
 								blink-normal
-								smudge-hunt-normal
-								footsteps-quiet
-								steps-in-salt
-								no-disappears-from-photo
-								dots-projector-naked-eye
-								no-candle-as-crucifix
-								no-smudge-blind-long
+								smudge-hunt-suspension-normal
+								footstep-volume-quiet
+								steps-in-salt-yes
+								disappears-from-photo-no
+								dots-projector-naked-eye-na
+								candle-as-crucifix-no
+								smudge-blindness-duration-normal
 							"
 						>
 							<input type="checkbox" id="myling-manually-ruled-out">
@@ -952,33 +965,33 @@
 							id="onryo"
 							class="
 								ghost-orb freezing-temperatures spirit-box
-								can-change-favourite-room
-								no-frequent-throws-during-hunt
-								no-electronic-interference-range-long
-								no-follows-player
-								no-omniscient
-								no-sometimes-hides-fingerprints
-								no-six-fingered-handprints
-								no-shapeshifter
-								no-can-multi-throw
-								detects-player-held-electronics-at-medium-range
-								can-turn-off-fuse-box
-								can-turn-on-fuse-box
-								can-turn-on-lights
-								no-paramic-scream
-								no-targets-specific-player
-								can-do-airball
-								speed-normal
+								can-change-favourite-room-yes
+								frequent-throws-during-hunt-no
+								electronic-interference-range-normal
+								follows-player-no
+								omniscient-no
+								sometimes-hides-fingerprints-no
+								six-fingered-handprints-no
+								shapeshifter-no
+								can-multi-throw-no
+								player-held-electronics-detection-range-normal
+								can-turn-off-fuse-box-yes
+								can-turn-on-fuse-box-yes
+								can-turn-on-lights-yes
+								paramic-scream-no
+								targets-specific-player-no
+								can-do-airball-yes
+								speed-normal-yes
 								los-speedup-gradual
-								no-speedup-near-active-electronics
+								speedup-near-active-electronics-no
 								blink-normal
-								smudge-hunt-normal
-								no-footsteps-quiet
-								steps-in-salt
-								no-disappears-from-photo
-								dots-projector-naked-eye
-								candle-as-crucifix
-								no-smudge-blind-long
+								smudge-hunt-suspension-normal
+								footstep-volume-normal
+								steps-in-salt-yes
+								disappears-from-photo-no
+								dots-projector-naked-eye-na
+								candle-as-crucifix-yes
+								smudge-blindness-duration-normal
 							"
 						>
 							<input type="checkbox" id="onryo-manually-ruled-out">
@@ -988,33 +1001,33 @@
 							id="the-twins"
 							class="
 								emf-level-5 freezing-temperatures spirit-box
-								can-change-favourite-room
-								no-frequent-throws-during-hunt
-								no-electronic-interference-range-long
-								no-follows-player
-								no-omniscient
-								no-sometimes-hides-fingerprints
-								no-six-fingered-handprints
-								no-shapeshifter
-								no-can-multi-throw
-								detects-player-held-electronics-at-medium-range
-								can-turn-off-fuse-box
-								can-turn-on-fuse-box
-								can-turn-on-lights
-								no-paramic-scream
-								no-targets-specific-player
-								can-do-airball
-								no-speed-normal
+								can-change-favourite-room-yes
+								frequent-throws-during-hunt-no
+								electronic-interference-range-normal
+								follows-player-no
+								omniscient-no
+								sometimes-hides-fingerprints-no
+								six-fingered-handprints-no
+								shapeshifter-no
+								can-multi-throw-no
+								player-held-electronics-detection-range-normal
+								can-turn-off-fuse-box-yes
+								can-turn-on-fuse-box-yes
+								can-turn-on-lights-yes
+								paramic-scream-no
+								targets-specific-player-no
+								can-do-airball-yes
+								speed-normal-no
 								los-speedup-gradual
-								no-speedup-near-active-electronics
+								speedup-near-active-electronics-no
 								blink-normal
-								smudge-hunt-normal
-								no-footsteps-quiet
-								steps-in-salt
-								no-disappears-from-photo
-								dots-projector-naked-eye
-								no-candle-as-crucifix
-								no-smudge-blind-long
+								smudge-hunt-suspension-normal
+								footstep-volume-normal
+								steps-in-salt-yes
+								disappears-from-photo-no
+								dots-projector-naked-eye-na
+								candle-as-crucifix-no
+								smudge-blindness-duration-normal
 							"
 						>
 							<input type="checkbox" id="the-twins-manually-ruled-out">
@@ -1024,33 +1037,33 @@
 							id="raiju"
 							class="
 								dots-projector emf-level-5 ghost-orb
-								can-change-favourite-room
-								no-frequent-throws-during-hunt
+								can-change-favourite-room-yes
+								frequent-throws-during-hunt-no
 								electronic-interference-range-long
-								no-follows-player
-								no-omniscient
-								no-sometimes-hides-fingerprints
-								no-six-fingered-handprints
-								no-shapeshifter
-								no-can-multi-throw
-								detects-player-held-electronics-at-medium-range
-								can-turn-off-fuse-box
-								can-turn-on-fuse-box
-								can-turn-on-lights
-								no-paramic-scream
-								no-targets-specific-player
-								can-do-airball
-								speed-normal no-speed-normal
+								follows-player-no
+								omniscient-no
+								sometimes-hides-fingerprints-no
+								six-fingered-handprints-no
+								shapeshifter-no
+								can-multi-throw-no
+								player-held-electronics-detection-range-normal
+								can-turn-off-fuse-box-yes
+								can-turn-on-fuse-box-yes
+								can-turn-on-lights-yes
+								paramic-scream-no
+								targets-specific-player-no
+								can-do-airball-yes
+								speed-normal-yes speed-normal-no
 								los-speedup-gradual los-speedup-none
-								speedup-near-active-electronics
+								speedup-near-active-electronics-yes
 								blink-normal
-								smudge-hunt-normal
-								no-footsteps-quiet
-								steps-in-salt
-								no-disappears-from-photo
-								dots-projector-naked-eye
-								no-candle-as-crucifix
-								no-smudge-blind-long
+								smudge-hunt-suspension-normal
+								footstep-volume-normal
+								steps-in-salt-yes
+								disappears-from-photo-no
+								dots-projector-naked-eye-yes
+								candle-as-crucifix-no
+								smudge-blindness-duration-normal
 							"
 						>
 							<input type="checkbox" id="raiju-manually-ruled-out">
@@ -1060,33 +1073,33 @@
 							id="obake"
 							class="
 								emf-level-5 ghost-orb fingerprints guaranteed-fingerprints
-								can-change-favourite-room
-								no-frequent-throws-during-hunt
-								no-electronic-interference-range-long
-								no-follows-player
-								no-omniscient
-								sometimes-hides-fingerprints
-								six-fingered-handprints
-								shapeshifter
-								no-can-multi-throw
-								detects-player-held-electronics-at-medium-range
-								can-turn-off-fuse-box
-								can-turn-on-fuse-box
-								can-turn-on-lights
-								no-paramic-scream
-								no-targets-specific-player
-								can-do-airball
-								speed-normal
+								can-change-favourite-room-yes
+								frequent-throws-during-hunt-no
+								electronic-interference-range-normal
+								follows-player-no
+								omniscient-no
+								sometimes-hides-fingerprints-yes
+								six-fingered-handprints-yes
+								shapeshifter-yes
+								can-multi-throw-no
+								player-held-electronics-detection-range-normal
+								can-turn-off-fuse-box-yes
+								can-turn-on-fuse-box-yes
+								can-turn-on-lights-yes
+								paramic-scream-no
+								targets-specific-player-no
+								can-do-airball-yes
+								speed-normal-yes
 								los-speedup-gradual
-								no-speedup-near-active-electronics
+								speedup-near-active-electronics-no
 								blink-normal
-								smudge-hunt-normal
-								no-footsteps-quiet
-								steps-in-salt
-								no-disappears-from-photo
-								dots-projector-naked-eye
-								no-candle-as-crucifix
-								no-smudge-blind-long
+								smudge-hunt-suspension-normal
+								footstep-volume-normal
+								steps-in-salt-yes
+								disappears-from-photo-no
+								dots-projector-naked-eye-na
+								candle-as-crucifix-no
+								smudge-blindness-duration-normal
 							"
 						>
 							<input type="checkbox" id="obake-manually-ruled-out">
@@ -1096,33 +1109,33 @@
 							id="the-mimic"
 							class="
 								fingerprints freezing-temperatures spirit-box special-ghost-orb
-								can-change-favourite-room
-								frequent-throws-during-hunt no-frequent-throws-during-hunt
-								electronic-interference-range-long no-electronic-interference-range-long
-								follows-player no-follows-player
-								omniscient no-omniscient
-								sometimes-hides-fingerprints no-sometimes-hides-fingerprints
-								six-fingered-handprints no-six-fingered-handprints
-								shapeshifter no-shapeshifter
-								can-multi-throw no-can-multi-throw
-								detects-player-held-electronics-at-medium-range no-detects-player-held-electronics-at-medium-range
-								can-turn-off-fuse-box
-								can-turn-on-fuse-box
-								can-turn-on-lights
-								paramic-scream no-paramic-scream
-								targets-specific-player no-targets-specific-player
-								can-do-airball
-								speed-normal no-speed-normal
+								can-change-favourite-room-yes
+								frequent-throws-during-hunt-yes frequent-throws-during-hunt-no
+								electronic-interference-range-normal electronic-interference-range-long
+								follows-player-yes follows-player-no
+								omniscient-yes omniscient-no
+								sometimes-hides-fingerprints-yes sometimes-hides-fingerprints-no
+								six-fingered-handprints-yes six-fingered-handprints-no
+								shapeshifter-yes shapeshifter-no
+								can-multi-throw-yes can-multi-throw-no
+								player-held-electronics-detection-range-normal player-held-electronics-detection-range-short
+								can-turn-off-fuse-box-yes
+								can-turn-on-fuse-box-yes
+								can-turn-on-lights-yes
+								paramic-scream-yes paramic-scream-no
+								targets-specific-player-yes targets-specific-player-no
+								can-do-airball-yes
+								speed-normal-yes speed-normal-no
 								los-speedup-gradual los-speedup-sudden los-speedup-none
-								speedup-near-active-electronics no-speedup-near-active-electronics
+								speedup-near-active-electronics-yes speedup-near-active-electronics-no
 								blink-normal blink-short blink-long
-								smudge-hunt-normal smudge-hunt-long smudge-hunt-short
-								footsteps-quiet no-footsteps-quiet
-								steps-in-salt
-								disappears-from-photo no-disappears-from-photo
-								dots-projector-naked-eye no-dots-projector-naked-eye
-								candle-as-crucifix no-candle-as-crucifix
-								smudge-blind-long no-smudge-blind-long
+								smudge-hunt-suspension-short smudge-hunt-suspension-normal smudge-hunt-suspension-long
+								footstep-volume-normal footstep-volume-quiet
+								steps-in-salt-yes steps-in-salt-no
+								disappears-from-photo-yes disappears-from-photo-no
+								dots-projector-naked-eye-na
+								candle-as-crucifix-yes candle-as-crucifix-no
+								smudge-blindness-duration-normal smudge-blindness-duration-long
 							"
 						>
 							<input type="checkbox" id="the-mimic-manually-ruled-out">
@@ -1132,33 +1145,33 @@
 							id="moroi"
 							class="
 								ghost-writing freezing-temperatures spirit-box guaranteed-spirit-box
-								can-change-favourite-room
-								no-frequent-throws-during-hunt
-								no-electronic-interference-range-long
-								no-follows-player
-								no-omniscient
-								no-sometimes-hides-fingerprints
-								no-six-fingered-handprints
-								no-shapeshifter
-								no-can-multi-throw
-								detects-player-held-electronics-at-medium-range
-								can-turn-off-fuse-box
-								can-turn-on-fuse-box
-								can-turn-on-lights
-								no-paramic-scream
-								no-targets-specific-player
-								can-do-airball
-								no-speed-normal
+								can-change-favourite-room-yes
+								frequent-throws-during-hunt-no
+								electronic-interference-range-normal
+								follows-player-no
+								omniscient-no
+								sometimes-hides-fingerprints-no
+								six-fingered-handprints-no
+								shapeshifter-no
+								can-multi-throw-no
+								player-held-electronics-detection-range-normal
+								can-turn-off-fuse-box-yes
+								can-turn-on-fuse-box-yes
+								can-turn-on-lights-yes
+								paramic-scream-no
+								targets-specific-player-no
+								can-do-airball-yes
+								speed-normal-no
 								los-speedup-gradual
-								no-speedup-near-active-electronics
+								speedup-near-active-electronics-no
 								blink-normal
-								smudge-hunt-normal
-								smudge-blind-long
-								no-footsteps-quiet
-								steps-in-salt
-								no-disappears-from-photo
-								dots-projector-naked-eye
-								no-candle-as-crucifix
+								smudge-hunt-suspension-normal
+								smudge-blindness-duration-long
+								footstep-volume-normal
+								steps-in-salt-yes
+								disappears-from-photo-no
+								dots-projector-naked-eye-na
+								candle-as-crucifix-no
 							"
 						>
 							<input type="checkbox" id="moroi-manually-ruled-out">
@@ -1168,33 +1181,33 @@
 							id="deogen"
 							class="
 								dots-projector ghost-writing spirit-box guaranteed-spirit-box
-								can-change-favourite-room
-								no-frequent-throws-during-hunt
-								no-electronic-interference-range-long
-								no-follows-player
-								omniscient
-								no-sometimes-hides-fingerprints
-								no-six-fingered-handprints
-								no-shapeshifter
-								no-can-multi-throw
-								detects-player-held-electronics-at-medium-range
-								can-turn-off-fuse-box
-								can-turn-on-fuse-box
-								can-turn-on-lights
-								no-paramic-scream
-								no-targets-specific-player
-								can-do-airball
-								no-speed-normal
+								can-change-favourite-room-yes
+								frequent-throws-during-hunt-no
+								electronic-interference-range-normal
+								follows-player-no
+								omniscient-yes
+								sometimes-hides-fingerprints-no
+								six-fingered-handprints-no
+								shapeshifter-no
+								can-multi-throw-no
+								player-held-electronics-detection-range-normal
+								can-turn-off-fuse-box-yes
+								can-turn-on-fuse-box-yes
+								can-turn-on-lights-yes
+								paramic-scream-no
+								targets-specific-player-no
+								can-do-airball-yes
+								speed-normal-no
 								los-speedup-none
-								no-speedup-near-active-electronics
+								speedup-near-active-electronics-no
 								blink-normal
-								smudge-hunt-normal
-								no-footsteps-quiet
-								steps-in-salt
-								no-disappears-from-photo
-								dots-projector-naked-eye
-								no-candle-as-crucifix
-								no-smudge-blind-long
+								smudge-hunt-suspension-normal
+								footstep-volume-normal
+								steps-in-salt-yes
+								disappears-from-photo-no
+								dots-projector-naked-eye-yes
+								candle-as-crucifix-no
+								smudge-blindness-duration-normal
 							"
 						>
 							<input type="checkbox" id="deogen-manually-ruled-out">
@@ -1204,33 +1217,33 @@
 							id="thaye"
 							class="
 								dots-projector ghost-writing ghost-orb
-								can-change-favourite-room
-								no-frequent-throws-during-hunt
-								no-electronic-interference-range-long
-								no-follows-player
-								no-omniscient
-								no-sometimes-hides-fingerprints
-								no-six-fingered-handprints
-								no-shapeshifter
-								no-can-multi-throw
-								detects-player-held-electronics-at-medium-range
-								can-turn-off-fuse-box
-								can-turn-on-fuse-box
-								can-turn-on-lights
-								no-paramic-scream
-								no-targets-specific-player
-								can-do-airball
-								no-speed-normal
+								can-change-favourite-room-yes
+								frequent-throws-during-hunt-no
+								electronic-interference-range-normal
+								follows-player-no
+								omniscient-no
+								sometimes-hides-fingerprints-no
+								six-fingered-handprints-no
+								shapeshifter-no
+								can-multi-throw-no
+								player-held-electronics-detection-range-normal
+								can-turn-off-fuse-box-yes
+								can-turn-on-fuse-box-yes
+								can-turn-on-lights-yes
+								paramic-scream-no
+								targets-specific-player-no
+								can-do-airball-yes
+								speed-normal-no
 								los-speedup-none
-								no-speedup-near-active-electronics
+								speedup-near-active-electronics-no
 								blink-normal
-								smudge-hunt-normal
-								no-footsteps-quiet
-								steps-in-salt
-								no-disappears-from-photo
-								dots-projector-naked-eye
-								no-candle-as-crucifix
-								no-smudge-blind-long
+								smudge-hunt-suspension-normal
+								footstep-volume-normal
+								steps-in-salt-yes
+								disappears-from-photo-no
+								dots-projector-naked-eye-yes
+								candle-as-crucifix-no
+								smudge-blindness-duration-normal
 							"
 						>
 							<input type="checkbox" id="thaye-manually-ruled-out">
