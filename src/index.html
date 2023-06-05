@@ -172,6 +172,13 @@
 								<label><input type="radio" name="shapeshifter" value="unknown" checked> unknown</label>
 								<label><input type="radio" name="shapeshifter" value="yes"> confirmed</label>
 								<label><input type="radio" name="shapeshifter" value="no"> ruled out</label>
+								<details>
+									<summary>Info</summary>
+									<p>
+										Ghosts with this trait briefly change to a different <a href="https://phasmophobia.fandom.com/wiki/Ghost_Model" rel="noopener">ghost model</a>
+										at least once per hunt.
+									</p>
+								</details>
 							</fieldset>
 							<fieldset id="footstep-volume">
 								<legend>Footstep volume</legend>
@@ -180,7 +187,15 @@
 								<label><input type="radio" name="footstep-volume" value="normal"> normal (audible within 20 m)</label>
 								<details>
 									<summary>Info</summary>
-									<p>For comparison, all ghosts but the raiju cause electronic interference within 10 m.</p>
+									<p>
+										For comparison, all ghosts but the raiju cause electronic interference within 10 m,
+										so if you can only just hear the footsteps when electronics start glitching,
+										the ghost likely has quiet footsteps.
+									</p>
+									<p>
+										Similarly, if you can hear the ghost throwing objects during a hunt but cannot hear its footsteps,
+										there’s a good chance it has quiet footsteps.
+									</p>
 								</details>
 							</fieldset>
 
@@ -211,12 +226,28 @@
 								<label><input type="radio" name="player-held-electronics-detection-range" value="unknown" checked> unknown</label>
 								<label><input type="radio" name="player-held-electronics-detection-range" value="normal"> normal (7.5 m)</label>
 								<label><input type="radio" name="player-held-electronics-detection-range" value="short"> close (2.5 m)</label>
+								<details>
+									<summary>Info</summary>
+									<p>
+										This can be tested by using electronics (such as a flashlight) when hidden,
+										at some range further than 2.5 m but closer than 7.5 m,
+										and seeing whether the ghost notices.
+										Beware that ghosts detect electronics only on the same floor.
+									</p>
+								</details>
 							</fieldset>
 							<fieldset id="electronic-interference-range">
 								<legend>Electronic interference range</legend>
 								<label><input type="radio" name="electronic-interference-range" value="unknown" checked> unknown</label>
 								<label><input type="radio" name="electronic-interference-range" value="long"> long (15 m)</label>
 								<label><input type="radio" name="electronic-interference-range" value="normal"> normal (10 m)</label>
+								<details>
+									<summary>Info</summary>
+									<p>
+										For comparison, normal ghost footsteps can be heard from up to 20 m away.
+										Beware that electronic interference occurs only on the same floor as the ghost.
+									</p>
+								</details>
 							</fieldset>
 							<fieldset id="frequent-throws-during-hunt">
 								<legend>Always throws things every ½ second during hunt</legend>
@@ -328,12 +359,29 @@
 								<label><input type="radio" name="paramic-scream" value="unknown" checked> unknown</label>
 								<label><input type="radio" name="paramic-scream" value="yes"> confirmed</label>
 								<label><input type="radio" name="paramic-scream" value="no"> ruled out</label>
+								<details>
+									<summary>Info</summary>
+									<p><a href="https://phasmophobia.fandom.com/wiki/Banshee?so=search#Abilities" rel="noopener">Audio example</a></p>
+								</details>
 							</fieldset>
 							<fieldset id="can-turn-off-fuse-box">
 								<legend>Can turn off the fuse box</legend>
 								<label><input type="radio" name="can-turn-off-fuse-box" value="unknown" checked> unknown</label>
 								<label><input type="radio" name="can-turn-off-fuse-box" value="yes"> confirmed</label>
 								<label><input type="radio" name="can-turn-off-fuse-box" value="no"> ruled out</label>
+								<details>
+									<summary>Info</summary>
+									<p>
+										Beware that any ghost which can turn on lights can <em>accidentally</em> turn off the fuse box
+										by switching on a light when the limit had already been reached,
+										tripping the circuit breaker.
+										If this happens, all lightswitches in the house will then be in the “off” position.
+									</p>
+									<p>
+										If the ghost intentionally turns off the fuse box,
+										light switches which were previously on will still be on.
+									</p>
+								</details>
 							</fieldset>
 							<fieldset id="can-turn-on-fuse-box">
 								<legend>Can turn on the fuse box</legend>
@@ -361,11 +409,13 @@
 								<details>
 									<summary>Info</summary>
 									<p>
-										For most ghosts, if they are going to exhibit fingerprints evidence, they will <em>always</em> leave it when interacting with suitable objects.
-										Certain ghosts have a reduced rate, however.
+										For most ghosts, if they are going to exhibit fingerprints evidence,
+										they will <em>always</em> leave it when interacting with suitable objects.
+										Ghosts with this trait have a reduced rate.
 									</p>
 									<p>
-										This should only be confirmed if fingerprint evidence has been seen, and then later an interaction is observed which is suitable for fingerprints but does not leave any.
+										This can be confirmed if fingerprint evidence has been seen,
+										and then later an interaction is observed which is suitable for fingerprints but does not leave any.
 									</p>
 								</details>
 							</fieldset>
