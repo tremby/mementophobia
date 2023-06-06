@@ -524,18 +524,15 @@ function updateEvidence() {
 
 	console.time("find remaining");
 	const remainingGhostContainers = ghostContainers.filter((ghostContainer) => !ghostContainer.classList.contains("impossible") && !ghostContainer.querySelector("input").checked);
+	const remainingGhostsCount = remainingGhostContainers.length;
 	console.timeEnd("find remaining");
 
-	function narrowedDownWith(confirmedEvidence, ruledOutEvidence, secondaryClasses) {
-		let removesAtLeastOne = false;
-		let leavesAtLeastOne = false;
-		for (const ghostContainer of remainingGhostContainers) {
+	function narrowsDownTo(confirmedEvidence, ruledOutEvidence, secondaryClasses) {
+		return remainingGhostContainers.reduce((acc, ghostContainer) => {
 			if (ghostImpossible(numCollectable, ghostContainer, confirmedEvidence, ruledOutEvidence, secondaryClasses, false))
-				removesAtLeastOne = true;
-			else leavesAtLeastOne = true;
-			if (removesAtLeastOne && leavesAtLeastOne) return true;
-		}
-		return false;
+				return acc;
+			return acc + 1;
+		}, 0);
 	}
 
 	console.time("primary");
@@ -544,22 +541,42 @@ function updateEvidence() {
 		const evidence = evidenceContainer.id;
 
 		// Reset flags
-		evidenceContainer.classList.remove("investigate", "investigated");
+		evidenceContainer.classList.remove("interesting", "investigated", "uninteresting");
+		for (const controlContainer of evidenceContainer.querySelectorAll(".control-container")) {
+			controlContainer.classList.remove("impossible", "inevitable");
+		}
 
-		// Mark and move on if this evidence has already been confirmed or ruled out
+		// Mark and move on if this evidence has already been investigated
 		if (!evidenceContainer.querySelector(`[type="radio"][value="unknown"]`).checked) {
 			evidenceContainer.classList.add("investigated");
 			continue;
 		}
 
-		// If there's only one ghost left, or none,
-		// refining this evidence wouldn't be useful
-		if (remainingGhostContainers.length <= 1) continue;
+		// If confirming this evidence would rule out all remaining ghosts,
+		// mark this impossible
+		if (narrowsDownTo(setWith(confirmedEvidence, evidence), ruledOutEvidence, secondaryClasses) === 0) {
+			evidenceContainer.classList.add("uninteresting");
+			for (const radio of Array.from(evidenceContainer.querySelectorAll(`[type="radio"]`))) {
+				if (radio.value === "no") radio.closest(".control-container").classList.add("inevitable");
+				else radio.closest(".control-container").classList.add("impossible");
+			}
+			continue;
+		}
 
-		// Would any further ghosts be ruled out if this evidence were refined?
-		const useful = narrowedDownWith(setWith(confirmedEvidence, evidence), ruledOutEvidence, secondaryClasses)
-			|| narrowedDownWith(confirmedEvidence, setWith(ruledOutEvidence, evidence), secondaryClasses);;
-		evidenceContainer.classList.toggle("investigate", useful);
+		// If ruling out this evidence would rule out all remaining ghosts,
+		// mark this impossible
+		if (narrowsDownTo(confirmedEvidence, setWith(ruledOutEvidence, evidence), secondaryClasses) === 0) {
+			evidenceContainer.classList.add("uninteresting");
+			for (const radio of Array.from(evidenceContainer.querySelectorAll(`[type="radio"]`))) {
+				if (radio.value === "yes") radio.closest(".control-container").classList.add("inevitable");
+				else radio.closest(".control-container").classList.add("impossible");
+			}
+			continue;
+		}
+
+		// If we get to here, there's something interesting to learn from
+		// investigating this evidence
+		evidenceContainer.classList.add("interesting");
 	}
 	console.timeEnd("primary");
 
@@ -569,26 +586,46 @@ function updateEvidence() {
 		const evidence = evidenceContainer.id;
 
 		// Reset flags
-		evidenceContainer.classList.remove("investigate", "investigated");
+		evidenceContainer.classList.remove("interesting", "investigated", "uninteresting");
+		for (const controlContainer of evidenceContainer.querySelectorAll(".control-container")) {
+			controlContainer.classList.remove("impossible", "inevitable");
+		}
 
-		// Mark and move on if this evidence has already been confirmed or ruled out
+		// Mark and move on if this evidence has already been investigated
 		if (!evidenceContainer.querySelector(`[type="radio"][value="unknown"]`).checked) {
 			evidenceContainer.classList.add("investigated");
 			continue;
 		}
 
-		// If there's only one ghost left, or none,
-		// refining this evidence wouldn't be useful
-		if (remainingGhostContainers.length <= 1) continue;
-
-		// For each option, check if choosing it would rule out some but not all
-		// remaining ghosts
-		for (const radio of evidenceContainer.querySelectorAll(`[type="radio"]:not([value="unknown"])`)) {
-			if (narrowedDownWith(confirmedEvidence, ruledOutEvidence, setWith(secondaryClasses, `${evidence}-${radio.value}`))) {
-				evidenceContainer.classList.add("investigate");
-				break;
-			}
+		// See how each of the options would affect the remaining possible ghosts
+		const optionLeavesGhosts = [];
+		for (const radio of Array.from(evidenceContainer.querySelectorAll(`[type="radio"]:not([value="unknown"])`))) {
+			const controlContainer = radio.closest(".control-container");
+			const remaining = narrowsDownTo(confirmedEvidence, ruledOutEvidence, setWith(secondaryClasses, `${evidence}-${radio.value}`));
+			if (remaining === 0) controlContainer.classList.add("impossible");
+			optionLeavesGhosts.push({ radio, controlContainer, remaining });
 		}
+		if (optionLeavesGhosts.every(({ num }) => num === remainingGhostsCount)) {
+			// Makes no difference whichever option is chosen
+			evidenceContainer.classList.add("uninteresting");
+			continue;
+		}
+		if (optionLeavesGhosts.every(({ remaining }) => remaining === 0 || remaining === remainingGhostsCount)) {
+			// Rules out either everything or nothing, whichever option is chosen
+			evidenceContainer.classList.add("uninteresting");
+			if (optionLeavesGhosts.reduce((acc, { remaining }) => remaining > 0 ? acc + 1 : acc, 0) === 1) {
+				for (const { controlContainer, remaining } of optionLeavesGhosts) {
+					if (remaining > 0) controlContainer.classList.add("inevitable");
+					else controlContainer.classList.add("impossible");
+				}
+				evidenceContainer.querySelector(`[type="radio"][value="unknown"]`).closest(".control-container").classList.add("impossible");
+			}
+			continue;
+		}
+
+		// If we get to here, there's something interesting to learn from
+		// investigating this evidence
+		evidenceContainer.classList.add("interesting");
 	}
 	console.timeEnd("secondary");
 

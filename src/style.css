@@ -39,7 +39,7 @@ h1 {
 	font-family: "October Crow", sans-serif;
 }
 
-label {
+.control-container {
 	display: inline-block;
 }
 
@@ -213,13 +213,14 @@ input[disabled] {
 #secondary-evidence {
 	grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
 }
-.evidence-list fieldset {
+
+.evidence-list fieldset.uninteresting {
+	opacity: 0.5;
+}
+.control-container.impossible {
 	opacity: 0.3;
 }
-.evidence-list fieldset:is(.investigate, .investigated) {
-	opacity: 1;
-}
-.evidence-list fieldset.investigate {
+.evidence-list fieldset.interesting {
 	border-color: darkgoldenrod;
 }
 #ghost-speed-factors {
