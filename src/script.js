@@ -582,11 +582,11 @@ function updateEvidence() {
 
 	console.time("secondary");
 	// Loop through secondary evidence types
-	for (const evidenceContainer of document.querySelectorAll("#secondary-evidence fieldset")) {
+	secondaryEvidence: for (const evidenceContainer of document.querySelectorAll("#secondary-evidence fieldset")) {
 		const evidence = evidenceContainer.id;
 
 		// Reset flags
-		evidenceContainer.classList.remove("interesting", "investigated", "uninteresting");
+		evidenceContainer.classList.remove("interesting", "investigated", "uninteresting", "impossible");
 		for (const controlContainer of evidenceContainer.querySelectorAll(".control-container")) {
 			controlContainer.classList.remove("impossible", "inevitable");
 		}
@@ -595,6 +595,20 @@ function updateEvidence() {
 		if (!evidenceContainer.querySelector(`[type="radio"][value="unknown"]`).checked) {
 			evidenceContainer.classList.add("investigated");
 			continue;
+		}
+
+		// If this evidence requires a particular piece of primary evidence,
+		// but that primary evidence is ruled out or impossible
+		// this piece of secondary evidence is also impossible.
+		for (const cls of [...evidenceContainer.classList].filter((cls) => cls.endsWith("-required"))) {
+			const requiredEvidenceContainer = byId(cls.replace(/-required$/, ""));
+			if (
+				requiredEvidenceContainer.querySelector(`[type="radio"][value="no"]`).checked
+				|| requiredEvidenceContainer.querySelector(`[type="radio"][value="yes"]`).closest(".control-container").classList.contains("impossible")
+			) {
+				evidenceContainer.classList.add("impossible");
+				continue secondaryEvidence;
+			}
 		}
 
 		// See how each of the options would affect the remaining possible ghosts

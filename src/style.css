@@ -214,7 +214,7 @@ input[disabled] {
 	grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
 }
 
-.evidence-list fieldset.uninteresting {
+.evidence-list fieldset:is(.uninteresting, .impossible) {
 	opacity: 0.5;
 }
 .control-container.impossible {
