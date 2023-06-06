@@ -1253,9 +1253,9 @@ function getTimerAdjust() {
 }
 
 function getHuntSafety(secondsSinceSmudge) {
-	const possibleShort = document.querySelector("#ghosts li:not(.impossible).smudge-hunt-short input:not(:checked)") != null;
-	const possibleNormal = document.querySelector("#ghosts li:not(.impossible).smudge-hunt-normal input:not(:checked)") != null;
-	const possibleLong = document.querySelector("#ghosts li:not(.impossible).smudge-hunt-long input:not(:checked)") != null;
+	const possibleShort = document.querySelector("#ghosts li:not(.impossible).smudge-hunt-suspension-short input:not(:checked)") != null;
+	const possibleNormal = document.querySelector("#ghosts li:not(.impossible).smudge-hunt-suspension-normal input:not(:checked)") != null;
+	const possibleLong = document.querySelector("#ghosts li:not(.impossible).smudge-hunt-suspension-long input:not(:checked)") != null;
 	if (!possibleShort && !possibleNormal && !possibleLong) return null;
 	const minSafe = possibleShort ? SMUDGE_HUNT_SHORT_S : possibleNormal ? SMUDGE_HUNT_NORMAL_S : SMUDGE_HUNT_LONG_S;
 	const maxSafe = possibleLong  ? SMUDGE_HUNT_LONG_S : possibleNormal ? SMUDGE_HUNT_NORMAL_S : SMUDGE_HUNT_SHORT_S;
