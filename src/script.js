@@ -161,6 +161,7 @@ function init() {
 	byId("hunt-sanity-range").addEventListener("input", () => updateHuntSanityRangeReadout());
 	for (const input of document.querySelectorAll("#ghosts input")) {
 		input.addEventListener("change", () => {
+				updateResetManualRuleOuts();
 				updateEvidence();
 		});
 	}
@@ -215,6 +216,7 @@ function updateAll() {
 	updateTimerAdjust();
 	updateHuntSanityRangeReadout();
 	updateClearRulingsByTempo();
+	updateResetManualRuleOuts();
 }
 
 function updateHuntSanityRangeReadout() {
@@ -251,6 +253,7 @@ function handleTapKeyDown(event) {
 function resetManualRuleOuts() {
 	for (const input of document.querySelectorAll("#ghosts input"))
 		input.checked = false;
+	updateResetManualRuleOuts();
 	updateEvidence();
 }
 
@@ -757,6 +760,10 @@ function narrowByTempo() {
 
 function updateClearRulingsByTempo() {
 	byId("clear-rulings-by-tempo").disabled = document.querySelector("#ghosts li.impossible-by-speed") == null;
+}
+
+function updateResetManualRuleOuts() {
+	byId("reset-manual-rule-outs").disabled = document.querySelector("#ghosts li input:checked") == null;
 }
 
 function clearRulingsByTempo() {
