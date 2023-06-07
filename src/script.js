@@ -415,26 +415,29 @@ function ghostImpossible(numCollectable, ghostContainer, confirmedEvidence, rule
 
 	const normalEvidence = [...allPrimaryEvidence].filter((evidence) => classList.contains(evidence));
 
-	const reasons = new Set();
+	const reasons = {
+		primary: new Set(),
+		secondary: new Set(),
+	};
 
 	// Ghost is ruled out unless every confirmed evidence is something exhibited
 	// by the ghost as normal or special evidence
 	if (![...confirmedEvidence].every((evidence) => classList.contains(evidence) || classList.contains(`special-${evidence}`))) {
-		if (withReasons) reasons.add(`it cannot exhibit at least one confirmed evidence type`);
+		if (withReasons) reasons.primary.add(`it cannot exhibit at least one confirmed evidence type`);
 		else return true;
 	}
 
 	// Ghost is ruled out in zero evidence mode if something it exhibits as
 	// special evidence has been ruled out
 	if (numCollectable === 0 && [...ruledOutEvidence].some((evidence) => classList.contains(`special-${evidence}`))) {
-		if (withReasons) reasons.add(`even with zero collectable evidence it must exhibit particular evidence`);
+		if (withReasons) reasons.primary.add(`even with zero collectable evidence it must exhibit particular evidence`);
 		else return true;
 	}
 
 	// Ghost is ruled out if one or more evidence is collectable and something
 	// it exhibits as guaranteed or special evidence has been ruled out
 	if (numCollectable > 0 && [...ruledOutEvidence].some((evidence) => classList.contains(`guaranteed-${evidence}`) || classList.contains(`special-${evidence}`))) {
-		if (withReasons) reasons.add(`it has particular guaranteed evidence which has been ruled out`);
+		if (withReasons) reasons.primary.add(`it has particular guaranteed evidence which has been ruled out`);
 		else return true;
 	}
 
@@ -442,21 +445,21 @@ function ghostImpossible(numCollectable, ghostContainer, confirmedEvidence, rule
 	// collected the maximum number of normal evidence items, and something it
 	// exhibits as guaranteed evidence was not confirmed
 	if (numCollectable > 0 && confirmedMinusSpecial.size >= numCollectable && [...setExclude(allPrimaryEvidence, confirmedMinusSpecial)].some((evidence) => classList.contains(`guaranteed-${evidence}`))) {
-		if (withReasons) reasons.add(`it has particular guaranteed evidence which has not been confirmed, but the maximum collectable has been reached`);
+		if (withReasons) reasons.primary.add(`it has particular guaranteed evidence which has not been confirmed, but the maximum collectable has been reached`);
 		else return true;
 	}
 
 	// Ghost is ruled out when all evidence is collectable and something it
 	// exhibits as normal evidence has been ruled out
 	if (numCollectable >= 3 && [...ruledOutEvidence].some((evidence) => classList.contains(evidence))) {
-		if (withReasons) reasons.add(`it exhibits a type of evidence which has been ruled out`);
+		if (withReasons) reasons.primary.add(`it exhibits a type of evidence which has been ruled out`);
 		else return true;
 	}
 
 	// Ghost is ruled out if one or more evidence is collectable, and everything
 	// it exhibits as normal evidence has been ruled out
 	if (numCollectable > 0 && normalEvidence.every((evidence) => ruledOutEvidence.has(evidence))) {
-		if (withReasons) reasons.add(`everything it could exhibit has been ruled out`);
+		if (withReasons) reasons.primary.add(`everything it could exhibit has been ruled out`);
 		else return true;
 	}
 
@@ -464,7 +467,7 @@ function ghostImpossible(numCollectable, ghostContainer, confirmedEvidence, rule
 	// exhibits, not taking into account collected evidence this ghost exhibits
 	// as special evidence
 	if (confirmedMinusSpecial.size > numCollectable) {
-		if (withReasons) reasons.add(`more evidence has been confirmed than it can exhibit`);
+		if (withReasons) reasons.primary.add(`more evidence has been confirmed than it can exhibit`);
 		else return true;
 	}
 
@@ -473,14 +476,14 @@ function ghostImpossible(numCollectable, ghostContainer, confirmedEvidence, rule
 	// ghost does not exhibit at least one of the last unknown evidence types
 	const unknownEvidence = setExclude(allPrimaryEvidence, confirmedEvidence, ruledOutEvidence);
 	if (unknownEvidence.size > 0 && numCollectable - confirmedMinusSpecial.size === unknownEvidence.size && ![...unknownEvidence].some((evidence) => classList.contains(evidence))) {
-		if (withReasons) reasons.add(`the last evidence which has not yet been confirmed or ruled out is something it cannot exhibit`);
+		if (withReasons) reasons.primary.add(`the last evidence which has not yet been confirmed or ruled out is something it cannot exhibit`);
 		else return true;
 	}
 
 	// Ghost is ruled out if it doesn't have any of the required secondary
 	// evidence classes
 	if ([...secondaryClasses].some((cls) => !classList.contains(cls))) {
-		if (withReasons) reasons.add(`it doesn’t match the observed secondary evidence`);
+		if (withReasons) reasons.secondary.add(`it doesn’t match the observed secondary evidence`);
 		else return true;
 	}
 
@@ -503,7 +506,8 @@ function getRequiredSecondaryClasses() {
 }
 
 function ghostMarkedImpossible(ghostContainer) {
-	if (ghostContainer.classList.contains("impossible")) return true;
+	if (ghostContainer.classList.contains("impossible-by-primary")) return true;
+	if (ghostContainer.classList.contains("impossible-by-secondary")) return true;
 	if (ghostContainer.classList.contains("impossible-by-speed")) return true;
 	if (ghostContainer.querySelector("input").checked) return true;
 	return false;
@@ -524,9 +528,10 @@ function updateEvidence() {
 	console.time("rule out");
 	for (const ghost of ghostContainers) {
 		const impossibleReasons = ghostImpossible(numCollectable, ghost, confirmedEvidence, ruledOutEvidence, secondaryClasses, true);
-		ghost.classList.toggle("impossible", impossibleReasons.size > 0);
-		if (impossibleReasons.size > 0) {
-			ghost.title = `Ruled out: ${[...impossibleReasons].join("; ")}`;
+		ghost.classList.toggle("impossible-by-primary", impossibleReasons.primary.size > 0);
+		ghost.classList.toggle("impossible-by-secondary", impossibleReasons.secondary.size > 0);
+		if (impossibleReasons.primary.size > 0 || impossibleReasons.secondary.size > 0) {
+			ghost.title = `Ruled out: ${[...impossibleReasons.primary].concat([...impossibleReasons.secondary]).join("; ")}`;
 		} else {
 			ghost.removeAttribute("title");
 		}
