@@ -202,7 +202,6 @@ function init() {
 	const resizeObserver = new ResizeObserver(() => resizeTapTraceCanvas());
 	resizeObserver.observe(byId("tap-trace"));
 	resizeTapTraceCanvas();
-	updateClearRulingsByTempo();
 }
 
 function updateAll() {
@@ -215,6 +214,7 @@ function updateAll() {
 	updateEvidenceNum();
 	updateTimerAdjust();
 	updateHuntSanityRangeReadout();
+	updateClearRulingsByTempo();
 }
 
 function updateHuntSanityRangeReadout() {
