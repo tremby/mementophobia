@@ -339,3 +339,10 @@ footer {
 	opacity: 0.6;
 	padding: 4rem 0;
 }
+
+.impossible-by-primary-indicator, .impossible-by-secondary-indicator, .impossible-by-speed-indicator {
+	visibility: hidden;
+}
+.impossible-by-primary .impossible-by-primary-indicator { visibility: visible; }
+.impossible-by-secondary .impossible-by-secondary-indicator { visibility: visible; }
+.impossible-by-speed .impossible-by-speed-indicator { visibility: visible; }
