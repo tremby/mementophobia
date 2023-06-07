@@ -637,7 +637,7 @@ function updateEvidence() {
 					continue secondaryEvidence;
 				}
 			}
-			evidenceContainer.classList.add("uninteresting");
+			evidenceContainer.classList.add("investigated");
 			continue;
 		}
 
