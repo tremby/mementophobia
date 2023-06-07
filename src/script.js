@@ -155,6 +155,10 @@ function init() {
 	for (const radio of document.querySelectorAll(`.evidence-list input[type="radio"]`)) {
 		radio.addEventListener("change", () => updateEvidence());
 	}
+	for (const range of document.querySelectorAll(`.evidence-list input[type="range"]`)) {
+		range.addEventListener("input", () => updateEvidence());
+	}
+	byId("hunt-sanity-range").addEventListener("input", () => updateHuntSanityRangeReadout());
 	for (const input of document.querySelectorAll("#ghosts input")) {
 		input.addEventListener("change", () => {
 				updateEvidence();
@@ -210,6 +214,11 @@ function updateAll() {
 	updateGhostSpeed();
 	updateEvidenceNum();
 	updateTimerAdjust();
+	updateHuntSanityRangeReadout();
+}
+
+function updateHuntSanityRangeReadout() {
+	document.querySelector(`output[for="hunt-sanity-range"]`).textContent = percentFormatter.format(parseInt(byId("hunt-sanity-range").value) / 100);
 }
 
 function updateGhostSpeed() {
@@ -495,6 +504,12 @@ function getRequiredSecondaryClasses() {
 	const classes = new Set();
 
 	for (const evidenceContainer of document.querySelectorAll("#secondary-evidence fieldset")) {
+		const range = evidenceContainer.querySelector(`[type="range"]`);
+		if (range != null) {
+			classes.add(`${evidenceContainer.id}-${range.value}`);
+			continue;
+		}
+
 		if (evidenceContainer.querySelector(`[type="radio"][value="unknown"]`).checked)
 			continue;
 
@@ -605,6 +620,25 @@ function updateEvidence() {
 		evidenceContainer.classList.remove("interesting", "investigated", "uninteresting", "impossible");
 		for (const controlContainer of evidenceContainer.querySelectorAll(".control-container")) {
 			controlContainer.classList.remove("impossible", "inevitable");
+		}
+
+		const range = evidenceContainer.querySelector(`[type="range"]`);
+		if (range != null) {
+			// Can we narrow down the remaining ghosts by changing the range value?
+			const min = parseInt(range.min);
+			const max = parseInt(range.max);
+			const step = parseInt(range.step);
+			const current = parseInt(range.value);
+			for (let value = max; value -= step; value >= min) {
+				if (value === current) continue;
+				const remaining = narrowsDownTo(confirmedEvidence, ruledOutEvidence, setWith(setExclude(secondaryClasses, `${evidence}-${current}`), `${evidence}-${value}`));
+				if (remaining > 0 && remaining < remainingGhostsCount) {
+					evidenceContainer.classList.add("interesting");
+					continue secondaryEvidence;
+				}
+			}
+			evidenceContainer.classList.add("uninteresting");
+			continue;
 		}
 
 		// Mark and move on if this evidence has already been investigated

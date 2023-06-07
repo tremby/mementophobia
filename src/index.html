@@ -212,6 +212,21 @@
 							</fieldset>
 
 							<!-- hunt behaviour -->
+							<fieldset id="hunt-sanity">
+								<legend>Hunt sanity level</legend>
+								<span class="control-container centred-flex"><input type="range" name="hunt-sanity" value="0" min="0" max="100" step="5" id="hunt-sanity-range"> <output for="hunt-sanity-range">0%</output></span>
+								<details>
+									<summary>Info</summary>
+									<p>
+										Set this to the highest known average sanity level at which the ghost has initiated a hunt,
+										other than due to cursed item usage.
+									</p>
+									<p>
+										Beware that the banshee only cares about its target’s sanity level
+										while they are inside the investigation area.
+									</p>
+								</details>
+							</fieldset>
 							<fieldset id="targets-specific-player">
 								<legend>Targets a specific player</legend>
 								<span class="control-container"><input type="radio" name="targets-specific-player" value="unknown" id="targets-specific-player-unknown" checked> <label for="targets-specific-player-unknown">unknown</label></span>
@@ -466,6 +481,7 @@
 								follows-player-no
 								footstep-volume-normal
 								frequent-throws-during-hunt-no
+								hunt-sanity-0 hunt-sanity-5 hunt-sanity-10 hunt-sanity-15 hunt-sanity-20 hunt-sanity-25 hunt-sanity-30 hunt-sanity-35 hunt-sanity-40 hunt-sanity-45 hunt-sanity-50
 								los-speedup-gradual
 								omniscient-no
 								paramic-scream-no
@@ -502,6 +518,7 @@
 								follows-player-yes
 								footstep-volume-normal
 								frequent-throws-during-hunt-no
+								hunt-sanity-0 hunt-sanity-5 hunt-sanity-10 hunt-sanity-15 hunt-sanity-20 hunt-sanity-25 hunt-sanity-30 hunt-sanity-35 hunt-sanity-40 hunt-sanity-45 hunt-sanity-50
 								los-speedup-gradual
 								omniscient-no
 								paramic-scream-no
@@ -538,6 +555,7 @@
 								follows-player-yes
 								footstep-volume-normal
 								frequent-throws-during-hunt-no
+								hunt-sanity-0 hunt-sanity-5 hunt-sanity-10 hunt-sanity-15 hunt-sanity-20 hunt-sanity-25 hunt-sanity-30 hunt-sanity-35 hunt-sanity-40 hunt-sanity-45 hunt-sanity-50
 								los-speedup-gradual
 								omniscient-no
 								paramic-scream-no
@@ -574,6 +592,7 @@
 								follows-player-no
 								footstep-volume-normal
 								frequent-throws-during-hunt-yes
+								hunt-sanity-0 hunt-sanity-5 hunt-sanity-10 hunt-sanity-15 hunt-sanity-20 hunt-sanity-25 hunt-sanity-30 hunt-sanity-35 hunt-sanity-40 hunt-sanity-45 hunt-sanity-50
 								los-speedup-gradual
 								omniscient-no
 								paramic-scream-no
@@ -610,6 +629,7 @@
 								follows-player-yes
 								footstep-volume-normal
 								frequent-throws-during-hunt-no
+								hunt-sanity-0 hunt-sanity-5 hunt-sanity-10 hunt-sanity-15 hunt-sanity-20 hunt-sanity-25 hunt-sanity-30 hunt-sanity-35 hunt-sanity-40 hunt-sanity-45 hunt-sanity-50
 								los-speedup-gradual
 								omniscient-no
 								paramic-scream-yes
@@ -646,6 +666,7 @@
 								follows-player-no
 								footstep-volume-normal
 								frequent-throws-during-hunt-no
+								hunt-sanity-0 hunt-sanity-5 hunt-sanity-10 hunt-sanity-15 hunt-sanity-20 hunt-sanity-25 hunt-sanity-30 hunt-sanity-35 hunt-sanity-40 hunt-sanity-45 hunt-sanity-50
 								los-speedup-gradual los-speedup-sudden
 								omniscient-no
 								paramic-scream-no
@@ -682,6 +703,7 @@
 								follows-player-no
 								footstep-volume-normal
 								frequent-throws-during-hunt-no
+								hunt-sanity-0 hunt-sanity-5 hunt-sanity-10 hunt-sanity-15 hunt-sanity-20 hunt-sanity-25 hunt-sanity-30 hunt-sanity-35 hunt-sanity-40 hunt-sanity-45 hunt-sanity-50 hunt-sanity-55 hunt-sanity-60
 								los-speedup-gradual
 								omniscient-no
 								paramic-scream-no
@@ -718,6 +740,7 @@
 								follows-player-no
 								footstep-volume-normal
 								frequent-throws-during-hunt-no
+								hunt-sanity-0 hunt-sanity-5 hunt-sanity-10 hunt-sanity-15 hunt-sanity-20 hunt-sanity-25 hunt-sanity-30 hunt-sanity-35 hunt-sanity-40 hunt-sanity-45 hunt-sanity-50
 								los-speedup-sudden
 								omniscient-no
 								paramic-scream-no
@@ -754,6 +777,7 @@
 								follows-player-no
 								footstep-volume-normal
 								frequent-throws-during-hunt-no
+								hunt-sanity-0 hunt-sanity-5 hunt-sanity-10 hunt-sanity-15 hunt-sanity-20 hunt-sanity-25 hunt-sanity-30 hunt-sanity-35
 								los-speedup-gradual
 								omniscient-no
 								paramic-scream-no
@@ -790,6 +814,7 @@
 								follows-player-no
 								footstep-volume-normal
 								frequent-throws-during-hunt-no
+								hunt-sanity-0 hunt-sanity-5 hunt-sanity-10 hunt-sanity-15 hunt-sanity-20 hunt-sanity-25 hunt-sanity-30 hunt-sanity-35 hunt-sanity-40 hunt-sanity-45 hunt-sanity-50 hunt-sanity-55 hunt-sanity-60 hunt-sanity-65 hunt-sanity-70 hunt-sanity-75 hunt-sanity-80 hunt-sanity-85 hunt-sanity-90 hunt-sanity-95 hunt-sanity-100
 								los-speedup-gradual
 								omniscient-no
 								paramic-scream-no
@@ -826,6 +851,7 @@
 								follows-player-no
 								footstep-volume-normal
 								frequent-throws-during-hunt-no
+								hunt-sanity-0 hunt-sanity-5 hunt-sanity-10 hunt-sanity-15 hunt-sanity-20 hunt-sanity-25 hunt-sanity-30 hunt-sanity-35 hunt-sanity-40 hunt-sanity-45 hunt-sanity-50
 								los-speedup-gradual
 								omniscient-no
 								paramic-scream-no
@@ -862,6 +888,7 @@
 								follows-player-no
 								footstep-volume-normal
 								frequent-throws-during-hunt-no
+								hunt-sanity-0 hunt-sanity-5 hunt-sanity-10 hunt-sanity-15 hunt-sanity-20 hunt-sanity-25 hunt-sanity-30 hunt-sanity-35 hunt-sanity-40 hunt-sanity-45 hunt-sanity-50
 								los-speedup-gradual
 								omniscient-no
 								paramic-scream-no
@@ -898,6 +925,7 @@
 								follows-player-no
 								footstep-volume-normal
 								frequent-throws-during-hunt-no
+								hunt-sanity-0 hunt-sanity-5 hunt-sanity-10 hunt-sanity-15 hunt-sanity-20 hunt-sanity-25 hunt-sanity-30 hunt-sanity-35 hunt-sanity-40 hunt-sanity-45 hunt-sanity-50 hunt-sanity-55 hunt-sanity-60 hunt-sanity-65 hunt-sanity-70 hunt-sanity-75 hunt-sanity-80
 								los-speedup-gradual
 								omniscient-no
 								paramic-scream-no
@@ -934,6 +962,7 @@
 								follows-player-no
 								footstep-volume-normal
 								frequent-throws-during-hunt-no
+								hunt-sanity-0 hunt-sanity-5 hunt-sanity-10 hunt-sanity-15 hunt-sanity-20 hunt-sanity-25 hunt-sanity-30 hunt-sanity-35 hunt-sanity-40 hunt-sanity-45 hunt-sanity-50
 								los-speedup-none
 								omniscient-no
 								paramic-scream-no
@@ -970,6 +999,7 @@
 								follows-player-no
 								footstep-volume-normal
 								frequent-throws-during-hunt-no
+								hunt-sanity-0 hunt-sanity-5 hunt-sanity-10 hunt-sanity-15 hunt-sanity-20 hunt-sanity-25 hunt-sanity-30 hunt-sanity-35 hunt-sanity-40 hunt-sanity-45 hunt-sanity-50
 								los-speedup-gradual
 								omniscient-no
 								paramic-scream-no
@@ -1006,6 +1036,7 @@
 								follows-player-no
 								footstep-volume-quiet
 								frequent-throws-during-hunt-no
+								hunt-sanity-0 hunt-sanity-5 hunt-sanity-10 hunt-sanity-15 hunt-sanity-20 hunt-sanity-25 hunt-sanity-30 hunt-sanity-35 hunt-sanity-40 hunt-sanity-45 hunt-sanity-50
 								los-speedup-gradual
 								omniscient-no
 								paramic-scream-no
@@ -1042,6 +1073,7 @@
 								follows-player-no
 								footstep-volume-normal
 								frequent-throws-during-hunt-no
+								hunt-sanity-0 hunt-sanity-5 hunt-sanity-10 hunt-sanity-15 hunt-sanity-20 hunt-sanity-25 hunt-sanity-30 hunt-sanity-35 hunt-sanity-40 hunt-sanity-45 hunt-sanity-50 hunt-sanity-55 hunt-sanity-60
 								los-speedup-gradual
 								omniscient-no
 								paramic-scream-no
@@ -1078,6 +1110,7 @@
 								follows-player-no
 								footstep-volume-normal
 								frequent-throws-during-hunt-no
+								hunt-sanity-0 hunt-sanity-5 hunt-sanity-10 hunt-sanity-15 hunt-sanity-20 hunt-sanity-25 hunt-sanity-30 hunt-sanity-35 hunt-sanity-40 hunt-sanity-45 hunt-sanity-50
 								los-speedup-gradual
 								omniscient-no
 								paramic-scream-no
@@ -1114,6 +1147,7 @@
 								follows-player-no
 								footstep-volume-normal
 								frequent-throws-during-hunt-no
+								hunt-sanity-0 hunt-sanity-5 hunt-sanity-10 hunt-sanity-15 hunt-sanity-20 hunt-sanity-25 hunt-sanity-30 hunt-sanity-35 hunt-sanity-40 hunt-sanity-45 hunt-sanity-50 hunt-sanity-55 hunt-sanity-60 hunt-sanity-65
 								los-speedup-gradual los-speedup-none
 								omniscient-no
 								paramic-scream-no
@@ -1150,6 +1184,7 @@
 								follows-player-no
 								footstep-volume-normal
 								frequent-throws-during-hunt-no
+								hunt-sanity-0 hunt-sanity-5 hunt-sanity-10 hunt-sanity-15 hunt-sanity-20 hunt-sanity-25 hunt-sanity-30 hunt-sanity-35 hunt-sanity-40 hunt-sanity-45 hunt-sanity-50
 								los-speedup-gradual
 								omniscient-no
 								paramic-scream-no
@@ -1186,6 +1221,7 @@
 								follows-player-yes follows-player-no
 								footstep-volume-normal footstep-volume-quiet
 								frequent-throws-during-hunt-yes frequent-throws-during-hunt-no
+								hunt-sanity-0 hunt-sanity-5 hunt-sanity-10 hunt-sanity-15 hunt-sanity-20 hunt-sanity-25 hunt-sanity-30 hunt-sanity-35 hunt-sanity-40 hunt-sanity-45 hunt-sanity-50 hunt-sanity-55 hunt-sanity-60 hunt-sanity-65 hunt-sanity-70 hunt-sanity-75 hunt-sanity-80 hunt-sanity-85 hunt-sanity-90 hunt-sanity-95 hunt-sanity-100
 								los-speedup-gradual los-speedup-sudden los-speedup-none
 								omniscient-yes omniscient-no
 								paramic-scream-yes paramic-scream-no
@@ -1222,6 +1258,7 @@
 								follows-player-no
 								footstep-volume-normal
 								frequent-throws-during-hunt-no
+								hunt-sanity-0 hunt-sanity-5 hunt-sanity-10 hunt-sanity-15 hunt-sanity-20 hunt-sanity-25 hunt-sanity-30 hunt-sanity-35 hunt-sanity-40 hunt-sanity-45 hunt-sanity-50
 								los-speedup-gradual
 								omniscient-no
 								paramic-scream-no
@@ -1258,6 +1295,7 @@
 								follows-player-no
 								footstep-volume-normal
 								frequent-throws-during-hunt-no
+								hunt-sanity-0 hunt-sanity-5 hunt-sanity-10 hunt-sanity-15 hunt-sanity-20 hunt-sanity-25 hunt-sanity-30 hunt-sanity-35 hunt-sanity-40
 								los-speedup-none
 								omniscient-yes
 								paramic-scream-no
@@ -1294,6 +1332,7 @@
 								follows-player-no
 								footstep-volume-normal
 								frequent-throws-during-hunt-no
+								hunt-sanity-0 hunt-sanity-5 hunt-sanity-10 hunt-sanity-15 hunt-sanity-20 hunt-sanity-25 hunt-sanity-30 hunt-sanity-35 hunt-sanity-40 hunt-sanity-45 hunt-sanity-50 hunt-sanity-55 hunt-sanity-60 hunt-sanity-65 hunt-sanity-70 hunt-sanity-75
 								los-speedup-none
 								omniscient-no
 								paramic-scream-no
