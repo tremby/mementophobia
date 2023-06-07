@@ -498,6 +498,12 @@ function getRequiredSecondaryClasses() {
 	return classes;
 }
 
+function ghostMarkedImpossible(ghostContainer) {
+	if (ghostContainer.classList.contains("impossible")) return true;
+	if (ghostContainer.querySelector("input").checked) return true;
+	return false;
+}
+
 function updateEvidence() {
 	console.time("update evidence total");
 	console.time("setup");
@@ -523,7 +529,7 @@ function updateEvidence() {
 	console.timeEnd("rule out");
 
 	console.time("find remaining");
-	const remainingGhostContainers = ghostContainers.filter((ghostContainer) => !ghostContainer.classList.contains("impossible") && !ghostContainer.querySelector("input").checked);
+	const remainingGhostContainers = ghostContainers.filter((g) => !ghostMarkedImpossible(g));
 	const remainingGhostsCount = remainingGhostContainers.length;
 	console.timeEnd("find remaining");
 
@@ -1154,7 +1160,7 @@ function updateSpeedMarkers() {
 		const identifier = nameToIdentifier(ghost.name);
 		const ghostContainer = document.querySelector(`#chart .ghost[data-ghost="${identifier}"]`);
 		ghostContainer.style.setProperty("--index", index);
-		ghostContainer.hidden = byId(identifier).classList.contains("impossible") || byId(identifier).querySelector("input").checked;
+		ghostContainer.hidden = ghostMarkedImpossible(byId(identifier));
 		const colorL = 55 + 35 * (index % 3) / 2;
 		const colorC = 40 + 30 * (index % 8) / 7;
 		const colorH = index / speedMarkers.length + (index % 2) / 2;
@@ -1253,9 +1259,15 @@ function getTimerAdjust() {
 }
 
 function getHuntSafety(secondsSinceSmudge) {
-	const possibleShort = document.querySelector("#ghosts li:not(.impossible).smudge-hunt-suspension-short input:not(:checked)") != null;
-	const possibleNormal = document.querySelector("#ghosts li:not(.impossible).smudge-hunt-suspension-normal input:not(:checked)") != null;
-	const possibleLong = document.querySelector("#ghosts li:not(.impossible).smudge-hunt-suspension-long input:not(:checked)") != null;
+	let possibleShort = false;
+	let possibleNormal = false;
+	let possibleLong = false;
+	for (const ghostContainer of document.querySelectorAll("#ghosts li")) {
+		if (ghostMarkedImpossible(ghostContainer)) continue;
+		if (!possibleShort && ghostContainer.classList.contains("smudge-hunt-suspension-short")) possibleShort = true;
+		if (!possibleNormal && ghostContainer.classList.contains("smudge-hunt-suspension-normal")) possibleNormal = true;
+		if (!possibleLong && ghostContainer.classList.contains("smudge-hunt-suspension-long")) possibleLong = true;
+	}
 	if (!possibleShort && !possibleNormal && !possibleLong) return null;
 	const minSafe = possibleShort ? SMUDGE_HUNT_SHORT_S : possibleNormal ? SMUDGE_HUNT_NORMAL_S : SMUDGE_HUNT_LONG_S;
 	const maxSafe = possibleLong  ? SMUDGE_HUNT_LONG_S : possibleNormal ? SMUDGE_HUNT_NORMAL_S : SMUDGE_HUNT_SHORT_S;
