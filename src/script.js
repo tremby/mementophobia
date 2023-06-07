@@ -389,6 +389,10 @@ function getEvidenceNum() {
 }
 
 function updateEvidenceNum() {
+	const evidenceNum = getEvidenceNum();
+	document.documentElement.classList.toggle("evidence-num-some", evidenceNum > 0);
+	document.documentElement.classList.toggle("evidence-num-one", evidenceNum === 1);
+	document.documentElement.classList.toggle("evidence-num-all", evidenceNum >= 3);
 	updateEvidence();
 }
 

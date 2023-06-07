@@ -17,6 +17,7 @@
 			gtag("config", "G-YB7ZSZ14GY");
 		</script>
 		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="evidence-indicators.css">
 		<link href="https://fonts.cdnfonts.com/css/october-crow" rel="stylesheet">
 		<link rel="icon" href="favicon.svg">
 	</head>
@@ -87,43 +88,43 @@
 					<h3>Primary evidence</h3>
 					<div id="primary-evidence" class="evidence-list">
 						<fieldset id="emf-level-5" data-name="EMF level 5">
-							<legend>EMF level 5</legend>
+							<legend>EMF level 5 🔴</legend>
 							<span class="control-container"><input type="radio" name="emf-level-5" value="unknown" id="emf-level-5-unknown" checked> <label for="emf-level-5-unknown">unknown</label></span>
 							<span class="control-container"><input type="radio" name="emf-level-5" id="emf-level-5-yes" value="yes"> <label for="emf-level-5-yes">confirmed</label></span>
 							<span class="control-container"><input type="radio" name="emf-level-5" id="emf-level-5-no" value="no"> <label for="emf-level-5-no">ruled out</label></span>
 						</fieldset>
 						<fieldset id="fingerprints" data-name="fingerprints">
-							<legend>Fingerprints</legend>
+							<legend>Fingerprints 🖐️</legend>
 							<span class="control-container"><input type="radio" name="fingerprints" value="unknown" id="fingerprints-unknown" checked> <label for="fingerprints-unknown">unknown</label></span>
 							<span class="control-container"><input type="radio" name="fingerprints" value="yes" id="fingerprints-yes"> <label for="fingerprints-yes">confirmed</label></span>
 							<span class="control-container"><input type="radio" name="fingerprints" value="no" id="fingerprints-no"> <label for="fingerprints-no">ruled out</label></span>
 						</fieldset>
 						<fieldset id="ghost-writing" data-name="ghost writing">
-							<legend>Ghost writing</legend>
+							<legend>Ghost writing 📖</legend>
 							<span class="control-container"><input type="radio" name="ghost-writing" value="unknown" id="ghost-writing-unknown" checked> <label for="ghost-writing-unknown">unknown</label></span>
 							<span class="control-container"><input type="radio" name="ghost-writing" value="yes" id="ghost-writing-yes"> <label for="ghost-writing-yes">confirmed</label></span>
 							<span class="control-container"><input type="radio" name="ghost-writing" value="no" id="ghost-writing-no"> <label for="ghost-writing-no">ruled out</label></span>
 						</fieldset>
 						<fieldset id="freezing-temperatures" data-name="freezing temperatures">
-							<legend>Freezing temperatures</legend>
+							<legend>Freezing temperatures ❄️</legend>
 							<span class="control-container"><input type="radio" name="freezing-temperatures" value="unknown" id="freezing-temperatures-unknown" checked> <label for="freezing-temperatures-unknown">unknown</label></span>
 							<span class="control-container"><input type="radio" name="freezing-temperatures" value="yes" id="freezing-temperatures-yes"> <label for="freezing-temperatures-yes">confirmed</label></span>
 							<span class="control-container"><input type="radio" name="freezing-temperatures" value="no" id="freezing-temperatures-no"> <label for="freezing-temperatures-no">ruled out</label></span>
 						</fieldset>
 						<fieldset id="dots-projector" data-name="DOTS projector">
-							<legend>Dots projector</legend>
+							<legend>Dots projector 🟢</legend>
 							<span class="control-container"><input type="radio" name="dots-projector" value="unknown" id="dots-projector-unknown" checked> <label for="dots-projector-unknown">unknown</label></span>
 							<span class="control-container"><input type="radio" name="dots-projector" value="yes" id="dots-projector-yes"> <label for="dots-projector-yes">confirmed</label></span>
 							<span class="control-container"><input type="radio" name="dots-projector" value="no" id="dots-projector-no"> <label for="dots-projector-no">ruled out</label></span>
 						</fieldset>
 						<fieldset id="ghost-orb" data-name="ghost orb">
-							<legend>Ghost orb</legend>
+							<legend>Ghost orb ⚪</legend>
 							<span class="control-container"><input type="radio" name="ghost-orb" value="unknown" id="ghost-orb-unknown" checked> <label for="ghost-orb-unknown">unknown</label></span>
 							<span class="control-container"><input type="radio" name="ghost-orb" value="yes" id="ghost-orb-yes"> <label for="ghost-orb-yes">confirmed</label></span>
 							<span class="control-container"><input type="radio" name="ghost-orb" value="no" id="ghost-orb-no"> <label for="ghost-orb-no">ruled out</label></span>
 						</fieldset>
 						<fieldset id="spirit-box" data-name="spirit box">
-							<legend>Spirit box</legend>
+							<legend>Spirit box 📻</legend>
 							<span class="control-container"><input type="radio" name="spirit-box" value="unknown" id="spirit-box-unknown" checked> <label for="spirit-box-unknown">unknown</label></span>
 							<span class="control-container"><input type="radio" name="spirit-box" value="yes" id="spirit-box-yes"> <label for="spirit-box-yes">confirmed</label></span>
 							<span class="control-container"><input type="radio" name="spirit-box" value="no" id="spirit-box-no"> <label for="spirit-box-no">ruled out</label></span>
@@ -499,6 +500,22 @@
 						>
 							<input type="checkbox" id="spirit-manually-ruled-out">
 							<label for="spirit-manually-ruled-out" tabindex="0">Spirit</label>
+							<span class="evidence-indicators">
+								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
+								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
+								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
+								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
+								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
+								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
+								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
+								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
+								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
+								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
+								<span class="special-evidence-indicator special-ghost-orb-indicator" aria-label="Additionally resents ghost orb">⚪</span>
+								<span class="special-evidence-indicator special-spirit-box-indicator" aria-label="Additionally resents spirit box">📻</span>
+							</span>
 						</li>
 						<li
 							id="wraith"
@@ -536,6 +553,22 @@
 						>
 							<input type="checkbox" id="wraith-manually-ruled-out">
 							<label for="wraith-manually-ruled-out" tabindex="0">Wraith</label>
+							<span class="evidence-indicators">
+								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
+								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
+								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
+								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
+								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
+								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
+								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
+								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
+								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
+								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
+								<span class="special-evidence-indicator special-ghost-orb-indicator" aria-label="Additionally resents ghost orb">⚪</span>
+								<span class="special-evidence-indicator special-spirit-box-indicator" aria-label="Additionally resents spirit box">📻</span>
+							</span>
 						</li>
 						<li
 							id="phantom"
@@ -573,6 +606,22 @@
 						>
 							<input type="checkbox" id="phantom-manually-ruled-out">
 							<label for="phantom-manually-ruled-out" tabindex="0">Phantom</label>
+							<span class="evidence-indicators">
+								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
+								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
+								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
+								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
+								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
+								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
+								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
+								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
+								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
+								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
+								<span class="special-evidence-indicator special-ghost-orb-indicator" aria-label="Additionally resents ghost orb">⚪</span>
+								<span class="special-evidence-indicator special-spirit-box-indicator" aria-label="Additionally resents spirit box">📻</span>
+							</span>
 						</li>
 						<li
 							id="poltergeist"
@@ -610,6 +659,22 @@
 						>
 							<input type="checkbox" id="poltergeist-manually-ruled-out">
 							<label for="poltergeist-manually-ruled-out" tabindex="0">Poltergeist</label>
+							<span class="evidence-indicators">
+								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
+								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
+								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
+								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
+								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
+								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
+								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
+								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
+								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
+								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
+								<span class="special-evidence-indicator special-ghost-orb-indicator" aria-label="Additionally resents ghost orb">⚪</span>
+								<span class="special-evidence-indicator special-spirit-box-indicator" aria-label="Additionally resents spirit box">📻</span>
+							</span>
 						</li>
 						<li
 							id="banshee"
@@ -647,6 +712,22 @@
 						>
 							<input type="checkbox" id="banshee-manually-ruled-out">
 							<label for="banshee-manually-ruled-out" tabindex="0">Banshee</label>
+							<span class="evidence-indicators">
+								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
+								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
+								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
+								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
+								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
+								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
+								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
+								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
+								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
+								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
+								<span class="special-evidence-indicator special-ghost-orb-indicator" aria-label="Additionally resents ghost orb">⚪</span>
+								<span class="special-evidence-indicator special-spirit-box-indicator" aria-label="Additionally resents spirit box">📻</span>
+							</span>
 						</li>
 						<li
 							id="jinn"
@@ -684,6 +765,22 @@
 						>
 							<input type="checkbox" id="jinn-manually-ruled-out">
 							<label for="jinn-manually-ruled-out" tabindex="0">Jinn</label>
+							<span class="evidence-indicators">
+								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
+								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
+								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
+								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
+								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
+								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
+								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
+								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
+								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
+								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
+								<span class="special-evidence-indicator special-ghost-orb-indicator" aria-label="Additionally resents ghost orb">⚪</span>
+								<span class="special-evidence-indicator special-spirit-box-indicator" aria-label="Additionally resents spirit box">📻</span>
+							</span>
 						</li>
 						<li
 							id="mare"
@@ -721,6 +818,22 @@
 						>
 							<input type="checkbox" id="mare-manually-ruled-out">
 							<label for="mare-manually-ruled-out" tabindex="0">Mare</label>
+							<span class="evidence-indicators">
+								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
+								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
+								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
+								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
+								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
+								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
+								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
+								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
+								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
+								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
+								<span class="special-evidence-indicator special-ghost-orb-indicator" aria-label="Additionally resents ghost orb">⚪</span>
+								<span class="special-evidence-indicator special-spirit-box-indicator" aria-label="Additionally resents spirit box">📻</span>
+							</span>
 						</li>
 						<li
 							id="revenant"
@@ -758,6 +871,22 @@
 						>
 							<input type="checkbox" id="revenant-manually-ruled-out">
 							<label for="revenant-manually-ruled-out" tabindex="0">Revenant</label>
+							<span class="evidence-indicators">
+								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
+								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
+								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
+								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
+								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
+								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
+								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
+								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
+								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
+								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
+								<span class="special-evidence-indicator special-ghost-orb-indicator" aria-label="Additionally resents ghost orb">⚪</span>
+								<span class="special-evidence-indicator special-spirit-box-indicator" aria-label="Additionally resents spirit box">📻</span>
+							</span>
 						</li>
 						<li
 							id="shade"
@@ -795,6 +924,22 @@
 						>
 							<input type="checkbox" id="shade-manually-ruled-out">
 							<label for="shade-manually-ruled-out" tabindex="0">Shade</label>
+							<span class="evidence-indicators">
+								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
+								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
+								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
+								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
+								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
+								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
+								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
+								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
+								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
+								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
+								<span class="special-evidence-indicator special-ghost-orb-indicator" aria-label="Additionally resents ghost orb">⚪</span>
+								<span class="special-evidence-indicator special-spirit-box-indicator" aria-label="Additionally resents spirit box">📻</span>
+							</span>
 						</li>
 						<li
 							id="demon"
@@ -832,6 +977,22 @@
 						>
 							<input type="checkbox" id="demon-manually-ruled-out">
 							<label for="demon-manually-ruled-out" tabindex="0">Demon</label>
+							<span class="evidence-indicators">
+								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
+								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
+								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
+								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
+								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
+								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
+								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
+								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
+								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
+								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
+								<span class="special-evidence-indicator special-ghost-orb-indicator" aria-label="Additionally resents ghost orb">⚪</span>
+								<span class="special-evidence-indicator special-spirit-box-indicator" aria-label="Additionally resents spirit box">📻</span>
+							</span>
 						</li>
 						<li
 							id="yurei"
@@ -869,6 +1030,22 @@
 						>
 							<input type="checkbox" id="yurei-manually-ruled-out">
 							<label for="yurei-manually-ruled-out" tabindex="0">Yurei</label>
+							<span class="evidence-indicators">
+								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
+								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
+								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
+								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
+								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
+								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
+								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
+								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
+								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
+								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
+								<span class="special-evidence-indicator special-ghost-orb-indicator" aria-label="Additionally resents ghost orb">⚪</span>
+								<span class="special-evidence-indicator special-spirit-box-indicator" aria-label="Additionally resents spirit box">📻</span>
+							</span>
 						</li>
 						<li
 							id="oni"
@@ -906,6 +1083,22 @@
 						>
 							<input type="checkbox" id="oni-manually-ruled-out">
 							<label for="oni-manually-ruled-out" tabindex="0">Oni</label>
+							<span class="evidence-indicators">
+								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
+								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
+								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
+								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
+								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
+								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
+								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
+								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
+								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
+								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
+								<span class="special-evidence-indicator special-ghost-orb-indicator" aria-label="Additionally resents ghost orb">⚪</span>
+								<span class="special-evidence-indicator special-spirit-box-indicator" aria-label="Additionally resents spirit box">📻</span>
+							</span>
 						</li>
 						<li
 							id="yokai"
@@ -943,6 +1136,22 @@
 						>
 							<input type="checkbox" id="yokai-manually-ruled-out">
 							<label for="yokai-manually-ruled-out" tabindex="0">Yokai</label>
+							<span class="evidence-indicators">
+								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
+								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
+								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
+								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
+								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
+								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
+								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
+								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
+								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
+								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
+								<span class="special-evidence-indicator special-ghost-orb-indicator" aria-label="Additionally resents ghost orb">⚪</span>
+								<span class="special-evidence-indicator special-spirit-box-indicator" aria-label="Additionally resents spirit box">📻</span>
+							</span>
 						</li>
 						<li
 							id="hantu"
@@ -980,6 +1189,22 @@
 						>
 							<input type="checkbox" id="hantu-manually-ruled-out">
 							<label for="hantu-manually-ruled-out" tabindex="0">Hantu</label>
+							<span class="evidence-indicators">
+								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
+								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
+								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
+								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
+								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
+								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
+								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
+								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
+								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
+								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
+								<span class="special-evidence-indicator special-ghost-orb-indicator" aria-label="Additionally resents ghost orb">⚪</span>
+								<span class="special-evidence-indicator special-spirit-box-indicator" aria-label="Additionally resents spirit box">📻</span>
+							</span>
 						</li>
 						<li
 							id="goryo"
@@ -1017,6 +1242,22 @@
 						>
 							<input type="checkbox" id="goryo-manually-ruled-out">
 							<label for="goryo-manually-ruled-out" tabindex="0">Goryo</label>
+							<span class="evidence-indicators">
+								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
+								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
+								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
+								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
+								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
+								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
+								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
+								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
+								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
+								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
+								<span class="special-evidence-indicator special-ghost-orb-indicator" aria-label="Additionally resents ghost orb">⚪</span>
+								<span class="special-evidence-indicator special-spirit-box-indicator" aria-label="Additionally resents spirit box">📻</span>
+							</span>
 						</li>
 						<li
 							id="myling"
@@ -1054,6 +1295,22 @@
 						>
 							<input type="checkbox" id="myling-manually-ruled-out">
 							<label for="myling-manually-ruled-out" tabindex="0">Myling</label>
+							<span class="evidence-indicators">
+								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
+								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
+								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
+								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
+								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
+								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
+								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
+								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
+								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
+								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
+								<span class="special-evidence-indicator special-ghost-orb-indicator" aria-label="Additionally resents ghost orb">⚪</span>
+								<span class="special-evidence-indicator special-spirit-box-indicator" aria-label="Additionally resents spirit box">📻</span>
+							</span>
 						</li>
 						<li
 							id="onryo"
@@ -1091,6 +1348,22 @@
 						>
 							<input type="checkbox" id="onryo-manually-ruled-out">
 							<label for="onryo-manually-ruled-out" tabindex="0">Onryo</label>
+							<span class="evidence-indicators">
+								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
+								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
+								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
+								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
+								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
+								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
+								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
+								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
+								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
+								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
+								<span class="special-evidence-indicator special-ghost-orb-indicator" aria-label="Additionally resents ghost orb">⚪</span>
+								<span class="special-evidence-indicator special-spirit-box-indicator" aria-label="Additionally resents spirit box">📻</span>
+							</span>
 						</li>
 						<li
 							id="the-twins"
@@ -1128,6 +1401,22 @@
 						>
 							<input type="checkbox" id="the-twins-manually-ruled-out">
 							<label for="the-twins-manually-ruled-out" tabindex="0">The Twins</label>
+							<span class="evidence-indicators">
+								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
+								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
+								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
+								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
+								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
+								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
+								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
+								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
+								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
+								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
+								<span class="special-evidence-indicator special-ghost-orb-indicator" aria-label="Additionally resents ghost orb">⚪</span>
+								<span class="special-evidence-indicator special-spirit-box-indicator" aria-label="Additionally resents spirit box">📻</span>
+							</span>
 						</li>
 						<li
 							id="raiju"
@@ -1165,6 +1454,22 @@
 						>
 							<input type="checkbox" id="raiju-manually-ruled-out">
 							<label for="raiju-manually-ruled-out" tabindex="0">Raiju</label>
+							<span class="evidence-indicators">
+								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
+								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
+								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
+								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
+								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
+								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
+								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
+								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
+								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
+								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
+								<span class="special-evidence-indicator special-ghost-orb-indicator" aria-label="Additionally resents ghost orb">⚪</span>
+								<span class="special-evidence-indicator special-spirit-box-indicator" aria-label="Additionally resents spirit box">📻</span>
+							</span>
 						</li>
 						<li
 							id="obake"
@@ -1202,6 +1507,22 @@
 						>
 							<input type="checkbox" id="obake-manually-ruled-out">
 							<label for="obake-manually-ruled-out" tabindex="0">Obake</label>
+							<span class="evidence-indicators">
+								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
+								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
+								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
+								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
+								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
+								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
+								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
+								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
+								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
+								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
+								<span class="special-evidence-indicator special-ghost-orb-indicator" aria-label="Additionally resents ghost orb">⚪</span>
+								<span class="special-evidence-indicator special-spirit-box-indicator" aria-label="Additionally resents spirit box">📻</span>
+							</span>
 						</li>
 						<li
 							id="the-mimic"
@@ -1239,6 +1560,22 @@
 						>
 							<input type="checkbox" id="the-mimic-manually-ruled-out">
 							<label for="the-mimic-manually-ruled-out" tabindex="0">The Mimic</label>
+							<span class="evidence-indicators">
+								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
+								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
+								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
+								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
+								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
+								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
+								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
+								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
+								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
+								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
+								<span class="special-evidence-indicator special-ghost-orb-indicator" aria-label="Additionally resents ghost orb">⚪</span>
+								<span class="special-evidence-indicator special-spirit-box-indicator" aria-label="Additionally resents spirit box">📻</span>
+							</span>
 						</li>
 						<li
 							id="moroi"
@@ -1276,6 +1613,22 @@
 						>
 							<input type="checkbox" id="moroi-manually-ruled-out">
 							<label for="moroi-manually-ruled-out" tabindex="0">Moroi</label>
+							<span class="evidence-indicators">
+								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
+								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
+								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
+								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
+								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
+								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
+								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
+								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
+								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
+								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
+								<span class="special-evidence-indicator special-ghost-orb-indicator" aria-label="Additionally resents ghost orb">⚪</span>
+								<span class="special-evidence-indicator special-spirit-box-indicator" aria-label="Additionally resents spirit box">📻</span>
+							</span>
 						</li>
 						<li
 							id="deogen"
@@ -1313,6 +1666,22 @@
 						>
 							<input type="checkbox" id="deogen-manually-ruled-out">
 							<label for="deogen-manually-ruled-out" tabindex="0">Deogen</label>
+							<span class="evidence-indicators">
+								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
+								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
+								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
+								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
+								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
+								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
+								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
+								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
+								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
+								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
+								<span class="special-evidence-indicator special-ghost-orb-indicator" aria-label="Additionally resents ghost orb">⚪</span>
+								<span class="special-evidence-indicator special-spirit-box-indicator" aria-label="Additionally resents spirit box">📻</span>
+							</span>
 						</li>
 						<li
 							id="thaye"
@@ -1350,6 +1719,22 @@
 						>
 							<input type="checkbox" id="thaye-manually-ruled-out">
 							<label for="thaye-manually-ruled-out" tabindex="0">Thaye</label>
+							<span class="evidence-indicators">
+								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
+								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
+								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
+								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
+								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
+								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
+								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
+								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
+								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
+								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
+								<span class="special-evidence-indicator special-ghost-orb-indicator" aria-label="Additionally resents ghost orb">⚪</span>
+								<span class="special-evidence-indicator special-spirit-box-indicator" aria-label="Additionally resents spirit box">📻</span>
+							</span>
 						</li>
 					</ol>
 				</div>
