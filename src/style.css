@@ -77,7 +77,7 @@ input[disabled] {
 	grid-template-columns: repeat(3, auto);
 	gap: 1rem;
 }
-#ghosts li.impossible {
+#ghosts li:is(.impossible, .impossible-by-speed) {
 	opacity: 0.3;
 }
 #ghosts input:checked + label {

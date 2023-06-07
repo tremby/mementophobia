@@ -136,6 +136,7 @@ function init() {
 	byId("tap-target").addEventListener("keydown", handleTapKeyDown);
 	byId("reset-tempo").addEventListener("click", () => resetTempo());
 	byId("narrow-by-tempo").addEventListener("click", () => narrowByTempo());
+	byId("clear-rulings-by-tempo").addEventListener("click", () => clearRulingsByTempo());
 	byId("line-of-sight").addEventListener("input", () => updateLineOfSight());
 	byId("line-of-sight-known").addEventListener("input", () => updateLineOfSightKnown());
 	byId("temperature").addEventListener("input", () => updateTemperature());
@@ -178,6 +179,7 @@ function init() {
 	});
 	byId("observations-form").addEventListener("reset", () => {
 		resetTempo();
+		clearRulingsByTempo();
 		requestAnimationFrame(() => {
 			updateAll();
 		});
@@ -187,7 +189,8 @@ function init() {
 	byId("timer-adjust").addEventListener("input", () => updateTimerAdjust());
 	for (const button of document.querySelectorAll("#chart .ghost .label button")) {
 		button.addEventListener("click", () => {
-			byId(`${button.closest("div.ghost").dataset.ghost}-manually-ruled-out`).checked = true;
+			byId(button.closest("div.ghost").dataset.ghost).classList.add("impossible-by-speed");
+			updateClearRulingsByTempo();
 			updateEvidence();
 		});
 	}
@@ -195,6 +198,7 @@ function init() {
 	const resizeObserver = new ResizeObserver(() => resizeTapTraceCanvas());
 	resizeObserver.observe(byId("tap-trace"));
 	resizeTapTraceCanvas();
+	updateClearRulingsByTempo();
 }
 
 function updateAll() {
@@ -500,6 +504,7 @@ function getRequiredSecondaryClasses() {
 
 function ghostMarkedImpossible(ghostContainer) {
 	if (ghostContainer.classList.contains("impossible")) return true;
+	if (ghostContainer.classList.contains("impossible-by-speed")) return true;
 	if (ghostContainer.querySelector("input").checked) return true;
 	return false;
 }
@@ -705,8 +710,20 @@ function narrowByTempo() {
 		if (
 			adjustedTempo * (1 + NARROW_BY_TEMPO_LEEWAY) < tempoFromSpeed(ghost.speeds[0].speed)
 			|| adjustedTempo * (1 - NARROW_BY_TEMPO_LEEWAY) > tempoFromSpeed(ghost.speeds[ghost.speeds.length - 1].speed)
-		) byId(nameToIdentifier(ghost.name)).querySelector("input").checked = true;
+		) byId(nameToIdentifier(ghost.name)).classList.add("impossible-by-speed");
 	}
+	updateClearRulingsByTempo();
+	updateEvidence();
+}
+
+function updateClearRulingsByTempo() {
+	byId("clear-rulings-by-tempo").disabled = document.querySelector("#ghosts li.impossible-by-speed") == null;
+}
+
+function clearRulingsByTempo() {
+	for (const ghostContainer of document.querySelectorAll("#ghosts li"))
+		ghostContainer.classList.remove("impossible-by-speed");
+	updateClearRulingsByTempo();
 	updateEvidence();
 }
 
