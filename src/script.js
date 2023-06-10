@@ -227,6 +227,7 @@ function updateGhostSpeed() {
 	byId("adjusted-average-tempo-box").hidden = getSpeedMultiplier() === 1;
 	updateSpeedMarkers();
 	updateTempos();
+	updateTapTrace();
 }
 
 function resizeTapTraceCanvas() {
