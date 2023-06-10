@@ -176,6 +176,9 @@ function init() {
 	for (const radio of document.querySelectorAll(`#ghost-speed input[type="radio"]`)) {
 		radio.addEventListener("change", () => updateSpeedMarkers());
 	}
+	for (const input of document.querySelectorAll(`input[name="ghost-speed-factors-preset"]`)) {
+		input.addEventListener("change", () => updateGhostSpeedFactorsPreset());
+	}
 	byId("tap").addEventListener("click", () => handleTap());
 	byId("game-setup-form").addEventListener("reset", () => {
 		requestAnimationFrame(() => {
@@ -211,7 +214,7 @@ function updateAll() {
 	updateSanityKnown();
 	updateGhostDistanceKnown();
 	updateTimeSpentNearGhostKnown();
-	updateGhostSpeed();
+	updateGhostSpeedFactorsPreset();
 	updateEvidenceNum();
 	updateTimerAdjust();
 	updateHuntSanityRangeReadout();
@@ -221,6 +224,15 @@ function updateAll() {
 
 function updateHuntSanityRangeReadout() {
 	document.querySelector(`output[for="hunt-sanity-range"]`).textContent = percentFormatter.format(parseInt(byId("hunt-sanity-range").value) / 100);
+}
+
+function getGhostSpeedFactorsPreset() {
+	return document.querySelector(`input[name="ghost-speed-factors-preset"]:checked`).value;
+}
+
+function updateGhostSpeedFactorsPreset() {
+	byId("ghost-speed-factors-advanced").hidden = getGhostSpeedFactorsPreset() !== "advanced";
+	updateGhostSpeed();
 }
 
 function updateGhostSpeed() {
@@ -259,6 +271,7 @@ function resetManualRuleOuts() {
 }
 
 function getSanityKnown() {
+	if (getGhostSpeedFactorsPreset() !== "advanced") return false;
 	return byId("sanity-known").checked;
 }
 
@@ -283,6 +296,7 @@ function updateSanity() {
 }
 
 function getGhostDistanceKnown() {
+	if (getGhostSpeedFactorsPreset() !== "advanced") return false;
 	return byId("ghost-distance-known").checked;
 }
 
@@ -308,6 +322,7 @@ function updateGhostDistance() {
 }
 
 function getTimeSpentNearGhostKnown() {
+	if (getGhostSpeedFactorsPreset() !== "advanced") return false;
 	return byId("time-spent-near-ghost-known").checked;
 }
 
@@ -333,12 +348,22 @@ function updateTimeSpentNearGhost() {
 }
 
 function getLineOfSight() {
-	if (!getLineOfSightKnown()) return null;
-	return parseInt(byId("line-of-sight").value);
+	switch (getGhostSpeedFactorsPreset()) {
+		case "unknown": return null;
+		case "undetected": return 0;
+		case "advanced":
+			if (!getLineOfSightKnown()) return null;
+			return parseInt(byId("line-of-sight").value);
+	}
 }
 
 function getLineOfSightKnown() {
-	return byId("line-of-sight-known").checked;
+	switch (getGhostSpeedFactorsPreset()) {
+		case "unknown": return false;
+		case "undetected": return true;
+		case "advanced":
+			return byId("line-of-sight-known").checked;
+	}
 }
 
 function getLineOfSightReadout() {
@@ -362,6 +387,7 @@ function getTemperature() {
 }
 
 function getTemperatureKnown() {
+	if (getGhostSpeedFactorsPreset() !== "advanced") return false;
 	return byId("temperature-known").checked;
 }
 
@@ -383,6 +409,38 @@ function updateTemperature() {
 function updateTemperatureKnown() {
 	byId("temperature").disabled = !getTemperatureKnown();
 	updateTemperature();
+}
+
+function getDetectedHeldElectronics() {
+	switch (getGhostSpeedFactorsPreset()) {
+		case "unknown": return null;
+		case "undetected": return false;
+		case "advanced": return radioTristate("detected-held-electronics");
+	}
+}
+
+function getNearElectronics() {
+	switch (getGhostSpeedFactorsPreset()) {
+		case "unknown": return null;
+		case "undetected": return null;
+		case "advanced": return radioTristate("near-electronics");
+	}
+}
+
+function getFuseBoxOn() {
+	switch (getGhostSpeedFactorsPreset()) {
+		case "unknown": return null;
+		case "undetected": return null;
+		case "advanced": return radioTristate("fuse-box-on");
+	}
+}
+
+function getGhostSmudged() {
+	switch (getGhostSpeedFactorsPreset()) {
+		case "unknown": return null;
+		case "undetected": return false;
+		case "advanced": return radioTristate("ghost-smudged");
+	}
 }
 
 function getEvidenceNum() {
@@ -850,7 +908,7 @@ function getSpeedMarkers() {
 			speeds: [],
 		};
 
-		const fuseBox = radioTristate("fuse-box-on");
+		const fuseBox = getFuseBoxOn();
 		const far = getGhostDistance() == null ? null : getGhostDistance() >= JINN_BOOST_MIN_DISTANCE;
 		const someLos = getLineOfSight() == null ? null : getLineOfSight() > 0;
 
@@ -896,7 +954,7 @@ function getSpeedMarkers() {
 			name: "Revenant",
 			speeds: [],
 		};
-		const detectedHeldElectronics = radioTristate("detected-held-electronics");
+		const detectedHeldElectronics = getDetectedHeldElectronics();
 		if ((getLineOfSight() == null || getLineOfSight() === 0) && detectedHeldElectronics !== true) {
 			revenant.speeds.push({
 				name: "When a player is not detected",
@@ -1011,7 +1069,7 @@ function getSpeedMarkers() {
 			name: "Raiju",
 			speeds: [],
 		};
-		const nearElectronics = radioTristate("near-electronics");
+		const nearElectronics = getNearElectronics();
 		if (nearElectronics !== false) raiju.speeds.push({
 			name: "When near active electronics",
 			speed: RAIJU_ELECTRONICS_SPEED,
@@ -1115,7 +1173,7 @@ function getSpeedMarkers() {
 			name: "Deogen",
 			speeds: [],
 		};
-		const smudged = radioTristate("ghost-smudged");
+		const smudged = getGhostSmudged();
 		if (smudged !== false) {
 			deogen.speeds.push({
 				name: "When targetless (smudged)",

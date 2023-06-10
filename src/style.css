@@ -11,6 +11,10 @@
 	color: var(--foreground);;
 }
 
+[hidden] {
+	display: none !important;
+}
+
 .visually-hidden {
 	clip: rect(0 0 0 0);
 	clip-path: inset(50%);
@@ -223,7 +227,8 @@ input[disabled] {
 .evidence-list fieldset.interesting {
 	border-color: darkgoldenrod;
 }
-#ghost-speed-factors {
+#ghost-speed-factors-advanced {
+	margin-top: 1rem;
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
 	gap: var(--fieldset-gap);

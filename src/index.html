@@ -1843,103 +1843,121 @@
 				<h3>Ghost speed during hunts</h3>
 				<div id="ghost-speed-factors">
 					<fieldset>
-						<legend><label for="line-of-sight">Time with line of sight</label></legend>
-						<div class="centred-flex">
-							<label for="line-of-sight-known" class="visually-hidden">known</label>
-							<input id="line-of-sight-known" type="checkbox">
-							<input id="line-of-sight" type="range" list="line-of-sight-markers" min="0" max="13" step="1" value="0" disabled>
-							<datalist id="line-of-sight-markers">
-								<option value="0"></option>
-								<option value="5"></option>
-								<option value="10"></option>
-								<option value="13"></option>
-							</datalist>
-							<output id="line-of-sight-readout" for="line-of-sight-known line-of-sight">unknown</output>
+						<legend>State</legend>
+						<span class="control-container">
+							<input type="radio" name="ghost-speed-factors-preset" value="full-range" id="ghost-speed-factors-preset-full-range" checked>
+							<label for="ghost-speed-factors-preset-full-range">unknown (full range of speeds)</label>
+						</span>
+						<span class="control-container">
+							<input type="radio" name="ghost-speed-factors-preset" value="undetected" id="ghost-speed-factors-preset-undetected">
+							<label for="ghost-speed-factors-preset-undetected">undetected</label>
+						</span>
+						<span class="control-container">
+							<input type="radio" name="ghost-speed-factors-preset" value="advanced" id="ghost-speed-factors-preset-advanced">
+							<label for="ghost-speed-factors-preset-advanced">advanced…</label>
+						</span>
+
+						<div id="ghost-speed-factors-advanced" hidden>
+							<fieldset>
+								<legend><label for="line-of-sight">Time with line of sight</label></legend>
+								<div class="centred-flex">
+									<label for="line-of-sight-known" class="visually-hidden">known</label>
+									<input id="line-of-sight-known" type="checkbox">
+									<input id="line-of-sight" type="range" list="line-of-sight-markers" min="0" max="13" step="1" value="0" disabled>
+									<datalist id="line-of-sight-markers">
+										<option value="0"></option>
+										<option value="5"></option>
+										<option value="10"></option>
+										<option value="13"></option>
+									</datalist>
+									<output id="line-of-sight-readout" for="line-of-sight-known line-of-sight">unknown</output>
+								</div>
+							</fieldset>
+							<fieldset>
+								<legend><label for="sanity">Sanity level</label></legend>
+								<div class="centred-flex">
+									<label for="sanity-known" class="visually-hidden">known</label>
+									<input id="sanity-known" type="checkbox">
+									<input id="sanity" type="range" list="sanity-markers" min="0" max="100" step="5" value="100" disabled>
+									<datalist id="sanity-markers">
+										<option value="0"></option>
+										<option value="25"></option>
+										<option value="50"></option>
+										<option value="75"></option>
+										<option value="100"></option>
+									</datalist>
+									<output id="sanity-readout" for="sanity-known sanity">unknown</output>
+								</div>
+							</fieldset>
+							<fieldset>
+								<legend><label for="ghost-distance">Distance to ghost</label></legend>
+								<div class="centred-flex">
+									<label for="ghost-distance-known" class="visually-hidden">known</label>
+									<input id="ghost-distance-known" type="checkbox">
+									<input id="ghost-distance" type="range" list="ghost-distance-markers" min="0" max="25" step="0.5" value="10" disabled>
+									<datalist id="ghost-distance-markers">
+										<option value="0"></option>
+										<option value="5"></option>
+										<option value="10"></option>
+										<option value="15"></option>
+										<option value="20"></option>
+										<option value="25"></option>
+									</datalist>
+									<output id="ghost-distance-readout" for="ghost-distance-known ghost-distance">unknown</output>
+								</div>
+							</fieldset>
+							<fieldset>
+								<legend>Ghost detected player-held electronics</legend>
+								<label><input type="radio" name="detected-held-electronics" value="unknown" checked> unknown</label>
+								<label><input type="radio" name="detected-held-electronics" value="yes"> yes</label>
+								<label><input type="radio" name="detected-held-electronics" value="no"> no</label>
+							</fieldset>
+							<fieldset>
+								<legend>Ghost is near active electronics</legend>
+								<label><input type="radio" name="near-electronics" value="unknown" checked> unknown</label>
+								<label><input type="radio" name="near-electronics" value="yes"> yes</label>
+								<label><input type="radio" name="near-electronics" value="no"> no</label>
+							</fieldset>
+							<fieldset>
+								<legend><label for="fuse-box">Fuse box is on</label></legend>
+								<label><input type="radio" name="fuse-box-on" value="unknown" checked> unknown</label>
+								<label><input type="radio" name="fuse-box-on" value="yes"> yes</label>
+								<label><input type="radio" name="fuse-box-on" value="no"> no</label>
+							</fieldset>
+							<fieldset>
+								<legend><label for="temperature">Temperature</label></legend>
+								<div class="centred-flex">
+									<label for="temperature-known" class="visually-hidden">known</label>
+									<input id="temperature-known" type="checkbox">
+									<input id="temperature" type="range" list="temperature-markers" min="-5" max="30" step="1" value="16" disabled>
+									<datalist id="temperature-markers">
+										<option value="1"></option>
+										<option value="4"></option>
+										<option value="7"></option>
+										<option value="10"></option>
+										<option value="13"></option>
+										<option value="16"></option>
+										<option value="19"></option>
+									</datalist>
+									<output id="temperature-readout" for="temperature-known temperature temperature-unit">unknown</output>
+								</div>
+							</fieldset>
+							<fieldset>
+								<legend><label for="time-spent-near-ghost">Total time spent in the same room as the ghost</label></legend>
+								<div class="centred-flex">
+									<label for="time-spent-near-ghost-known" class="visually-hidden">known</label>
+									<input id="time-spent-near-ghost-known" type="checkbox">
+									<input id="time-spent-near-ghost" type="range" min="0" max="25" step="1" value="0" disabled>
+									<output id="time-spent-near-ghost-readout" for="time-spent-near-ghost-known time-spent-near-ghost">unknown</output>
+								</div>
+							</fieldset>
+							<fieldset>
+								<legend><label for="ghost-smudged">Ghost is smudged</label></legend>
+								<label><input type="radio" name="ghost-smudged" value="unknown" checked> unknown</label>
+								<label><input type="radio" name="ghost-smudged" value="yes"> yes</label>
+								<label><input type="radio" name="ghost-smudged" value="no"> no</label>
+							</fieldset>
 						</div>
-					</fieldset>
-					<fieldset>
-						<legend><label for="sanity">Sanity level</label></legend>
-						<div class="centred-flex">
-							<label for="sanity-known" class="visually-hidden">known</label>
-							<input id="sanity-known" type="checkbox">
-							<input id="sanity" type="range" list="sanity-markers" min="0" max="100" step="5" value="100" disabled>
-							<datalist id="sanity-markers">
-								<option value="0"></option>
-								<option value="25"></option>
-								<option value="50"></option>
-								<option value="75"></option>
-								<option value="100"></option>
-							</datalist>
-							<output id="sanity-readout" for="sanity-known sanity">unknown</output>
-						</div>
-					</fieldset>
-					<fieldset>
-						<legend><label for="ghost-distance">Distance to ghost</label></legend>
-						<div class="centred-flex">
-							<label for="ghost-distance-known" class="visually-hidden">known</label>
-							<input id="ghost-distance-known" type="checkbox">
-							<input id="ghost-distance" type="range" list="ghost-distance-markers" min="0" max="25" step="0.5" value="10" disabled>
-							<datalist id="ghost-distance-markers">
-								<option value="0"></option>
-								<option value="5"></option>
-								<option value="10"></option>
-								<option value="15"></option>
-								<option value="20"></option>
-								<option value="25"></option>
-							</datalist>
-							<output id="ghost-distance-readout" for="ghost-distance-known ghost-distance">unknown</output>
-						</div>
-					</fieldset>
-					<fieldset>
-						<legend>Ghost detected player-held electronics</legend>
-						<label><input type="radio" name="detected-held-electronics" value="unknown" checked> unknown</label>
-						<label><input type="radio" name="detected-held-electronics" value="yes"> yes</label>
-						<label><input type="radio" name="detected-held-electronics" value="no"> no</label>
-					</fieldset>
-					<fieldset>
-						<legend>Ghost is near active electronics</legend>
-						<label><input type="radio" name="near-electronics" value="unknown" checked> unknown</label>
-						<label><input type="radio" name="near-electronics" value="yes"> yes</label>
-						<label><input type="radio" name="near-electronics" value="no"> no</label>
-					</fieldset>
-					<fieldset>
-						<legend><label for="fuse-box">Fuse box is on</label></legend>
-						<label><input type="radio" name="fuse-box-on" value="unknown" checked> unknown</label>
-						<label><input type="radio" name="fuse-box-on" value="yes"> yes</label>
-						<label><input type="radio" name="fuse-box-on" value="no"> no</label>
-					</fieldset>
-					<fieldset>
-						<legend><label for="temperature">Temperature</label></legend>
-						<div class="centred-flex">
-							<label for="temperature-known" class="visually-hidden">known</label>
-							<input id="temperature-known" type="checkbox">
-							<input id="temperature" type="range" list="temperature-markers" min="-5" max="30" step="1" value="16" disabled>
-							<datalist id="temperature-markers">
-								<option value="1"></option>
-								<option value="4"></option>
-								<option value="7"></option>
-								<option value="10"></option>
-								<option value="13"></option>
-								<option value="16"></option>
-								<option value="19"></option>
-							</datalist>
-							<output id="temperature-readout" for="temperature-known temperature temperature-unit">unknown</output>
-						</div>
-					</fieldset>
-					<fieldset>
-						<legend><label for="time-spent-near-ghost">Total time spent in the same room as the ghost</label></legend>
-						<div class="centred-flex">
-							<label for="time-spent-near-ghost-known" class="visually-hidden">known</label>
-							<input id="time-spent-near-ghost-known" type="checkbox">
-							<input id="time-spent-near-ghost" type="range" min="0" max="25" step="1" value="0" disabled>
-							<output id="time-spent-near-ghost-readout" for="time-spent-near-ghost-known time-spent-near-ghost">unknown</output>
-						</div>
-					</fieldset>
-					<fieldset>
-						<legend><label for="ghost-smudged">Ghost is smudged</label></legend>
-						<label><input type="radio" name="ghost-smudged" value="unknown" checked> unknown</label>
-						<label><input type="radio" name="ghost-smudged" value="yes"> yes</label>
-						<label><input type="radio" name="ghost-smudged" value="no"> no</label>
 					</fieldset>
 				</div>
 
