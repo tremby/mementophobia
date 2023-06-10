@@ -772,10 +772,10 @@ function resetTempo() {
 }
 
 function handleTap() {
-	const tap = new Date();
+	const tap = performance.now();
 
 	// Reset if this is the first tap in a while
-	if (taps.length && tap.getTime() - taps[taps.length - 1].getTime() > 2e3) resetTempo();
+	if (taps.length && tap - taps[taps.length - 1] > 2e3) resetTempo();
 
 	taps.push(tap);
 	updateTempos();
@@ -784,7 +784,7 @@ function handleTap() {
 
 function getAverageTempo() {
 	if (taps.length < 2) return null;
-	const elapsedMs = taps[taps.length - 1].getTime() - taps[0].getTime();
+	const elapsedMs = taps[taps.length - 1] - taps[0];
 	const msPerTap = elapsedMs / (taps.length - 1);
 	return 1e3 * 60 / msPerTap;
 }
@@ -1320,14 +1320,14 @@ function updateTapTrace() {
 
 	if (taps.length < 2) return;
 
-	const msToShow = Math.max(4e3, taps[taps.length - 1].getTime() - taps[1].getTime());
+	const msToShow = Math.max(4e3, taps[taps.length - 1] - taps[1]);
 	const pxPerMs = canvas.width / msToShow;
 
 	// Draw last-tap tempo line
 	ctx.beginPath();
 	for (let i = 1; i < taps.length; i++) {
-		const x = (taps[i].getTime() - taps[1].getTime()) * pxPerMs;
-		const y = canvas.height * (1 - toScale(60e3 / (taps[i].getTime() - taps[i - 1].getTime()) / getSpeedMultiplier()));
+		const x = (taps[i] - taps[1]) * pxPerMs;
+		const y = canvas.height * (1 - toScale(60e3 / (taps[i] - taps[i - 1]) / getSpeedMultiplier()));
 		if (i === 1) ctx.moveTo(x, y);
 		else ctx.lineTo(x, y);
 	}
@@ -1340,11 +1340,11 @@ function updateTapTrace() {
 	for (let i = 1; i < taps.length; i++) {
 		// Get the earliest sample within n seconds
 		let j = i;
-		while (j - 1 >= 0 && taps[i].getTime() - taps[j - 1].getTime() < ROLLING_AVERAGE_MS) j--;
-		const x = (taps[i].getTime() - taps[1].getTime()) * pxPerMs;
+		while (j - 1 >= 0 && taps[i] - taps[j - 1] < ROLLING_AVERAGE_MS) j--;
+		const x = (taps[i] - taps[1]) * pxPerMs;
 
 		// Calculate the average over those samples
-		const y = canvas.height * (1 - toScale(60e3 / (taps[i].getTime() - taps[j].getTime()) * (i - j) / getSpeedMultiplier()));
+		const y = canvas.height * (1 - toScale(60e3 / (taps[i] - taps[j]) * (i - j) / getSpeedMultiplier()));
 
 		if (i === 1) ctx.moveTo(x, y);
 		else ctx.lineTo(x, y);
@@ -1363,12 +1363,12 @@ let timerInterval = null;
 
 function startStopTimer() {
 	if (timerInterval == null) {
-		timerStart = new Date();
+		timerStart = performance.now();
 		timerStop = null;
 		updateTimerReadout();
 		timerInterval = setInterval(updateTimerReadout, 100);
 	} else {
-		timerStop = new Date();
+		timerStop = performance.now();
 		clearInterval(timerInterval);
 		timerInterval = null;
 		updateTimerReadout();
@@ -1403,7 +1403,7 @@ function getHuntSafety(secondsSinceSmudge) {
 }
 
 function updateTimerReadout() {
-	const seconds = (getTimerAdjust() + (timerStart == null ? 0 : ((timerStop == null ? new Date().getTime() : timerStop.getTime()) - timerStart))) / 1e3;
+	const seconds = (getTimerAdjust() + (timerStart == null ? 0 : ((timerStop == null ? performance.now() : timerStop) - timerStart))) / 1e3;
 	const readout = byId("timer-readout");
 	const safety = getHuntSafety(seconds);
 	readout.classList.toggle("safe", safety === "safe");
