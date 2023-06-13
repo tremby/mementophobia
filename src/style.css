@@ -130,16 +130,7 @@ input[disabled] {
 #chart .ghost .label button:focus-visible {
 	opacity: 1;
 }
-#chart .ghost .range-area {
-	position: absolute;
-	left: 0;
-	width: 100%;
-	background-color: currentColor;
-	opacity: 0.1;
-	mix-blend-mode: screen;
-	z-index: 0;
-}
-#chart .ghost .range {
+#chart .ghost .entire-range {
 	pointer-events: auto;
 	position: absolute;
 	width: 2px;
@@ -147,7 +138,7 @@ input[disabled] {
 	left: calc(0.5rem + var(--index, 0) * (100% - 4em) / 24);
 	z-index: 1;
 }
-#chart .ghost .range::before {
+#chart .ghost .entire-range::before {
 	/* Expanded hit area */
 	position: absolute;
 	content: "";
@@ -156,17 +147,7 @@ input[disabled] {
 	top: 0;
 	height: 100%;
 }
-#chart .ghost .markers > div {
-	position: absolute;
-	left: 0;
-	bottom: 0;
-	width: 100%;
-	height: 2px;
-	background-color: currentColor;
-	pointer-events: auto;
-	z-index: 1;
-}
-#chart .ghost .markers > div::before {
+#chart .marker::before {
 	/* Expanded hit area */
 	position: absolute;
 	content: "";
@@ -175,6 +156,35 @@ input[disabled] {
 	bottom: calc(0px - var(--expanded-hit));
 	width: 100%;
 }
+#chart .continuous-range, #chart .marker {
+	position: absolute;
+	width: 100%;
+	left: 0;
+	bottom: 0;
+}
+#chart .continuous-range {
+	opacity: 0.1;
+	background-color: currentColor;
+	mix-blend-mode: hard-light;
+	z-index: 0;
+}
+@supports (color: color-mix(in srgb, currentColor 40%, transparent)) {
+	#chart .continuous-range {
+		opacity: 1;
+		background-color: transparent;
+		--center-opacity: 2%;
+		--edge-opacity: 8%;
+		background-image: linear-gradient(to bottom, color-mix(in srgb, currentColor var(--edge-opacity), transparent), color-mix(in srgb, currentColor var(--center-opacity), transparent), color-mix(in srgb, currentColor var(--edge-opacity), transparent));
+	}
+}
+#chart .marker {
+	height: 2px;
+	background-color: currentColor;
+	pointer-events: auto;
+	z-index: 1;
+	--bottom-offset: -1px;
+	bottom: var(--bottom-offset);
+}
 #chart .ghost:is(:hover, :focus-within) {
 	z-index: 3;
 }
@@ -182,10 +192,10 @@ input[disabled] {
 	--extra-padding: 0px;
 	border-width: 4px;
 }
-#chart .ghost:is(:hover, :focus-within) .range {
+#chart .ghost:is(:hover, :focus-within) .entire-range {
 	transform: scaleX(200%);
 }
-#chart .ghost:is(:hover, :focus-within) .markers > div {
+#chart .ghost:is(:hover, :focus-within) .marker {
 	transform: scaleY(200%);
 }
 #tap-target:is(:focus, :focus-within) {

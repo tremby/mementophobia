@@ -860,6 +860,20 @@ function formatTemperature(tempC) {
 	return getTemperatureFormatter().format(temperatureInPreferredUnit(tempC));
 }
 
+function slowestOf(ghost) {
+	let slowest = null;
+	for (const speed of ghost.speeds.flat())
+		if (slowest == null || speed.speed < slowest.speed) slowest = speed;
+	return slowest;
+}
+
+function fastestOf(ghost) {
+	let fastest = null;
+	for (const speed of ghost.speeds.flat())
+		if (fastest == null || speed.speed > fastest.speed) fastest = speed;
+	return fastest;
+}
+
 function getSpeedMarkers() {
 	const speedMarkers = [];
 
@@ -871,7 +885,7 @@ function getSpeedMarkers() {
 		const speeds = [];
 		if (getLineOfSight() == null) {
 			// Line of sight time unknown; could be the full range of possible speeds
-			speeds.push(
+			speeds.push([
 				{
 					name: "Base",
 					speed: NORMAL_SPEED,
@@ -880,7 +894,7 @@ function getSpeedMarkers() {
 					name: `Max, after at least ${secondsFormatter.format(MAX_GHOST_LOS_SPEEDUP_PERIOD_S)} line of sight`,
 					speed: NORMAL_SPEED * MAX_GHOST_LOS_SPEEDUP_MULTIPLIER,
 				},
-			);
+			]);
 		} else {
 			// Line of sight time known; we can calculate what speed it should be
 			speeds.push({
@@ -919,19 +933,18 @@ function getSpeedMarkers() {
 			});
 		}
 
-		if (someLos !== true) {
-			jinn.speeds.push({
-				name: "Base speed",
-				speed: NORMAL_SPEED,
-			});
-		}
-
-		if (someLos !== false && !(fuseBox && someLos && far)) {
-			if (getLineOfSight() == null || getLineOfSight >= MAX_GHOST_LOS_SPEEDUP_PERIOD_S) {
-				jinn.speeds.push({
-					name: `Max, after at least ${secondsFormatter.format(MAX_GHOST_LOS_SPEEDUP_PERIOD_S)} line of sight`,
-					speed: NORMAL_SPEED * MAX_GHOST_LOS_SPEEDUP_MULTIPLIER,
-				});
+		if (!(fuseBox && someLos && far)) {
+			if (getLineOfSight() == null) {
+				jinn.speeds.push([
+					{
+						name: "Base",
+						speed: NORMAL_SPEED,
+					},
+					{
+						name: `Max, after at least ${secondsFormatter.format(MAX_GHOST_LOS_SPEEDUP_PERIOD_S)} line of sight`,
+						speed: NORMAL_SPEED * MAX_GHOST_LOS_SPEEDUP_MULTIPLIER,
+					},
+				]);
 			} else {
 				jinn.speeds.push({
 					name: `At ${secondsFormatter.format(getLineOfSight())} line of sight`,
@@ -939,6 +952,7 @@ function getSpeedMarkers() {
 				});
 			}
 		}
+
 		speedMarkers.push(jinn);
 	}
 
@@ -1031,22 +1045,26 @@ function getSpeedMarkers() {
 		if (getLineOfSight() == null) {
 			// Line of sight time unknown; could be the full range of possible speeds
 			twins.speeds.push(
-				{
-					name: "Slow twin base",
-					speed: TWIN_SLOW_SPEED,
-				},
-				{
-					name: `Slow twin max, after at least ${secondsFormatter.format(MAX_GHOST_LOS_SPEEDUP_PERIOD_S)} line of sight`,
-					speed: TWIN_SLOW_SPEED * MAX_GHOST_LOS_SPEEDUP_MULTIPLIER,
-				},
-				{
-					name: "Fast twin base",
-					speed: TWIN_FAST_SPEED,
-				},
-				{
-					name: `Fast twin max, after at least ${secondsFormatter.format(MAX_GHOST_LOS_SPEEDUP_PERIOD_S)} line of sight`,
-					speed: TWIN_FAST_SPEED * MAX_GHOST_LOS_SPEEDUP_MULTIPLIER,
-				},
+				[
+					{
+						name: "Slow twin base",
+						speed: TWIN_SLOW_SPEED,
+					},
+					{
+						name: `Slow twin max, after at least ${secondsFormatter.format(MAX_GHOST_LOS_SPEEDUP_PERIOD_S)} line of sight`,
+						speed: TWIN_SLOW_SPEED * MAX_GHOST_LOS_SPEEDUP_MULTIPLIER,
+					},
+				],
+				[
+					{
+						name: "Fast twin base",
+						speed: TWIN_FAST_SPEED,
+					},
+					{
+						name: `Fast twin max, after at least ${secondsFormatter.format(MAX_GHOST_LOS_SPEEDUP_PERIOD_S)} line of sight`,
+						speed: TWIN_FAST_SPEED * MAX_GHOST_LOS_SPEEDUP_MULTIPLIER,
+					},
+				],
 			);
 		} else {
 			// Line of sight time known; we can calculate what speed it should be
@@ -1077,7 +1095,7 @@ function getSpeedMarkers() {
 		if (nearElectronics !== true) {
 			if (getLineOfSight() == null) {
 				// Line of sight time unknown; could be the full range of possible speeds
-				raiju.speeds.push(
+				raiju.speeds.push([
 					{
 						name: "Base, not near active electronics",
 						speed: NORMAL_SPEED,
@@ -1086,7 +1104,7 @@ function getSpeedMarkers() {
 						name: `Max, not near active electronics, after at least ${secondsFormatter.format(MAX_GHOST_LOS_SPEEDUP_PERIOD_S)} line of sight`,
 						speed: NORMAL_SPEED * MAX_GHOST_LOS_SPEEDUP_MULTIPLIER,
 					},
-				);
+				]);
 			} else {
 				// Line of sight time known; we can calculate what speed it should be
 				raiju.speeds.push({
@@ -1115,7 +1133,7 @@ function getSpeedMarkers() {
 		};
 		const sanity = getSanity();
 		if (sanity == null && losMultiplier == null) {
-			moroi.speeds.push(
+			moroi.speeds.push([
 				{
 					name: `At ${percentFormatter.format(MOROI_MIN_AT_SANITY)} or higher sanity, and no line of sight`,
 					speed: MOROI_MIN_SPEED,
@@ -1124,9 +1142,9 @@ function getSpeedMarkers() {
 					name: `At ${percentFormatter.format(MOROI_MAX_AT_SANITY)} sanity, after at least ${secondsFormatter.format(MAX_GHOST_LOS_SPEEDUP_PERIOD_S)} line of sight`,
 					speed: MOROI_MAX_SPEED * MAX_GHOST_LOS_SPEEDUP_MULTIPLIER,
 				},
-			);
+			]);
 		} else if (sanity == null) {
-			moroi.speeds.push(
+			moroi.speeds.push([
 				{
 					name: `At ${percentFormatter.format(MOROI_MIN_AT_SANITY)} or higher sanity, with ${secondsFormatter.format(getLineOfSight())} line of sight`,
 					speed: MOROI_MIN_SPEED * losMultiplier,
@@ -1135,11 +1153,11 @@ function getSpeedMarkers() {
 					name: `At ${percentFormatter.format(MOROI_MAX_AT_SANITY)} sanity, with ${secondsFormatter.format(getLineOfSight())} line of sight`,
 					speed: MOROI_MAX_SPEED * losMultiplier,
 				},
-			);
+			]);
 		} else {
 			const sanitySpeed = Math.max(MOROI_MIN_SPEED, MOROI_MAX_SPEED + sanity * (MOROI_MIN_SPEED - MOROI_MAX_SPEED) / (MOROI_MIN_AT_SANITY - MOROI_MAX_AT_SANITY));
 			if (losMultiplier == null) {
-				moroi.speeds.push(
+				moroi.speeds.push([
 					{
 						name: `At ${percentFormatter.format(sanity)} sanity, with no line of sight`,
 						speed: sanitySpeed,
@@ -1148,7 +1166,7 @@ function getSpeedMarkers() {
 						name: `At ${percentFormatter.format(sanity)} sanity, after at least ${secondsFormatter.format(MAX_GHOST_LOS_SPEEDUP_PERIOD_S)} line of sight`,
 						speed: sanitySpeed * MAX_GHOST_LOS_SPEEDUP_MULTIPLIER,
 					},
-				);
+				]);
 			} else {
 				moroi.speeds.push({
 					name: `At ${percentFormatter.format(sanity)} sanity, with ${secondsFormatter.format(getLineOfSight())} line of sight`,
@@ -1190,7 +1208,7 @@ function getSpeedMarkers() {
 				speed: DEOGEN_MAX_SPEED,
 			};
 			const distance = getGhostDistance();
-			if (distance == null) deogen.speeds.push(slowSpeed, fastSpeed);
+			if (distance == null) deogen.speeds.push([slowSpeed, fastSpeed]);
 			else if (distance <= DEOGEN_MIN_DISTANCE) deogen.speeds.push(slowSpeed);
 			else if (distance >= DEOGEN_MAX_DISTANCE) deogen.speeds.push(fastSpeed);
 			else deogen.speeds.push({
@@ -1218,36 +1236,30 @@ function getSpeedMarkers() {
 		};
 		const ageLimit = Math.ceil((THAYE_MAX_SPEED - THAYE_MIN_SPEED) / THAYE_SPEED_NERF_PER_AGE);
 		if (timeSpentNearGhost == null)
-			thaye.speeds.push(minSpeedObj, maxSpeedObj);
+			thaye.speeds.push([minSpeedObj, maxSpeedObj]);
 		else {
 			const minAges = Math.floor(timeSpentNearGhost / THAYE_AGE_MAX_S);
 			const maxAges = Math.floor(timeSpentNearGhost / THAYE_AGE_MIN_S);
+			const speedrange = [];
 			if (minAges === 0)
-				thaye.speeds.push(minSpeedObj);
+				speedrange.push(minSpeedObj);
 			else
-				thaye.speeds.push({
+				speedrange.push({
 					name: `After ageing ${minAges} times (players have spent between ${minutesFormatter.format(minAges * THAYE_AGE_MIN_S / 60)} and ${minutesFormatter.format(minAges * THAYE_AGE_MAX_S / 60)} in the same room as the ghost)`,
 					speed: Math.max(THAYE_MIN_SPEED, THAYE_MAX_SPEED - minAges * THAYE_SPEED_NERF_PER_AGE),
 				});
 			if (minAges !== maxAges) {
 				if (maxAges === ageLimit)
-					thaye.speeds.push(maxSpeedObj);
+					speedrange.push(maxSpeedObj);
 				else
-					thaye.speeds.push({
+					speedrange.push({
 						name: `After ageing ${maxAges} times (players have spent between ${minutesFormatter.format(maxAges * THAYE_AGE_MIN_S / 60)} and ${minutesFormatter.format(maxAges * THAYE_AGE_MAX_S / 60)} in the same room as the ghost)`,
 						speed: Math.max(THAYE_MIN_SPEED, THAYE_MAX_SPEED - maxAges * THAYE_SPEED_NERF_PER_AGE),
 					});
 			}
+			thaye.speeds.push(speedrange);
 		}
 		speedMarkers.push(thaye);
-	}
-
-	let slowest = null;
-	let fastest = null;
-
-	// Sort all speeds
-	for (const ghost of speedMarkers) {
-		ghost.speeds.sort((a, b) => a.speed - b.speed);
 	}
 
 	// We do the mimic last, since it could be the speed of any other ghost
@@ -1257,20 +1269,37 @@ function getSpeedMarkers() {
 			speeds: [],
 		};
 
+		let slowestSpeed = null;
+		let slowestGhost = null;
+		let fastestSpeed = null;
+		let fastestGhost = null;
+
 		// Find lowest and highest speed of all ghosts
 		for (const ghost of speedMarkers) {
-			if (slowest == null || ghost.speeds[0].speed < slowest.speed) slowest = {
-				name: `Mimic of ${ghost.name}, ${ghost.speeds[0].name}`,
-				speed: ghost.speeds[0].speed,
-			};
-			if (fastest == null || ghost.speeds[ghost.speeds.length - 1].speed > fastest.speed) fastest = {
-				name: `Mimic of ${ghost.name}, ${ghost.speeds[ghost.speeds.length - 1].name}`,
-				speed: ghost.speeds[ghost.speeds.length - 1].speed,
-			};
+			const slowestOfGhost = slowestOf(ghost);
+			if (slowestSpeed == null || slowestOfGhost.speed < slowestSpeed.speed) {
+				slowestSpeed = slowestOfGhost;
+				slowestGhost = ghost;
+			}
+			const fastestOfGhost = fastestOf(ghost);
+			if (fastestSpeed == null || fastestOfGhost.speed > fastestSpeed.speed) {
+				fastestSpeed = fastestOfGhost;
+				fastestGhost = ghost;
+			}
 		}
-		if (slowest != null) mimic.speeds.push(slowest);
-		if (fastest != null) mimic.speeds.push(fastest);
-		if (slowest != null || fastest != null) speedMarkers.push(mimic);
+
+		mimic.speeds.push([
+			{
+				name: `Mimic of ${slowestGhost.name}, ${slowestSpeed.name}`,
+				speed: slowestSpeed.speed,
+			},
+			{
+				name: `Mimic of ${fastestGhost.name}, ${fastestSpeed.name}`,
+				speed: fastestSpeed.speed,
+			},
+		]);
+
+		speedMarkers.push(mimic);
 	}
 
 	return speedMarkers;
@@ -1295,16 +1324,31 @@ function updateSpeedMarkers() {
 		const markersContainer = ghostContainer.querySelector(".markers");
 		markersContainer.replaceChildren(...ghost.speeds.map((speed) => {
 			const div = document.createElement("div");
-			div.style.bottom = `${toScale(tempoFromSpeed(speed.speed)) * 100}%`;
-			div.title = speed.name;
+			if (Array.isArray(speed)) {
+				const range = document.createElement("div");
+				div.appendChild(range);
+				range.classList.add("continuous-range");
+				range.style.bottom = `${toScale(tempoFromSpeed(slowestOf(ghost).speed)) * 100}%`;
+				range.style.height = `${toScale(tempoFromSpeed(fastestOf(ghost).speed) - tempoFromSpeed(slowestOf(ghost).speed)) * 100}%`;
+				for (const speedChild of speed) {
+					const marker = document.createElement("div");
+					div.appendChild(marker);
+					marker.classList.add("marker");
+					marker.style.bottom = `calc(${toScale(tempoFromSpeed(speedChild.speed)) * 100}% + var(--bottom-offset))`;
+					marker.title = speedChild.name;
+				}
+			} else {
+				div.classList.add("marker");
+				div.style.bottom = `calc(${toScale(tempoFromSpeed(speed.speed)) * 100}% + var(--bottom-offset))`;
+				div.title = speed.name;
+			}
 			return div;
 		}));
 		const label = ghostContainer.querySelector(".label");
-		label.style.bottom = `${toScale((tempoFromSpeed(ghost.speeds[0].speed) + tempoFromSpeed(ghost.speeds[ghost.speeds.length - 1].speed)) / 2) * 100}%`;
-		const range = ghostContainer.querySelector(".range");
-		const rangeArea = ghostContainer.querySelector(".range-area");
-		range.style.bottom = rangeArea.style.bottom = `${toScale(tempoFromSpeed(ghost.speeds[0].speed)) * 100}%`;
-		range.style.height = rangeArea.style.height = `${toScale(tempoFromSpeed(ghost.speeds[ghost.speeds.length - 1].speed) - tempoFromSpeed(ghost.speeds[0].speed)) * 100}%`;
+		label.style.bottom = `${toScale((tempoFromSpeed(slowestOf(ghost).speed) + tempoFromSpeed(fastestOf(ghost).speed)) / 2) * 100}%`;
+		const entireRange = ghostContainer.querySelector(".entire-range");
+		entireRange.style.bottom = `${toScale(tempoFromSpeed(slowestOf(ghost).speed)) * 100}%`;
+		entireRange.style.height = `${toScale(tempoFromSpeed(fastestOf(ghost).speed) - tempoFromSpeed(slowestOf(ghost).speed)) * 100}%`;
 	}
 }
 
