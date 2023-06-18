@@ -186,6 +186,7 @@ function init() {
 		});
 	});
 	byId("observations-form").addEventListener("reset", () => {
+		resetTimer();
 		resetTempo();
 		clearRulingsByTempo();
 		requestAnimationFrame(() => {
@@ -1404,6 +1405,12 @@ function updateTapTrace() {
 let timerStart = null;
 let timerStop = null;
 let timerInterval = null;
+
+function resetTimer() {
+	clearInterval(timerInterval);
+	timerStart = timerStop = timerInterval = null;
+	updateTimerReadout();
+}
 
 function startStopTimer() {
 	if (timerInterval == null) {
