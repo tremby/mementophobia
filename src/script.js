@@ -159,6 +159,7 @@ function init() {
 		range.addEventListener("input", () => updateEvidence());
 	}
 	byId("hunt-sanity-range").addEventListener("input", () => updateHuntSanityRangeReadout());
+	byId("smudge-hunt-suspension-range").addEventListener("input", () => updateSmudgeHuntSuspensionRangeReadout());
 	for (const input of document.querySelectorAll("#ghosts input")) {
 		input.addEventListener("change", () => {
 				updateResetManualRuleOuts();
@@ -219,12 +220,17 @@ function updateAll() {
 	updateEvidenceNum();
 	updateTimerAdjust();
 	updateHuntSanityRangeReadout();
+	updateSmudgeHuntSuspensionRangeReadout();
 	updateClearRulingsByTempo();
 	updateResetManualRuleOuts();
 }
 
 function updateHuntSanityRangeReadout() {
 	document.querySelector(`output[for="hunt-sanity-range"]`).textContent = percentFormatter.format(parseInt(byId("hunt-sanity-range").value) / 100);
+}
+
+function updateSmudgeHuntSuspensionRangeReadout() {
+	document.querySelector(`output[for="smudge-hunt-suspension-range"]`).textContent = secondsFormatter.format(parseInt(byId("smudge-hunt-suspension-range").value));
 }
 
 function getGhostSpeedFactorsPreset() {

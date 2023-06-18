@@ -305,17 +305,16 @@
 							</fieldset>
 							<fieldset id="smudge-hunt-suspension">
 								<legend>Smudge hunt suspension</legend>
-								<span class="control-container"><input type="radio" name="smudge-hunt-suspension" value="unknown" id="smudge-hunt-suspension-unknown" checked> <label for="smudge-hunt-suspension-unknown">unknown</label></span>
-								<span class="control-container"><input type="radio" name="smudge-hunt-suspension" value="short" id="smudge-hunt-suspension-short"> <label for="smudge-hunt-suspension-short">short (60 sec)</label></span>
-								<span class="control-container"><input type="radio" name="smudge-hunt-suspension" value="normal" id="smudge-hunt-suspension-normal"> <label for="smudge-hunt-suspension-normal">normal (90 sec)</label></span>
-								<span class="control-container"><input type="radio" name="smudge-hunt-suspension" value="long" id="smudge-hunt-suspension-long"> <label for="smudge-hunt-suspension-long">long (180 sec)</label></span>
+								<span class="control-container centred-flex"><input type="range" name="smudge-hunt-suspension" value="300" min="0" max="300" step="30" list="smudge-hunt-suspension-markers" id="smudge-hunt-suspension-range"> ≤<output for="smudge-hunt-suspension-range">300 sec</output></span>
+								<datalist id="smudge-hunt-suspension-markers">
+									<option value="60"></option>
+									<option value="90"></option>
+									<option value="300"></option>
+								</datalist>
 								<details>
 									<summary>Info</summary>
-									<p>
-										Beware that a ghost waiting a long time to hunt after being smudged
-										does not necessarily mean it was unable to hunt earlier,
-										since hunts are not guaranteed.
-									</p>
+									<p>Set this to the smallest observed time between a ghost being smudged and it attempting to hunt.</p>
+									<p>You can use the timer above to help.</p>
 								</details>
 							</fieldset>
 
@@ -520,7 +519,7 @@
 								shapeshifter-no
 								six-fingered-handprints-no
 								smudge-blindness-duration-normal
-								smudge-hunt-suspension-long
+								smudge-hunt-suspension-300
 								sometimes-hides-fingerprints-no sometimes-hides-fingerprints-yes
 								speed-normal-yes
 								speedup-near-active-electronics-no
@@ -576,7 +575,7 @@
 								shapeshifter-no
 								six-fingered-handprints-no
 								smudge-blindness-duration-normal
-								smudge-hunt-suspension-normal
+								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180 smudge-hunt-suspension-210 smudge-hunt-suspension-240 smudge-hunt-suspension-270 smudge-hunt-suspension-300
 								sometimes-hides-fingerprints-no sometimes-hides-fingerprints-yes
 								speed-normal-yes
 								speedup-near-active-electronics-no
@@ -632,7 +631,7 @@
 								shapeshifter-no
 								six-fingered-handprints-no
 								smudge-blindness-duration-normal
-								smudge-hunt-suspension-normal
+								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180 smudge-hunt-suspension-210 smudge-hunt-suspension-240 smudge-hunt-suspension-270 smudge-hunt-suspension-300
 								sometimes-hides-fingerprints-no
 								speed-normal-yes
 								speedup-near-active-electronics-no
@@ -688,7 +687,7 @@
 								shapeshifter-no
 								six-fingered-handprints-no
 								smudge-blindness-duration-normal
-								smudge-hunt-suspension-normal
+								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180 smudge-hunt-suspension-210 smudge-hunt-suspension-240 smudge-hunt-suspension-270 smudge-hunt-suspension-300
 								sometimes-hides-fingerprints-no
 								speed-normal-yes
 								speedup-near-active-electronics-no
@@ -744,7 +743,7 @@
 								shapeshifter-no
 								six-fingered-handprints-no
 								smudge-blindness-duration-normal
-								smudge-hunt-suspension-normal
+								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180 smudge-hunt-suspension-210 smudge-hunt-suspension-240 smudge-hunt-suspension-270 smudge-hunt-suspension-300
 								sometimes-hides-fingerprints-no
 								speed-normal-yes
 								speedup-near-active-electronics-no
@@ -800,7 +799,7 @@
 								shapeshifter-no
 								six-fingered-handprints-no
 								smudge-blindness-duration-normal
-								smudge-hunt-suspension-normal
+								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180 smudge-hunt-suspension-210 smudge-hunt-suspension-240 smudge-hunt-suspension-270 smudge-hunt-suspension-300
 								sometimes-hides-fingerprints-no
 								speed-normal-yes
 								speedup-near-active-electronics-no
@@ -856,7 +855,7 @@
 								shapeshifter-no
 								six-fingered-handprints-no
 								smudge-blindness-duration-normal
-								smudge-hunt-suspension-normal
+								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180 smudge-hunt-suspension-210 smudge-hunt-suspension-240 smudge-hunt-suspension-270 smudge-hunt-suspension-300
 								sometimes-hides-fingerprints-no sometimes-hides-fingerprints-yes
 								speed-normal-yes
 								speedup-near-active-electronics-no
@@ -912,7 +911,7 @@
 								shapeshifter-no
 								six-fingered-handprints-no
 								smudge-blindness-duration-normal
-								smudge-hunt-suspension-normal
+								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180 smudge-hunt-suspension-210 smudge-hunt-suspension-240 smudge-hunt-suspension-270 smudge-hunt-suspension-300
 								sometimes-hides-fingerprints-no sometimes-hides-fingerprints-yes
 								speed-normal-no
 								speedup-near-active-electronics-no
@@ -968,7 +967,7 @@
 								shapeshifter-no
 								six-fingered-handprints-no
 								smudge-blindness-duration-normal
-								smudge-hunt-suspension-normal
+								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180 smudge-hunt-suspension-210 smudge-hunt-suspension-240 smudge-hunt-suspension-270 smudge-hunt-suspension-300
 								sometimes-hides-fingerprints-no sometimes-hides-fingerprints-yes
 								speed-normal-yes
 								speedup-near-active-electronics-no
@@ -1024,7 +1023,7 @@
 								shapeshifter-no
 								six-fingered-handprints-no
 								smudge-blindness-duration-normal
-								smudge-hunt-suspension-short
+								smudge-hunt-suspension-60 smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180 smudge-hunt-suspension-210 smudge-hunt-suspension-240 smudge-hunt-suspension-270 smudge-hunt-suspension-300
 								sometimes-hides-fingerprints-no
 								speed-normal-yes
 								speedup-near-active-electronics-no
@@ -1080,7 +1079,7 @@
 								shapeshifter-no
 								six-fingered-handprints-no
 								smudge-blindness-duration-normal
-								smudge-hunt-suspension-normal
+								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180 smudge-hunt-suspension-210 smudge-hunt-suspension-240 smudge-hunt-suspension-270 smudge-hunt-suspension-300
 								sometimes-hides-fingerprints-no sometimes-hides-fingerprints-yes
 								speed-normal-yes
 								speedup-near-active-electronics-no
@@ -1136,7 +1135,7 @@
 								shapeshifter-no
 								six-fingered-handprints-no
 								smudge-blindness-duration-normal
-								smudge-hunt-suspension-normal
+								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180 smudge-hunt-suspension-210 smudge-hunt-suspension-240 smudge-hunt-suspension-270 smudge-hunt-suspension-300
 								sometimes-hides-fingerprints-no sometimes-hides-fingerprints-yes
 								speed-normal-yes
 								speedup-near-active-electronics-no
@@ -1192,7 +1191,7 @@
 								shapeshifter-no
 								six-fingered-handprints-no
 								smudge-blindness-duration-normal
-								smudge-hunt-suspension-normal
+								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180 smudge-hunt-suspension-210 smudge-hunt-suspension-240 smudge-hunt-suspension-270 smudge-hunt-suspension-300
 								sometimes-hides-fingerprints-no sometimes-hides-fingerprints-yes
 								speed-normal-yes
 								speedup-near-active-electronics-no
@@ -1248,7 +1247,7 @@
 								shapeshifter-no
 								six-fingered-handprints-no
 								smudge-blindness-duration-normal
-								smudge-hunt-suspension-normal
+								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180 smudge-hunt-suspension-210 smudge-hunt-suspension-240 smudge-hunt-suspension-270 smudge-hunt-suspension-300
 								sometimes-hides-fingerprints-no
 								speed-normal-no
 								speedup-near-active-electronics-no
@@ -1304,7 +1303,7 @@
 								shapeshifter-no
 								six-fingered-handprints-no
 								smudge-blindness-duration-normal
-								smudge-hunt-suspension-normal
+								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180 smudge-hunt-suspension-210 smudge-hunt-suspension-240 smudge-hunt-suspension-270 smudge-hunt-suspension-300
 								sometimes-hides-fingerprints-no
 								speed-normal-yes
 								speedup-near-active-electronics-no
@@ -1360,7 +1359,7 @@
 								shapeshifter-no
 								six-fingered-handprints-no
 								smudge-blindness-duration-normal
-								smudge-hunt-suspension-normal
+								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180 smudge-hunt-suspension-210 smudge-hunt-suspension-240 smudge-hunt-suspension-270 smudge-hunt-suspension-300
 								sometimes-hides-fingerprints-no
 								speed-normal-yes
 								speedup-near-active-electronics-no
@@ -1416,7 +1415,7 @@
 								shapeshifter-no
 								six-fingered-handprints-no
 								smudge-blindness-duration-normal
-								smudge-hunt-suspension-normal
+								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180 smudge-hunt-suspension-210 smudge-hunt-suspension-240 smudge-hunt-suspension-270 smudge-hunt-suspension-300
 								sometimes-hides-fingerprints-no sometimes-hides-fingerprints-yes
 								speed-normal-yes
 								speedup-near-active-electronics-no
@@ -1472,7 +1471,7 @@
 								shapeshifter-no
 								six-fingered-handprints-no
 								smudge-blindness-duration-normal
-								smudge-hunt-suspension-normal
+								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180 smudge-hunt-suspension-210 smudge-hunt-suspension-240 smudge-hunt-suspension-270 smudge-hunt-suspension-300
 								sometimes-hides-fingerprints-no sometimes-hides-fingerprints-yes
 								speed-normal-no
 								speedup-near-active-electronics-no
@@ -1528,7 +1527,7 @@
 								shapeshifter-no
 								six-fingered-handprints-no
 								smudge-blindness-duration-normal
-								smudge-hunt-suspension-normal
+								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180 smudge-hunt-suspension-210 smudge-hunt-suspension-240 smudge-hunt-suspension-270 smudge-hunt-suspension-300
 								sometimes-hides-fingerprints-no sometimes-hides-fingerprints-yes
 								speed-normal-yes speed-normal-no
 								speedup-near-active-electronics-yes
@@ -1584,7 +1583,7 @@
 								shapeshifter-yes
 								six-fingered-handprints-yes
 								smudge-blindness-duration-normal
-								smudge-hunt-suspension-normal
+								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180 smudge-hunt-suspension-210 smudge-hunt-suspension-240 smudge-hunt-suspension-270 smudge-hunt-suspension-300
 								sometimes-hides-fingerprints-yes
 								speed-normal-yes
 								speedup-near-active-electronics-no
@@ -1640,7 +1639,7 @@
 								shapeshifter-yes shapeshifter-no
 								six-fingered-handprints-yes six-fingered-handprints-no
 								smudge-blindness-duration-normal smudge-blindness-duration-long
-								smudge-hunt-suspension-short smudge-hunt-suspension-normal smudge-hunt-suspension-long
+								smudge-hunt-suspension-60 smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180 smudge-hunt-suspension-210 smudge-hunt-suspension-240 smudge-hunt-suspension-270 smudge-hunt-suspension-300
 								sometimes-hides-fingerprints-yes sometimes-hides-fingerprints-no
 								speed-normal-yes speed-normal-no
 								speedup-near-active-electronics-yes speedup-near-active-electronics-no
@@ -1696,7 +1695,7 @@
 								shapeshifter-no
 								six-fingered-handprints-no
 								smudge-blindness-duration-long
-								smudge-hunt-suspension-normal
+								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180 smudge-hunt-suspension-210 smudge-hunt-suspension-240 smudge-hunt-suspension-270 smudge-hunt-suspension-300
 								sometimes-hides-fingerprints-no sometimes-hides-fingerprints-yes
 								speed-normal-no
 								speedup-near-active-electronics-no
@@ -1752,7 +1751,7 @@
 								shapeshifter-no
 								six-fingered-handprints-no
 								smudge-blindness-duration-normal
-								smudge-hunt-suspension-normal
+								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180 smudge-hunt-suspension-210 smudge-hunt-suspension-240 smudge-hunt-suspension-270 smudge-hunt-suspension-300
 								sometimes-hides-fingerprints-no sometimes-hides-fingerprints-yes
 								speed-normal-no
 								speedup-near-active-electronics-no
@@ -1808,7 +1807,7 @@
 								shapeshifter-no
 								six-fingered-handprints-no
 								smudge-blindness-duration-normal
-								smudge-hunt-suspension-normal
+								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180 smudge-hunt-suspension-210 smudge-hunt-suspension-240 smudge-hunt-suspension-270 smudge-hunt-suspension-300
 								sometimes-hides-fingerprints-no sometimes-hides-fingerprints-yes
 								speed-normal-no
 								speedup-near-active-electronics-no
