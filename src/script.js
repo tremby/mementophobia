@@ -813,10 +813,18 @@ function narrowByTempo() {
 	const adjustedTempo = getAverageTempo() / getSpeedMultiplier();
 	const speedMarkers = getSpeedMarkers();
 	for (const ghost of speedMarkers) {
-		if (
-			adjustedTempo * (1 + NARROW_BY_TEMPO_LEEWAY) < tempoFromSpeed(slowestOf(ghost).speed)
-			|| adjustedTempo * (1 - NARROW_BY_TEMPO_LEEWAY) > tempoFromSpeed(fastestOf(ghost).speed)
-		) byId(nameToIdentifier(ghost.name)).classList.add("impossible-by-speed");
+		const avgPlusLeeway = adjustedTempo * (1 + NARROW_BY_TEMPO_LEEWAY);
+		const avgMinusLeeway = adjustedTempo * (1 - NARROW_BY_TEMPO_LEEWAY);
+		if (ghost.speeds.every((speed) => {
+			if (Array.isArray(speed)) {
+				const min = tempoFromSpeed(Math.min(...speed.map(({ speed }) => speed)));
+				const max = tempoFromSpeed(Math.max(...speed.map(({ speed }) => speed)));
+				return avgPlusLeeway < min || avgMinusLeeway > max;
+			}
+			return avgPlusLeeway < tempoFromSpeed(speed.speed) || avgMinusLeeway > tempoFromSpeed(speed.speed);
+		})) {
+			byId(nameToIdentifier(ghost.name)).classList.add("impossible-by-speed");
+		}
 	}
 	updateClearRulingsByTempo();
 	updateEvidence();
