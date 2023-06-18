@@ -814,8 +814,8 @@ function narrowByTempo() {
 	const speedMarkers = getSpeedMarkers();
 	for (const ghost of speedMarkers) {
 		if (
-			adjustedTempo * (1 + NARROW_BY_TEMPO_LEEWAY) < tempoFromSpeed(ghost.speeds[0].speed)
-			|| adjustedTempo * (1 - NARROW_BY_TEMPO_LEEWAY) > tempoFromSpeed(ghost.speeds[ghost.speeds.length - 1].speed)
+			adjustedTempo * (1 + NARROW_BY_TEMPO_LEEWAY) < tempoFromSpeed(slowestOf(ghost).speed)
+			|| adjustedTempo * (1 - NARROW_BY_TEMPO_LEEWAY) > tempoFromSpeed(fastestOf(ghost).speed)
 		) byId(nameToIdentifier(ghost.name)).classList.add("impossible-by-speed");
 	}
 	updateClearRulingsByTempo();
