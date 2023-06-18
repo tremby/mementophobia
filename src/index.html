@@ -191,6 +191,10 @@
 										Ghosts with this trait briefly change to a different <a href="https://phasmophobia.fandom.com/wiki/Ghost_Model" rel="noopener">ghost model</a>
 										at least once per hunt.
 									</p>
+									<p>
+										The obake has a 1 in 15 chance to choose a different ghost model for each period of visibility.
+										To be 95% certain of ruling this out, you need to see the same ghost model for 44 <!-- ceil(log_(14/15)(0.05)) --> periods of visibility during hunts.
+									</p>
 								</details>
 							</fieldset>
 							<fieldset id="footstep-volume">
@@ -442,6 +446,10 @@
 										Ghosts with this trait have a reduced rate.
 									</p>
 									<p>
+										The obake has a 75% chance of leaving fingerprints.
+										To be 95% certain of ruling this out, you need to see 11 <!-- ceil(log_¾(0.05)) --> separate fingerprints after noticing suitable interactions.
+									</p>
+									<p>
 										This can be confirmed if fingerprint evidence has been seen,
 										and then later an interaction is observed which is suitable for fingerprints but does not leave any.
 									</p>
@@ -452,6 +460,14 @@
 								<span class="control-container"><input type="radio" name="unusual-fingerprints" value="unknown" id="unusual-fingerprints-unknown" checked> <label for="unusual-fingerprints-unknown">unknown</label></span>
 								<span class="control-container"><input type="radio" name="unusual-fingerprints" value="yes" id="unusual-fingerprints-yes"> <label for="unusual-fingerprints-yes">confirmed</label></span>
 								<span class="control-container"><input type="radio" name="unusual-fingerprints" value="no" id="unusual-fingerprints-no"> <label for="unusual-fingerprints-no">ruled out</label></span>
+								<details>
+									<summary>Info</summary>
+									<p>Ghosts with this trait have a certain chance of leaving <a href="https://phasmophobia.fandom.com/wiki/Obake#Abilities">unusual fingerprints</a>.</p>
+									<p>
+										The obake has a ⅙ chance of leaving unusual fingerprints each time it leaves fingerprints.
+										To be 95% certain of ruling this out, you need to see 17 <!-- ceil(log_⅚(0.05)) --> separate regular fingerprints.
+									</p>
+								</details>
 							</fieldset>
 							<fieldset id="can-leave-room-while-smudged">
 								<legend>Can leave favourite room while smudged</legend>
