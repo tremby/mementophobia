@@ -132,6 +132,7 @@ let taps = [];
 
 function init() {
 	setPreferences(getPreferencesFromLocalStorage());
+	document.documentElement.addEventListener("keydown", handleDocumentKeyDown);
 	byId("ghost-speed").addEventListener("change", () => updateGhostSpeed());
 	byId("tap-target").addEventListener("keydown", handleTapKeyDown);
 	byId("reset-tempo").addEventListener("click", () => resetTempo());
@@ -210,6 +211,17 @@ function init() {
 	resizeTapTraceCanvas();
 }
 
+function handleDocumentKeyDown(event) {
+	if (event.key === "t") {
+		const tapTarget = byId("tap-target");
+		tapTarget.scrollIntoView({ behavior: "smooth", block: "nearest" });
+		tapTarget.focus();
+		handleTapKeyDown(event);
+		event.preventDefault();
+		return;
+	}
+}
+
 function updateAll() {
 	updateLineOfSightKnown();
 	updateTemperatureKnown();
@@ -261,10 +273,12 @@ function handleTapKeyDown(event) {
 		event.preventDefault();
 		if (taps.length === 0) document.activeElement.blur();
 		else resetTempo();
+		event.stopPropagation();
 		return;
 	}
 	if (event.key.length === 1) {
 		event.preventDefault();
+		event.stopPropagation();
 		handleTap();
 		return;
 	}
