@@ -354,3 +354,12 @@ footer {
 	opacity: 0.6;
 	padding: 4rem 0;
 }
+
+kbd {
+	display: inline-block;
+	padding: 0.1em 0.3em;
+	border: 1px solid color-mix(in srgb, currentColor 50%, transparent);
+	border-radius: 0.2em;
+	background-image: linear-gradient(to right, color-mix(in srgb, currentColor 30%, transparent), 30%, color-mix(in srgb, currentColor 10%, transparent));
+	box-shadow: 0.1em 0.2em 0 black;
+}
