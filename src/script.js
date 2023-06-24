@@ -212,50 +212,49 @@ function init() {
 }
 
 function handleDocumentKeyDown(event) {
-	if (event.key === "t") {
-		event.preventDefault();
-		const tapTarget = byId("tap-target");
-		tapTarget.scrollIntoView({ behavior: "smooth", block: "nearest" });
-		tapTarget.focus();
-		handleTapKeyDown(event);
-		return;
-	}
-	if (event.key === "/") {
-		event.preventDefault();
-		byId("observations-form").scrollIntoView({ behavior: "smooth", block: "nearest" });
-		const input = byId("filter");
-		input.focus();
-		input.value = "";
-		updateFilter();
-		return;
+	switch (event.key) {
+		case "t":
+			event.preventDefault();
+			const tapTarget = byId("tap-target");
+			tapTarget.scrollIntoView({ behavior: "smooth", block: "nearest" });
+			tapTarget.focus();
+			handleTapKeyDown(event);
+			return;
+		case "/":
+			event.preventDefault();
+			byId("observations-form").scrollIntoView({ behavior: "smooth", block: "nearest" });
+			const input = byId("filter");
+			input.focus();
+			input.value = "";
+			updateFilter();
+			return;
 	}
 }
 
 function handleFilterKeyDown() {
 	const input = byId("filter");
 	event.stopPropagation();
-	if (event.key === "/") {
-		event.preventDefault();
-		input.value = "";
-		updateFilter();
-		return;
-	}
-	if (event.key === "Escape") {
-		event.preventDefault();
-		if (input.value !== "") {
+	switch (event.key) {
+		case "/":
+			event.preventDefault();
 			input.value = "";
 			updateFilter();
-		} else {
+			return;
+		case "Escape":
+			event.preventDefault();
+			if (input.value !== "") {
+				input.value = "";
+				updateFilter();
+			} else {
+				input.blur();
+			}
+			return;
+		case "Enter":
+			event.preventDefault();
+			if (input.value !== "") byId("secondary-evidence-details").openAtFilterBlur = true;
 			input.blur();
-		}
-		return;
-	}
-	if (event.key === "Enter") {
-		event.preventDefault();
-		if (input.value !== "") byId("secondary-evidence-details").openAtFilterBlur = true;
-		input.blur();
-		updateFilter();
-		return;
+			updateFilter();
+			return;
 	}
 }
 
