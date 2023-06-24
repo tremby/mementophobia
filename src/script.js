@@ -229,6 +229,13 @@ function handleDocumentKeyDown(event) {
 			updateFilter();
 			return;
 	}
+	if (event.key === "s") {
+		event.preventDefault();
+		startStopTimer();
+		byId("smudge-timer").scrollIntoView({ behavior: "smooth", block: "nearest" });
+		byId("timer-start-stop").focus();
+		return;
+	}
 }
 
 function handleFilterKeyDown() {

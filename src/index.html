@@ -64,10 +64,13 @@
 					</fieldset>
 				</div>
 			</form>
-			<div>
+			<div id="smudge-timer">
 				<h2>Smudge timer</h2>
 				<div id="timer-grid">
-					<button type="button" id="timer-start-stop">Start/stop</button>
+					<button type="button" id="timer-start-stop">
+						Start/stop
+						<span class="help">or hit <kbd>s</kbd></span>
+					</button>
 					<output id="timer-readout" for="timer-start-stop timer-adjust">0.0</output>
 					<div id="timer-controls" class="centred-flex">
 						<label for="timer-adjust">Adjust</label> by
