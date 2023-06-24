@@ -83,86 +83,92 @@
 				<h2>Observations</h2>
 				<button type="reset">Reset observations</button>
 			</header>
+			<nav>
+				<fieldset>
+					<legend>
+						<label for="filter">Filter evidence</label>
+					</legend>
+					<input type="search" id="filter">
+					<span class="help">Shortcut <kbd>/</kbd>. With focus, press <kbd>enter</kbd> to keep a filter, or <kbd>esc</kbd> to clear.</span>
+				</fieldset>
+			</nav>
 			<div id="observations-grid">
 				<section id="primary-evidence-cell">
 					<h3>Primary evidence</h3>
 					<div id="primary-evidence" class="evidence-list">
-						<fieldset id="emf-level-5" data-name="EMF level 5">
+						<fieldset id="emf-level-5" data-name="EMF level 5" class="emf">
 							<legend>EMF level 5 🔴</legend>
 							<span class="control-container"><input type="radio" name="emf-level-5" value="unknown" id="emf-level-5-unknown" checked> <label for="emf-level-5-unknown">unknown</label></span>
 							<span class="control-container"><input type="radio" name="emf-level-5" id="emf-level-5-yes" value="yes"> <label for="emf-level-5-yes">confirmed</label></span>
 							<span class="control-container"><input type="radio" name="emf-level-5" id="emf-level-5-no" value="no"> <label for="emf-level-5-no">ruled out</label></span>
 						</fieldset>
-						<fieldset id="fingerprints" data-name="fingerprints">
+						<fieldset id="fingerprints" data-name="fingerprints" class="fingerprints handprints fingerprint handprint fingies uv">
 							<legend>Fingerprints 🖐️</legend>
 							<span class="control-container"><input type="radio" name="fingerprints" value="unknown" id="fingerprints-unknown" checked> <label for="fingerprints-unknown">unknown</label></span>
 							<span class="control-container"><input type="radio" name="fingerprints" value="yes" id="fingerprints-yes"> <label for="fingerprints-yes">confirmed</label></span>
 							<span class="control-container"><input type="radio" name="fingerprints" value="no" id="fingerprints-no"> <label for="fingerprints-no">ruled out</label></span>
 						</fieldset>
-						<fieldset id="ghost-writing" data-name="ghost writing">
+						<fieldset id="ghost-writing" data-name="ghost writing" class="writing book handwriting write wrote scribble scribbled scribbling">
 							<legend>Ghost writing 📖</legend>
 							<span class="control-container"><input type="radio" name="ghost-writing" value="unknown" id="ghost-writing-unknown" checked> <label for="ghost-writing-unknown">unknown</label></span>
 							<span class="control-container"><input type="radio" name="ghost-writing" value="yes" id="ghost-writing-yes"> <label for="ghost-writing-yes">confirmed</label></span>
 							<span class="control-container"><input type="radio" name="ghost-writing" value="no" id="ghost-writing-no"> <label for="ghost-writing-no">ruled out</label></span>
 						</fieldset>
-						<fieldset id="freezing-temperatures" data-name="freezing temperatures">
+						<fieldset id="freezing-temperatures" data-name="freezing temperatures" class="freezing temperatures temperature freeze cold subzero frozen thermo thermometer">
 							<legend>Freezing temperatures ❄️</legend>
 							<span class="control-container"><input type="radio" name="freezing-temperatures" value="unknown" id="freezing-temperatures-unknown" checked> <label for="freezing-temperatures-unknown">unknown</label></span>
 							<span class="control-container"><input type="radio" name="freezing-temperatures" value="yes" id="freezing-temperatures-yes"> <label for="freezing-temperatures-yes">confirmed</label></span>
 							<span class="control-container"><input type="radio" name="freezing-temperatures" value="no" id="freezing-temperatures-no"> <label for="freezing-temperatures-no">ruled out</label></span>
 						</fieldset>
-						<fieldset id="dots-projector" data-name="DOTS projector">
+						<fieldset id="dots-projector" data-name="DOTS projector" class="dots projector run ran running shadow through">
 							<legend>Dots projector 🟢</legend>
 							<span class="control-container"><input type="radio" name="dots-projector" value="unknown" id="dots-projector-unknown" checked> <label for="dots-projector-unknown">unknown</label></span>
 							<span class="control-container"><input type="radio" name="dots-projector" value="yes" id="dots-projector-yes"> <label for="dots-projector-yes">confirmed</label></span>
 							<span class="control-container"><input type="radio" name="dots-projector" value="no" id="dots-projector-no"> <label for="dots-projector-no">ruled out</label></span>
 						</fieldset>
-						<fieldset id="ghost-orb" data-name="ghost orb">
+						<fieldset id="ghost-orb" data-name="ghost orb" class="orb orbs orbies floater videocam camera cam camcorder">
 							<legend>Ghost orb ⚪</legend>
 							<span class="control-container"><input type="radio" name="ghost-orb" value="unknown" id="ghost-orb-unknown" checked> <label for="ghost-orb-unknown">unknown</label></span>
 							<span class="control-container"><input type="radio" name="ghost-orb" value="yes" id="ghost-orb-yes"> <label for="ghost-orb-yes">confirmed</label></span>
 							<span class="control-container"><input type="radio" name="ghost-orb" value="no" id="ghost-orb-no"> <label for="ghost-orb-no">ruled out</label></span>
 						</fieldset>
-						<fieldset id="spirit-box" data-name="spirit box">
+						<fieldset id="spirit-box" data-name="spirit box" class="spirit box spiritbox radio response talk talked talking talks speak spoke speaking speaks speech">
 							<legend>Spirit box 📻</legend>
 							<span class="control-container"><input type="radio" name="spirit-box" value="unknown" id="spirit-box-unknown" checked> <label for="spirit-box-unknown">unknown</label></span>
 							<span class="control-container"><input type="radio" name="spirit-box" value="yes" id="spirit-box-yes"> <label for="spirit-box-yes">confirmed</label></span>
 							<span class="control-container"><input type="radio" name="spirit-box" value="no" id="spirit-box-no"> <label for="spirit-box-no">ruled out</label></span>
 						</fieldset>
+						<p hidden class="none-matching-filter help">No primary evidence matches the current filter.</p>
 					</div>
 				</section>
 
-				<section id="secondary-evidence-wrapper">
-					<details>
+				<section id="secondary-evidence-cell">
+					<details id="secondary-evidence-details">
 						<summary>
 							<h3>Secondary evidence</h3>
 						</summary>
 
 						<div id="secondary-evidence" class="evidence-list">
-							<h4>Hunt</h4>
-							<!-- hunt speed -->
-							<fieldset id="speed-normal">
+							<fieldset id="speed-normal" class="hunt hunts hunting speed fast slow speedy quick pace normal">
 								<legend>Normal speed when players undetected</legend>
 								<span class="control-container"><input type="radio" name="speed-normal" value="unknown" id="speed-normal-unknown" checked> <label for="speed-normal-unknown">unknown</label></span>
 								<span class="control-container"><input type="radio" name="speed-normal" value="yes" id="speed-normal-yes"> <label for="speed-normal-yes">confirmed</label></span>
 								<span class="control-container"><input type="radio" name="speed-normal" value="no" id="speed-normal-no"> <label for="speed-normal-no">ruled out</label></span>
 							</fieldset>
-							<fieldset id="los-speedup">
+							<fieldset id="los-speedup" class="hunt hunts hunting speed fast slow speedy quick pace los sight visual speedup sudden suddenly gradual slowly quickly chase rev revenant">
 								<legend>Speedup during line-of-sight</legend>
 								<span class="control-container"><input type="radio" name="los-speedup" value="unknown" id="los-speedup-unknown" checked> <label for="los-speedup-unknown">unknown</label></span>
 								<span class="control-container"><input type="radio" name="los-speedup" value="gradual" id="los-speedup-gradual"> <label for="los-speedup-gradual">gradual</label></span>
 								<span class="control-container"><input type="radio" name="los-speedup" value="sudden" id="los-speedup-sudden"> <label for="los-speedup-sudden">sudden</label></span>
 								<span class="control-container"><input type="radio" name="los-speedup" value="none" id="los-speedup-none"> <label for="los-speedup-none">none</label></span>
 							</fieldset>
-							<fieldset id="speedup-near-active-electronics">
+							<fieldset id="speedup-near-active-electronics" class="hunt hunts hunting speed fast slow speedy quick pace electronic electronics electric equipment sudden suddenly speedup raiju">
 								<legend>Sudden speedup near active electronics</legend>
 								<span class="control-container"><input type="radio" name="speedup-near-active-electronics" value="unknown" id="speedup-near-active-electronics-unknown" checked> <label for="speedup-near-active-electronics-unknown">unknown</label></span>
 								<span class="control-container"><input type="radio" name="speedup-near-active-electronics" value="yes" id="speedup-near-active-electronics-yes"> <label for="speedup-near-active-electronics-yes">confirmed</label></span>
 								<span class="control-container"><input type="radio" name="speedup-near-active-electronics" value="no" id="speedup-near-active-electronics-no"> <label for="speedup-near-active-electronics-no">ruled out</label></span>
 							</fieldset>
-
-							<!-- hunt appearance -->
-							<fieldset id="blink">
+							<fieldset id="blink" class="hunt hunts hunting visual appearance blink blinks blinking flicker flickers flickering oni onifans phantom flash flashes flashing visible visibility invisible">
 								<legend>Blink duration during hunt</legend>
 								<span class="control-container"><input type="radio" name="blink" value="unknown" id="blink-unknown" checked> <label for="blink-unknown">unknown</label></span>
 								<span class="control-container"><input type="radio" name="blink" value="short" id="blink-short"> <label for="blink-short">short</label></span>
@@ -180,7 +186,7 @@
 									</p>
 								</details>
 							</fieldset>
-							<fieldset id="shapeshifter">
+							<fieldset id="shapeshifter" class="hunt hunts hunting visual appearance blink blinks blinking flicker flickers flickering obake flash flashes flashing model models change changing changes shapeshift shapeshifting shapeshifter shape shapes">
 								<legend>Shapeshifts during hunts</legend>
 								<span class="control-container"><input type="radio" name="shapeshifter" value="unknown" id="shapeshifter-unknown" checked> <label for="shapeshifter-unknown">unknown</label></span>
 								<span class="control-container"><input type="radio" name="shapeshifter" value="yes" id="shapeshifter-yes"> <label for="shapeshifter-yes">confirmed</label></span>
@@ -197,7 +203,7 @@
 									</p>
 								</details>
 							</fieldset>
-							<fieldset id="footstep-volume">
+							<fieldset id="footstep-volume" class="hunt hunts hunting sound sounds audio volume quiet sneaky sneak sneaking sneaks loud myling far close near nearby muffled footstep footsteps tiptoe tiptoeing tiptoes stealth">
 								<legend>Footstep volume</legend>
 								<span class="control-container"><input type="radio" name="footstep-volume" value="unknown" id="footstep-volume-unknown" checked> <label for="footstep-volume-unknown">unknown</label></span>
 								<span class="control-container"><input type="radio" name="footstep-volume" value="quiet" id="footstep-volume-quiet"> <label for="footstep-volume-quiet">quiet (audible within 12 m)</label></span>
@@ -215,9 +221,7 @@
 									</p>
 								</details>
 							</fieldset>
-
-							<!-- hunt behaviour -->
-							<fieldset id="hunt-sanity">
+							<fieldset id="hunt-sanity" class="hunt hunts hunting aggressive aggression tame angry boring crucifix sanity sane insane demon thaye shade moroi">
 								<legend>Hunt sanity level</legend>
 								<span class="control-container centred-flex"><input type="range" name="hunt-sanity" value="0" min="0" max="100" step="5" id="hunt-sanity-range"> <output for="hunt-sanity-range">0%</output></span>
 								<details>
@@ -233,7 +237,7 @@
 									</p>
 								</details>
 							</fieldset>
-							<fieldset id="targets-specific-player">
+							<fieldset id="targets-specific-player" class="hunt hunts hunting follow follows following target targets targeting ignore ignoring ignores specific banshee">
 								<legend>Targets a specific player</legend>
 								<span class="control-container"><input type="radio" name="targets-specific-player" value="unknown" id="targets-specific-player-unknown" checked> <label for="targets-specific-player-unknown">unknown</label></span>
 								<span class="control-container"><input type="radio" name="targets-specific-player" value="yes" id="targets-specific-player-yes"> <label for="targets-specific-player-yes">confirmed</label></span>
@@ -248,13 +252,13 @@
 									</p>
 								</details>
 							</fieldset>
-							<fieldset id="omniscient">
+							<fieldset id="omniscient" class="hunt hunts hunting follow follows following find finding finds fast slow slowing omniscient all-seeing deogen">
 								<legend>Can always find the player</legend>
 								<span class="control-container"><input type="radio" name="omniscient" value="unknown" id="omniscient-unknown" checked> <label for="omniscient-unknown">unknown</label></span>
 								<span class="control-container"><input type="radio" name="omniscient" value="yes" id="omniscient-yes"> <label for="omniscient-yes">confirmed</label></span>
 								<span class="control-container"><input type="radio" name="omniscient" value="no" id="omniscient-no"> <label for="omniscient-no">ruled out</label></span>
 							</fieldset>
-							<fieldset id="player-held-electronics-detection-range">
+							<fieldset id="player-held-electronics-detection-range" class="hunt hunts hunting held holding holds find finding finds notice noticing notices range electronic electronics electric equipment detect detects detection detecting yokai">
 								<legend>Player-held electronics detection range</legend>
 								<span class="control-container"><input type="radio" name="player-held-electronics-detection-range" value="unknown" id="player-held-electronics-detection-range-unknown" checked> <label for="player-held-electronics-detection-range-unknown">unknown</label></span>
 								<span class="control-container"><input type="radio" name="player-held-electronics-detection-range" value="normal" id="player-held-electronics-detection-range-normal"> <label for="player-held-electronics-detection-range-normal">normal (7.5 m)</label></span>
@@ -269,7 +273,7 @@
 									</p>
 								</details>
 							</fieldset>
-							<fieldset id="voice-detection-range">
+							<fieldset id="voice-detection-range" class="hunt hunts hunting held holding holds find finding finds notice noticing notices range voice speak speaking speech talk talking detect detects detection detecting hear hears hearing deaf yokai">
 								<legend>Voice detection range</legend>
 								<span class="control-container"><input type="radio" name="voice-detection-range" value="unknown" id="voice-detection-range-unknown" checked> <label for="voice-detection-range-unknown">unknown</label></span>
 								<span class="control-container"><input type="radio" name="voice-detection-range" value="normal" id="voice-detection-range-normal"> <label for="voice-detection-range-normal">normal (9 m)</label></span>
@@ -284,7 +288,7 @@
 									</p>
 								</details>
 							</fieldset>
-							<fieldset id="electronic-interference-range">
+							<fieldset id="electronic-interference-range" class="hunt hunts hunting range far electronics electronic electric equipment interfere interference interfering interferes glitch glitchy glitches glitching flashing flash flashes flicker flickering flickers raiju">
 								<legend>Electronic interference range</legend>
 								<span class="control-container"><input type="radio" name="electronic-interference-range" value="unknown" id="electronic-interference-range-unknown" checked> <label for="electronic-interference-range-unknown">unknown</label></span>
 								<span class="control-container"><input type="radio" name="electronic-interference-range" value="normal" id="electronic-interference-range-normal"> <label for="electronic-interference-range-normal">normal (10 m)</label></span>
@@ -298,7 +302,7 @@
 									</p>
 								</details>
 							</fieldset>
-							<fieldset id="frequent-throws-during-hunt">
+							<fieldset id="frequent-throws-during-hunt" class="hunt hunts hunting throw throws throwing chuck chucks chucking lob lobs lobbing yeet yeets yeeting mess polter polty poltergeist">
 								<legend>Always throws things every ½ second during hunt</legend>
 								<span class="control-container"><input type="radio" name="frequent-throws-during-hunt" value="unknown" id="frequent-throws-during-hunt-unknown" checked> <label for="frequent-throws-during-hunt-unknown">unknown</label></span>
 								<span class="control-container"><input type="radio" name="frequent-throws-during-hunt" value="yes" id="frequent-throws-during-hunt-yes"> <label for="frequent-throws-during-hunt-yes">confirmed</label></span>
@@ -308,9 +312,7 @@
 									<p>Most ghosts have only a 50% chance to throw an item every ½ second.</p>
 								</details>
 							</fieldset>
-
-							<!-- smudge-related -->
-							<fieldset id="smudge-blindness-duration">
+							<fieldset id="smudge-blindness-duration" class="smudge smudging smudged stick sticks blind blinded blinds blindness hunt confusion confused wander wandering lost aimless aimlessly moroi">
 								<legend>Smudge blindness duration</legend>
 								<span class="control-container"><input type="radio" name="smudge-blindness-duration" value="unknown" id="smudge-blindness-duration-unknown" checked> <label for="smudge-blindness-duration-unknown">unknown</label></span>
 								<span class="control-container"><input type="radio" name="smudge-blindness-duration" value="normal" id="smudge-blindness-duration-normal"> <label for="smudge-blindness-duration-normal">normal (6 sec)</label></span>
@@ -323,7 +325,7 @@
 									</p>
 								</details>
 							</fieldset>
-							<fieldset id="smudge-hunt-suspension">
+							<fieldset id="smudge-hunt-suspension" class="smudge smudging smudged stick sticks suspend suspends suspension suspended hunt stop stopped stops prevent prevents prevention prevented spirit demon">
 								<legend>Smudge hunt suspension</legend>
 								<span class="control-container centred-flex"><input type="range" name="smudge-hunt-suspension" value="300" min="0" max="300" step="30" list="smudge-hunt-suspension-markers" id="smudge-hunt-suspension-range"> ≤<output for="smudge-hunt-suspension-range">300 sec</output></span>
 								<datalist id="smudge-hunt-suspension-markers">
@@ -337,10 +339,7 @@
 									<p>You can use the timer above to help.</p>
 								</details>
 							</fieldset>
-
-							<h4>Ghost events</h4>
-							<!-- ghost events -->
-							<fieldset id="disappears-from-photo">
+							<fieldset id="disappears-from-photo" class="event events eventing photo photos photograph photographs picture pictures snap snaps pic pics disappear disappears disappeared disappearing vanish vanishes vanished vanishing camera cam photocam phantom">
 								<legend>Disappears when a photo is taken during a ghost event</legend>
 								<span class="control-container"><input type="radio" name="disappears-from-photo" value="unknown" id="disappears-from-photo-unknown" checked> <label for="disappears-from-photo-unknown">unknown</label></span>
 								<span class="control-container"><input type="radio" name="disappears-from-photo" value="yes" id="disappears-from-photo-yes"> <label for="disappears-from-photo-yes">confirmed</label></span>
@@ -353,39 +352,37 @@
 									</p>
 								</details>
 							</fieldset>
-							<fieldset id="can-do-airball">
+							<fieldset id="can-do-airball" class="event events eventing airball air ball smoke smokeball fog fogball mist mistball oni onifans">
 								<legend>Can do <a href="https://phasmophobia.fandom.com/wiki/Ghost_Event?so=search#Airball/smoke_ball" target="_blank" rel="noopener">“airball” ghost event</a></legend>
 								<span class="control-container"><input type="radio" name="can-do-airball" value="unknown" id="can-do-airball-unknown" checked> <label for="can-do-airball-unknown">unknown</label></span>
 								<span class="control-container"><input type="radio" name="can-do-airball" value="yes" id="can-do-airball-yes"> <label for="can-do-airball-yes">confirmed</label></span>
 								<span class="control-container"><input type="radio" name="can-do-airball" value="no" id="can-do-airball-no"> <label for="can-do-airball-no">ruled out</label></span>
 							</fieldset>
-
-							<h4>Behaviour</h4>
-							<fieldset id="steps-in-salt">
+							<fieldset id="steps-in-salt" class="behaviour behavior salt step steps stepping stepped sodium footprint footprints uv footstep footsteps stomp stops stomped trod trodden tread treading treads wraith">
 								<legend>Steps in salt</legend>
 								<span class="control-container"><input type="radio" name="steps-in-salt" value="unknown" id="steps-in-salt-unknown" checked> <label for="steps-in-salt-unknown">unknown</label></span>
 								<span class="control-container"><input type="radio" name="steps-in-salt" value="yes" id="steps-in-salt-yes"> <label for="steps-in-salt-yes">confirmed</label></span>
 								<span class="control-container"><input type="radio" name="steps-in-salt" value="no" id="steps-in-salt-no"> <label for="steps-in-salt-no">ruled out</label></span>
 							</fieldset>
-							<fieldset id="follows-player">
+							<fieldset id="follows-player" class="behaviour behavior follow follows following target targets targeting teleport teleports teleporting tp roam roams roaming everywhere phantom wraith banshee">
 								<legend>Seems to follow a player</legend>
 								<span class="control-container"><input type="radio" name="follows-player" value="unknown" id="follows-player-unknown" checked> <label for="follows-player-unknown">unknown</label></span>
 								<span class="control-container"><input type="radio" name="follows-player" value="yes" id="follows-player-yes"> <label for="follows-player-yes">confirmed</label></span>
 								<span class="control-container"><input type="radio" name="follows-player" value="no" id="follows-player-no"> <label for="follows-player-no">ruled out</label></span>
 							</fieldset>
-							<fieldset id="can-change-favourite-room">
+							<fieldset id="can-change-favourite-room" class="behaviour behavior change changes changed favourite favorite room rooms roam roaming roams">
 								<legend>Can change <a href="https://phasmophobia.fandom.com/wiki/Ghost_Room" rel="noopener">favourite room</a></legend>
 								<span class="control-container"><input type="radio" name="can-change-favourite-room" value="unknown" id="can-change-favourite-room-unknown" checked> <label for="can-change-favourite-room-unknown">unknown</label></span>
 								<span class="control-container"><input type="radio" name="can-change-favourite-room" value="yes" id="can-change-favourite-room-yes"> <label for="can-change-favourite-room-yes">confirmed</label></span>
 								<span class="control-container"><input type="radio" name="can-change-favourite-room" value="no" id="can-change-favourite-room-no"> <label for="can-change-favourite-room-no">ruled out</label></span>
 							</fieldset>
-							<fieldset id="dots-projector-naked-eye" class="dots-projector-required">
+							<fieldset id="dots-projector-naked-eye" class="dots-projector-required behaviour behavior dots projector naked eye camera video videocam videocamera camcorder monitor screen goryo">
 								<legend>Can see interaction with DOTS projector with the naked eye</legend>
 								<span class="control-container"><input type="radio" name="dots-projector-naked-eye" value="unknown" id="dots-projector-naked-eye-unknown" checked> <label for="dots-projector-naked-eye-unknown">unknown</label></span>
 								<span class="control-container"><input type="radio" name="dots-projector-naked-eye" value="yes" id="dots-projector-naked-eye-yes"> <label for="dots-projector-naked-eye-yes">confirmed</label></span>
 								<span class="control-container"><input type="radio" name="dots-projector-naked-eye" value="no" id="dots-projector-naked-eye-no"> <label for="dots-projector-naked-eye-no">ruled out</label></span>
 							</fieldset>
-							<fieldset id="candle-as-crucifix">
+							<fieldset id="candle-as-crucifix" class="behaviour behavior candle candles flame flames fire fires campfire campfires burner burners stove stoves lighter lighters crucifix crucifixes cross crosses burn burnt burned burning burns blow blows blew blowing hunt hunts hunting prevent preventing prevention prevents onryo">
 								<legend>Uses candles as crucifixes</legend>
 								<span class="control-container"><input type="radio" name="candle-as-crucifix" value="unknown" id="candle-as-crucifix-unknown" checked> <label for="candle-as-crucifix-unknown">unknown</label></span>
 								<span class="control-container"><input type="radio" name="candle-as-crucifix" value="yes" id="candle-as-crucifix-yes"> <label for="candle-as-crucifix-yes">confirmed</label></span>
@@ -402,7 +399,7 @@
 									</p>
 								</details>
 							</fieldset>
-							<fieldset id="paramic-scream">
+							<fieldset id="paramic-scream" class="behaviour behavior sound sounds audio paramic parabolic microphone mic scream screams screaming yell yells yelling shriek shrieks shrieking cry cries crying banshee">
 								<legend>Screams into the parabolic microphone</legend>
 								<span class="control-container"><input type="radio" name="paramic-scream" value="unknown" id="paramic-scream-unknown" checked> <label for="paramic-scream-unknown">unknown</label></span>
 								<span class="control-container"><input type="radio" name="paramic-scream" value="yes" id="paramic-scream-yes"> <label for="paramic-scream-yes">confirmed</label></span>
@@ -416,7 +413,7 @@
 									</p>
 								</details>
 							</fieldset>
-							<fieldset id="can-turn-off-fuse-box">
+							<fieldset id="can-turn-off-fuse-box" class="behaviour behavior turn turns turned turning switch switches switched switching off disable fusebox fuse box breaker circuit panel junction electrical electric electricity power jinn">
 								<legend>Can turn off the fuse box</legend>
 								<span class="control-container"><input type="radio" name="can-turn-off-fuse-box" value="unknown" id="can-turn-off-fuse-box-unknown" checked> <label for="can-turn-off-fuse-box-unknown">unknown</label></span>
 								<span class="control-container"><input type="radio" name="can-turn-off-fuse-box" value="yes" id="can-turn-off-fuse-box-yes"> <label for="can-turn-off-fuse-box-yes">confirmed</label></span>
@@ -435,25 +432,25 @@
 									</p>
 								</details>
 							</fieldset>
-							<fieldset id="can-turn-on-fuse-box">
+							<fieldset id="can-turn-on-fuse-box" class="behaviour behavior turn turns turned turning switch switches switched switching on enable fusebox fuse box breaker circuit panel junction electrical electric electricity power mare">
 								<legend>Can turn on the fuse box</legend>
 								<span class="control-container"><input type="radio" name="can-turn-on-fuse-box" value="unknown" id="can-turn-on-fuse-box-unknown" checked> <label for="can-turn-on-fuse-box-unknown">unknown</label></span>
 								<span class="control-container"><input type="radio" name="can-turn-on-fuse-box" value="yes" id="can-turn-on-fuse-box-yes"> <label for="can-turn-on-fuse-box-yes">confirmed</label></span>
 								<span class="control-container"><input type="radio" name="can-turn-on-fuse-box" value="no" id="can-turn-on-fuse-box-no"> <label for="can-turn-on-fuse-box-no">ruled out</label></span>
 							</fieldset>
-							<fieldset id="can-turn-on-lights">
+							<fieldset id="can-turn-on-lights" class="behaviour behavior turn turns turned turning switch switches switched switching on enable light lights lighting lightswitch lightswitches computer computers burner burners stove stoves fire fires campfire campfires lamp lamps tv tvs screen screens mare">
 								<legend>Can turn on lights, TVs, computers</legend>
 								<span class="control-container"><input type="radio" name="can-turn-on-lights" value="unknown" id="can-turn-on-lights-unknown" checked> <label for="can-turn-on-lights-unknown">unknown</label></span>
 								<span class="control-container"><input type="radio" name="can-turn-on-lights" value="yes" id="can-turn-on-lights-yes"> <label for="can-turn-on-lights-yes">confirmed</label></span>
 								<span class="control-container"><input type="radio" name="can-turn-on-lights" value="no" id="can-turn-on-lights-no"> <label for="can-turn-on-lights-no">ruled out</label></span>
 							</fieldset>
-							<fieldset id="can-multi-throw">
+							<fieldset id="can-multi-throw" class="behaviour behavior throw throws throwing chuck chucks chucking lob lobs lobbing yeet yeets yeeting mess explode explosion explodes pile polterpile polter polty poltergeist">
 								<legend>Can perform a <a href="https://phasmophobia.fandom.com/wiki/Poltergeist#Ability" target="_blank" rel="noopener">multi-throw</a></legend>
 								<span class="control-container"><input type="radio" name="can-multi-throw" value="unknown" id="can-multi-throw-unknown" checked> <label for="can-multi-throw-unknown">unknown</label></span>
 								<span class="control-container"><input type="radio" name="can-multi-throw" value="yes" id="can-multi-throw-yes"> <label for="can-multi-throw-yes">confirmed</label></span>
 								<span class="control-container"><input type="radio" name="can-multi-throw" value="no" id="can-multi-throw-no"> <label for="can-multi-throw-no">ruled out</label></span>
 							</fieldset>
-							<fieldset id="sometimes-hides-fingerprints" class="fingerprints-required">
+							<fieldset id="sometimes-hides-fingerprints" class="behaviour behavior fingerprints-required hide hiding hid hidden seclude secluding secluded seclusion fingerprint fingerprints fingies uv handprint handprints print prints missing obake">
 								<legend>Sometimes hides fingerprints</legend>
 								<span class="control-container"><input type="radio" name="sometimes-hides-fingerprints" value="unknown" id="sometimes-hides-fingerprints-unknown" checked> <label for="sometimes-hides-fingerprints-unknown">unknown</label></span>
 								<span class="control-container"><input type="radio" name="sometimes-hides-fingerprints" value="yes" id="sometimes-hides-fingerprints-yes"> <label for="sometimes-hides-fingerprints-yes">confirmed</label></span>
@@ -475,7 +472,7 @@
 									</p>
 								</details>
 							</fieldset>
-							<fieldset id="unusual-fingerprints" class="fingerprints-required">
+							<fieldset id="unusual-fingerprints" class="behaviour behavior fingerprints-required fingerprint fingerprints fingies uv handprint handprints print prints weird strange unusual six freak freakish unique odd extra obake">
 								<legend>Can leave unusual hand/fingerprints</legend>
 								<span class="control-container"><input type="radio" name="unusual-fingerprints" value="unknown" id="unusual-fingerprints-unknown" checked> <label for="unusual-fingerprints-unknown">unknown</label></span>
 								<span class="control-container"><input type="radio" name="unusual-fingerprints" value="yes" id="unusual-fingerprints-yes"> <label for="unusual-fingerprints-yes">confirmed</label></span>
@@ -489,7 +486,7 @@
 									</p>
 								</details>
 							</fieldset>
-							<fieldset id="can-leave-room-while-smudged">
+							<fieldset id="can-leave-room-while-smudged" class="behaviour behavior smudge smudging smudged stick sticks leave left leaving leaves vacate vacated vacating vacates roam roams roamed roaming wander wandering wanders wandered trap trapped traps trapping motion sensor paramic parabolic microphone mic yurei">
 								<legend>Can leave favourite room while smudged</legend>
 								<span class="control-container"><input type="radio" name="can-leave-room-while-smudged" value="unknown" id="can-leave-room-while-smudged-unknown" checked> <label for="can-leave-room-while-smudged-unknown">unknown</label></span>
 								<span class="control-container"><input type="radio" name="can-leave-room-while-smudged" value="yes" id="can-leave-room-while-smudged-yes"> <label for="can-leave-room-while-smudged-yes">confirmed</label></span>
@@ -503,18 +500,20 @@
 									<p>Note that ghost events and hunts don’t count for this secondary evidence.</p>
 								</details>
 							</fieldset>
-							<fieldset id="can-hunt-in-room-with-player">
+							<fieldset id="can-hunt-in-room-with-player" class="behaviour behavior hunt hunts hunting prevent prevents preventing prevention prevented shy coy hide hiding hides tame boring company favourite near nearby with shade">
 								<legend>Can initiate a hunt from the room the player is in</legend>
 								<span class="control-container"><input type="radio" name="can-hunt-in-room-with-player" value="unknown" id="can-hunt-in-room-with-player-unknown" checked> <label for="can-hunt-in-room-with-player-unknown">unknown</label></span>
 								<span class="control-container"><input type="radio" name="can-hunt-in-room-with-player" value="yes" id="can-hunt-in-room-with-player-yes"> <label for="can-hunt-in-room-with-player-yes">confirmed</label></span>
 								<span class="control-container"><input type="radio" name="can-hunt-in-room-with-player" value="no" id="can-hunt-in-room-with-player-no"> <label for="can-hunt-in-room-with-player-no">ruled out</label></span>
 							</fieldset>
-							<fieldset id="changes-abilities">
+							<fieldset id="changes-abilities" class="behaviour behavior ability abilities change changing changed different mimic">
 								<legend>Suddenly changes abilities</legend>
 								<span class="control-container"><input type="radio" name="changes-abilities" value="unknown" id="changes-abilities-unknown" checked> <label for="changes-abilities-unknown">unknown</label></span>
 								<span class="control-container"><input type="radio" name="changes-abilities" value="yes" id="changes-abilities-yes"> <label for="changes-abilities-yes">confirmed</label></span>
 								<span class="control-container"><input type="radio" name="changes-abilities" value="no" id="changes-abilities-no"> <label for="changes-abilities-no">ruled out</label></span>
 							</fieldset>
+
+							<p hidden class="none-matching-filter help">No secondary evidence matches the current filter.</p>
 						</div>
 					</details>
 				</section>
@@ -552,6 +551,7 @@
 								omniscient-no
 								paramic-scream-no
 								player-held-electronics-detection-range-normal
+								voice-detection-range-normal
 								shapeshifter-no
 								unusual-fingerprints-no
 								smudge-blindness-duration-normal
@@ -698,6 +698,7 @@
 						</li>
 						<li
 							id="poltergeist"
+							data-nicknames="polter polty"
 							class="
 								ghost-writing fingerprints spirit-box
 								blink-normal
@@ -926,6 +927,7 @@
 						</li>
 						<li
 							id="revenant"
+							data-nicknames="rev"
 							class="
 								ghost-writing ghost-orb freezing-temperatures
 								blink-normal
@@ -1154,6 +1156,7 @@
 						</li>
 						<li
 							id="oni"
+							data-nicknames="onifans"
 							class="
 								dots-projector emf-level-5 freezing-temperatures
 								blink-short
@@ -1496,6 +1499,7 @@
 						</li>
 						<li
 							id="the-twins"
+							data-nicknames="twins twin"
 							class="
 								emf-level-5 freezing-temperatures spirit-box
 								blink-normal
@@ -1667,6 +1671,7 @@
 						</li>
 						<li
 							id="the-mimic"
+							data-nicknames="mimic"
 							class="
 								fingerprints freezing-temperatures spirit-box special-ghost-orb
 								blink-normal blink-short blink-long
@@ -1781,6 +1786,7 @@
 						</li>
 						<li
 							id="deogen"
+							data-nicknames="deo"
 							class="
 								dots-projector ghost-writing spirit-box guaranteed-spirit-box
 								blink-normal

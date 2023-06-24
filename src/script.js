@@ -133,6 +133,10 @@ let taps = [];
 function init() {
 	setPreferences(getPreferencesFromLocalStorage());
 	document.documentElement.addEventListener("keydown", handleDocumentKeyDown);
+	byId("filter").addEventListener("keydown", handleFilterKeyDown);
+	byId("filter").addEventListener("input", handleFilterInput);
+	byId("filter").addEventListener("focus", handleFilterFocus);
+	byId("filter").addEventListener("blur", handleFilterBlur);
 	byId("ghost-speed").addEventListener("change", () => updateGhostSpeed());
 	byId("tap-target").addEventListener("keydown", handleTapKeyDown);
 	byId("reset-tempo").addEventListener("click", () => resetTempo());
@@ -213,13 +217,119 @@ function init() {
 
 function handleDocumentKeyDown(event) {
 	if (event.key === "t") {
+		event.preventDefault();
 		const tapTarget = byId("tap-target");
 		tapTarget.scrollIntoView({ behavior: "smooth", block: "nearest" });
 		tapTarget.focus();
 		handleTapKeyDown(event);
-		event.preventDefault();
 		return;
 	}
+	if (event.key === "/") {
+		event.preventDefault();
+		byId("observations-form").scrollIntoView({ behavior: "smooth", block: "nearest" });
+		const input = byId("filter");
+		input.focus();
+		input.value = "";
+		updateFilter();
+		return;
+	}
+}
+
+function handleFilterKeyDown() {
+	const input = byId("filter");
+	event.stopPropagation();
+	if (event.key === "/") {
+		event.preventDefault();
+		input.value = "";
+		updateFilter();
+		return;
+	}
+	if (event.key === "Escape") {
+		event.preventDefault();
+		if (input.value !== "") {
+			input.value = "";
+			updateFilter();
+		} else {
+			input.blur();
+		}
+		return;
+	}
+	if (event.key === "Enter") {
+		event.preventDefault();
+		if (input.value !== "") byId("secondary-evidence-details").openAtFilterBlur = true;
+		input.blur();
+		updateFilter();
+		return;
+	}
+}
+
+function handleFilterInput() {
+	updateFilter();
+}
+
+function handleFilterFocus() {
+	const details = byId("secondary-evidence-details");
+	details.openAtFilterBlur = details.open;
+}
+
+function handleFilterBlur() {
+	const details = byId("secondary-evidence-details");
+	if (!details.openAtFilterBlur) details.open = false;
+}
+
+function updateFilter() {
+	const string = byId("filter").value.trim();
+	const terms = string.length === 0 ? null : string.split(/\s+/);
+	const secondaryDetails = byId("secondary-evidence-details");
+	secondaryDetails.open = terms != null || secondaryDetails.openAtFilterBlur;
+
+	// Check for primary evidence with matching tags
+	let havePrimary = false;
+	for (const element of document.querySelectorAll("#primary-evidence fieldset")) {
+		const match = matchFilter(terms, element);
+		element.hidden = !match;
+		if (match) havePrimary = true;
+	}
+
+	// Check for secondary evidence with matching tags
+	let haveSecondary = false;
+	for (const element of document.querySelectorAll("#secondary-evidence fieldset")) {
+		const match = matchFilter(terms, element);
+		element.hidden = !match;
+		if (match) haveSecondary = true;
+	}
+
+	// Check if a term was a ghost name, and if so, show its possible primary
+	// evidence
+	const numCollectable = getEvidenceNum();
+	if (terms != null) {
+		for (const ghost of document.querySelectorAll("#ghosts li")) {
+			const names = [ghost.id];
+			if (ghost.dataset.nicknames) names.push(...ghost.dataset.nicknames.split(/\s+/));
+			if (names.some((name) => terms.some((term) => name.startsWith(term)))) {
+				for (const element of document.querySelectorAll("#primary-evidence fieldset")) {
+					if (
+						ghost.classList.contains(`special-${element.id}`)
+						|| numCollectable > 0 && (
+							ghost.classList.contains(`guaranteed-${element.id}`)
+							|| (numCollectable > 1 || !Array.from(ghost.classList).some((cls) => /^guaranteed-/.test(cls))) && ghost.classList.contains(element.id)
+						)
+					) {
+						element.hidden = false;
+						havePrimary = true;
+					}
+				}
+			}
+		}
+	}
+
+	document.querySelector("#primary-evidence .none-matching-filter").hidden = havePrimary;
+	document.querySelector("#secondary-evidence .none-matching-filter").hidden = haveSecondary;
+}
+
+function matchFilter(terms, element) {
+	if (terms == null) return true;
+	return terms.every((term) => element.classList.contains(term) || Array.from(element.classList).some((cls) => cls.startsWith(term)));
 }
 
 function updateAll() {
@@ -474,6 +584,7 @@ function updateEvidenceNum() {
 	document.documentElement.classList.toggle("evidence-num-one", evidenceNum === 1);
 	document.documentElement.classList.toggle("evidence-num-all", evidenceNum >= 3);
 	updateEvidence();
+	updateFilter();
 }
 
 const allPrimaryEvidence = new Set([...document.querySelectorAll(`#primary-evidence [type="radio"][value="yes"]`)].map((radio) => radio.name));
