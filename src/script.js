@@ -35,10 +35,6 @@ const HANTU_MIN_SPEED = 1.4;
 const SLOWEST_SPEED = DEOGEN_MIN_SPEED;
 const FASTEST_SPEED = Math.max(Math.max(MOROI_MAX_SPEED, NORMAL_SPEED) * MAX_GHOST_LOS_SPEEDUP_MULTIPLIER, REVENANT_FAST_SPEED, DEOGEN_MAX_SPEED, THAYE_MAX_SPEED, HANTU_MAX_SPEED, JINN_LOS_SPEED);
 
-const SMUDGE_HUNT_SHORT_S = 60;
-const SMUDGE_HUNT_NORMAL_S = 90;
-const SMUDGE_HUNT_LONG_S = 180;
-
 const NARROW_BY_TEMPO_LEEWAY = 0.05;
 
 const byId = document.getElementById.bind(document);
@@ -894,6 +890,9 @@ function updateEvidence() {
 	console.time("speed");
 	updateSpeedMarkers();
 	console.timeEnd("speed");
+	console.time("timer");
+	updateTimerReadout();
+	console.timeEnd("timer");
 	console.timeEnd("update evidence total");
 }
 
@@ -1575,18 +1574,17 @@ function getTimerAdjust() {
 }
 
 function getHuntSafety(secondsSinceSmudge) {
-	let possibleShort = false;
-	let possibleNormal = false;
-	let possibleLong = false;
+	let minSafe = Infinity;
+	let maxSafe = -Infinity;
 	for (const ghostContainer of document.querySelectorAll("#ghosts li")) {
 		if (ghostMarkedImpossible(ghostContainer)) continue;
-		if (!possibleShort && ghostContainer.classList.contains("smudge-hunt-suspension-short")) possibleShort = true;
-		if (!possibleNormal && ghostContainer.classList.contains("smudge-hunt-suspension-normal")) possibleNormal = true;
-		if (!possibleLong && ghostContainer.classList.contains("smudge-hunt-suspension-long")) possibleLong = true;
+		const minSuspension = Math.min(...Array.from(ghostContainer.classList)
+			.filter((cls) => /^smudge-hunt-suspension-/.test(cls))
+			.map((cls) => parseInt(cls.substring("smudge-hunt-suspension-".length))));
+		minSafe = Math.min(minSafe, minSuspension);
+		maxSafe = Math.max(maxSafe, minSuspension);
 	}
-	if (!possibleShort && !possibleNormal && !possibleLong) return null;
-	const minSafe = possibleShort ? SMUDGE_HUNT_SHORT_S : possibleNormal ? SMUDGE_HUNT_NORMAL_S : SMUDGE_HUNT_LONG_S;
-	const maxSafe = possibleLong  ? SMUDGE_HUNT_LONG_S : possibleNormal ? SMUDGE_HUNT_NORMAL_S : SMUDGE_HUNT_SHORT_S;
+	if (minSafe === Infinity || maxSafe === -Infinity) return null;
 	if (secondsSinceSmudge < minSafe) return "safe";
 	if (secondsSinceSmudge < maxSafe) return "caution";
 	return "danger";
