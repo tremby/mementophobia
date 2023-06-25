@@ -234,6 +234,10 @@ function handleDocumentKeyDown(event) {
 			input.value = "";
 			updateFilter();
 			return;
+		case "R":
+			event.preventDefault();
+			if (confirm("Reset observations?")) byId("observations-form").reset();
+			return;
 	}
 	if (event.key === "s") {
 		event.preventDefault();
