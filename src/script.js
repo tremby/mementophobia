@@ -261,6 +261,9 @@ function handleFilterKeyDown() {
 			if (input.value !== "") byId("secondary-evidence-details").openAtFilterBlur = true;
 			input.blur();
 			return;
+		case "Tab":
+			if (input.value !== "") byId("secondary-evidence-details").openAtFilterBlur = true;
+			return;
 	}
 }
 
