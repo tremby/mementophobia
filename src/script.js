@@ -187,6 +187,9 @@ function init() {
 			updateAll();
 		});
 	});
+	byId("game-setup-form").addEventListener("submit", (event) => {
+		event.preventDefault();
+	});
 	byId("observations-form").addEventListener("reset", () => {
 		resetTimer();
 		resetTempo();
@@ -194,6 +197,9 @@ function init() {
 		requestAnimationFrame(() => {
 			updateAll();
 		});
+	});
+	byId("observations-form").addEventListener("submit", (event) => {
+		event.preventDefault();
 	});
 	byId("reset-manual-rule-outs").addEventListener("click", () => resetManualRuleOuts());
 	byId("timer-start-stop").addEventListener("click", () => startStopTimer());
