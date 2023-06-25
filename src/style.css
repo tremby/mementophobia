@@ -312,6 +312,11 @@ header {
 	grid-template-columns: auto auto;
 	grid-template-areas: "button readout" "controls controls";
 }
+@media screen and (min-width: 40rem) {
+	#timer-grid {
+		grid-template-areas: "button readout" "blank controls";
+	}
+}
 #timer-start-stop {
 	grid-area: button;
 }
@@ -337,6 +342,12 @@ header {
 }
 #timer-controls {
 	grid-area: controls;
+	justify-self: end;
+}
+@media screen and (min-width: 40rem) {
+	#timer-controls {
+		justify-self: center;
+	}
 }
 
 footer {
