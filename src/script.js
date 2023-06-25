@@ -260,7 +260,6 @@ function handleFilterKeyDown() {
 			event.preventDefault();
 			if (input.value !== "") byId("secondary-evidence-details").openAtFilterBlur = true;
 			input.blur();
-			updateFilter();
 			return;
 	}
 }
