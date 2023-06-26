@@ -134,6 +134,7 @@ function init() {
 	byId("filter").addEventListener("focus", handleFilterFocus);
 	byId("filter").addEventListener("blur", handleFilterBlur);
 	byId("secondary-evidence").addEventListener("mousedown", handleSecondaryEvidenceMouseDown);
+	byId("clear-filter").addEventListener("click", () => clearFilter());
 	byId("ghost-speed").addEventListener("change", () => updateGhostSpeed());
 	byId("tap-target").addEventListener("keydown", handleTapKeyDown);
 	byId("reset-tempo").addEventListener("click", () => resetTempo());
@@ -231,13 +232,16 @@ function handleDocumentKeyDown(event) {
 			event.preventDefault();
 			byId("observations-form").scrollIntoView({ behavior: "smooth", block: "nearest" });
 			const input = byId("filter");
+			clearFilter();
 			input.focus();
-			input.value = "";
-			updateFilter();
 			return;
 		case "R":
 			event.preventDefault();
 			if (confirm("Reset observations?")) byId("observations-form").reset();
+			return;
+		case "C":
+			event.preventDefault();
+			clearFilter();
 			return;
 	}
 	if (event.key === "s") {
@@ -255,14 +259,12 @@ function handleFilterKeyDown() {
 	switch (event.key) {
 		case "/":
 			event.preventDefault();
-			input.value = "";
-			updateFilter();
+			clearFilter();
 			return;
 		case "Escape":
 			event.preventDefault();
 			if (input.value !== "") {
-				input.value = "";
-				updateFilter();
+				clearFilter();
 			} else {
 				input.blur();
 			}
@@ -347,11 +349,21 @@ function updateFilter() {
 
 	document.querySelector("#primary-evidence .none-matching-filter").hidden = havePrimary;
 	document.querySelector("#secondary-evidence .none-matching-filter").hidden = haveSecondary;
+
+	byId("clear-filter").disabled = terms == null;
 }
 
 function matchFilter(terms, element) {
 	if (terms == null) return true;
 	return terms.every((term) => element.classList.contains(term) || Array.from(element.classList).some((cls) => cls.startsWith(term)));
+}
+
+function clearFilter() {
+	const input = byId("filter");
+	if (input.value !== "") {
+		input.value = "";
+		updateFilter();
+	}
 }
 
 function updateAll() {

@@ -364,3 +364,10 @@ kbd {
 	background-image: linear-gradient(to right, color-mix(in srgb, currentColor 30%, transparent), 30%, color-mix(in srgb, currentColor 10%, transparent));
 	box-shadow: 0.1em 0.2em 0 black;
 }
+
+#filter-box .flex {
+	display: flex;
+	align-items: baseline;
+	gap: 1rem;
+	flex-wrap: wrap;
+}

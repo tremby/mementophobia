@@ -89,15 +89,21 @@
 					<span class="help">Shortcut <kbd>shift</kbd>+<kbd>R</kbd></span>
 				</div>
 			</header>
-			<nav>
-				<fieldset>
-					<legend>
-						<label for="filter">Filter evidence</label>
-					</legend>
-					<input type="search" id="filter">
-					<span class="help">Shortcut <kbd>/</kbd>. With focus, press <kbd>enter</kbd> or <kbd>tab</kbd> to keep a filter, or <kbd>esc</kbd> to clear.</span>
-				</fieldset>
-			</nav>
+			<fieldset id="filter-box">
+				<legend>
+					<label for="filter">Filter evidence</label>
+				</legend>
+				<div class="flex">
+					<div>
+						<input type="search" id="filter">
+						<span class="help">Shortcut <kbd>/</kbd>. With focus, press <kbd>enter</kbd> or <kbd>tab</kbd> to keep a filter, or <kbd>esc</kbd> to clear.</span>
+					</div>
+					<div>
+						<button type="button" disabled id="clear-filter">Clear filter</button>
+						<span class="help">Shortcut <kbd>shift</kbd>+<kbd>C</kbd></span>
+					</div>
+				</div>
+			</fieldset>
 			<div id="observations-grid">
 				<section id="primary-evidence-cell">
 					<h3>Primary evidence</h3>
