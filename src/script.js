@@ -133,6 +133,7 @@ function init() {
 	byId("filter").addEventListener("input", handleFilterInput);
 	byId("filter").addEventListener("focus", handleFilterFocus);
 	byId("filter").addEventListener("blur", handleFilterBlur);
+	byId("secondary-evidence").addEventListener("mousedown", handleSecondaryEvidenceMouseDown);
 	byId("ghost-speed").addEventListener("change", () => updateGhostSpeed());
 	byId("tap-target").addEventListener("keydown", handleTapKeyDown);
 	byId("reset-tempo").addEventListener("click", () => resetTempo());
@@ -274,6 +275,13 @@ function handleFilterKeyDown() {
 		case "Tab":
 			if (input.value !== "") byId("secondary-evidence-details").openAtFilterBlur = true;
 			return;
+	}
+}
+
+function handleSecondaryEvidenceMouseDown() {
+	const filterInput = byId("filter");
+	if (document.activeElement === filterInput) {
+		if (filterInput.value !== "") byId("secondary-evidence-details").openAtFilterBlur = true;
 	}
 }
 
