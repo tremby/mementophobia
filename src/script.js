@@ -403,9 +403,8 @@ function resizeTapTraceCanvas() {
 function handleTapKeyDown(event) {
 	if (event.key === "Escape") {
 		event.preventDefault();
-		if (taps.length === 0) document.activeElement.blur();
-		else resetTempo();
 		event.stopPropagation();
+		document.activeElement.blur();
 		return;
 	}
 	if (event.key.length === 1) {
