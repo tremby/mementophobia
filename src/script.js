@@ -674,16 +674,16 @@ function ghostImpossible(numCollectable, ghostContainer, confirmedEvidence, rule
 		else return true;
 	}
 
-	// Ghost is ruled out in zero evidence mode if something it exhibits as
-	// special evidence has been ruled out
-	if (numCollectable === 0 && [...ruledOutEvidence].some((evidence) => classList.contains(`special-${evidence}`))) {
-		if (withReasons) reasons.primary.add(`even with zero collectable evidence it must exhibit particular evidence`);
+	// Ghost is ruled out if something it exhibits as special evidence has been
+	// ruled out
+	if ([...ruledOutEvidence].some((evidence) => classList.contains(`special-${evidence}`))) {
+		if (withReasons) reasons.primary.add(`it must exhibit particular evidence which has been ruled out`);
 		else return true;
 	}
 
 	// Ghost is ruled out if one or more evidence is collectable and something
 	// it exhibits as guaranteed or special evidence has been ruled out
-	if (numCollectable > 0 && [...ruledOutEvidence].some((evidence) => classList.contains(`guaranteed-${evidence}`) || classList.contains(`special-${evidence}`))) {
+	if (numCollectable > 0 && [...ruledOutEvidence].some((evidence) => classList.contains(`guaranteed-${evidence}`))) {
 		if (withReasons) reasons.primary.add(`it has particular guaranteed evidence which has been ruled out`);
 		else return true;
 	}
@@ -702,10 +702,11 @@ function ghostImpossible(numCollectable, ghostContainer, confirmedEvidence, rule
 	}
 
 	const ghostAllNormalEvidence = [...allPrimaryEvidence].filter((evidence) => classList.contains(evidence));
+	const unknownEvidence = setExclude(allPrimaryEvidence, confirmedEvidence, ruledOutEvidence);
 
 	// Ghost is ruled out when enough of the items it exhibits as normal evidence
 	// have been ruled out that it can no longer exhibit enough
-	if (setUnion(confirmedMinusSpecial, setIntersect(setExclude(ghostAllNormalEvidence, confirmedEvidence), setExclude(allPrimaryEvidence, confirmedEvidence, ruledOutEvidence))).size < numCollectable) {
+	if (setUnion(confirmedMinusSpecial, setIntersect(ghostAllNormalEvidence, unknownEvidence)).size < numCollectable) {
 		if (withReasons) reasons.primary.add(`too many of its possible evidence types have been ruled out`);
 		else return true;
 	}
