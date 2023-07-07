@@ -637,6 +637,13 @@ function setWith(baseSet, newMember) {
 	newSet.add(newMember);
 	return newSet;
 }
+function setUnion(...sets) {
+	const newSet = new Set();
+	for (const set of sets)
+		for (const item of set)
+			newSet.add(item);
+	return newSet;
+}
 function setExclude(a, ...others) {
 	const newSet = new Set(a);
 	for (const toExclude of others)
@@ -644,16 +651,16 @@ function setExclude(a, ...others) {
 			newSet.delete(item);
 	return newSet;
 }
+function setIntersect(a, b) {
+	const newSet = new Set();
+	for (const item of a)
+		if (b.has(item))
+			newSet.add(item);
+	return newSet;
+}
 
 function ghostImpossible(numCollectable, ghostContainer, confirmedEvidence, ruledOutEvidence, secondaryClasses = [], withReasons) {
 	const classList = ghostContainer.classList;
-
-	const confirmedMinusSpecial = new Set(confirmedEvidence);
-	for (const evidence of confirmedEvidence)
-		if (classList.contains(`special-${evidence}`))
-			confirmedMinusSpecial.delete(evidence);
-
-	const normalEvidence = [...allPrimaryEvidence].filter((evidence) => classList.contains(evidence));
 
 	const reasons = {
 		primary: new Set(),
@@ -681,6 +688,11 @@ function ghostImpossible(numCollectable, ghostContainer, confirmedEvidence, rule
 		else return true;
 	}
 
+	const confirmedMinusSpecial = new Set(confirmedEvidence);
+	for (const evidence of confirmedEvidence)
+		if (classList.contains(`special-${evidence}`))
+			confirmedMinusSpecial.delete(evidence);
+
 	// Ghost is ruled out if one ore more envidence is collectable, we have
 	// collected the maximum number of normal evidence items, and something it
 	// exhibits as guaranteed evidence was not confirmed
@@ -689,17 +701,12 @@ function ghostImpossible(numCollectable, ghostContainer, confirmedEvidence, rule
 		else return true;
 	}
 
-	// Ghost is ruled out when all evidence is collectable and something it
-	// exhibits as normal evidence has been ruled out
-	if (numCollectable >= 3 && [...ruledOutEvidence].some((evidence) => classList.contains(evidence))) {
-		if (withReasons) reasons.primary.add(`it exhibits a type of evidence which has been ruled out`);
-		else return true;
-	}
+	const ghostAllNormalEvidence = [...allPrimaryEvidence].filter((evidence) => classList.contains(evidence));
 
-	// Ghost is ruled out if one or more evidence is collectable, and everything
-	// it exhibits as normal evidence has been ruled out
-	if (numCollectable > 0 && normalEvidence.every((evidence) => ruledOutEvidence.has(evidence))) {
-		if (withReasons) reasons.primary.add(`everything it could exhibit has been ruled out`);
+	// Ghost is ruled out when enough of the items it exhibits as normal evidence
+	// have been ruled out that it can no longer exhibit enough
+	if (setUnion(confirmedMinusSpecial, setIntersect(setExclude(ghostAllNormalEvidence, confirmedEvidence), setExclude(allPrimaryEvidence, confirmedEvidence, ruledOutEvidence))).size < numCollectable) {
+		if (withReasons) reasons.primary.add(`too many of its possible evidence types have been ruled out`);
 		else return true;
 	}
 
@@ -708,15 +715,6 @@ function ghostImpossible(numCollectable, ghostContainer, confirmedEvidence, rule
 	// as special evidence
 	if (confirmedMinusSpecial.size > numCollectable) {
 		if (withReasons) reasons.primary.add(`more evidence has been confirmed than it can exhibit`);
-		else return true;
-	}
-
-	// Ghost is ruled out if there are the same number of still-collectable
-	// evidences as the number of evidence types still marked unknown, and this
-	// ghost does not exhibit at least one of the last unknown evidence types
-	const unknownEvidence = setExclude(allPrimaryEvidence, confirmedEvidence, ruledOutEvidence);
-	if (unknownEvidence.size > 0 && numCollectable - confirmedMinusSpecial.size === unknownEvidence.size && ![...unknownEvidence].some((evidence) => classList.contains(evidence))) {
-		if (withReasons) reasons.primary.add(`the last evidence which has not yet been confirmed or ruled out is something it cannot exhibit`);
 		else return true;
 	}
 
