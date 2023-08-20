@@ -114,11 +114,11 @@
 							<span class="control-container"><input type="radio" name="emf-level-5" id="emf-level-5-yes" value="yes"> <label for="emf-level-5-yes">confirmed</label></span>
 							<span class="control-container"><input type="radio" name="emf-level-5" id="emf-level-5-no" value="no"> <label for="emf-level-5-no">ruled out</label></span>
 						</fieldset>
-						<fieldset id="fingerprints" data-name="fingerprints" class="fingerprints handprints fingerprint handprint fingies uv">
-							<legend>Fingerprints 🖐️</legend>
-							<span class="control-container"><input type="radio" name="fingerprints" value="unknown" id="fingerprints-unknown" checked> <label for="fingerprints-unknown">unknown</label></span>
-							<span class="control-container"><input type="radio" name="fingerprints" value="yes" id="fingerprints-yes"> <label for="fingerprints-yes">confirmed</label></span>
-							<span class="control-container"><input type="radio" name="fingerprints" value="no" id="fingerprints-no"> <label for="fingerprints-no">ruled out</label></span>
+						<fieldset id="ultraviolet" data-name="ultraviolet" class="ultraviolet uv fingerprints handprints fingerprint handprint fingies">
+							<legend>Ultraviolet 🖐️</legend>
+							<span class="control-container"><input type="radio" name="ultraviolet" value="unknown" id="ultraviolet-unknown" checked> <label for="ultraviolet-unknown">unknown</label></span>
+							<span class="control-container"><input type="radio" name="ultraviolet" value="yes" id="ultraviolet-yes"> <label for="ultraviolet-yes">confirmed</label></span>
+							<span class="control-container"><input type="radio" name="ultraviolet" value="no" id="ultraviolet-no"> <label for="ultraviolet-no">ruled out</label></span>
 						</fieldset>
 						<fieldset id="ghost-writing" data-name="ghost writing" class="ghost writing ghostwriting book handwriting write wrote scribble scribbled scribbling">
 							<legend>Ghost writing 📖</legend>
@@ -462,39 +462,39 @@
 								<span class="control-container"><input type="radio" name="can-multi-throw" value="yes" id="can-multi-throw-yes"> <label for="can-multi-throw-yes">confirmed</label></span>
 								<span class="control-container"><input type="radio" name="can-multi-throw" value="no" id="can-multi-throw-no"> <label for="can-multi-throw-no">ruled out</label></span>
 							</fieldset>
-							<fieldset id="sometimes-hides-fingerprints" class="behaviour behavior fingerprints-required hide hiding hid hidden seclude secluding secluded seclusion fingerprint fingerprints fingies uv handprint handprints print prints missing obake">
-								<legend>Sometimes hides fingerprints</legend>
-								<span class="control-container"><input type="radio" name="sometimes-hides-fingerprints" value="unknown" id="sometimes-hides-fingerprints-unknown" checked> <label for="sometimes-hides-fingerprints-unknown">unknown</label></span>
-								<span class="control-container"><input type="radio" name="sometimes-hides-fingerprints" value="yes" id="sometimes-hides-fingerprints-yes"> <label for="sometimes-hides-fingerprints-yes">confirmed</label></span>
-								<span class="control-container"><input type="radio" name="sometimes-hides-fingerprints" value="no" id="sometimes-hides-fingerprints-no"> <label for="sometimes-hides-fingerprints-no">ruled out</label></span>
+							<fieldset id="sometimes-hides-ultraviolet" class="behaviour behavior ultraviolet-required hide hiding hid hidden seclude secluding secluded seclusion ultraviolet uv fingerprint fingerprints fingies handprint handprints print prints missing obake">
+								<legend>Sometimes hides ultraviolet</legend>
+								<span class="control-container"><input type="radio" name="sometimes-hides-ultraviolet" value="unknown" id="sometimes-hides-ultraviolet-unknown" checked> <label for="sometimes-hides-ultraviolet-unknown">unknown</label></span>
+								<span class="control-container"><input type="radio" name="sometimes-hides-ultraviolet" value="yes" id="sometimes-hides-ultraviolet-yes"> <label for="sometimes-hides-ultraviolet-yes">confirmed</label></span>
+								<span class="control-container"><input type="radio" name="sometimes-hides-ultraviolet" value="no" id="sometimes-hides-ultraviolet-no"> <label for="sometimes-hides-ultraviolet-no">ruled out</label></span>
 								<details>
 									<summary>Info</summary>
 									<p>
-										For most ghosts, if they are going to exhibit fingerprints evidence,
+										For most ghosts, if they are going to exhibit ultraviolet evidence,
 										they will <em>always</em> leave it when interacting with suitable objects.
 										Ghosts with this trait have a reduced rate.
 									</p>
 									<p>
-										The obake has a 75% chance of leaving fingerprints.
-										To rule this evidence out with 95% confidence, you need to see 11 <!-- ceil(log_¾(0.05)) --> separate fingerprints after noticing suitable interactions.
+										The obake has a 75% chance of leaving ultraviolet evidence.
+										To rule this evidence out with 95% confidence, you need to see 11 <!-- ceil(log_¾(0.05)) --> separate pieces of ultraviolet evidence after noticing suitable interactions.
 									</p>
 									<p>
-										This can be confirmed if fingerprint evidence has been seen,
-										and then later an interaction is observed which is suitable for fingerprints but does not leave any.
+										This can be confirmed if ultraviolet evidence has been seen,
+										and then later an interaction is observed which is suitable for ultraviolet evidence but does not leave any.
 									</p>
 								</details>
 							</fieldset>
-							<fieldset id="unusual-fingerprints" class="behaviour behavior fingerprints-required fingerprint fingerprints fingies uv handprint handprints print prints weird strange unusual six freak freakish unique odd extra obake">
-								<legend>Can leave unusual hand/fingerprints</legend>
-								<span class="control-container"><input type="radio" name="unusual-fingerprints" value="unknown" id="unusual-fingerprints-unknown" checked> <label for="unusual-fingerprints-unknown">unknown</label></span>
-								<span class="control-container"><input type="radio" name="unusual-fingerprints" value="yes" id="unusual-fingerprints-yes"> <label for="unusual-fingerprints-yes">confirmed</label></span>
-								<span class="control-container"><input type="radio" name="unusual-fingerprints" value="no" id="unusual-fingerprints-no"> <label for="unusual-fingerprints-no">ruled out</label></span>
+							<fieldset id="unusual-ultraviolet" class="behaviour behavior ultraviolet-required ultraviolet uv fingerprint fingerprints fingies handprint handprints print prints weird strange unusual six freak freakish unique odd extra obake">
+								<legend>Can leave unusual ultraviolet evidence</legend>
+								<span class="control-container"><input type="radio" name="unusual-ultraviolet" value="unknown" id="unusual-ultraviolet-unknown" checked> <label for="unusual-ultraviolet-unknown">unknown</label></span>
+								<span class="control-container"><input type="radio" name="unusual-ultraviolet" value="yes" id="unusual-ultraviolet-yes"> <label for="unusual-ultraviolet-yes">confirmed</label></span>
+								<span class="control-container"><input type="radio" name="unusual-ultraviolet" value="no" id="unusual-ultraviolet-no"> <label for="unusual-ultraviolet-no">ruled out</label></span>
 								<details>
 									<summary>Info</summary>
-									<p>Ghosts with this trait have a certain chance of leaving <a href="https://phasmophobia.fandom.com/wiki/Obake#Abilities">unusual fingerprints</a>.</p>
+									<p>Ghosts with this trait have a certain chance of leaving <a href="https://phasmophobia.fandom.com/wiki/Obake#Abilities">unusual ultraviolet evidence</a>.</p>
 									<p>
-										The obake has a ⅙ chance of leaving unusual fingerprints each time it leaves fingerprints.
-										To rule this evidence out with 95% confidence, you need to see 17 <!-- ceil(log_⅚(0.05)) --> separate regular fingerprints.
+										The obake has a ⅙ chance of leaving unusual ultraviolet evidence each time it leaves ultraviolet evidence.
+										To rule this evidence out with 95% confidence, you need to see 17 <!-- ceil(log_⅚(0.05)) --> separate regular pieces of ultraviolet evidence.
 									</p>
 								</details>
 							</fieldset>
@@ -565,10 +565,10 @@
 								player-held-electronics-detection-range-normal
 								voice-detection-range-normal
 								shapeshifter-no
-								unusual-fingerprints-no
+								unusual-ultraviolet-no
 								smudge-blindness-duration-normal
 								smudge-hunt-suspension-180
-								sometimes-hides-fingerprints-no sometimes-hides-fingerprints-yes
+								sometimes-hides-ultraviolet-no sometimes-hides-ultraviolet-yes
 								speed-normal-yes
 								speedup-near-active-electronics-no
 								steps-in-salt-yes
@@ -579,14 +579,14 @@
 							<label for="spirit-manually-ruled-out" tabindex="0">Spirit</label>
 							<span class="evidence-indicators">
 								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
-								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ultraviolet-indicator" aria-label="Presents ultraviolet">🖐️</span>
 								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
 								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
 								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
 								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
 								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
 								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
-								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ultraviolet-indicator" aria-label="Additionally presents ultraviolet">🖐️</span>
 								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
 								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
 								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
@@ -622,10 +622,10 @@
 								player-held-electronics-detection-range-normal
 								voice-detection-range-normal
 								shapeshifter-no
-								unusual-fingerprints-no
+								unusual-ultraviolet-no
 								smudge-blindness-duration-normal
 								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180
-								sometimes-hides-fingerprints-no sometimes-hides-fingerprints-yes
+								sometimes-hides-ultraviolet-no sometimes-hides-ultraviolet-yes
 								speed-normal-yes
 								speedup-near-active-electronics-no
 								steps-in-salt-no
@@ -636,14 +636,14 @@
 							<label for="wraith-manually-ruled-out" tabindex="0">Wraith</label>
 							<span class="evidence-indicators">
 								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
-								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ultraviolet-indicator" aria-label="Presents ultraviolet">🖐️</span>
 								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
 								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
 								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
 								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
 								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
 								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
-								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ultraviolet-indicator" aria-label="Additionally presents ultraviolet">🖐️</span>
 								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
 								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
 								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
@@ -654,7 +654,7 @@
 						<li
 							id="phantom"
 							class="
-								dots-projector fingerprints spirit-box
+								dots-projector ultraviolet spirit-box
 								blink-long
 								can-change-favourite-room-yes
 								candle-as-crucifix-no
@@ -679,10 +679,10 @@
 								player-held-electronics-detection-range-normal
 								voice-detection-range-normal
 								shapeshifter-no
-								unusual-fingerprints-no
+								unusual-ultraviolet-no
 								smudge-blindness-duration-normal
 								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180
-								sometimes-hides-fingerprints-no
+								sometimes-hides-ultraviolet-no
 								speed-normal-yes
 								speedup-near-active-electronics-no
 								steps-in-salt-yes
@@ -693,14 +693,14 @@
 							<label for="phantom-manually-ruled-out" tabindex="0">Phantom</label>
 							<span class="evidence-indicators">
 								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
-								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ultraviolet-indicator" aria-label="Presents ultraviolet">🖐️</span>
 								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
 								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
 								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
 								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
 								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
 								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
-								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ultraviolet-indicator" aria-label="Additionally presents ultraviolet">🖐️</span>
 								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
 								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
 								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
@@ -712,7 +712,7 @@
 							id="poltergeist"
 							data-nicknames="polter polty"
 							class="
-								ghost-writing fingerprints spirit-box
+								ghost-writing ultraviolet spirit-box
 								blink-normal
 								can-change-favourite-room-yes
 								candle-as-crucifix-no
@@ -737,10 +737,10 @@
 								player-held-electronics-detection-range-normal
 								voice-detection-range-normal
 								shapeshifter-no
-								unusual-fingerprints-no
+								unusual-ultraviolet-no
 								smudge-blindness-duration-normal
 								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180
-								sometimes-hides-fingerprints-no
+								sometimes-hides-ultraviolet-no
 								speed-normal-yes
 								speedup-near-active-electronics-no
 								steps-in-salt-yes
@@ -751,14 +751,14 @@
 							<label for="poltergeist-manually-ruled-out" tabindex="0">Poltergeist</label>
 							<span class="evidence-indicators">
 								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
-								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ultraviolet-indicator" aria-label="Presents ultraviolet">🖐️</span>
 								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
 								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
 								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
 								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
 								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
 								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
-								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ultraviolet-indicator" aria-label="Additionally presents ultraviolet">🖐️</span>
 								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
 								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
 								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
@@ -769,7 +769,7 @@
 						<li
 							id="banshee"
 							class="
-								dots-projector ghost-orb fingerprints
+								dots-projector ghost-orb ultraviolet
 								blink-normal
 								can-change-favourite-room-yes
 								candle-as-crucifix-no
@@ -794,10 +794,10 @@
 								player-held-electronics-detection-range-normal
 								voice-detection-range-normal
 								shapeshifter-no
-								unusual-fingerprints-no
+								unusual-ultraviolet-no
 								smudge-blindness-duration-normal
 								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180
-								sometimes-hides-fingerprints-no
+								sometimes-hides-ultraviolet-no
 								speed-normal-yes
 								speedup-near-active-electronics-no
 								steps-in-salt-yes
@@ -808,14 +808,14 @@
 							<label for="banshee-manually-ruled-out" tabindex="0">Banshee</label>
 							<span class="evidence-indicators">
 								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
-								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ultraviolet-indicator" aria-label="Presents ultraviolet">🖐️</span>
 								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
 								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
 								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
 								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
 								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
 								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
-								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ultraviolet-indicator" aria-label="Additionally presents ultraviolet">🖐️</span>
 								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
 								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
 								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
@@ -826,7 +826,7 @@
 						<li
 							id="jinn"
 							class="
-								emf-level-5 fingerprints freezing-temperatures
+								emf-level-5 ultraviolet freezing-temperatures
 								blink-normal
 								can-change-favourite-room-yes
 								candle-as-crucifix-no
@@ -851,10 +851,10 @@
 								player-held-electronics-detection-range-normal
 								voice-detection-range-normal
 								shapeshifter-no
-								unusual-fingerprints-no
+								unusual-ultraviolet-no
 								smudge-blindness-duration-normal
 								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180
-								sometimes-hides-fingerprints-no
+								sometimes-hides-ultraviolet-no
 								speed-normal-yes
 								speedup-near-active-electronics-no
 								steps-in-salt-yes
@@ -865,14 +865,14 @@
 							<label for="jinn-manually-ruled-out" tabindex="0">Jinn</label>
 							<span class="evidence-indicators">
 								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
-								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ultraviolet-indicator" aria-label="Presents ultraviolet">🖐️</span>
 								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
 								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
 								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
 								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
 								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
 								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
-								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ultraviolet-indicator" aria-label="Additionally presents ultraviolet">🖐️</span>
 								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
 								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
 								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
@@ -908,10 +908,10 @@
 								player-held-electronics-detection-range-normal
 								voice-detection-range-normal
 								shapeshifter-no
-								unusual-fingerprints-no
+								unusual-ultraviolet-no
 								smudge-blindness-duration-normal
 								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180
-								sometimes-hides-fingerprints-no sometimes-hides-fingerprints-yes
+								sometimes-hides-ultraviolet-no sometimes-hides-ultraviolet-yes
 								speed-normal-yes
 								speedup-near-active-electronics-no
 								steps-in-salt-yes
@@ -922,14 +922,14 @@
 							<label for="mare-manually-ruled-out" tabindex="0">Mare</label>
 							<span class="evidence-indicators">
 								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
-								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ultraviolet-indicator" aria-label="Presents ultraviolet">🖐️</span>
 								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
 								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
 								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
 								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
 								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
 								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
-								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ultraviolet-indicator" aria-label="Additionally presents ultraviolet">🖐️</span>
 								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
 								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
 								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
@@ -966,10 +966,10 @@
 								player-held-electronics-detection-range-normal
 								voice-detection-range-normal
 								shapeshifter-no
-								unusual-fingerprints-no
+								unusual-ultraviolet-no
 								smudge-blindness-duration-normal
 								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180
-								sometimes-hides-fingerprints-no sometimes-hides-fingerprints-yes
+								sometimes-hides-ultraviolet-no sometimes-hides-ultraviolet-yes
 								speed-normal-no
 								speedup-near-active-electronics-no
 								steps-in-salt-yes
@@ -980,14 +980,14 @@
 							<label for="revenant-manually-ruled-out" tabindex="0">Revenant</label>
 							<span class="evidence-indicators">
 								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
-								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ultraviolet-indicator" aria-label="Presents ultraviolet">🖐️</span>
 								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
 								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
 								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
 								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
 								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
 								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
-								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ultraviolet-indicator" aria-label="Additionally presents ultraviolet">🖐️</span>
 								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
 								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
 								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
@@ -1023,10 +1023,10 @@
 								player-held-electronics-detection-range-normal
 								voice-detection-range-normal
 								shapeshifter-no
-								unusual-fingerprints-no
+								unusual-ultraviolet-no
 								smudge-blindness-duration-normal
 								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180
-								sometimes-hides-fingerprints-no sometimes-hides-fingerprints-yes
+								sometimes-hides-ultraviolet-no sometimes-hides-ultraviolet-yes
 								speed-normal-yes
 								speedup-near-active-electronics-no
 								steps-in-salt-yes
@@ -1037,14 +1037,14 @@
 							<label for="shade-manually-ruled-out" tabindex="0">Shade</label>
 							<span class="evidence-indicators">
 								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
-								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ultraviolet-indicator" aria-label="Presents ultraviolet">🖐️</span>
 								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
 								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
 								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
 								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
 								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
 								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
-								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ultraviolet-indicator" aria-label="Additionally presents ultraviolet">🖐️</span>
 								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
 								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
 								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
@@ -1055,7 +1055,7 @@
 						<li
 							id="demon"
 							class="
-								ghost-writing fingerprints freezing-temperatures
+								ghost-writing ultraviolet freezing-temperatures
 								blink-normal
 								can-change-favourite-room-yes
 								candle-as-crucifix-no
@@ -1080,10 +1080,10 @@
 								player-held-electronics-detection-range-normal
 								voice-detection-range-normal
 								shapeshifter-no
-								unusual-fingerprints-no
+								unusual-ultraviolet-no
 								smudge-blindness-duration-normal
 								smudge-hunt-suspension-60 smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180
-								sometimes-hides-fingerprints-no
+								sometimes-hides-ultraviolet-no
 								speed-normal-yes
 								speedup-near-active-electronics-no
 								steps-in-salt-yes
@@ -1094,14 +1094,14 @@
 							<label for="demon-manually-ruled-out" tabindex="0">Demon</label>
 							<span class="evidence-indicators">
 								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
-								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ultraviolet-indicator" aria-label="Presents ultraviolet">🖐️</span>
 								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
 								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
 								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
 								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
 								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
 								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
-								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ultraviolet-indicator" aria-label="Additionally presents ultraviolet">🖐️</span>
 								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
 								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
 								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
@@ -1137,10 +1137,10 @@
 								player-held-electronics-detection-range-normal
 								voice-detection-range-normal
 								shapeshifter-no
-								unusual-fingerprints-no
+								unusual-ultraviolet-no
 								smudge-blindness-duration-normal
 								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180
-								sometimes-hides-fingerprints-no sometimes-hides-fingerprints-yes
+								sometimes-hides-ultraviolet-no sometimes-hides-ultraviolet-yes
 								speed-normal-yes
 								speedup-near-active-electronics-no
 								steps-in-salt-yes
@@ -1151,14 +1151,14 @@
 							<label for="yurei-manually-ruled-out" tabindex="0">Yurei</label>
 							<span class="evidence-indicators">
 								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
-								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ultraviolet-indicator" aria-label="Presents ultraviolet">🖐️</span>
 								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
 								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
 								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
 								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
 								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
 								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
-								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ultraviolet-indicator" aria-label="Additionally presents ultraviolet">🖐️</span>
 								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
 								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
 								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
@@ -1195,10 +1195,10 @@
 								player-held-electronics-detection-range-normal
 								voice-detection-range-normal
 								shapeshifter-no
-								unusual-fingerprints-no
+								unusual-ultraviolet-no
 								smudge-blindness-duration-normal
 								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180
-								sometimes-hides-fingerprints-no sometimes-hides-fingerprints-yes
+								sometimes-hides-ultraviolet-no sometimes-hides-ultraviolet-yes
 								speed-normal-yes
 								speedup-near-active-electronics-no
 								steps-in-salt-yes
@@ -1209,14 +1209,14 @@
 							<label for="oni-manually-ruled-out" tabindex="0">Oni</label>
 							<span class="evidence-indicators">
 								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
-								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ultraviolet-indicator" aria-label="Presents ultraviolet">🖐️</span>
 								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
 								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
 								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
 								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
 								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
 								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
-								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ultraviolet-indicator" aria-label="Additionally presents ultraviolet">🖐️</span>
 								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
 								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
 								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
@@ -1252,10 +1252,10 @@
 								player-held-electronics-detection-range-short
 								voice-detection-range-short
 								shapeshifter-no
-								unusual-fingerprints-no
+								unusual-ultraviolet-no
 								smudge-blindness-duration-normal
 								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180
-								sometimes-hides-fingerprints-no sometimes-hides-fingerprints-yes
+								sometimes-hides-ultraviolet-no sometimes-hides-ultraviolet-yes
 								speed-normal-yes
 								speedup-near-active-electronics-no
 								steps-in-salt-yes
@@ -1266,14 +1266,14 @@
 							<label for="yokai-manually-ruled-out" tabindex="0">Yokai</label>
 							<span class="evidence-indicators">
 								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
-								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ultraviolet-indicator" aria-label="Presents ultraviolet">🖐️</span>
 								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
 								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
 								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
 								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
 								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
 								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
-								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ultraviolet-indicator" aria-label="Additionally presents ultraviolet">🖐️</span>
 								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
 								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
 								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
@@ -1284,7 +1284,7 @@
 						<li
 							id="hantu"
 							class="
-								ghost-orb fingerprints freezing-temperatures guaranteed-freezing-temperatures
+								ghost-orb ultraviolet freezing-temperatures guaranteed-freezing-temperatures
 								blink-normal
 								can-change-favourite-room-yes
 								candle-as-crucifix-no
@@ -1309,10 +1309,10 @@
 								player-held-electronics-detection-range-normal
 								voice-detection-range-normal
 								shapeshifter-no
-								unusual-fingerprints-no
+								unusual-ultraviolet-no
 								smudge-blindness-duration-normal
 								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180
-								sometimes-hides-fingerprints-no
+								sometimes-hides-ultraviolet-no
 								speed-normal-no
 								speedup-near-active-electronics-no
 								steps-in-salt-yes
@@ -1323,14 +1323,14 @@
 							<label for="hantu-manually-ruled-out" tabindex="0">Hantu</label>
 							<span class="evidence-indicators">
 								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
-								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ultraviolet-indicator" aria-label="Presents ultraviolet">🖐️</span>
 								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
 								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
 								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
 								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
 								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
 								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
-								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ultraviolet-indicator" aria-label="Additionally presents ultraviolet">🖐️</span>
 								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
 								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
 								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
@@ -1341,7 +1341,7 @@
 						<li
 							id="goryo"
 							class="
-								dots-projector emf-level-5 fingerprints guaranteed-dots-projector
+								dots-projector emf-level-5 ultraviolet guaranteed-dots-projector
 								blink-normal
 								can-change-favourite-room-no
 								candle-as-crucifix-no
@@ -1366,10 +1366,10 @@
 								player-held-electronics-detection-range-normal
 								voice-detection-range-normal
 								shapeshifter-no
-								unusual-fingerprints-no
+								unusual-ultraviolet-no
 								smudge-blindness-duration-normal
 								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180
-								sometimes-hides-fingerprints-no
+								sometimes-hides-ultraviolet-no
 								speed-normal-yes
 								speedup-near-active-electronics-no
 								steps-in-salt-yes
@@ -1380,14 +1380,14 @@
 							<label for="goryo-manually-ruled-out" tabindex="0">Goryo</label>
 							<span class="evidence-indicators">
 								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
-								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ultraviolet-indicator" aria-label="Presents ultraviolet">🖐️</span>
 								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
 								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
 								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
 								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
 								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
 								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
-								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ultraviolet-indicator" aria-label="Additionally presents ultraviolet">🖐️</span>
 								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
 								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
 								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
@@ -1398,7 +1398,7 @@
 						<li
 							id="myling"
 							class="
-								ghost-writing emf-level-5 fingerprints
+								ghost-writing emf-level-5 ultraviolet
 								blink-normal
 								can-change-favourite-room-yes
 								candle-as-crucifix-no
@@ -1423,10 +1423,10 @@
 								player-held-electronics-detection-range-normal
 								voice-detection-range-normal
 								shapeshifter-no
-								unusual-fingerprints-no
+								unusual-ultraviolet-no
 								smudge-blindness-duration-normal
 								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180
-								sometimes-hides-fingerprints-no
+								sometimes-hides-ultraviolet-no
 								speed-normal-yes
 								speedup-near-active-electronics-no
 								steps-in-salt-yes
@@ -1437,14 +1437,14 @@
 							<label for="myling-manually-ruled-out" tabindex="0">Myling</label>
 							<span class="evidence-indicators">
 								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
-								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ultraviolet-indicator" aria-label="Presents ultraviolet">🖐️</span>
 								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
 								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
 								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
 								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
 								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
 								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
-								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ultraviolet-indicator" aria-label="Additionally presents ultraviolet">🖐️</span>
 								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
 								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
 								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
@@ -1480,10 +1480,10 @@
 								player-held-electronics-detection-range-normal
 								voice-detection-range-normal
 								shapeshifter-no
-								unusual-fingerprints-no
+								unusual-ultraviolet-no
 								smudge-blindness-duration-normal
 								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180
-								sometimes-hides-fingerprints-no sometimes-hides-fingerprints-yes
+								sometimes-hides-ultraviolet-no sometimes-hides-ultraviolet-yes
 								speed-normal-yes
 								speedup-near-active-electronics-no
 								steps-in-salt-yes
@@ -1494,14 +1494,14 @@
 							<label for="onryo-manually-ruled-out" tabindex="0">Onryo</label>
 							<span class="evidence-indicators">
 								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
-								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ultraviolet-indicator" aria-label="Presents ultraviolet">🖐️</span>
 								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
 								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
 								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
 								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
 								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
 								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
-								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ultraviolet-indicator" aria-label="Additionally presents ultraviolet">🖐️</span>
 								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
 								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
 								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
@@ -1538,10 +1538,10 @@
 								player-held-electronics-detection-range-normal
 								voice-detection-range-normal
 								shapeshifter-no
-								unusual-fingerprints-no
+								unusual-ultraviolet-no
 								smudge-blindness-duration-normal
 								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180
-								sometimes-hides-fingerprints-no sometimes-hides-fingerprints-yes
+								sometimes-hides-ultraviolet-no sometimes-hides-ultraviolet-yes
 								speed-normal-no
 								speedup-near-active-electronics-no
 								steps-in-salt-yes
@@ -1552,14 +1552,14 @@
 							<label for="the-twins-manually-ruled-out" tabindex="0">The Twins</label>
 							<span class="evidence-indicators">
 								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
-								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ultraviolet-indicator" aria-label="Presents ultraviolet">🖐️</span>
 								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
 								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
 								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
 								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
 								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
 								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
-								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ultraviolet-indicator" aria-label="Additionally presents ultraviolet">🖐️</span>
 								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
 								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
 								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
@@ -1595,10 +1595,10 @@
 								player-held-electronics-detection-range-normal
 								voice-detection-range-normal
 								shapeshifter-no
-								unusual-fingerprints-no
+								unusual-ultraviolet-no
 								smudge-blindness-duration-normal
 								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180
-								sometimes-hides-fingerprints-no sometimes-hides-fingerprints-yes
+								sometimes-hides-ultraviolet-no sometimes-hides-ultraviolet-yes
 								speed-normal-yes speed-normal-no
 								speedup-near-active-electronics-yes
 								steps-in-salt-yes
@@ -1609,14 +1609,14 @@
 							<label for="raiju-manually-ruled-out" tabindex="0">Raiju</label>
 							<span class="evidence-indicators">
 								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
-								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ultraviolet-indicator" aria-label="Presents ultraviolet">🖐️</span>
 								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
 								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
 								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
 								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
 								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
 								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
-								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ultraviolet-indicator" aria-label="Additionally presents ultraviolet">🖐️</span>
 								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
 								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
 								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
@@ -1627,7 +1627,7 @@
 						<li
 							id="obake"
 							class="
-								emf-level-5 ghost-orb fingerprints guaranteed-fingerprints
+								emf-level-5 ghost-orb ultraviolet guaranteed-ultraviolet
 								blink-normal
 								can-change-favourite-room-yes
 								candle-as-crucifix-no
@@ -1652,10 +1652,10 @@
 								player-held-electronics-detection-range-normal
 								voice-detection-range-normal
 								shapeshifter-yes
-								unusual-fingerprints-yes
+								unusual-ultraviolet-yes
 								smudge-blindness-duration-normal
 								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180
-								sometimes-hides-fingerprints-yes
+								sometimes-hides-ultraviolet-yes
 								speed-normal-yes
 								speedup-near-active-electronics-no
 								steps-in-salt-yes
@@ -1666,14 +1666,14 @@
 							<label for="obake-manually-ruled-out" tabindex="0">Obake</label>
 							<span class="evidence-indicators">
 								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
-								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ultraviolet-indicator" aria-label="Presents ultraviolet">🖐️</span>
 								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
 								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
 								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
 								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
 								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
 								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
-								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ultraviolet-indicator" aria-label="Additionally presents ultraviolet">🖐️</span>
 								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
 								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
 								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
@@ -1685,7 +1685,7 @@
 							id="the-mimic"
 							data-nicknames="mimic"
 							class="
-								fingerprints freezing-temperatures spirit-box special-ghost-orb
+								ultraviolet freezing-temperatures spirit-box special-ghost-orb
 								blink-normal blink-short blink-long
 								can-change-favourite-room-yes
 								candle-as-crucifix-yes candle-as-crucifix-no
@@ -1710,10 +1710,10 @@
 								player-held-electronics-detection-range-normal player-held-electronics-detection-range-short
 								voice-detection-range-normal voice-detection-range-short
 								shapeshifter-yes shapeshifter-no
-								unusual-fingerprints-yes unusual-fingerprints-no
+								unusual-ultraviolet-yes unusual-ultraviolet-no
 								smudge-blindness-duration-normal smudge-blindness-duration-long
 								smudge-hunt-suspension-60 smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180
-								sometimes-hides-fingerprints-yes sometimes-hides-fingerprints-no
+								sometimes-hides-ultraviolet-yes sometimes-hides-ultraviolet-no
 								speed-normal-yes speed-normal-no
 								speedup-near-active-electronics-yes speedup-near-active-electronics-no
 								steps-in-salt-yes steps-in-salt-no
@@ -1724,14 +1724,14 @@
 							<label for="the-mimic-manually-ruled-out" tabindex="0">The Mimic</label>
 							<span class="evidence-indicators">
 								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
-								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ultraviolet-indicator" aria-label="Presents ultraviolet">🖐️</span>
 								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
 								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
 								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
 								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
 								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
 								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
-								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ultraviolet-indicator" aria-label="Additionally presents ultraviolet">🖐️</span>
 								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
 								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
 								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
@@ -1767,10 +1767,10 @@
 								player-held-electronics-detection-range-normal
 								voice-detection-range-normal
 								shapeshifter-no
-								unusual-fingerprints-no
+								unusual-ultraviolet-no
 								smudge-blindness-duration-long
 								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180
-								sometimes-hides-fingerprints-no sometimes-hides-fingerprints-yes
+								sometimes-hides-ultraviolet-no sometimes-hides-ultraviolet-yes
 								speed-normal-no
 								speedup-near-active-electronics-no
 								steps-in-salt-yes
@@ -1781,14 +1781,14 @@
 							<label for="moroi-manually-ruled-out" tabindex="0">Moroi</label>
 							<span class="evidence-indicators">
 								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
-								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ultraviolet-indicator" aria-label="Presents ultraviolet">🖐️</span>
 								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
 								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
 								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
 								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
 								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
 								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
-								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ultraviolet-indicator" aria-label="Additionally presents ultraviolet">🖐️</span>
 								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
 								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
 								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
@@ -1825,10 +1825,10 @@
 								player-held-electronics-detection-range-normal
 								voice-detection-range-normal
 								shapeshifter-no
-								unusual-fingerprints-no
+								unusual-ultraviolet-no
 								smudge-blindness-duration-normal
 								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180
-								sometimes-hides-fingerprints-no sometimes-hides-fingerprints-yes
+								sometimes-hides-ultraviolet-no sometimes-hides-ultraviolet-yes
 								speed-normal-no
 								speedup-near-active-electronics-no
 								steps-in-salt-yes
@@ -1839,14 +1839,14 @@
 							<label for="deogen-manually-ruled-out" tabindex="0">Deogen</label>
 							<span class="evidence-indicators">
 								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
-								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ultraviolet-indicator" aria-label="Presents ultraviolet">🖐️</span>
 								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
 								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
 								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
 								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
 								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
 								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
-								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ultraviolet-indicator" aria-label="Additionally presents ultraviolet">🖐️</span>
 								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
 								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
 								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
@@ -1882,10 +1882,10 @@
 								player-held-electronics-detection-range-normal
 								voice-detection-range-normal
 								shapeshifter-no
-								unusual-fingerprints-no
+								unusual-ultraviolet-no
 								smudge-blindness-duration-normal
 								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180
-								sometimes-hides-fingerprints-no sometimes-hides-fingerprints-yes
+								sometimes-hides-ultraviolet-no sometimes-hides-ultraviolet-yes
 								speed-normal-no
 								speedup-near-active-electronics-no
 								steps-in-salt-yes
@@ -1896,14 +1896,14 @@
 							<label for="thaye-manually-ruled-out" tabindex="0">Thaye</label>
 							<span class="evidence-indicators">
 								<span class="primary-evidence-indicator emf-level-5-indicator" aria-label="Presents EMF level 5">🔴</span>
-								<span class="primary-evidence-indicator fingerprints-indicator" aria-label="Presents fingerprints">🖐️</span>
+								<span class="primary-evidence-indicator ultraviolet-indicator" aria-label="Presents ultraviolet">🖐️</span>
 								<span class="primary-evidence-indicator ghost-writing-indicator" aria-label="Presents ghost writing">📖</span>
 								<span class="primary-evidence-indicator freezing-temperatures-indicator" aria-label="Presents freezing temperatures">❄️</span>
 								<span class="primary-evidence-indicator dots-projector-indicator" aria-label="Presents DOTS projector">🟢</span>
 								<span class="primary-evidence-indicator ghost-orb-indicator" aria-label="Presents ghost orb">⚪</span>
 								<span class="primary-evidence-indicator spirit-box-indicator" aria-label="Presents spirit box">📻</span>
 								<span class="special-evidence-indicator special-emf-level-5-indicator" aria-label="Additionally resents EMF level 5">🔴</span>
-								<span class="special-evidence-indicator special-fingerprints-indicator" aria-label="Additionally resents fingerprints">🖐️</span>
+								<span class="special-evidence-indicator special-ultraviolet-indicator" aria-label="Additionally presents ultraviolet">🖐️</span>
 								<span class="special-evidence-indicator special-ghost-writing-indicator" aria-label="Additionally resents ghost writing">📖</span>
 								<span class="special-evidence-indicator special-freezing-temperatures-indicator" aria-label="Additionally resents freezing temperatures">❄️</span>
 								<span class="special-evidence-indicator special-dots-projector-indicator" aria-label="Additionally resents DOTS projector">🟢</span>
