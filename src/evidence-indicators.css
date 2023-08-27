@@ -15,27 +15,27 @@
 /* Show evidence which is potentially obtainable */
 .evidence-num-some :is(
 	.emf-level-5 .emf-level-5-indicator,
-	.fingerprints .fingerprints-indicator,
+	.ultraviolet .ultraviolet-indicator,
 	.ghost-writing .ghost-writing-indicator,
 	.freezing-temperatures .freezing-temperatures-indicator,
 	.dots-projector .dots-projector-indicator,
 	.ghost-orb .ghost-orb-indicator,
 	.spirit-box .spirit-box-indicator
 ):not(.evidence-num-one :is(
-		:is(.guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-emf-level-5) .emf-level-5-indicator,
-		:is(.guaranteed-emf-level-5, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-fingerprints) .fingerprints-indicator,
-		:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-ghost-writing) .ghost-writing-indicator,
-		:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-freezing-temperatures) .freezing-temperatures-indicator,
-		:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-dots-projector) .dots-projector-indicator,
-		:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-spirit-box):not(.guaranteed-ghost-orb) .ghost-orb-indicator,
-		:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb):not(.guaranteed-spirit-box) .spirit-box-indicator
+		:is(.guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-emf-level-5) .emf-level-5-indicator,
+		:is(.guaranteed-emf-level-5, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-ultraviolet) .ultraviolet-indicator,
+		:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-ghost-writing) .ghost-writing-indicator,
+		:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-freezing-temperatures) .freezing-temperatures-indicator,
+		:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-dots-projector) .dots-projector-indicator,
+		:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-spirit-box):not(.guaranteed-ghost-orb) .ghost-orb-indicator,
+		:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb):not(.guaranteed-spirit-box) .spirit-box-indicator
 )) {
 	display: inline;
 }
 
 /* Show obtainable special evidence */
 .special-emf-level-5 .special-emf-level-5-indicator,
-.special-fingerprints .special-fingerprints-indicator,
+.special-ultraviolet .special-ultraviolet-indicator,
 .special-ghost-writing .special-ghost-writing-indicator,
 .special-freezing-temperatures .special-freezing-temperatures-indicator,
 .special-dots-projector .special-dots-projector-indicator,
@@ -48,7 +48,7 @@
 .evidence-num-some .primary-evidence-indicator:not(
 	.evidence-num-all *,
 	.guaranteed-emf-level-5 .emf-level-5-indicator,
-	.guaranteed-fingerprints .fingerprints-indicator,
+	.guaranteed-ultraviolet .ultraviolet-indicator,
 	.guaranteed-ghost-writing .ghost-writing-indicator,
 	.guaranteed-freezing-temperatures .freezing-temperatures-indicator,
 	.guaranteed-dots-projector .dots-projector-indicator,
@@ -86,7 +86,7 @@
 .evidence-num-some .primary-evidence-indicator:nth-child(2 of
 	.primary-evidence-indicator:is(
 		.emf-level-5 .emf-level-5-indicator,
-		.fingerprints .fingerprints-indicator,
+		.ultraviolet .ultraviolet-indicator,
 		.ghost-writing .ghost-writing-indicator,
 		.freezing-temperatures .freezing-temperatures-indicator,
 		.dots-projector .dots-projector-indicator,
@@ -95,26 +95,26 @@
 	):not(
 		.evidence-num-all *,
 		.guaranteed-emf-level-5 .emf-level-5-indicator,
-		.guaranteed-fingerprints .fingerprints-indicator,
+		.guaranteed-ultraviolet .ultraviolet-indicator,
 		.guaranteed-ghost-writing .ghost-writing-indicator,
 		.guaranteed-freezing-temperatures .freezing-temperatures-indicator,
 		.guaranteed-dots-projector .dots-projector-indicator,
 		.guaranteed-ghost-orb .ghost-orb-indicator,
 		.guaranteed-spirit-box .spirit-box-indicator,
 		.evidence-num-one :is(
-			:is(.guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-emf-level-5) .emf-level-5-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-fingerprints) .fingerprints-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-ghost-writing) .ghost-writing-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-freezing-temperatures) .freezing-temperatures-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-dots-projector) .dots-projector-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-spirit-box):not(.guaranteed-ghost-orb) .ghost-orb-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb):not(.guaranteed-spirit-box) .spirit-box-indicator
+			:is(.guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-emf-level-5) .emf-level-5-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-ultraviolet) .ultraviolet-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-ghost-writing) .ghost-writing-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-freezing-temperatures) .freezing-temperatures-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-dots-projector) .dots-projector-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-spirit-box):not(.guaranteed-ghost-orb) .ghost-orb-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb):not(.guaranteed-spirit-box) .spirit-box-indicator
 		)
 	)
 ):nth-last-child(1 of
 	.primary-evidence-indicator:is(
 		.emf-level-5 .emf-level-5-indicator,
-		.fingerprints .fingerprints-indicator,
+		.ultraviolet .ultraviolet-indicator,
 		.ghost-writing .ghost-writing-indicator,
 		.freezing-temperatures .freezing-temperatures-indicator,
 		.dots-projector .dots-projector-indicator,
@@ -123,20 +123,20 @@
 	):not(
 		.evidence-num-all *,
 		.guaranteed-emf-level-5 .emf-level-5-indicator,
-		.guaranteed-fingerprints .fingerprints-indicator,
+		.guaranteed-ultraviolet .ultraviolet-indicator,
 		.guaranteed-ghost-writing .ghost-writing-indicator,
 		.guaranteed-freezing-temperatures .freezing-temperatures-indicator,
 		.guaranteed-dots-projector .dots-projector-indicator,
 		.guaranteed-ghost-orb .ghost-orb-indicator,
 		.guaranteed-spirit-box .spirit-box-indicator,
 		.evidence-num-one :is(
-			:is(.guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-emf-level-5) .emf-level-5-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-fingerprints) .fingerprints-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-ghost-writing) .ghost-writing-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-freezing-temperatures) .freezing-temperatures-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-dots-projector) .dots-projector-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-spirit-box):not(.guaranteed-ghost-orb) .ghost-orb-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb):not(.guaranteed-spirit-box) .spirit-box-indicator
+			:is(.guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-emf-level-5) .emf-level-5-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-ultraviolet) .ultraviolet-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-ghost-writing) .ghost-writing-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-freezing-temperatures) .freezing-temperatures-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-dots-projector) .dots-projector-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-spirit-box):not(.guaranteed-ghost-orb) .ghost-orb-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb):not(.guaranteed-spirit-box) .spirit-box-indicator
 		)
 	)
 ) {
@@ -148,7 +148,7 @@
 .evidence-num-some:not(.evidence-num-one) .primary-evidence-indicator:nth-child(2 of
 	.primary-evidence-indicator:is(
 		.emf-level-5 .emf-level-5-indicator,
-		.fingerprints .fingerprints-indicator,
+		.ultraviolet .ultraviolet-indicator,
 		.ghost-writing .ghost-writing-indicator,
 		.freezing-temperatures .freezing-temperatures-indicator,
 		.dots-projector .dots-projector-indicator,
@@ -157,26 +157,26 @@
 	):not(
 		.evidence-num-all *,
 		.guaranteed-emf-level-5 .emf-level-5-indicator,
-		.guaranteed-fingerprints .fingerprints-indicator,
+		.guaranteed-ultraviolet .ultraviolet-indicator,
 		.guaranteed-ghost-writing .ghost-writing-indicator,
 		.guaranteed-freezing-temperatures .freezing-temperatures-indicator,
 		.guaranteed-dots-projector .dots-projector-indicator,
 		.guaranteed-ghost-orb .ghost-orb-indicator,
 		.guaranteed-spirit-box .spirit-box-indicator,
 		.evidence-num-one :is(
-			:is(.guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-emf-level-5) .emf-level-5-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-fingerprints) .fingerprints-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-ghost-writing) .ghost-writing-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-freezing-temperatures) .freezing-temperatures-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-dots-projector) .dots-projector-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-spirit-box):not(.guaranteed-ghost-orb) .ghost-orb-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb):not(.guaranteed-spirit-box) .spirit-box-indicator
+			:is(.guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-emf-level-5) .emf-level-5-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-ultraviolet) .ultraviolet-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-ghost-writing) .ghost-writing-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-freezing-temperatures) .freezing-temperatures-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-dots-projector) .dots-projector-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-spirit-box):not(.guaranteed-ghost-orb) .ghost-orb-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb):not(.guaranteed-spirit-box) .spirit-box-indicator
 		)
 	)
 ):nth-last-child(2 of
 	.primary-evidence-indicator:is(
 		.emf-level-5 .emf-level-5-indicator,
-		.fingerprints .fingerprints-indicator,
+		.ultraviolet .ultraviolet-indicator,
 		.ghost-writing .ghost-writing-indicator,
 		.freezing-temperatures .freezing-temperatures-indicator,
 		.dots-projector .dots-projector-indicator,
@@ -185,20 +185,20 @@
 	):not(
 		.evidence-num-all *,
 		.guaranteed-emf-level-5 .emf-level-5-indicator,
-		.guaranteed-fingerprints .fingerprints-indicator,
+		.guaranteed-ultraviolet .ultraviolet-indicator,
 		.guaranteed-ghost-writing .ghost-writing-indicator,
 		.guaranteed-freezing-temperatures .freezing-temperatures-indicator,
 		.guaranteed-dots-projector .dots-projector-indicator,
 		.guaranteed-ghost-orb .ghost-orb-indicator,
 		.guaranteed-spirit-box .spirit-box-indicator,
 		.evidence-num-one :is(
-			:is(.guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-emf-level-5) .emf-level-5-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-fingerprints) .fingerprints-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-ghost-writing) .ghost-writing-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-freezing-temperatures) .freezing-temperatures-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-dots-projector) .dots-projector-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-spirit-box):not(.guaranteed-ghost-orb) .ghost-orb-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb):not(.guaranteed-spirit-box) .spirit-box-indicator
+			:is(.guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-emf-level-5) .emf-level-5-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-ultraviolet) .ultraviolet-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-ghost-writing) .ghost-writing-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-freezing-temperatures) .freezing-temperatures-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-dots-projector) .dots-projector-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-spirit-box):not(.guaranteed-ghost-orb) .ghost-orb-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb):not(.guaranteed-spirit-box) .spirit-box-indicator
 		)
 	)
 ) {
@@ -210,7 +210,7 @@
 .evidence-num-some:not(.evidence-num-one) .primary-evidence-indicator:nth-child(3 of
 	.primary-evidence-indicator:is(
 		.emf-level-5 .emf-level-5-indicator,
-		.fingerprints .fingerprints-indicator,
+		.ultraviolet .ultraviolet-indicator,
 		.ghost-writing .ghost-writing-indicator,
 		.freezing-temperatures .freezing-temperatures-indicator,
 		.dots-projector .dots-projector-indicator,
@@ -219,26 +219,26 @@
 	):not(
 		.evidence-num-all *,
 		.guaranteed-emf-level-5 .emf-level-5-indicator,
-		.guaranteed-fingerprints .fingerprints-indicator,
+		.guaranteed-ultraviolet .ultraviolet-indicator,
 		.guaranteed-ghost-writing .ghost-writing-indicator,
 		.guaranteed-freezing-temperatures .freezing-temperatures-indicator,
 		.guaranteed-dots-projector .dots-projector-indicator,
 		.guaranteed-ghost-orb .ghost-orb-indicator,
 		.guaranteed-spirit-box .spirit-box-indicator,
 		.evidence-num-one :is(
-			:is(.guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-emf-level-5) .emf-level-5-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-fingerprints) .fingerprints-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-ghost-writing) .ghost-writing-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-freezing-temperatures) .freezing-temperatures-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-dots-projector) .dots-projector-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-spirit-box):not(.guaranteed-ghost-orb) .ghost-orb-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb):not(.guaranteed-spirit-box) .spirit-box-indicator
+			:is(.guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-emf-level-5) .emf-level-5-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-ultraviolet) .ultraviolet-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-ghost-writing) .ghost-writing-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-freezing-temperatures) .freezing-temperatures-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-dots-projector) .dots-projector-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-spirit-box):not(.guaranteed-ghost-orb) .ghost-orb-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb):not(.guaranteed-spirit-box) .spirit-box-indicator
 		)
 	)
 ):nth-last-child(1 of
 	.primary-evidence-indicator:is(
 		.emf-level-5 .emf-level-5-indicator,
-		.fingerprints .fingerprints-indicator,
+		.ultraviolet .ultraviolet-indicator,
 		.ghost-writing .ghost-writing-indicator,
 		.freezing-temperatures .freezing-temperatures-indicator,
 		.dots-projector .dots-projector-indicator,
@@ -247,20 +247,20 @@
 	):not(
 		.evidence-num-all *,
 		.guaranteed-emf-level-5 .emf-level-5-indicator,
-		.guaranteed-fingerprints .fingerprints-indicator,
+		.guaranteed-ultraviolet .ultraviolet-indicator,
 		.guaranteed-ghost-writing .ghost-writing-indicator,
 		.guaranteed-freezing-temperatures .freezing-temperatures-indicator,
 		.guaranteed-dots-projector .dots-projector-indicator,
 		.guaranteed-ghost-orb .ghost-orb-indicator,
 		.guaranteed-spirit-box .spirit-box-indicator,
 		.evidence-num-one :is(
-			:is(.guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-emf-level-5) .emf-level-5-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-fingerprints) .fingerprints-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-ghost-writing) .ghost-writing-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-freezing-temperatures) .freezing-temperatures-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-dots-projector) .dots-projector-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-spirit-box):not(.guaranteed-ghost-orb) .ghost-orb-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb):not(.guaranteed-spirit-box) .spirit-box-indicator
+			:is(.guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-emf-level-5) .emf-level-5-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-ultraviolet) .ultraviolet-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-ghost-writing) .ghost-writing-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-freezing-temperatures) .freezing-temperatures-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-dots-projector) .dots-projector-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-spirit-box):not(.guaranteed-ghost-orb) .ghost-orb-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb):not(.guaranteed-spirit-box) .spirit-box-indicator
 		)
 	)
 ) {
@@ -272,7 +272,7 @@
 .evidence-num-one .primary-evidence-indicator:nth-child(1 of
 	.primary-evidence-indicator:is(
 		.emf-level-5 .emf-level-5-indicator,
-		.fingerprints .fingerprints-indicator,
+		.ultraviolet .ultraviolet-indicator,
 		.ghost-writing .ghost-writing-indicator,
 		.freezing-temperatures .freezing-temperatures-indicator,
 		.dots-projector .dots-projector-indicator,
@@ -281,26 +281,26 @@
 	):not(
 		.evidence-num-all *,
 		.guaranteed-emf-level-5 .emf-level-5-indicator,
-		.guaranteed-fingerprints .fingerprints-indicator,
+		.guaranteed-ultraviolet .ultraviolet-indicator,
 		.guaranteed-ghost-writing .ghost-writing-indicator,
 		.guaranteed-freezing-temperatures .freezing-temperatures-indicator,
 		.guaranteed-dots-projector .dots-projector-indicator,
 		.guaranteed-ghost-orb .ghost-orb-indicator,
 		.guaranteed-spirit-box .spirit-box-indicator,
 		.evidence-num-one :is(
-			:is(.guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-emf-level-5) .emf-level-5-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-fingerprints) .fingerprints-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-ghost-writing) .ghost-writing-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-freezing-temperatures) .freezing-temperatures-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-dots-projector) .dots-projector-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-spirit-box):not(.guaranteed-ghost-orb) .ghost-orb-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb):not(.guaranteed-spirit-box) .spirit-box-indicator
+			:is(.guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-emf-level-5) .emf-level-5-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-ultraviolet) .ultraviolet-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-ghost-writing) .ghost-writing-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-freezing-temperatures) .freezing-temperatures-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-dots-projector) .dots-projector-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-spirit-box):not(.guaranteed-ghost-orb) .ghost-orb-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb):not(.guaranteed-spirit-box) .spirit-box-indicator
 		)
 	)
 ):nth-last-child(3 of
 	.primary-evidence-indicator:is(
 		.emf-level-5 .emf-level-5-indicator,
-		.fingerprints .fingerprints-indicator,
+		.ultraviolet .ultraviolet-indicator,
 		.ghost-writing .ghost-writing-indicator,
 		.freezing-temperatures .freezing-temperatures-indicator,
 		.dots-projector .dots-projector-indicator,
@@ -309,20 +309,20 @@
 	):not(
 		.evidence-num-all *,
 		.guaranteed-emf-level-5 .emf-level-5-indicator,
-		.guaranteed-fingerprints .fingerprints-indicator,
+		.guaranteed-ultraviolet .ultraviolet-indicator,
 		.guaranteed-ghost-writing .ghost-writing-indicator,
 		.guaranteed-freezing-temperatures .freezing-temperatures-indicator,
 		.guaranteed-dots-projector .dots-projector-indicator,
 		.guaranteed-ghost-orb .ghost-orb-indicator,
 		.guaranteed-spirit-box .spirit-box-indicator,
 		.evidence-num-one :is(
-			:is(.guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-emf-level-5) .emf-level-5-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-fingerprints) .fingerprints-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-ghost-writing) .ghost-writing-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-freezing-temperatures) .freezing-temperatures-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-dots-projector) .dots-projector-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-spirit-box):not(.guaranteed-ghost-orb) .ghost-orb-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb):not(.guaranteed-spirit-box) .spirit-box-indicator
+			:is(.guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-emf-level-5) .emf-level-5-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-ultraviolet) .ultraviolet-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-ghost-writing) .ghost-writing-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-freezing-temperatures) .freezing-temperatures-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-dots-projector) .dots-projector-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-spirit-box):not(.guaranteed-ghost-orb) .ghost-orb-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb):not(.guaranteed-spirit-box) .spirit-box-indicator
 		)
 	)
 ) {
@@ -335,7 +335,7 @@
 .evidence-num-one .primary-evidence-indicator:nth-child(2 of
 	.primary-evidence-indicator:is(
 		.emf-level-5 .emf-level-5-indicator,
-		.fingerprints .fingerprints-indicator,
+		.ultraviolet .ultraviolet-indicator,
 		.ghost-writing .ghost-writing-indicator,
 		.freezing-temperatures .freezing-temperatures-indicator,
 		.dots-projector .dots-projector-indicator,
@@ -344,26 +344,26 @@
 	):not(
 		.evidence-num-all *,
 		.guaranteed-emf-level-5 .emf-level-5-indicator,
-		.guaranteed-fingerprints .fingerprints-indicator,
+		.guaranteed-ultraviolet .ultraviolet-indicator,
 		.guaranteed-ghost-writing .ghost-writing-indicator,
 		.guaranteed-freezing-temperatures .freezing-temperatures-indicator,
 		.guaranteed-dots-projector .dots-projector-indicator,
 		.guaranteed-ghost-orb .ghost-orb-indicator,
 		.guaranteed-spirit-box .spirit-box-indicator,
 		.evidence-num-one :is(
-			:is(.guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-emf-level-5) .emf-level-5-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-fingerprints) .fingerprints-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-ghost-writing) .ghost-writing-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-freezing-temperatures) .freezing-temperatures-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-dots-projector) .dots-projector-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-spirit-box):not(.guaranteed-ghost-orb) .ghost-orb-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb):not(.guaranteed-spirit-box) .spirit-box-indicator
+			:is(.guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-emf-level-5) .emf-level-5-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-ultraviolet) .ultraviolet-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-ghost-writing) .ghost-writing-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-freezing-temperatures) .freezing-temperatures-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-dots-projector) .dots-projector-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-spirit-box):not(.guaranteed-ghost-orb) .ghost-orb-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb):not(.guaranteed-spirit-box) .spirit-box-indicator
 		)
 	)
 ):nth-last-child(2 of
 	.primary-evidence-indicator:is(
 		.emf-level-5 .emf-level-5-indicator,
-		.fingerprints .fingerprints-indicator,
+		.ultraviolet .ultraviolet-indicator,
 		.ghost-writing .ghost-writing-indicator,
 		.freezing-temperatures .freezing-temperatures-indicator,
 		.dots-projector .dots-projector-indicator,
@@ -372,20 +372,20 @@
 	):not(
 		.evidence-num-all *,
 		.guaranteed-emf-level-5 .emf-level-5-indicator,
-		.guaranteed-fingerprints .fingerprints-indicator,
+		.guaranteed-ultraviolet .ultraviolet-indicator,
 		.guaranteed-ghost-writing .ghost-writing-indicator,
 		.guaranteed-freezing-temperatures .freezing-temperatures-indicator,
 		.guaranteed-dots-projector .dots-projector-indicator,
 		.guaranteed-ghost-orb .ghost-orb-indicator,
 		.guaranteed-spirit-box .spirit-box-indicator,
 		.evidence-num-one :is(
-			:is(.guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-emf-level-5) .emf-level-5-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-fingerprints) .fingerprints-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-ghost-writing) .ghost-writing-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-freezing-temperatures) .freezing-temperatures-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-dots-projector) .dots-projector-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-spirit-box):not(.guaranteed-ghost-orb) .ghost-orb-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb):not(.guaranteed-spirit-box) .spirit-box-indicator
+			:is(.guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-emf-level-5) .emf-level-5-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-ultraviolet) .ultraviolet-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-ghost-writing) .ghost-writing-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-freezing-temperatures) .freezing-temperatures-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-dots-projector) .dots-projector-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-spirit-box):not(.guaranteed-ghost-orb) .ghost-orb-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb):not(.guaranteed-spirit-box) .spirit-box-indicator
 		)
 	)
 ) {
@@ -399,7 +399,7 @@
 .evidence-num-one .primary-evidence-indicator:nth-child(3 of
 	.primary-evidence-indicator:is(
 		.emf-level-5 .emf-level-5-indicator,
-		.fingerprints .fingerprints-indicator,
+		.ultraviolet .ultraviolet-indicator,
 		.ghost-writing .ghost-writing-indicator,
 		.freezing-temperatures .freezing-temperatures-indicator,
 		.dots-projector .dots-projector-indicator,
@@ -408,26 +408,26 @@
 	):not(
 		.evidence-num-all *,
 		.guaranteed-emf-level-5 .emf-level-5-indicator,
-		.guaranteed-fingerprints .fingerprints-indicator,
+		.guaranteed-ultraviolet .ultraviolet-indicator,
 		.guaranteed-ghost-writing .ghost-writing-indicator,
 		.guaranteed-freezing-temperatures .freezing-temperatures-indicator,
 		.guaranteed-dots-projector .dots-projector-indicator,
 		.guaranteed-ghost-orb .ghost-orb-indicator,
 		.guaranteed-spirit-box .spirit-box-indicator,
 		.evidence-num-one :is(
-			:is(.guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-emf-level-5) .emf-level-5-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-fingerprints) .fingerprints-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-ghost-writing) .ghost-writing-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-freezing-temperatures) .freezing-temperatures-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-dots-projector) .dots-projector-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-spirit-box):not(.guaranteed-ghost-orb) .ghost-orb-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb):not(.guaranteed-spirit-box) .spirit-box-indicator
+			:is(.guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-emf-level-5) .emf-level-5-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-ultraviolet) .ultraviolet-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-ghost-writing) .ghost-writing-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-freezing-temperatures) .freezing-temperatures-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-dots-projector) .dots-projector-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-spirit-box):not(.guaranteed-ghost-orb) .ghost-orb-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb):not(.guaranteed-spirit-box) .spirit-box-indicator
 		)
 	)
 ):nth-last-child(1 of
 	.primary-evidence-indicator:is(
 		.emf-level-5 .emf-level-5-indicator,
-		.fingerprints .fingerprints-indicator,
+		.ultraviolet .ultraviolet-indicator,
 		.ghost-writing .ghost-writing-indicator,
 		.freezing-temperatures .freezing-temperatures-indicator,
 		.dots-projector .dots-projector-indicator,
@@ -436,20 +436,20 @@
 	):not(
 		.evidence-num-all *,
 		.guaranteed-emf-level-5 .emf-level-5-indicator,
-		.guaranteed-fingerprints .fingerprints-indicator,
+		.guaranteed-ultraviolet .ultraviolet-indicator,
 		.guaranteed-ghost-writing .ghost-writing-indicator,
 		.guaranteed-freezing-temperatures .freezing-temperatures-indicator,
 		.guaranteed-dots-projector .dots-projector-indicator,
 		.guaranteed-ghost-orb .ghost-orb-indicator,
 		.guaranteed-spirit-box .spirit-box-indicator,
 		.evidence-num-one :is(
-			:is(.guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-emf-level-5) .emf-level-5-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-fingerprints) .fingerprints-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-ghost-writing) .ghost-writing-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-freezing-temperatures) .freezing-temperatures-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-dots-projector) .dots-projector-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-spirit-box):not(.guaranteed-ghost-orb) .ghost-orb-indicator,
-			:is(.guaranteed-emf-level-5, .guaranteed-fingerprints, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb):not(.guaranteed-spirit-box) .spirit-box-indicator
+			:is(.guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-emf-level-5) .emf-level-5-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-ultraviolet) .ultraviolet-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-ghost-writing) .ghost-writing-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-dots-projector, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-freezing-temperatures) .freezing-temperatures-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-ghost-orb, .guaranteed-spirit-box):not(.guaranteed-dots-projector) .dots-projector-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-spirit-box):not(.guaranteed-ghost-orb) .ghost-orb-indicator,
+			:is(.guaranteed-emf-level-5, .guaranteed-ultraviolet, .guaranteed-ghost-writing, .guaranteed-freezing-temperatures, .guaranteed-dots-projector, .guaranteed-ghost-orb):not(.guaranteed-spirit-box) .spirit-box-indicator
 		)
 	)
 ) {
