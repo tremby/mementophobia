@@ -162,7 +162,7 @@ function init() {
 		range.addEventListener("input", () => updateEvidence());
 	}
 	byId("hunt-sanity-range").addEventListener("input", () => updateHuntSanityRangeReadout());
-	byId("smudge-hunt-suspension-range").addEventListener("input", () => updateSmudgeHuntSuspensionRangeReadout());
+	byId("incense-hunt-suspension-range").addEventListener("input", () => updateIncenseHuntSuspensionRangeReadout());
 	for (const input of document.querySelectorAll("#ghosts input")) {
 		input.addEventListener("change", () => {
 				updateResetManualRuleOuts();
@@ -247,7 +247,7 @@ function handleDocumentKeyDown(event) {
 	if (event.key === "s") {
 		event.preventDefault();
 		startStopTimer();
-		byId("smudge-timer").scrollIntoView({ behavior: "smooth", block: "nearest" });
+		byId("incense-timer").scrollIntoView({ behavior: "smooth", block: "nearest" });
 		byId("timer-start-stop").focus();
 		return;
 	}
@@ -376,7 +376,7 @@ function updateAll() {
 	updateEvidenceNum();
 	updateTimerAdjust();
 	updateHuntSanityRangeReadout();
-	updateSmudgeHuntSuspensionRangeReadout();
+	updateIncenseHuntSuspensionRangeReadout();
 	updateClearRulingsByTempo();
 	updateResetManualRuleOuts();
 }
@@ -385,8 +385,8 @@ function updateHuntSanityRangeReadout() {
 	document.querySelector(`output[for="hunt-sanity-range"]`).textContent = percentFormatter.format(parseInt(byId("hunt-sanity-range").value) / 100);
 }
 
-function updateSmudgeHuntSuspensionRangeReadout() {
-	document.querySelector(`output[for="smudge-hunt-suspension-range"]`).textContent = secondsFormatter.format(parseInt(byId("smudge-hunt-suspension-range").value));
+function updateIncenseHuntSuspensionRangeReadout() {
+	document.querySelector(`output[for="incense-hunt-suspension-range"]`).textContent = secondsFormatter.format(parseInt(byId("incense-hunt-suspension-range").value));
 }
 
 function getGhostSpeedFactorsPreset() {
@@ -599,11 +599,11 @@ function getFuseBoxOn() {
 	}
 }
 
-function getGhostSmudged() {
+function getGhostIncensed() {
 	switch (getGhostSpeedFactorsPreset()) {
 		case "unknown": return null;
 		case "undetected": return false;
-		case "advanced": return radioTristate("ghost-smudged");
+		case "advanced": return radioTristate("ghost-incensed");
 	}
 }
 
@@ -1358,7 +1358,7 @@ function getSpeedMarkers() {
 		// limit it to 1.6m/s". But it also says the maximum speed is 3m/s, so how
 		// could it ever be greater than 3m/s?
 		// Observation: if a player is very close to a Deogen (so it's going very
-		// slowly) and they light a smudge stick (which would mean the Deogen no
+		// slowly) and they light incense (which would mean the Deogen no
 		// longer has a target), it smoothly speeds up over a couple of seconds.
 		// Assumption: it's out of date, or badly written. The Deogen quickly
 		// changes speed to 1.6m/s when it has no target.
@@ -1366,14 +1366,14 @@ function getSpeedMarkers() {
 			name: "Deogen",
 			speeds: [],
 		};
-		const smudged = getGhostSmudged();
-		if (smudged !== false) {
+		const incensed = getGhostIncensed();
+		if (incensed !== false) {
 			deogen.speeds.push({
-				name: "When targetless (smudged)",
+				name: "When targetless (incensed)",
 				speed: DEOGEN_SPEED_TARGETLESS,
 			});
 		}
-		if (smudged !== true) {
+		if (incensed !== true) {
 			const slowSpeed = {
 				name: `When ${meterFormatter.format(DEOGEN_MIN_DISTANCE)} or closer to the player`,
 				speed: DEOGEN_MIN_SPEED,
@@ -1609,20 +1609,20 @@ function getTimerAdjust() {
 	return parseInt(byId("timer-adjust").value) * 1e3;
 }
 
-function getHuntSafety(secondsSinceSmudge) {
+function getHuntSafety(secondsSinceIncense) {
 	let minSafe = Infinity;
 	let maxSafe = -Infinity;
 	for (const ghostContainer of document.querySelectorAll("#ghosts li")) {
 		if (ghostMarkedImpossible(ghostContainer)) continue;
 		const minSuspension = Math.min(...Array.from(ghostContainer.classList)
-			.filter((cls) => /^smudge-hunt-suspension-/.test(cls))
-			.map((cls) => parseInt(cls.substring("smudge-hunt-suspension-".length))));
+			.filter((cls) => /^incense-hunt-suspension-/.test(cls))
+			.map((cls) => parseInt(cls.substring("incense-hunt-suspension-".length))));
 		minSafe = Math.min(minSafe, minSuspension);
 		maxSafe = Math.max(maxSafe, minSuspension);
 	}
 	if (minSafe === Infinity || maxSafe === -Infinity) return null;
-	if (secondsSinceSmudge < minSafe) return "safe";
-	if (secondsSinceSmudge < maxSafe) return "caution";
+	if (secondsSinceIncense < minSafe) return "safe";
+	if (secondsSinceIncense < maxSafe) return "caution";
 	return "danger";
 }
 

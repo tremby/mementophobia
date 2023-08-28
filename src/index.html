@@ -64,8 +64,8 @@
 					</fieldset>
 				</div>
 			</form>
-			<div id="smudge-timer">
-				<h2>Smudge timer</h2>
+			<div id="incense-timer">
+				<h2>Incense timer</h2>
 				<div id="timer-grid">
 					<button type="button" id="timer-start-stop">
 						Start/stop
@@ -324,30 +324,30 @@
 									<p>Most ghosts have only a 50% chance to throw an item every ½ second.</p>
 								</details>
 							</fieldset>
-							<fieldset id="smudge-blindness-duration" class="smudge smudging smudged stick sticks blind blinded blinds blindness hunt confusion confused wander wandering lost aimless aimlessly moroi">
-								<legend>Smudge blindness duration</legend>
-								<span class="control-container"><input type="radio" name="smudge-blindness-duration" value="unknown" id="smudge-blindness-duration-unknown" checked> <label for="smudge-blindness-duration-unknown">unknown</label></span>
-								<span class="control-container"><input type="radio" name="smudge-blindness-duration" value="normal" id="smudge-blindness-duration-normal"> <label for="smudge-blindness-duration-normal">normal (6 sec)</label></span>
-								<span class="control-container"><input type="radio" name="smudge-blindness-duration" value="long" id="smudge-blindness-duration-long"> <label for="smudge-blindness-duration-long">long (12 sec)</label></span>
+							<fieldset id="incense-blindness-duration" class="incense incensed smudge smudging smudged stick sticks blind blinded blinds blindness hunt confusion confused wander wandering lost aimless aimlessly moroi">
+								<legend>Incense blindness duration</legend>
+								<span class="control-container"><input type="radio" name="incense-blindness-duration" value="unknown" id="incense-blindness-duration-unknown" checked> <label for="incense-blindness-duration-unknown">unknown</label></span>
+								<span class="control-container"><input type="radio" name="incense-blindness-duration" value="normal" id="incense-blindness-duration-normal"> <label for="incense-blindness-duration-normal">normal (6 sec)</label></span>
+								<span class="control-container"><input type="radio" name="incense-blindness-duration" value="long" id="incense-blindness-duration-long"> <label for="incense-blindness-duration-long">long (12 sec)</label></span>
 								<details>
 									<summary>Info</summary>
 									<p>
 										The amount of time the ghost wanders aimlessly
-										after being affected by a smudge stick during a hunt.
+										after being affected by incense during a hunt.
 									</p>
 								</details>
 							</fieldset>
-							<fieldset id="smudge-hunt-suspension" class="smudge smudging smudged stick sticks suspend suspends suspension suspended hunt stop stopped stops prevent prevents prevention prevented spirit demon">
-								<legend>Smudge hunt suspension</legend>
-								<span class="control-container centred-flex"><input type="range" name="smudge-hunt-suspension" value="180" min="0" max="180" step="30" list="smudge-hunt-suspension-markers" id="smudge-hunt-suspension-range"> ≤<output for="smudge-hunt-suspension-range">180 sec</output></span>
-								<datalist id="smudge-hunt-suspension-markers">
+							<fieldset id="incense-hunt-suspension" class="incense incensed smudge smudging smudged stick sticks suspend suspends suspension suspended hunt stop stopped stops prevent prevents prevention prevented spirit demon">
+								<legend>Incense hunt suspension</legend>
+								<span class="control-container centred-flex"><input type="range" name="incense-hunt-suspension" value="180" min="0" max="180" step="30" list="incense-hunt-suspension-markers" id="incense-hunt-suspension-range"> ≤<output for="incense-hunt-suspension-range">180 sec</output></span>
+								<datalist id="incense-hunt-suspension-markers">
 									<option value="60"></option>
 									<option value="90"></option>
 									<option value="180"></option>
 								</datalist>
 								<details>
 									<summary>Info</summary>
-									<p>Set this to the smallest observed time between a ghost being smudged and it attempting to hunt.</p>
+									<p>Set this to the smallest observed time between a ghost being incensed and it attempting to hunt.</p>
 									<p>You can use the timer above to help.</p>
 								</details>
 							</fieldset>
@@ -511,15 +511,15 @@
 									</p>
 								</details>
 							</fieldset>
-							<fieldset id="can-leave-room-while-smudged" class="behaviour behavior smudge smudging smudged stick sticks leave left leaving leaves vacate vacated vacating vacates roam roams roamed roaming wander wandering wanders wandered trap trapped traps trapping motion sensor paramic parabolic microphone mic yurei">
-								<legend>Can leave favourite room while smudged</legend>
-								<span class="control-container"><input type="radio" name="can-leave-room-while-smudged" value="unknown" id="can-leave-room-while-smudged-unknown" checked> <label for="can-leave-room-while-smudged-unknown">unknown</label></span>
-								<span class="control-container"><input type="radio" name="can-leave-room-while-smudged" value="yes" id="can-leave-room-while-smudged-yes"> <label for="can-leave-room-while-smudged-yes">confirmed</label></span>
-								<span class="control-container"><input type="radio" name="can-leave-room-while-smudged" value="no" id="can-leave-room-while-smudged-no"> <label for="can-leave-room-while-smudged-no">ruled out</label></span>
+							<fieldset id="can-leave-room-while-incensed" class="behaviour behavior incense incensed smudge smudging smudged stick sticks leave left leaving leaves vacate vacated vacating vacates roam roams roamed roaming wander wandering wanders wandered trap trapped traps trapping motion sensor paramic parabolic microphone mic yurei">
+								<legend>Can leave favourite room while incensed</legend>
+								<span class="control-container"><input type="radio" name="can-leave-room-while-incensed" value="unknown" id="can-leave-room-while-incensed-unknown" checked> <label for="can-leave-room-while-incensed-unknown">unknown</label></span>
+								<span class="control-container"><input type="radio" name="can-leave-room-while-incensed" value="yes" id="can-leave-room-while-incensed-yes"> <label for="can-leave-room-while-incensed-yes">confirmed</label></span>
+								<span class="control-container"><input type="radio" name="can-leave-room-while-incensed" value="no" id="can-leave-room-while-incensed-no"> <label for="can-leave-room-while-incensed-no">ruled out</label></span>
 								<details>
 									<summary>Info</summary>
 									<p>
-										If a ghost is in a smudged state and can roam outside its favourite room, this evidence can be confirmed.
+										If a ghost is in an incensed state and can roam outside its favourite room, this evidence can be confirmed.
 										A couple of ways to test for this are motion sensors and parabolic microphones.
 									</p>
 									<p>Note that ghost events and hunts don’t count for this secondary evidence.</p>
@@ -574,7 +574,7 @@
 								candle-as-crucifix-no
 								can-do-airball-yes
 								can-hunt-in-room-with-player-yes
-								can-leave-room-while-smudged-yes
+								can-leave-room-while-incensed-yes
 								can-multi-throw-no
 								can-turn-off-fuse-box-yes
 								can-turn-on-fuse-box-yes
@@ -595,8 +595,8 @@
 								shapeshifter-no
 								unusual-ultraviolet-no
 								shadow-during-cursed-ghost-event-no
-								smudge-blindness-duration-normal
-								smudge-hunt-suspension-180
+								incense-blindness-duration-normal
+								incense-hunt-suspension-180
 								sometimes-hides-ultraviolet-no sometimes-hides-ultraviolet-yes
 								speed-normal-yes
 								speedup-near-active-electronics-no
@@ -633,7 +633,7 @@
 								candle-as-crucifix-no
 								can-do-airball-yes
 								can-hunt-in-room-with-player-yes
-								can-leave-room-while-smudged-yes
+								can-leave-room-while-incensed-yes
 								can-multi-throw-no
 								can-turn-off-fuse-box-yes
 								can-turn-on-fuse-box-yes
@@ -654,8 +654,8 @@
 								shapeshifter-no
 								unusual-ultraviolet-no
 								shadow-during-cursed-ghost-event-no
-								smudge-blindness-duration-normal
-								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180
+								incense-blindness-duration-normal
+								incense-hunt-suspension-90 incense-hunt-suspension-120 incense-hunt-suspension-150 incense-hunt-suspension-180
 								sometimes-hides-ultraviolet-no sometimes-hides-ultraviolet-yes
 								speed-normal-yes
 								speedup-near-active-electronics-no
@@ -692,7 +692,7 @@
 								candle-as-crucifix-no
 								can-do-airball-yes
 								can-hunt-in-room-with-player-yes
-								can-leave-room-while-smudged-yes
+								can-leave-room-while-incensed-yes
 								can-multi-throw-no
 								can-turn-off-fuse-box-yes
 								can-turn-on-fuse-box-yes
@@ -713,8 +713,8 @@
 								shapeshifter-no
 								unusual-ultraviolet-no
 								shadow-during-cursed-ghost-event-no
-								smudge-blindness-duration-normal
-								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180
+								incense-blindness-duration-normal
+								incense-hunt-suspension-90 incense-hunt-suspension-120 incense-hunt-suspension-150 incense-hunt-suspension-180
 								sometimes-hides-ultraviolet-no
 								speed-normal-yes
 								speedup-near-active-electronics-no
@@ -752,7 +752,7 @@
 								candle-as-crucifix-no
 								can-do-airball-yes
 								can-hunt-in-room-with-player-yes
-								can-leave-room-while-smudged-yes
+								can-leave-room-while-incensed-yes
 								can-multi-throw-yes
 								can-turn-off-fuse-box-yes
 								can-turn-on-fuse-box-yes
@@ -773,8 +773,8 @@
 								shapeshifter-no
 								unusual-ultraviolet-no
 								shadow-during-cursed-ghost-event-no
-								smudge-blindness-duration-normal
-								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180
+								incense-blindness-duration-normal
+								incense-hunt-suspension-90 incense-hunt-suspension-120 incense-hunt-suspension-150 incense-hunt-suspension-180
 								sometimes-hides-ultraviolet-no
 								speed-normal-yes
 								speedup-near-active-electronics-no
@@ -811,7 +811,7 @@
 								candle-as-crucifix-no
 								can-do-airball-yes
 								can-hunt-in-room-with-player-yes
-								can-leave-room-while-smudged-yes
+								can-leave-room-while-incensed-yes
 								can-multi-throw-no
 								can-turn-off-fuse-box-yes
 								can-turn-on-fuse-box-yes
@@ -832,8 +832,8 @@
 								shapeshifter-no
 								unusual-ultraviolet-no
 								shadow-during-cursed-ghost-event-no
-								smudge-blindness-duration-normal
-								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180
+								incense-blindness-duration-normal
+								incense-hunt-suspension-90 incense-hunt-suspension-120 incense-hunt-suspension-150 incense-hunt-suspension-180
 								sometimes-hides-ultraviolet-no
 								speed-normal-yes
 								speedup-near-active-electronics-no
@@ -870,7 +870,7 @@
 								candle-as-crucifix-no
 								can-do-airball-yes
 								can-hunt-in-room-with-player-yes
-								can-leave-room-while-smudged-yes
+								can-leave-room-while-incensed-yes
 								can-multi-throw-no
 								can-turn-off-fuse-box-no
 								can-turn-on-fuse-box-yes
@@ -891,8 +891,8 @@
 								shapeshifter-no
 								unusual-ultraviolet-no
 								shadow-during-cursed-ghost-event-no
-								smudge-blindness-duration-normal
-								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180
+								incense-blindness-duration-normal
+								incense-hunt-suspension-90 incense-hunt-suspension-120 incense-hunt-suspension-150 incense-hunt-suspension-180
 								sometimes-hides-ultraviolet-no
 								speed-normal-yes
 								speedup-near-active-electronics-no
@@ -929,7 +929,7 @@
 								candle-as-crucifix-no
 								can-do-airball-yes
 								can-hunt-in-room-with-player-yes
-								can-leave-room-while-smudged-yes
+								can-leave-room-while-incensed-yes
 								can-multi-throw-no
 								can-turn-off-fuse-box-yes
 								can-turn-on-fuse-box-no
@@ -950,8 +950,8 @@
 								shapeshifter-no
 								unusual-ultraviolet-no
 								shadow-during-cursed-ghost-event-no
-								smudge-blindness-duration-normal
-								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180
+								incense-blindness-duration-normal
+								incense-hunt-suspension-90 incense-hunt-suspension-120 incense-hunt-suspension-150 incense-hunt-suspension-180
 								sometimes-hides-ultraviolet-no sometimes-hides-ultraviolet-yes
 								speed-normal-yes
 								speedup-near-active-electronics-no
@@ -989,7 +989,7 @@
 								candle-as-crucifix-no
 								can-do-airball-yes
 								can-hunt-in-room-with-player-yes
-								can-leave-room-while-smudged-yes
+								can-leave-room-while-incensed-yes
 								can-multi-throw-no
 								can-turn-off-fuse-box-yes
 								can-turn-on-fuse-box-yes
@@ -1010,8 +1010,8 @@
 								shapeshifter-no
 								unusual-ultraviolet-no
 								shadow-during-cursed-ghost-event-no
-								smudge-blindness-duration-normal
-								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180
+								incense-blindness-duration-normal
+								incense-hunt-suspension-90 incense-hunt-suspension-120 incense-hunt-suspension-150 incense-hunt-suspension-180
 								sometimes-hides-ultraviolet-no sometimes-hides-ultraviolet-yes
 								speed-normal-no
 								speedup-near-active-electronics-no
@@ -1048,7 +1048,7 @@
 								candle-as-crucifix-no
 								can-do-airball-yes
 								can-hunt-in-room-with-player-no
-								can-leave-room-while-smudged-yes
+								can-leave-room-while-incensed-yes
 								can-multi-throw-no
 								can-turn-off-fuse-box-yes
 								can-turn-on-fuse-box-yes
@@ -1069,8 +1069,8 @@
 								shapeshifter-no
 								unusual-ultraviolet-no
 								shadow-during-cursed-ghost-event-yes
-								smudge-blindness-duration-normal
-								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180
+								incense-blindness-duration-normal
+								incense-hunt-suspension-90 incense-hunt-suspension-120 incense-hunt-suspension-150 incense-hunt-suspension-180
 								sometimes-hides-ultraviolet-no sometimes-hides-ultraviolet-yes
 								speed-normal-yes
 								speedup-near-active-electronics-no
@@ -1107,7 +1107,7 @@
 								candle-as-crucifix-no
 								can-do-airball-yes
 								can-hunt-in-room-with-player-yes
-								can-leave-room-while-smudged-yes
+								can-leave-room-while-incensed-yes
 								can-multi-throw-no
 								can-turn-off-fuse-box-yes
 								can-turn-on-fuse-box-yes
@@ -1128,8 +1128,8 @@
 								shapeshifter-no
 								unusual-ultraviolet-no
 								shadow-during-cursed-ghost-event-no
-								smudge-blindness-duration-normal
-								smudge-hunt-suspension-60 smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180
+								incense-blindness-duration-normal
+								incense-hunt-suspension-60 incense-hunt-suspension-90 incense-hunt-suspension-120 incense-hunt-suspension-150 incense-hunt-suspension-180
 								sometimes-hides-ultraviolet-no
 								speed-normal-yes
 								speedup-near-active-electronics-no
@@ -1166,7 +1166,7 @@
 								candle-as-crucifix-no
 								can-do-airball-yes
 								can-hunt-in-room-with-player-yes
-								can-leave-room-while-smudged-no
+								can-leave-room-while-incensed-no
 								can-multi-throw-no
 								can-turn-off-fuse-box-yes
 								can-turn-on-fuse-box-yes
@@ -1187,8 +1187,8 @@
 								shapeshifter-no
 								unusual-ultraviolet-no
 								shadow-during-cursed-ghost-event-no
-								smudge-blindness-duration-normal
-								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180
+								incense-blindness-duration-normal
+								incense-hunt-suspension-90 incense-hunt-suspension-120 incense-hunt-suspension-150 incense-hunt-suspension-180
 								sometimes-hides-ultraviolet-no sometimes-hides-ultraviolet-yes
 								speed-normal-yes
 								speedup-near-active-electronics-no
@@ -1226,7 +1226,7 @@
 								candle-as-crucifix-no
 								can-do-airball-no
 								can-hunt-in-room-with-player-yes
-								can-leave-room-while-smudged-yes
+								can-leave-room-while-incensed-yes
 								can-multi-throw-no
 								can-turn-off-fuse-box-yes
 								can-turn-on-fuse-box-yes
@@ -1247,8 +1247,8 @@
 								shapeshifter-no
 								unusual-ultraviolet-no
 								shadow-during-cursed-ghost-event-no
-								smudge-blindness-duration-normal
-								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180
+								incense-blindness-duration-normal
+								incense-hunt-suspension-90 incense-hunt-suspension-120 incense-hunt-suspension-150 incense-hunt-suspension-180
 								sometimes-hides-ultraviolet-no sometimes-hides-ultraviolet-yes
 								speed-normal-yes
 								speedup-near-active-electronics-no
@@ -1285,7 +1285,7 @@
 								candle-as-crucifix-no
 								can-do-airball-yes
 								can-hunt-in-room-with-player-yes
-								can-leave-room-while-smudged-yes
+								can-leave-room-while-incensed-yes
 								can-multi-throw-no
 								can-turn-off-fuse-box-yes
 								can-turn-on-fuse-box-yes
@@ -1306,8 +1306,8 @@
 								shapeshifter-no
 								unusual-ultraviolet-no
 								shadow-during-cursed-ghost-event-no
-								smudge-blindness-duration-normal
-								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180
+								incense-blindness-duration-normal
+								incense-hunt-suspension-90 incense-hunt-suspension-120 incense-hunt-suspension-150 incense-hunt-suspension-180
 								sometimes-hides-ultraviolet-no sometimes-hides-ultraviolet-yes
 								speed-normal-yes
 								speedup-near-active-electronics-no
@@ -1344,7 +1344,7 @@
 								candle-as-crucifix-no
 								can-do-airball-yes
 								can-hunt-in-room-with-player-yes
-								can-leave-room-while-smudged-yes
+								can-leave-room-while-incensed-yes
 								can-multi-throw-no
 								can-turn-off-fuse-box-yes
 								can-turn-on-fuse-box-yes
@@ -1365,8 +1365,8 @@
 								shapeshifter-no
 								unusual-ultraviolet-no
 								shadow-during-cursed-ghost-event-no
-								smudge-blindness-duration-normal
-								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180
+								incense-blindness-duration-normal
+								incense-hunt-suspension-90 incense-hunt-suspension-120 incense-hunt-suspension-150 incense-hunt-suspension-180
 								sometimes-hides-ultraviolet-no
 								speed-normal-no
 								speedup-near-active-electronics-no
@@ -1403,7 +1403,7 @@
 								candle-as-crucifix-no
 								can-do-airball-yes
 								can-hunt-in-room-with-player-yes
-								can-leave-room-while-smudged-yes
+								can-leave-room-while-incensed-yes
 								can-multi-throw-no
 								can-turn-off-fuse-box-yes
 								can-turn-on-fuse-box-yes
@@ -1424,8 +1424,8 @@
 								shapeshifter-no
 								unusual-ultraviolet-no
 								shadow-during-cursed-ghost-event-no
-								smudge-blindness-duration-normal
-								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180
+								incense-blindness-duration-normal
+								incense-hunt-suspension-90 incense-hunt-suspension-120 incense-hunt-suspension-150 incense-hunt-suspension-180
 								sometimes-hides-ultraviolet-no
 								speed-normal-yes
 								speedup-near-active-electronics-no
@@ -1462,7 +1462,7 @@
 								candle-as-crucifix-no
 								can-do-airball-yes
 								can-hunt-in-room-with-player-yes
-								can-leave-room-while-smudged-yes
+								can-leave-room-while-incensed-yes
 								can-multi-throw-no
 								can-turn-off-fuse-box-yes
 								can-turn-on-fuse-box-yes
@@ -1483,8 +1483,8 @@
 								shapeshifter-no
 								unusual-ultraviolet-no
 								shadow-during-cursed-ghost-event-no
-								smudge-blindness-duration-normal
-								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180
+								incense-blindness-duration-normal
+								incense-hunt-suspension-90 incense-hunt-suspension-120 incense-hunt-suspension-150 incense-hunt-suspension-180
 								sometimes-hides-ultraviolet-no
 								speed-normal-yes
 								speedup-near-active-electronics-no
@@ -1521,7 +1521,7 @@
 								candle-as-crucifix-yes
 								can-do-airball-yes
 								can-hunt-in-room-with-player-yes
-								can-leave-room-while-smudged-yes
+								can-leave-room-while-incensed-yes
 								can-multi-throw-no
 								can-turn-off-fuse-box-yes
 								can-turn-on-fuse-box-yes
@@ -1542,8 +1542,8 @@
 								shapeshifter-no
 								unusual-ultraviolet-no
 								shadow-during-cursed-ghost-event-no
-								smudge-blindness-duration-normal
-								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180
+								incense-blindness-duration-normal
+								incense-hunt-suspension-90 incense-hunt-suspension-120 incense-hunt-suspension-150 incense-hunt-suspension-180
 								sometimes-hides-ultraviolet-no sometimes-hides-ultraviolet-yes
 								speed-normal-yes
 								speedup-near-active-electronics-no
@@ -1581,7 +1581,7 @@
 								candle-as-crucifix-no
 								can-do-airball-yes
 								can-hunt-in-room-with-player-yes
-								can-leave-room-while-smudged-yes
+								can-leave-room-while-incensed-yes
 								can-multi-throw-no
 								can-turn-off-fuse-box-yes
 								can-turn-on-fuse-box-yes
@@ -1602,8 +1602,8 @@
 								shapeshifter-no
 								unusual-ultraviolet-no
 								shadow-during-cursed-ghost-event-no
-								smudge-blindness-duration-normal
-								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180
+								incense-blindness-duration-normal
+								incense-hunt-suspension-90 incense-hunt-suspension-120 incense-hunt-suspension-150 incense-hunt-suspension-180
 								sometimes-hides-ultraviolet-no sometimes-hides-ultraviolet-yes
 								speed-normal-no
 								speedup-near-active-electronics-no
@@ -1640,7 +1640,7 @@
 								candle-as-crucifix-no
 								can-do-airball-yes
 								can-hunt-in-room-with-player-yes
-								can-leave-room-while-smudged-yes
+								can-leave-room-while-incensed-yes
 								can-multi-throw-no
 								can-turn-off-fuse-box-yes
 								can-turn-on-fuse-box-yes
@@ -1661,8 +1661,8 @@
 								shapeshifter-no
 								unusual-ultraviolet-no
 								shadow-during-cursed-ghost-event-no
-								smudge-blindness-duration-normal
-								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180
+								incense-blindness-duration-normal
+								incense-hunt-suspension-90 incense-hunt-suspension-120 incense-hunt-suspension-150 incense-hunt-suspension-180
 								sometimes-hides-ultraviolet-no sometimes-hides-ultraviolet-yes
 								speed-normal-yes speed-normal-no
 								speedup-near-active-electronics-yes
@@ -1699,7 +1699,7 @@
 								candle-as-crucifix-no
 								can-do-airball-yes
 								can-hunt-in-room-with-player-yes
-								can-leave-room-while-smudged-yes
+								can-leave-room-while-incensed-yes
 								can-multi-throw-no
 								can-turn-off-fuse-box-yes
 								can-turn-on-fuse-box-yes
@@ -1720,8 +1720,8 @@
 								shapeshifter-yes
 								unusual-ultraviolet-yes
 								shadow-during-cursed-ghost-event-no
-								smudge-blindness-duration-normal
-								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180
+								incense-blindness-duration-normal
+								incense-hunt-suspension-90 incense-hunt-suspension-120 incense-hunt-suspension-150 incense-hunt-suspension-180
 								sometimes-hides-ultraviolet-yes
 								speed-normal-yes
 								speedup-near-active-electronics-no
@@ -1759,7 +1759,7 @@
 								candle-as-crucifix-yes candle-as-crucifix-no
 								can-do-airball-yes
 								can-hunt-in-room-with-player-yes
-								can-leave-room-while-smudged-yes
+								can-leave-room-while-incensed-yes
 								can-multi-throw-yes can-multi-throw-no
 								can-turn-off-fuse-box-yes
 								can-turn-on-fuse-box-yes
@@ -1780,8 +1780,8 @@
 								shapeshifter-yes shapeshifter-no
 								unusual-ultraviolet-yes unusual-ultraviolet-no
 								shadow-during-cursed-ghost-event-yes shadow-during-cursed-ghost-event-no
-								smudge-blindness-duration-normal smudge-blindness-duration-long
-								smudge-hunt-suspension-60 smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180
+								incense-blindness-duration-normal incense-blindness-duration-long
+								incense-hunt-suspension-60 incense-hunt-suspension-90 incense-hunt-suspension-120 incense-hunt-suspension-150 incense-hunt-suspension-180
 								sometimes-hides-ultraviolet-yes sometimes-hides-ultraviolet-no
 								speed-normal-yes speed-normal-no
 								speedup-near-active-electronics-yes speedup-near-active-electronics-no
@@ -1818,7 +1818,7 @@
 								candle-as-crucifix-no
 								can-do-airball-yes
 								can-hunt-in-room-with-player-yes
-								can-leave-room-while-smudged-yes
+								can-leave-room-while-incensed-yes
 								can-multi-throw-no
 								can-turn-off-fuse-box-yes
 								can-turn-on-fuse-box-yes
@@ -1839,8 +1839,8 @@
 								shapeshifter-no
 								unusual-ultraviolet-no
 								shadow-during-cursed-ghost-event-no
-								smudge-blindness-duration-long
-								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180
+								incense-blindness-duration-long
+								incense-hunt-suspension-90 incense-hunt-suspension-120 incense-hunt-suspension-150 incense-hunt-suspension-180
 								sometimes-hides-ultraviolet-no sometimes-hides-ultraviolet-yes
 								speed-normal-no
 								speedup-near-active-electronics-no
@@ -1878,7 +1878,7 @@
 								candle-as-crucifix-no
 								can-do-airball-yes
 								can-hunt-in-room-with-player-yes
-								can-leave-room-while-smudged-yes
+								can-leave-room-while-incensed-yes
 								can-multi-throw-no
 								can-turn-off-fuse-box-yes
 								can-turn-on-fuse-box-yes
@@ -1899,8 +1899,8 @@
 								shapeshifter-no
 								unusual-ultraviolet-no
 								shadow-during-cursed-ghost-event-no
-								smudge-blindness-duration-normal
-								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180
+								incense-blindness-duration-normal
+								incense-hunt-suspension-90 incense-hunt-suspension-120 incense-hunt-suspension-150 incense-hunt-suspension-180
 								sometimes-hides-ultraviolet-no sometimes-hides-ultraviolet-yes
 								speed-normal-no
 								speedup-near-active-electronics-no
@@ -1937,7 +1937,7 @@
 								candle-as-crucifix-no
 								can-do-airball-yes
 								can-hunt-in-room-with-player-yes
-								can-leave-room-while-smudged-yes
+								can-leave-room-while-incensed-yes
 								can-multi-throw-no
 								can-turn-off-fuse-box-yes
 								can-turn-on-fuse-box-yes
@@ -1958,8 +1958,8 @@
 								shapeshifter-no
 								unusual-ultraviolet-no
 								shadow-during-cursed-ghost-event-no
-								smudge-blindness-duration-normal
-								smudge-hunt-suspension-90 smudge-hunt-suspension-120 smudge-hunt-suspension-150 smudge-hunt-suspension-180
+								incense-blindness-duration-normal
+								incense-hunt-suspension-90 incense-hunt-suspension-120 incense-hunt-suspension-150 incense-hunt-suspension-180
 								sometimes-hides-ultraviolet-no sometimes-hides-ultraviolet-yes
 								speed-normal-no
 								speedup-near-active-electronics-no
@@ -2103,10 +2103,10 @@
 								</div>
 							</fieldset>
 							<fieldset>
-								<legend><label for="ghost-smudged">Ghost is smudged</label></legend>
-								<label><input type="radio" name="ghost-smudged" value="unknown" checked> unknown</label>
-								<label><input type="radio" name="ghost-smudged" value="yes"> yes</label>
-								<label><input type="radio" name="ghost-smudged" value="no"> no</label>
+								<legend><label for="ghost-incensed">Ghost is incensed</label></legend>
+								<label><input type="radio" name="ghost-incensed" value="unknown" checked> unknown</label>
+								<label><input type="radio" name="ghost-incensed" value="yes"> yes</label>
+								<label><input type="radio" name="ghost-incensed" value="no"> no</label>
 							</fieldset>
 						</div>
 					</fieldset>
