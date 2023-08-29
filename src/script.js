@@ -218,7 +218,7 @@ function init() {
 	resizeObserver.observe(byId("tap-trace"));
 	resizeTapTraceCanvas();
 	for (const counter of document.querySelectorAll(".confidence-counter")) {
-		counter.addEventListener("change", () => updateConfidenceReadout(counter));
+		counter.addEventListener("input", () => updateConfidenceReadout(counter));
 	}
 }
 
