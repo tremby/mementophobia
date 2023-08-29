@@ -1647,12 +1647,16 @@ function updateConfidenceReadouts() {
 }
 
 function updateConfidenceReadout(counter) {
+	const output = document.querySelector(`output[for="${counter.id}"]`);
+	const count = parseInt(counter.value);
+	if (isNaN(count)) {
+		output.innerText = "…";
+		return;
+	}
 	const [numerator, denominator] = counter.dataset.chance.split("/").map((strnum) => parseInt(strnum));
 	const chance = numerator / denominator;
 	const invChance = 1 - chance;
-	const count = parseInt(counter.value);
 	const confidence = 1 - Math.pow(invChance, count);
-	const output = document.querySelector(`output[for="${counter.id}"]`);
 	output.innerText = `${Math.round(100 * confidence)}%`;
 }
 
