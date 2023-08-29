@@ -211,7 +211,10 @@
 									</p>
 									<p>
 										The obake has a 1 in 15 chance to choose a different ghost model for each period of visibility.
-										To rule this evidence out with 95% confidence, you need to see the same ghost model for 44 <!-- ceil(log_(14/15)(0.05)) --> periods of visibility during hunts.
+									</p>
+									<p>
+										Seeing the same ghost model for <input class="confidence-counter" data-chance="1/15" type="number" min="0" value="0" id="shapeshift-same-model-count" size="3"> periods of visibility
+										means this evidence can be ruled out with <output for="shapeshift-same-model-count">0%</output> confidence.
 									</p>
 								</details>
 							</fieldset>
@@ -434,7 +437,10 @@
 									<p>There’s an <a href="https://phasmophobia.fandom.com/wiki/Banshee?so=search#Abilities" rel="noopener">audio example on the Phasmophobia wiki</a>.</p>
 									<p>
 										Each time the banshee makes a noise in the parabolic microphone, it has a ⅓ chance of screaming instead of making the usual whisper or footstep sound.
-										To rule this evidence out with 95% confidence, you need to hear 8 <!-- ceil(log_⅔(0.05)) --> footsteps or whispers through the parabolic microphone.
+									</p>
+									<p>
+										Hearing <input class="confidence-counter" data-chance="1/3" type="number" min="0" value="0" id="paramic-not-scream-count" size="3"> footsteps or whispers and no screams through the parabolic microphone
+										means this evidence can be ruled out with <output for="paramic-not-scream-count">0%</output> confidence.
 									</p>
 								</details>
 							</fieldset>
@@ -488,11 +494,14 @@
 										Ghosts with this trait have a reduced rate.
 									</p>
 									<p>
-										The obake has a 75% chance of leaving ultraviolet evidence.
-										To rule this evidence out with 95% confidence, you need to see 11 <!-- ceil(log_¾(0.05)) --> separate pieces of ultraviolet evidence after noticing suitable interactions.
+										The obake has a ¼ chance of hiding ultraviolet evidence.
 									</p>
 									<p>
-										This can be confirmed if ultraviolet evidence has been seen,
+										Seeing <input class="confidence-counter" data-chance="1/4" type="number" min="0" value="0" id="uv-evidence-count" size="3"> separate pieces of ultraviolet evidence and none missing
+										means this evidence can be ruled out with <output for="uv-evidence-count">0%</output> confidence.
+									</p>
+									<p>
+										This evidence can be confirmed if ultraviolet evidence has been seen,
 										and then later an interaction is observed which is suitable for ultraviolet evidence but does not leave any.
 									</p>
 								</details>
@@ -507,7 +516,10 @@
 									<p>Ghosts with this trait have a certain chance of leaving <a href="https://phasmophobia.fandom.com/wiki/Obake#Abilities">unusual ultraviolet evidence</a>.</p>
 									<p>
 										The obake has a ⅙ chance of leaving unusual ultraviolet evidence each time it leaves ultraviolet evidence.
-										To rule this evidence out with 95% confidence, you need to see 17 <!-- ceil(log_⅚(0.05)) --> separate regular pieces of ultraviolet evidence.
+									</p>
+									<p>
+										Seeing <input class="confidence-counter" data-chance="1/6" type="number" min="0" value="0" id="normal-uv-evidence-count" size="3"> separate regular pieces of ultraviolet evidence
+										means this evidence can be ruled out with <output for="normal-uv-evidence-count">0%</output> confidence.
 									</p>
 								</details>
 							</fieldset>

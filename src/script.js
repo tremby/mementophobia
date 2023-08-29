@@ -217,6 +217,9 @@ function init() {
 	const resizeObserver = new ResizeObserver(() => resizeTapTraceCanvas());
 	resizeObserver.observe(byId("tap-trace"));
 	resizeTapTraceCanvas();
+	for (const counter of document.querySelectorAll(".confidence-counter")) {
+		counter.addEventListener("change", () => updateConfidenceReadout(counter));
+	}
 }
 
 function handleDocumentKeyDown(event) {
@@ -379,6 +382,7 @@ function updateAll() {
 	updateIncenseHuntSuspensionRangeReadout();
 	updateClearRulingsByTempo();
 	updateResetManualRuleOuts();
+	updateConfidenceReadouts();
 }
 
 function updateHuntSanityRangeReadout() {
@@ -1634,6 +1638,22 @@ function updateTimerReadout() {
 	readout.classList.toggle("caution", safety === "caution");
 	readout.classList.toggle("danger", safety === "danger");
 	readout.innerText = timerFormatter.format(seconds);
+}
+
+function updateConfidenceReadouts() {
+	for (const counter of document.querySelectorAll(".confidence-counter")) {
+		updateConfidenceReadout(counter);
+	}
+}
+
+function updateConfidenceReadout(counter) {
+	const [numerator, denominator] = counter.dataset.chance.split("/").map((strnum) => parseInt(strnum));
+	const chance = numerator / denominator;
+	const invChance = 1 - chance;
+	const count = parseInt(counter.value);
+	const confidence = 1 - Math.pow(invChance, count);
+	const output = document.querySelector(`output[for="${counter.id}"]`);
+	output.innerText = `${Math.round(100 * confidence)}%`;
 }
 
 init();
