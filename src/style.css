@@ -220,6 +220,7 @@ input[disabled] {
 #primary-evidence {
 	grid-template-rows: repeat(4, auto);
 	grid-auto-flow: column;
+	grid-auto-columns: 1fr;
 }
 #secondary-evidence {
 	grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
