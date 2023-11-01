@@ -426,11 +426,11 @@
 								<span class="control-container"><input type="radio" name="dots-projector-naked-eye" value="yes" id="dots-projector-naked-eye-yes"> <label for="dots-projector-naked-eye-yes">confirmed</label></span>
 								<span class="control-container"><input type="radio" name="dots-projector-naked-eye" value="no" id="dots-projector-naked-eye-no"> <label for="dots-projector-naked-eye-no">ruled out</label></span>
 							</fieldset>
-							<fieldset id="firelight-as-crucifix" class="behaviour behavior firelight firelights candle candles lantern lanterns flame flames fire fires campfire campfires burner burners stove stoves lighter lighters crucifix crucifixes cross crosses burn burnt burned burning burns blow blows blew blowing hunt hunts hunting prevent preventing prevention prevents onryo">
-								<legend>Uses firelights as crucifixes</legend>
-								<span class="control-container"><input type="radio" name="firelight-as-crucifix" value="unknown" id="firelight-as-crucifix-unknown" checked> <label for="firelight-as-crucifix-unknown">unknown</label></span>
-								<span class="control-container"><input type="radio" name="firelight-as-crucifix" value="yes" id="firelight-as-crucifix-yes"> <label for="firelight-as-crucifix-yes">confirmed</label></span>
-								<span class="control-container"><input type="radio" name="firelight-as-crucifix" value="no" id="firelight-as-crucifix-no"> <label for="firelight-as-crucifix-no">ruled out</label></span>
+							<fieldset id="blow-firelight-instead-of-hunt" class="behaviour behavior firelight firelights candle candles lantern lanterns flame flames fire fires campfire campfires burner burners stove stoves lighter lighters crucifix crucifixes cross crosses burn burnt burned burning burns blow blows blew blowing hunt hunts hunting prevent preventing prevention prevents onryo">
+								<legend>Blows out flames instead of hunting</legend>
+								<span class="control-container"><input type="radio" name="blow-firelight-instead-of-hunt" value="unknown" id="blow-firelight-instead-of-hunt-unknown" checked> <label for="blow-firelight-instead-of-hunt-unknown">unknown</label></span>
+								<span class="control-container"><input type="radio" name="blow-firelight-instead-of-hunt" value="yes" id="blow-firelight-instead-of-hunt-yes"> <label for="blow-firelight-instead-of-hunt-yes">confirmed</label></span>
+								<span class="control-container"><input type="radio" name="blow-firelight-instead-of-hunt" value="no" id="blow-firelight-instead-of-hunt-no"> <label for="blow-firelight-instead-of-hunt-no">ruled out</label></span>
 								<details>
 									<summary>Info</summary>
 									<p>
@@ -438,9 +438,12 @@
 										If hunts are suspended or only then happen from outside the area, this evidence can be ruled in with decent confidence.
 									</p>
 									<p>
-										A way to rule this out is to put one or more firelights near a crucifix and keep them lit.
-										If the crucifix burns while at least one firelight is still lit, this evidence can be ruled out, since ghosts with this trait put out the firelight with a higher priority.
+										If a hunt starts within 4 metres of a lit firelight, this can be ruled out.
+										To be certain, rely on the fact that when a hunt is triggered, ghosts with this trait put out firelights with higher priority than burning crucifixes:
+										put a crucifix right under one or more firelights.
+										If the crucifix burns while at least one firelight right by it is still lit, this evidence can be ruled out.
 									</p>
+									<p>Note that if the ghost blows out a firelight, it does not reset the hunt cooldown timer, unlike when a crucifix is burnt.</p>
 								</details>
 							</fieldset>
 							<fieldset id="paramic-scream" class="behaviour behavior sound sounds audio paramic parabolic microphone mic scream screams screaming yell yells yelling shriek shrieks shrieking cry cries crying whisper whispering whispered banshee">
@@ -598,8 +601,8 @@
 								ghost-writing emf-level-5 spirit-box
 								ages-no
 								blink-normal
+								blow-firelight-instead-of-hunt-no
 								can-change-favourite-room-yes
-								firelight-as-crucifix-no
 								can-do-airball-yes
 								can-hunt-in-room-with-player-yes
 								can-leave-room-while-incensed-yes
@@ -658,8 +661,8 @@
 								dots-projector emf-level-5 spirit-box
 								ages-no
 								blink-normal
+								blow-firelight-instead-of-hunt-no
 								can-change-favourite-room-yes
-								firelight-as-crucifix-no
 								can-do-airball-yes
 								can-hunt-in-room-with-player-yes
 								can-leave-room-while-incensed-yes
@@ -718,8 +721,8 @@
 								dots-projector ultraviolet spirit-box
 								ages-no
 								blink-long
+								blow-firelight-instead-of-hunt-no
 								can-change-favourite-room-yes
-								firelight-as-crucifix-no
 								can-do-airball-yes
 								can-hunt-in-room-with-player-yes
 								can-leave-room-while-incensed-yes
@@ -779,8 +782,8 @@
 								ghost-writing ultraviolet spirit-box
 								ages-no
 								blink-normal
+								blow-firelight-instead-of-hunt-no
 								can-change-favourite-room-yes
-								firelight-as-crucifix-no
 								can-do-airball-yes
 								can-hunt-in-room-with-player-yes
 								can-leave-room-while-incensed-yes
@@ -839,8 +842,8 @@
 								dots-projector ghost-orb ultraviolet
 								ages-no
 								blink-normal
+								blow-firelight-instead-of-hunt-no
 								can-change-favourite-room-yes
-								firelight-as-crucifix-no
 								can-do-airball-yes
 								can-hunt-in-room-with-player-yes
 								can-leave-room-while-incensed-yes
@@ -899,8 +902,8 @@
 								emf-level-5 ultraviolet freezing-temperatures
 								ages-no
 								blink-normal
+								blow-firelight-instead-of-hunt-no
 								can-change-favourite-room-yes
-								firelight-as-crucifix-no
 								can-do-airball-yes
 								can-hunt-in-room-with-player-yes
 								can-leave-room-while-incensed-yes
@@ -959,8 +962,8 @@
 								ghost-writing ghost-orb spirit-box
 								ages-no
 								blink-normal
+								blow-firelight-instead-of-hunt-no
 								can-change-favourite-room-yes
-								firelight-as-crucifix-no
 								can-do-airball-yes
 								can-hunt-in-room-with-player-yes
 								can-leave-room-while-incensed-yes
@@ -1020,8 +1023,8 @@
 								ghost-writing ghost-orb freezing-temperatures
 								ages-no
 								blink-normal
+								blow-firelight-instead-of-hunt-no
 								can-change-favourite-room-yes
-								firelight-as-crucifix-no
 								can-do-airball-yes
 								can-hunt-in-room-with-player-yes
 								can-leave-room-while-incensed-yes
@@ -1080,8 +1083,8 @@
 								ghost-writing emf-level-5 freezing-temperatures
 								ages-no
 								blink-normal
+								blow-firelight-instead-of-hunt-no
 								can-change-favourite-room-yes
-								firelight-as-crucifix-no
 								can-do-airball-yes
 								can-hunt-in-room-with-player-no
 								can-leave-room-while-incensed-yes
@@ -1140,8 +1143,8 @@
 								ghost-writing ultraviolet freezing-temperatures
 								ages-no
 								blink-normal
+								blow-firelight-instead-of-hunt-no
 								can-change-favourite-room-yes
-								firelight-as-crucifix-no
 								can-do-airball-yes
 								can-hunt-in-room-with-player-yes
 								can-leave-room-while-incensed-yes
@@ -1200,8 +1203,8 @@
 								dots-projector ghost-orb freezing-temperatures
 								ages-no
 								blink-normal
+								blow-firelight-instead-of-hunt-no
 								can-change-favourite-room-yes
-								firelight-as-crucifix-no
 								can-do-airball-yes
 								can-hunt-in-room-with-player-yes
 								can-leave-room-while-incensed-no
@@ -1261,8 +1264,8 @@
 								dots-projector emf-level-5 freezing-temperatures
 								ages-no
 								blink-short
+								blow-firelight-instead-of-hunt-no
 								can-change-favourite-room-yes
-								firelight-as-crucifix-no
 								can-do-airball-no
 								can-hunt-in-room-with-player-yes
 								can-leave-room-while-incensed-yes
@@ -1321,8 +1324,8 @@
 								dots-projector ghost-orb spirit-box
 								ages-no
 								blink-normal
+								blow-firelight-instead-of-hunt-no
 								can-change-favourite-room-yes
-								firelight-as-crucifix-no
 								can-do-airball-yes
 								can-hunt-in-room-with-player-yes
 								can-leave-room-while-incensed-yes
@@ -1381,8 +1384,8 @@
 								ghost-orb ultraviolet freezing-temperatures guaranteed-freezing-temperatures
 								ages-no
 								blink-normal
+								blow-firelight-instead-of-hunt-no
 								can-change-favourite-room-yes
-								firelight-as-crucifix-no
 								can-do-airball-yes
 								can-hunt-in-room-with-player-yes
 								can-leave-room-while-incensed-yes
@@ -1441,8 +1444,8 @@
 								dots-projector emf-level-5 ultraviolet guaranteed-dots-projector
 								ages-no
 								blink-normal
+								blow-firelight-instead-of-hunt-no
 								can-change-favourite-room-no
-								firelight-as-crucifix-no
 								can-do-airball-yes
 								can-hunt-in-room-with-player-yes
 								can-leave-room-while-incensed-yes
@@ -1501,8 +1504,8 @@
 								ghost-writing emf-level-5 ultraviolet
 								ages-no
 								blink-normal
+								blow-firelight-instead-of-hunt-no
 								can-change-favourite-room-yes
-								firelight-as-crucifix-no
 								can-do-airball-yes
 								can-hunt-in-room-with-player-yes
 								can-leave-room-while-incensed-yes
@@ -1561,8 +1564,8 @@
 								ghost-orb freezing-temperatures spirit-box
 								ages-no
 								blink-normal
+								blow-firelight-instead-of-hunt-yes
 								can-change-favourite-room-yes
-								firelight-as-crucifix-yes
 								can-do-airball-yes
 								can-hunt-in-room-with-player-yes
 								can-leave-room-while-incensed-yes
@@ -1622,8 +1625,8 @@
 								emf-level-5 freezing-temperatures spirit-box
 								ages-no
 								blink-normal
+								blow-firelight-instead-of-hunt-no
 								can-change-favourite-room-yes
-								firelight-as-crucifix-no
 								can-do-airball-yes
 								can-hunt-in-room-with-player-yes
 								can-leave-room-while-incensed-yes
@@ -1682,8 +1685,8 @@
 								dots-projector emf-level-5 ghost-orb
 								ages-no
 								blink-normal
+								blow-firelight-instead-of-hunt-no
 								can-change-favourite-room-yes
-								firelight-as-crucifix-no
 								can-do-airball-yes
 								can-hunt-in-room-with-player-yes
 								can-leave-room-while-incensed-yes
@@ -1742,8 +1745,8 @@
 								emf-level-5 ghost-orb ultraviolet guaranteed-ultraviolet
 								ages-no
 								blink-normal
+								blow-firelight-instead-of-hunt-no
 								can-change-favourite-room-yes
-								firelight-as-crucifix-no
 								can-do-airball-yes
 								can-hunt-in-room-with-player-yes
 								can-leave-room-while-incensed-yes
@@ -1803,8 +1806,8 @@
 								ultraviolet freezing-temperatures spirit-box special-ghost-orb
 								ages-yes ages-no
 								blink-normal blink-short blink-long
+								blow-firelight-instead-of-hunt-yes blow-firelight-instead-of-hunt-no
 								can-change-favourite-room-yes
-								firelight-as-crucifix-yes firelight-as-crucifix-no
 								can-do-airball-yes
 								can-hunt-in-room-with-player-yes
 								can-leave-room-while-incensed-yes
@@ -1863,8 +1866,8 @@
 								ghost-writing freezing-temperatures spirit-box guaranteed-spirit-box
 								ages-no
 								blink-normal
+								blow-firelight-instead-of-hunt-no
 								can-change-favourite-room-yes
-								firelight-as-crucifix-no
 								can-do-airball-yes
 								can-hunt-in-room-with-player-yes
 								can-leave-room-while-incensed-yes
@@ -1924,8 +1927,8 @@
 								dots-projector ghost-writing spirit-box guaranteed-spirit-box
 								ages-no
 								blink-normal
+								blow-firelight-instead-of-hunt-no
 								can-change-favourite-room-yes
-								firelight-as-crucifix-no
 								can-do-airball-yes
 								can-hunt-in-room-with-player-yes
 								can-leave-room-while-incensed-yes
@@ -1984,8 +1987,8 @@
 								dots-projector ghost-writing ghost-orb
 								ages-yes
 								blink-normal
+								blow-firelight-instead-of-hunt-no
 								can-change-favourite-room-yes
-								firelight-as-crucifix-no
 								can-do-airball-yes
 								can-hunt-in-room-with-player-yes
 								can-leave-room-while-incensed-yes
