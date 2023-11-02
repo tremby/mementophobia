@@ -427,7 +427,7 @@ function handleTapKeyDown(event) {
 		document.activeElement.blur();
 		return;
 	}
-	if (event.key.length === 1) {
+	if (/^[a-z ]$/.test(event.key)) {
 		event.preventDefault();
 		event.stopPropagation();
 		handleTap();
