@@ -148,6 +148,10 @@ function init() {
 		savePreferences(getPreferencesFromForm());
 		updateTemperature();
 	});
+	byId("always-show-confidence-readouts").addEventListener("change", () => {
+		savePreferences(getPreferencesFromForm());
+		updateConfidenceReadouts();
+	});
 	byId("sanity").addEventListener("input", () => updateSanity());
 	byId("sanity-known").addEventListener("change", () => updateSanityKnown());
 	byId("ghost-distance").addEventListener("input", () => updateGhostDistance());
@@ -577,6 +581,33 @@ function updateTemperature() {
 function updateTemperatureKnown() {
 	byId("temperature").disabled = !getTemperatureKnown();
 	updateTemperature();
+}
+
+function getShowConfidenceReadouts() {
+	return byId("always-show-confidence-readouts").value === "yes";
+}
+
+function updateConfidenceReadouts() {
+	const alwaysShow = getShowConfidenceReadouts();
+	for (const counter of document.querySelectorAll(".confidence-counter")) {
+		const fieldset = counter.closest("fieldset");
+		if (fieldset == null) continue;
+		const compact = fieldset.querySelector(".confidence-counter-compact");
+		const details = fieldset.querySelector(".confidence-counter-details");
+		if (compact == null || details == null) continue;
+		if (alwaysShow) {
+			details.hidden = true;
+			compact.querySelector(".confidence-counter-slot").appendChild(fieldset.querySelector(".confidence-counter"));
+			compact.querySelector(".confidence-counter-output-slot").appendChild(fieldset.querySelector(`output[for="${counter.id}"]`));
+			compact.hidden = false;
+		} else {
+			compact.hidden = true;
+			details.querySelector(".confidence-counter-slot").appendChild(fieldset.querySelector(".confidence-counter"));
+			details.querySelector(".confidence-counter-output-slot").appendChild(fieldset.querySelector(`output[for="${counter.id}"]`));
+			details.hidden = false;
+		}
+		updateConfidenceReadout(counter);
+	}
 }
 
 function getDetectedHeldElectronics() {
@@ -1638,12 +1669,6 @@ function updateTimerReadout() {
 	readout.classList.toggle("caution", safety === "caution");
 	readout.classList.toggle("danger", safety === "danger");
 	readout.innerText = timerFormatter.format(seconds);
-}
-
-function updateConfidenceReadouts() {
-	for (const counter of document.querySelectorAll(".confidence-counter")) {
-		updateConfidenceReadout(counter);
-	}
 }
 
 function updateConfidenceReadout(counter) {

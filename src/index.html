@@ -28,13 +28,22 @@
 			<div>
 				<h2>Preferences</h2>
 				<form id="preferences">
-					<fieldset>
-						<label for="temperature-unit">Temperature unit</label>
-						<select id="temperature-unit" name="temperature-unit">
-							<option value="C" selected>Celsius</option>
-							<option value="F">Fahrenheit</option>
-						</select>
-					</fieldset>
+					<div class="options-grid">
+						<fieldset>
+							<label for="temperature-unit">Temperature unit</label>
+							<select id="temperature-unit" name="temperature-unit">
+								<option value="C" selected>Celsius</option>
+								<option value="F">Fahrenheit</option>
+							</select>
+						</fieldset>
+						<fieldset>
+							<label for="always-show-confidence-readouts">Show confidence counters</label>
+							<select id="always-show-confidence-readouts" name="always-show-confidence-readouts">
+								<option value="no" selected>In info</option>
+								<option value="yes">Always</option>
+							</select>
+						</fieldset>
+					</div>
 				</form>
 			</div>
 			<form id="game-setup-form">
@@ -42,7 +51,7 @@
 					<h2>Game setup</h2>
 					<button type="reset">Reset game setup</button>
 				</header>
-				<div class="game-setup-grid">
+				<div class="options-grid">
 					<fieldset>
 						<label for="evidence-num">Collectable evidence</label>
 						<select id="evidence-num">
@@ -113,14 +122,17 @@
 							<span class="control-container"><input type="radio" name="emf-level-5" value="unknown" id="emf-level-5-unknown" checked> <label for="emf-level-5-unknown">unknown</label></span>
 							<span class="control-container"><input type="radio" name="emf-level-5" id="emf-level-5-yes" value="yes"> <label for="emf-level-5-yes">confirmed</label></span>
 							<span class="control-container"><input type="radio" name="emf-level-5" id="emf-level-5-no" value="no"> <label for="emf-level-5-no">ruled out</label></span>
-							<details>
+							<div class="confidence-counter-compact" hidden>
+								EMF 2 or 3 × <span class="confidence-counter-slot"></span> ⇒ <span class="confidence-counter-output-slot"></span> ruled out
+							</div>
+							<details class="confidence-counter-details">
 								<summary>Info</summary>
 								<p>
 									For a ghost which is exhibiting EMF level 5 evididence, each EMF level 2 or 3 occurrence has a ¼ chance to show EMF level 5 instead.
 								</p>
 								<p>
-									Seeing EMF level 2 or 3 on <input class="confidence-counter" data-chance="1/4" type="number" min="0" value="0" id="emf-2-or-3-count" size="3"> separate interactions
-									means this evidence can be ruled out with <output for="emf-2-or-3-count">0%</output> confidence.
+									Seeing EMF level 2 or 3 on <span class="confidence-counter-slot"><input class="confidence-counter" data-chance="1/4" type="number" min="0" value="0" id="emf-2-or-3-count" size="3"></span> separate interactions
+									means this evidence can be ruled out with <span class="confidence-counter-output-slot"><output for="emf-2-or-3-count">0%</output></span> confidence.
 								</p>
 							</details>
 						</fieldset>
@@ -213,19 +225,24 @@
 								<span class="control-container"><input type="radio" name="shapeshifter" value="unknown" id="shapeshifter-unknown" checked> <label for="shapeshifter-unknown">unknown</label></span>
 								<span class="control-container"><input type="radio" name="shapeshifter" value="yes" id="shapeshifter-yes"> <label for="shapeshifter-yes">confirmed</label></span>
 								<span class="control-container"><input type="radio" name="shapeshifter" value="no" id="shapeshifter-no"> <label for="shapeshifter-no">ruled out</label></span>
+								<div class="confidence-counter-compact" hidden>
+									Normal blinks × <span class="confidence-counter-slot"></span> ⇒ <span class="confidence-counter-output-slot"></span> ruled out
+								</div>
 								<details>
 									<summary>Info</summary>
 									<p>
-										Ghosts with this trait briefly change to a different <a href="https://phasmophobia.fandom.com/wiki/Ghost_Model" rel="noopener">ghost model</a>
-										at least once per hunt.
+										Ghosts with this trait change to a different <a href="https://phasmophobia.fandom.com/wiki/Ghost_Model" rel="noopener">ghost model</a>
+										at least once per hunt, with a chance to change on each period of visibility.
 									</p>
-									<p>
-										The obake has a 1 in 15 chance to choose a different ghost model for each period of visibility.
-									</p>
-									<p>
-										Seeing the same ghost model for <input class="confidence-counter" data-chance="1/15" type="number" min="0" value="0" id="shapeshift-same-model-count" size="3"> periods of visibility
-										means this evidence can be ruled out with <output for="shapeshift-same-model-count">0%</output> confidence.
-									</p>
+									<div class="confidence-counter-details">
+										<p>
+											The obake has a 1 in 15 chance to choose a different ghost model for each period of visibility.
+										</p>
+										<p>
+											Seeing the same ghost model for <span class="confidence-counter-slot"><input class="confidence-counter" data-chance="1/15" type="number" min="0" value="0" id="shapeshift-same-model-count" size="3"></span> periods of visibility
+											means this evidence can be ruled out with <span class="confidence-counter-output-slot"><output for="shapeshift-same-model-count">0%</output></span> confidence.
+										</p>
+									</div>
 								</details>
 							</fieldset>
 							<fieldset id="footstep-volume" class="hunt hunts hunting sound sounds audio volume quiet sneaky sneak sneaking sneaks loud myling far close near nearby muffled footstep footsteps tiptoe tiptoeing tiptoes stealth">
@@ -259,6 +276,11 @@
 										Beware that while a banshee’s target is in the investigation area,
 										it cares only about that particular player’s sanity level,
 										ignoring the average.
+									</p>
+									<p>
+										The ghosts ruled out by this take into account special abilities,
+										with pessimistic assumptions like lights were off, player voices were loud, active electronics were nearby, a candle was blown out, etc.
+										You may be able to rule out extra ghosts depending on the specifics.
 									</p>
 								</details>
 							</fieldset>
@@ -464,16 +486,21 @@
 								<span class="control-container"><input type="radio" name="paramic-scream" value="unknown" id="paramic-scream-unknown" checked> <label for="paramic-scream-unknown">unknown</label></span>
 								<span class="control-container"><input type="radio" name="paramic-scream" value="yes" id="paramic-scream-yes"> <label for="paramic-scream-yes">confirmed</label></span>
 								<span class="control-container"><input type="radio" name="paramic-scream" value="no" id="paramic-scream-no"> <label for="paramic-scream-no">ruled out</label></span>
+								<div class="confidence-counter-compact" hidden>
+									Not scream × <span class="confidence-counter-slot"></span> ⇒ <span class="confidence-counter-output-slot"></span> ruled out
+								</div>
 								<details>
 									<summary>Info</summary>
 									<p>There’s an <a href="https://phasmophobia.fandom.com/wiki/Banshee?so=search#Abilities" rel="noopener">audio example on the Phasmophobia wiki</a>.</p>
-									<p>
-										Each time the banshee makes a noise in the parabolic microphone, it has a ⅓ chance of screaming instead of making the usual whisper or footstep sound.
-									</p>
-									<p>
-										Hearing <input class="confidence-counter" data-chance="1/3" type="number" min="0" value="0" id="paramic-not-scream-count" size="3"> footsteps or whispers and no screams through the parabolic microphone
-										means this evidence can be ruled out with <output for="paramic-not-scream-count">0%</output> confidence.
-									</p>
+									<div class="confidence-counter-details">
+										<p>
+											Each time the banshee makes a noise in the parabolic microphone, it has a ⅓ chance of screaming instead of making the usual whisper or footstep sound.
+										</p>
+										<p>
+											Hearing <span class="confidence-counter-slot"><input class="confidence-counter" data-chance="1/3" type="number" min="0" value="0" id="paramic-not-scream-count" size="3"></span> footsteps or whispers and no screams through the parabolic microphone
+											means this evidence can be ruled out with <span class="confidence-counter-output-slot"><output for="paramic-not-scream-count">0%</output></span> confidence.
+										</p>
+									</div>
 								</details>
 							</fieldset>
 							<fieldset id="can-turn-off-fuse-box" class="behaviour behavior turn turns turned turning switch switches switched switching off disable fusebox fuse box breaker circuit panel junction electrical electric electricity power jinn">
@@ -518,6 +545,9 @@
 								<span class="control-container"><input type="radio" name="sometimes-hides-ultraviolet" value="unknown" id="sometimes-hides-ultraviolet-unknown" checked> <label for="sometimes-hides-ultraviolet-unknown">unknown</label></span>
 								<span class="control-container"><input type="radio" name="sometimes-hides-ultraviolet" value="yes" id="sometimes-hides-ultraviolet-yes"> <label for="sometimes-hides-ultraviolet-yes">confirmed</label></span>
 								<span class="control-container"><input type="radio" name="sometimes-hides-ultraviolet" value="no" id="sometimes-hides-ultraviolet-no"> <label for="sometimes-hides-ultraviolet-no">ruled out</label></span>
+								<div class="confidence-counter-compact" hidden>
+									UV as expected × <span class="confidence-counter-slot"></span> ⇒ <span class="confidence-counter-output-slot"></span> ruled out
+								</div>
 								<details>
 									<summary>Info</summary>
 									<p>
@@ -525,13 +555,15 @@
 										they will <em>always</em> leave it when interacting with suitable objects.
 										Ghosts with this trait have a reduced rate.
 									</p>
-									<p>
-										The obake has a ¼ chance of hiding ultraviolet evidence.
-									</p>
-									<p>
-										Seeing <input class="confidence-counter" data-chance="1/4" type="number" min="0" value="0" id="uv-evidence-count" size="3"> separate pieces of ultraviolet evidence and none missing
-										means this evidence can be ruled out with <output for="uv-evidence-count">0%</output> confidence.
-									</p>
+									<div class="confidence-counter-details">
+										<p>
+											The obake has a ¼ chance of hiding ultraviolet evidence.
+										</p>
+										<p>
+											Seeing <span class="confidence-counter-slot"><input class="confidence-counter" data-chance="1/4" type="number" min="0" value="0" id="uv-evidence-count" size="3"></span> separate pieces of ultraviolet evidence and none missing
+											means this evidence can be ruled out with <span class="confidence-counter-output-slot"><output for="uv-evidence-count">0%</output></span> confidence.
+										</p>
+									</div>
 									<p>
 										This evidence can be confirmed if ultraviolet evidence has been seen,
 										and then later an interaction is observed which is suitable for ultraviolet evidence but does not leave any.
@@ -543,16 +575,21 @@
 								<span class="control-container"><input type="radio" name="unusual-ultraviolet" value="unknown" id="unusual-ultraviolet-unknown" checked> <label for="unusual-ultraviolet-unknown">unknown</label></span>
 								<span class="control-container"><input type="radio" name="unusual-ultraviolet" value="yes" id="unusual-ultraviolet-yes"> <label for="unusual-ultraviolet-yes">confirmed</label></span>
 								<span class="control-container"><input type="radio" name="unusual-ultraviolet" value="no" id="unusual-ultraviolet-no"> <label for="unusual-ultraviolet-no">ruled out</label></span>
+								<div class="confidence-counter-compact" hidden>
+									UV shown × <span class="confidence-counter-slot"></span> ⇒ <span class="confidence-counter-output-slot"></span> ruled out
+								</div>
 								<details>
 									<summary>Info</summary>
 									<p>Ghosts with this trait have a certain chance of leaving <a href="https://phasmophobia.fandom.com/wiki/Obake#Abilities">unusual ultraviolet evidence</a>.</p>
-									<p>
-										The obake has a ⅙ chance of leaving unusual ultraviolet evidence each time it leaves ultraviolet evidence.
-									</p>
-									<p>
-										Seeing <input class="confidence-counter" data-chance="1/6" type="number" min="0" value="0" id="normal-uv-evidence-count" size="3"> separate regular pieces of ultraviolet evidence
-										means this evidence can be ruled out with <output for="normal-uv-evidence-count">0%</output> confidence.
-									</p>
+									<div class="confidence-counter-details">
+										<p>
+											The obake has a ⅙ chance of leaving unusual ultraviolet evidence each time it leaves ultraviolet evidence.
+										</p>
+										<p>
+											Seeing <span class="confidence-counter-slot"><input class="confidence-counter" data-chance="1/6" type="number" min="0" value="0" id="normal-uv-evidence-count" size="3"></span> separate regular pieces of ultraviolet evidence
+											means this evidence can be ruled out with <span class="confidence-counter-output-slot"><output for="normal-uv-evidence-count">0%</output></span> confidence.
+										</p>
+									</div>
 								</details>
 							</fieldset>
 							<fieldset id="can-leave-room-while-incensed" class="behaviour behavior incense incensed smudge smudging smudged stick sticks leave left leaving leaves vacate vacated vacating vacates roam roams roamed roaming wander wandering wanders wandered trap trapped traps trapping motion sensor paramic parabolic microphone mic yurei">

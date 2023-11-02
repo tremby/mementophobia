@@ -48,7 +48,7 @@ h1 {
 	display: inline-block;
 }
 
-details {
+details, .confidence-counter-compact {
 	margin-top: 1rem;
 }
 
@@ -241,7 +241,8 @@ input[disabled] {
 	grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
 	gap: var(--fieldset-gap);
 }
-.game-setup-grid {
+
+.options-grid {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
 	gap: var(--fieldset-gap);
