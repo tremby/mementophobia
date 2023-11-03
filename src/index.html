@@ -642,7 +642,7 @@
 					<header>
 						<h3>Possible ghosts</h3>
 						<button type="button" id="reset-manual-rule-outs" disabled>Uncross all</button>
-						<button id="clear-rulings-by-tempo" type="button" disabled>Clear speed restrictions</button>
+						<button id="clear-rulings-by-speed" type="button" disabled>Clear speed restrictions</button>
 					</header>
 					<ol id="ghosts">
 						<li
@@ -2254,8 +2254,8 @@
 									<span class="help">or wait a moment then start tapping again</span>
 								</p>
 								<p>
-									<button id="narrow-by-tempo" type="button" disabled>Rule out ghosts by tempo</button>
-									<span class="help">using the adjusted average tempo ± 5%</span>
+									<button id="narrow-by-speed" type="button" disabled>Rule out ghosts by speed</button>
+									<span class="help">using the average ± 5%</span>
 								</p>
 							</div>
 							<fieldset>
@@ -2263,9 +2263,9 @@
 									Average tempo:
 									<output id="average-tempo" for="tap"></output>
 								</div>
-								<div id="adjusted-average-tempo-box" hidden>
-									Adjusted to 100% ghost speed:
-									<output id="adjusted-average-tempo" for="tap ghost-speed"></output>
+								<div id="average-speed-box">
+									Average speed:
+									<output id="average-speed" for="tap ghost-speed"></output>
 								</div>
 							</fieldset>
 						</div>

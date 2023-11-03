@@ -37,7 +37,7 @@ const HANTU_MIN_SPEED = 1.4;
 const SLOWEST_SPEED = DEOGEN_MIN_SPEED;
 const FASTEST_SPEED = Math.max(Math.max(MOROI_MAX_SPEED, NORMAL_SPEED) * MAX_GHOST_LOS_SPEEDUP_MULTIPLIER, REVENANT_FAST_SPEED, DEOGEN_MAX_SPEED, THAYE_MAX_SPEED, HANTU_MAX_SPEED, JINN_LOS_SPEED);
 
-const NARROW_BY_TEMPO_LEEWAY = 0.05;
+const NARROW_BY_SPEED_LEEWAY = 0.05;
 
 const byId = document.getElementById.bind(document);
 
@@ -46,6 +46,7 @@ const minutesFormatter = new Intl.NumberFormat("en", { style: "unit", unit: "min
 const timerFormatter = new Intl.NumberFormat("en", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 const percentFormatter = new Intl.NumberFormat("en", { style: "percent" });
 const meterFormatter = new Intl.NumberFormat("en", { maximumFractionDigits: 1, maximumSignificantDigits: 2, style: "unit", unit: "meter" });
+const meterPerSecondFormatter = new Intl.NumberFormat("en", { maximumFractionDigits: 2, style: "unit", unit: "meter-per-second" });
 
 /**
  * Ghost footstep tempo data
@@ -115,11 +116,19 @@ const observations = [
 ].flat();
 
 /**
- * Regress the data to get a function to convert from observed tempo to speed.
+ * Regress the data to get a function to convert from speed to tempo.
  */
-const tempoFromSpeed = new Polyfit(
+const speedToTempo = new Polyfit(
 	observations.map(([multiplier, speed, tempo]) => speed * multiplier),
 	observations.map(([multiplier, speed, tempo]) => tempo),
+).getPolynomial(2);
+
+/**
+ * Regress the data the other way around to get a function to convert from tempo to speed.
+ */
+const tempoToSpeed = new Polyfit(
+	observations.map(([multiplier, speed, tempo]) => tempo),
+	observations.map(([multiplier, speed, tempo]) => speed * multiplier),
 ).getPolynomial(2);
 
 function getPreferencesFromForm() {
@@ -177,8 +186,8 @@ function init() {
 	byId("ghost-speed").addEventListener("change", () => updateGhostSpeed());
 	byId("tap-target").addEventListener("keydown", handleTapKeyDown);
 	byId("reset-tempo").addEventListener("click", () => resetTempo());
-	byId("narrow-by-tempo").addEventListener("click", () => narrowByTempo());
-	byId("clear-rulings-by-tempo").addEventListener("click", () => clearRulingsByTempo());
+	byId("narrow-by-speed").addEventListener("click", () => narrowBySpeed());
+	byId("clear-rulings-by-speed").addEventListener("click", () => clearRulingsBySpeed());
 	byId("line-of-sight").addEventListener("input", () => updateLineOfSight());
 	byId("line-of-sight-known").addEventListener("input", () => updateLineOfSightKnown());
 	byId("temperature").addEventListener("input", () => updateTemperature());
@@ -238,7 +247,7 @@ function init() {
 	byId("observations-form").addEventListener("reset", () => {
 		resetTimer();
 		resetTempo();
-		clearRulingsByTempo();
+		clearRulingsBySpeed();
 		requestAnimationFrame(() => {
 			updateAll();
 		});
@@ -252,7 +261,7 @@ function init() {
 	for (const button of document.querySelectorAll("#chart .ghost .label button")) {
 		button.addEventListener("click", () => {
 			byId(button.closest("div.ghost").dataset.ghost).classList.add("impossible-by-speed");
-			updateClearRulingsByTempo();
+			updateClearRulingsBySpeed();
 			updateEvidence();
 		});
 	}
@@ -423,7 +432,7 @@ function updateAll() {
 	updateTimerAdjust();
 	updateHuntSanityRangeReadout();
 	updateIncenseHuntSuspensionRangeReadout();
-	updateClearRulingsByTempo();
+	updateClearRulingsBySpeed();
 	updateResetManualRuleOuts();
 	updateConfidenceReadouts();
 }
@@ -446,7 +455,6 @@ function updateGhostSpeedFactorsPreset() {
 }
 
 function updateGhostSpeed() {
-	byId("adjusted-average-tempo-box").hidden = getSpeedMultiplier() === 1;
 	updateSpeedMarkers();
 	updateTempos();
 	updateTapTrace();
@@ -1031,57 +1039,58 @@ function getAverageTempo() {
 }
 
 function updateTempos() {
-	byId("narrow-by-tempo").disabled = taps.length < 2;
+	byId("narrow-by-speed").disabled = taps.length < 2;
 	if (taps.length === 0) {
 		byId("average-tempo").innerText = "";
-		byId("adjusted-average-tempo").innerText = "";
+		byId("average-speed").innerText = "";
 	} else if (taps.length === 1) {
 		byId("average-tempo").innerText = "…";
-		byId("adjusted-average-tempo").innerText = "…";
+		byId("average-speed").innerText = "…";
 	} else {
 		const formatter = new Intl.NumberFormat("en", { maximumSignificantDigits: 4 });
 		const tempo = getAverageTempo();
-		const adjustedTempo = tempo / getSpeedMultiplier();
+		const speed = tempoToSpeed(tempo);
+		byId("average-speed").innerText = meterPerSecondFormatter.format(speed);
 		byId("average-tempo").innerText = `${formatter.format(tempo)} bpm`;
-		byId("adjusted-average-tempo").innerText = `${formatter.format(adjustedTempo)} bpm`;
 	}
 }
 
-function narrowByTempo() {
+function narrowBySpeed() {
 	const tempo = getAverageTempo();
 	if (tempo == null) return;
-	const adjustedTempo = getAverageTempo() / getSpeedMultiplier();
+	const speed = tempoToSpeed(tempo);
+	const adjustedSpeed = speed / getSpeedMultiplier();
 	const speedMarkers = getSpeedMarkers();
+	const avgPlusLeeway = adjustedSpeed * (1 + NARROW_BY_SPEED_LEEWAY);
+	const avgMinusLeeway = adjustedSpeed * (1 - NARROW_BY_SPEED_LEEWAY);
 	for (const ghost of speedMarkers) {
-		const avgPlusLeeway = adjustedTempo * (1 + NARROW_BY_TEMPO_LEEWAY);
-		const avgMinusLeeway = adjustedTempo * (1 - NARROW_BY_TEMPO_LEEWAY);
 		if (ghost.speeds.every((speed) => {
 			if (Array.isArray(speed)) {
-				const min = tempoFromSpeed(Math.min(...speed.map(({ speed }) => speed)));
-				const max = tempoFromSpeed(Math.max(...speed.map(({ speed }) => speed)));
+				const min = Math.min(...speed.map(({ speed }) => speed));
+				const max = Math.max(...speed.map(({ speed }) => speed));
 				return avgPlusLeeway < min || avgMinusLeeway > max;
 			}
-			return avgPlusLeeway < tempoFromSpeed(speed.speed) || avgMinusLeeway > tempoFromSpeed(speed.speed);
+			return avgPlusLeeway < speed.speed || avgMinusLeeway > speed.speed;
 		})) {
 			byId(nameToIdentifier(ghost.name)).classList.add("impossible-by-speed");
 		}
 	}
-	updateClearRulingsByTempo();
+	updateClearRulingsBySpeed();
 	updateEvidence();
 }
 
-function updateClearRulingsByTempo() {
-	byId("clear-rulings-by-tempo").disabled = document.querySelector("#ghosts li.impossible-by-speed") == null;
+function updateClearRulingsBySpeed() {
+	byId("clear-rulings-by-speed").disabled = document.querySelector("#ghosts li.impossible-by-speed") == null;
 }
 
 function updateResetManualRuleOuts() {
 	byId("reset-manual-rule-outs").disabled = document.querySelector("#ghosts li input:checked") == null;
 }
 
-function clearRulingsByTempo() {
+function clearRulingsBySpeed() {
 	for (const ghostContainer of document.querySelectorAll("#ghosts li"))
 		ghostContainer.classList.remove("impossible-by-speed");
-	updateClearRulingsByTempo();
+	updateClearRulingsBySpeed();
 	updateEvidence();
 }
 
@@ -1577,33 +1586,33 @@ function updateSpeedMarkers() {
 				const range = document.createElement("div");
 				div.appendChild(range);
 				range.classList.add("continuous-range");
-				range.style.bottom = `${toScale(tempoFromSpeed(slowestOf(ghost).speed)) * 100}%`;
-				range.style.height = `${toScale(tempoFromSpeed(fastestOf(ghost).speed) - tempoFromSpeed(slowestOf(ghost).speed)) * 100}%`;
+				range.style.bottom = `${toScale(slowestOf(ghost).speed) * 100}%`;
+				range.style.height = `${toScale(fastestOf(ghost).speed - slowestOf(ghost).speed) * 100}%`;
 				for (const speedChild of speed) {
 					const marker = document.createElement("div");
 					div.appendChild(marker);
 					marker.classList.add("marker");
-					marker.style.bottom = `calc(${toScale(tempoFromSpeed(speedChild.speed)) * 100}% + var(--bottom-offset))`;
+					marker.style.bottom = `calc(${toScale(speedChild.speed) * 100}% + var(--bottom-offset))`;
 					marker.title = speedChild.name;
 				}
 			} else {
 				div.classList.add("marker");
-				div.style.bottom = `calc(${toScale(tempoFromSpeed(speed.speed)) * 100}% + var(--bottom-offset))`;
+				div.style.bottom = `calc(${toScale(speed.speed) * 100}% + var(--bottom-offset))`;
 				div.title = speed.name;
 			}
 			return div;
 		}));
 		const label = ghostContainer.querySelector(".label");
-		label.style.bottom = `${toScale((tempoFromSpeed(slowestOf(ghost).speed) + tempoFromSpeed(fastestOf(ghost).speed)) / 2) * 100}%`;
+		label.style.bottom = `${toScale((slowestOf(ghost).speed + fastestOf(ghost).speed) / 2) * 100}%`;
 		const entireRange = ghostContainer.querySelector(".entire-range");
-		entireRange.style.bottom = `${toScale(tempoFromSpeed(slowestOf(ghost).speed)) * 100}%`;
-		entireRange.style.height = `${toScale(tempoFromSpeed(fastestOf(ghost).speed) - tempoFromSpeed(slowestOf(ghost).speed)) * 100}%`;
+		entireRange.style.bottom = `${toScale(slowestOf(ghost).speed) * 100}%`;
+		entireRange.style.height = `${toScale(fastestOf(ghost).speed - slowestOf(ghost).speed) * 100}%`;
 	}
 }
 
-const scale = [0, tempoFromSpeed(FASTEST_SPEED + SLOWEST_SPEED)];
-function toScale(tempo) {
-	return (tempo - scale[0]) / (scale[1] - scale[0]);
+function toScale(speed) {
+	const scale = [0, FASTEST_SPEED + SLOWEST_SPEED];
+	return (speed - scale[0]) / (scale[1] - scale[0]);
 }
 
 function updateTapTrace() {
@@ -1620,7 +1629,7 @@ function updateTapTrace() {
 	ctx.beginPath();
 	for (let i = 1; i < taps.length; i++) {
 		const x = (taps[i] - taps[1]) * pxPerMs;
-		const y = canvas.height * (1 - toScale(60e3 / (taps[i] - taps[i - 1]) / getSpeedMultiplier()));
+		const y = canvas.height * (1 - toScale(tempoToSpeed(60e3 / (taps[i] - taps[i - 1])) / getSpeedMultiplier()));
 		if (i === 1) ctx.moveTo(x, y);
 		else ctx.lineTo(x, y);
 	}
@@ -1637,7 +1646,7 @@ function updateTapTrace() {
 		const x = (taps[i] - taps[1]) * pxPerMs;
 
 		// Calculate the average over those samples
-		const y = canvas.height * (1 - toScale(60e3 / (taps[i] - taps[j]) * (i - j) / getSpeedMultiplier()));
+		const y = canvas.height * (1 - toScale(tempoToSpeed(60e3 / (taps[i] - taps[j]) * (i - j)) / getSpeedMultiplier()));
 
 		if (i === 1) ctx.moveTo(x, y);
 		else ctx.lineTo(x, y);
