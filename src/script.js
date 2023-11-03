@@ -1618,7 +1618,13 @@ function toScale(speed) {
 function updateTapTrace() {
 	const canvas = byId("tap-trace");
 	const ctx = canvas.getContext("2d");
+	ctx.save();
+
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+	// Transform so origin is in bottom left
+	ctx.translate(0, canvas.height);
+	ctx.scale(1, -1);
 
 	if (taps.length < 2) return;
 
@@ -1629,7 +1635,7 @@ function updateTapTrace() {
 	ctx.beginPath();
 	for (let i = 1; i < taps.length; i++) {
 		const x = (taps[i] - taps[1]) * pxPerMs;
-		const y = canvas.height * (1 - toScale(tempoToSpeed(60e3 / (taps[i] - taps[i - 1])) / getSpeedMultiplier()));
+		const y = canvas.height * toScale(tempoToSpeed(60e3 / (taps[i] - taps[i - 1])) / getSpeedMultiplier());
 		if (i === 1) ctx.moveTo(x, y);
 		else ctx.lineTo(x, y);
 	}
@@ -1646,7 +1652,7 @@ function updateTapTrace() {
 		const x = (taps[i] - taps[1]) * pxPerMs;
 
 		// Calculate the average over those samples
-		const y = canvas.height * (1 - toScale(tempoToSpeed(60e3 / (taps[i] - taps[j]) * (i - j)) / getSpeedMultiplier()));
+		const y = canvas.height * toScale(tempoToSpeed(60e3 / (taps[i] - taps[j]) * (i - j)) / getSpeedMultiplier());
 
 		if (i === 1) ctx.moveTo(x, y);
 		else ctx.lineTo(x, y);
@@ -1657,6 +1663,8 @@ function updateTapTrace() {
 	ctx.lineWidth = 4;
 	ctx.strokeStyle = "black";
 	ctx.stroke();
+
+	ctx.restore();
 }
 
 let timerStart = null;
