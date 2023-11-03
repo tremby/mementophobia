@@ -1,3 +1,5 @@
+import Polyfit from "./polyfit.js";
+
 const ROLLING_AVERAGE_MS = 2e3;
 
 const MAX_GHOST_LOS_SPEEDUP_MULTIPLIER = 1.65;
@@ -45,6 +47,81 @@ const timerFormatter = new Intl.NumberFormat("en", { minimumFractionDigits: 1, m
 const percentFormatter = new Intl.NumberFormat("en", { style: "percent" });
 const meterFormatter = new Intl.NumberFormat("en", { maximumFractionDigits: 1, maximumSignificantDigits: 2, style: "unit", unit: "meter" });
 
+/**
+ * Ghost footstep tempo data
+ *
+ * Data collected between the release of Ascension and 2023-11-02,
+ * all at Camp Woodwind, in solo games.
+ * Audio was recorded, then cut to the first and last footstep in whatever was
+ * the longest steady part of the hunt, then the average tempo calculated.
+ */
+const observations = [
+	[[0, 0, 0]], // Try to pass through 0,0 (this doesn't force it though)
+	[
+		[53.80, 54.23, 54.29, 54.14, 53.93, 53.62, 53.80, 54.30, 54.08, 53.87, 54.26].map((tempo) => [NORMAL_SPEED, tempo]),
+		[47.28, 47.25, 47.13, 47.12, 47.46, 47.41, 47.20, 47.25, 47.27, 47.60].map((tempo) => [TWIN_SLOW_SPEED, tempo]),
+		[60.41, 60.53, 60.67, 61.01, 60.76, 60.49, 60.95, 60.92, 60.61, 60.85].map((tempo) => [TWIN_FAST_SPEED, tempo]),
+		[89.69, 90.99, 90.61].map((tempo) => [THAYE_MAX_SPEED, tempo]),
+		[72.50, 72.83, 72.79, 73.28, 72.46, 73.58, 72.47, 72.90, 73.27, 73.17, 72.77].map((tempo) => [MOROI_MAX_SPEED, tempo]),
+		[82.37].map((tempo) => [RAIJU_ELECTRONICS_SPEED, tempo]),
+		[31.20, 30.97, 31.19, 30.97, 31.00, 31.21, 30.91].map((tempo) => [REVENANT_SLOW_SPEED, tempo]),
+		[99.75, 101.13, 99.02, 98.82].map((tempo) => [REVENANT_FAST_SPEED, tempo]),
+		[99.75].map((tempo) => [DEOGEN_MAX_SPEED, tempo]),
+	].flat().map(([speed, tempo]) => [0.5, speed, tempo]),
+	[
+		[83.24, 83.55, 83.31, 83.79, 83.30, 83.76, 83.20, 83.39, 83.02, 83.25].map((tempo) => [NORMAL_SPEED, tempo]),
+		[72.51, 73.03, 72.77, 72.56, 72.71, 73.10, 72.64, 72.79, 73.07, 72.73, 72.61].map((tempo) => [TWIN_SLOW_SPEED, tempo]),
+		[92.57, 94.15, 94.50, 94.79, 94.03, 93.93, 94.66, 93.89, 94.16, 93.42, 94.63].map((tempo) => [TWIN_FAST_SPEED, tempo]),
+		[].map((tempo) => [THAYE_MAX_SPEED, tempo]),
+		[113.25, 113.80, 114.08, 112.56, 113.10, 113.45, 112.64, 114.84, 112.76, 113.44, 113.24].map((tempo) => [MOROI_MAX_SPEED, tempo]),
+		[125.12, 127.04, 127.27, 129.06].map((tempo) => [RAIJU_ELECTRONICS_SPEED, tempo]),
+		[47.42, 47.03, 47.27, 47.60, 47.13, 47.41, 47.19, 47.13, 47.15, 47.41].map((tempo) => [REVENANT_SLOW_SPEED, tempo]),
+		[156.40, 158.63, 160.46, 156.13, 157.30, 157.56, 159.18, 155.59].map((tempo) => [REVENANT_FAST_SPEED, tempo]),
+		[157.50, 161.49, 161.17, 159.39, 157.81, 155.66, 156.60, 160.58, 154.50, 158.62, 159.02].map((tempo) => [DEOGEN_MAX_SPEED, tempo]),
+	].flat().map(([speed, tempo]) => [0.75, speed, tempo]),
+	[
+		[114.6, 114.0, 114.5, 114.6, 115.0, 114.6, 114.4, 114.0, 115.2, 114.3, 114.8, 114.6, 114.8, 115.5, 115.3, 114.4].map((tempo) => [NORMAL_SPEED, tempo]),
+		[100.0, 97.85, 99.5, 98.48, 100.2, 100.2, 99.51, 100.6, 100.3, 99.51].map((tempo) => [TWIN_SLOW_SPEED, tempo]),
+		[130.6, 130.1, 129.1, 130.7, 129.8, 129.7, 130.7, 130.3, 130.1, 130.3].map((tempo) => [TWIN_FAST_SPEED, tempo]),
+		[202.8, 200.9].map((tempo) => [THAYE_MAX_SPEED, tempo]),
+		[157.9, 158.3, 158.6, 157.6, 159.2, 158.2, 159.1, 158.3, 158.2, 158.6].map((tempo) => [MOROI_MAX_SPEED, tempo]),
+		[180.6, 176.4, 182.7, 179.6, 177.3, 178.3, 181.8, 179.0, 178.2, 179.9].map((tempo) => [RAIJU_ELECTRONICS_SPEED, tempo]),
+		[64.4, 64.37, 64.39, 64.36, 63.72, 63.99, 63.99, 64.77, 64.13, 63.71].map((tempo) => [REVENANT_SLOW_SPEED, tempo]),
+		[].map((tempo) => [REVENANT_FAST_SPEED, tempo]),
+		[].map((tempo) => [DEOGEN_MAX_SPEED, tempo]),
+	].flat().map(([speed, tempo]) => [1, speed, tempo]),
+	[
+		[149.8, 148.5, 147.4, 148.1, 149.4, 149.3, 147.7, 148.9, 148.2, 148.7, 148.6, 150.4, 148.4].map((tempo) => [NORMAL_SPEED, tempo]),
+		[128.9, 128.8, 128.7, 127.8, 128.9, 127.7, 128.2, 128.5, 128.3, 127.7, 129.8].map((tempo) => [TWIN_SLOW_SPEED, tempo]),
+		[167.0, 166.1, 169.9, 168.9, 166.6, 170.7, 167.4, 169.0, 168.3, 167.4, 167.4, 167.5].map((tempo) => [TWIN_FAST_SPEED, tempo]),
+		[269.6, 268, 265.2, 267.4, 267.4].map((tempo) => [THAYE_MAX_SPEED, tempo]),
+		[206, 205.6, 204, 204.6, 207.2, 203.2, 205.8, 203.4, 206.2, 207.4].map((tempo) => [MOROI_MAX_SPEED, tempo]),
+		[235.0, 231.6, 238.8, 239.0, 232.6, 238.2, 233.0, 238.4, 237.1, 233.4].map((tempo) => [RAIJU_ELECTRONICS_SPEED, tempo]),
+		[81.83, 80.42, 82.28, 81.57, 81.43].map((tempo) => [REVENANT_SLOW_SPEED, tempo]),
+		[].map((tempo) => [REVENANT_FAST_SPEED, tempo]),
+		[].map((tempo) => [DEOGEN_MAX_SPEED, tempo]),
+	].flat().map(([speed, tempo]) => [1.25, speed, tempo]),
+	[
+		[183.5, 183.6, 185.2, 183.3, 183.6, 183.8, 181.1, 184.8, 181.8, 184.6, 184.4, 184.6, 182.8, 184.8, 184.6, 184.2, 183.14, 182.36].map((tempo) => [NORMAL_SPEED, tempo]),
+		[158.9, 159.9, 157.6, 158.5, 161.3, 159.7, 158.1, 159.7, 157.9, 159.3, 159.2, 158.9, 159.8, 159.2, 157.4, 158, 161.3, 157.5, 159.2, 157.9, 159.5, 158.5].map((tempo) => [TWIN_SLOW_SPEED, tempo]),
+		[206.6, 205.5, 207.9, 211.6, 209.8, 209.9, 209.6, 206, 209, 208, 210.2, 211.6, 213, 209.4, 207.6, 214.8, 211.9, 207.6, 212.4, 208.9].map((tempo) => [TWIN_FAST_SPEED, tempo]),
+		[339.72].map((tempo) => [THAYE_MAX_SPEED, tempo]),
+		[257.8, 252.2, 258.2, 263.6, 261.6, 257.2, 259.8, 258.8, 258.2, 258.2, 256.8, 257.2].map((tempo) => [MOROI_MAX_SPEED, tempo]),
+		[293.6, 292.6, 299.4, 297.2, 292.8, 292.2, 288.2, 294, 293.2, 290.2].map((tempo) => [RAIJU_ELECTRONICS_SPEED, tempo]),
+		[100.7, 100.8, 99.98, 99.74, 99.64, 100.6, 99.62, 101.1, 100, 99.25].map((tempo) => [REVENANT_SLOW_SPEED, tempo]),
+		[].map((tempo) => [REVENANT_FAST_SPEED, tempo]),
+		[].map((tempo) => [DEOGEN_MAX_SPEED, tempo]),
+	].flat().map(([speed, tempo]) => [1.5, speed, tempo]),
+].flat();
+
+/**
+ * Regress the data to get a function to convert from observed tempo to speed.
+ */
+const tempoFromSpeed = new Polyfit(
+	observations.map(([multiplier, speed, tempo]) => speed * multiplier),
+	observations.map(([multiplier, speed, tempo]) => tempo),
+).getPolynomial(2);
+
 function getPreferencesFromForm() {
 	return Object.fromEntries(new FormData(byId("preferences")));
 }
@@ -72,44 +149,6 @@ function setPreferences(prefs) {
 
 function savePreferences(prefs) {
 	localStorage.setItem("preferences", JSON.stringify(prefs));
-}
-
-function tempoFromSpeed(speed) {
-	// I took average tempos over a dozen or so full hunts of normal-speed ghosts,
-	// with no line of sight, at Camp Woodwind, at all selectable ghost speed
-	// multipliers.
-	//
-	// - 50% (0.85m/s): 54.0bpm
-	// - 75% (1.275m/s): 83.3bpm
-	// - 100% (1.7m/s): 115.3bpm
-	// - 125% (2.125m/s): 147.7bpm
-	// - 150% (2.55m/s): 184.9bpm
-	//
-	// It's easy to tell by plotting these that they're not quite linear. The
-	// error is larger than I'd like to see at the extremes, and that's without
-	// even making the line of best fit pass through 0,0.
-	//
-	// The following coefficients are based on a quadratic regression of
-	// the above observations, plus a data point at 0,0.
-	//
-	// I based the quadratic on the normal-speed ghosts since they are the easiest
-	// to measure (since they're most consistently found in games), and they have
-	// known speeds.
-	//
-	// To verify, I also took average tempos over several full hunts of other
-	// ghosts, also at Camp Woodwind. These were all done at 100% ghost speed.
-	// Speeds are taken from the developer notes on Discord
-	// (https://discord.com/channels/435431947963990026/1034831196674347088/1036343193853235311).
-	//
-	// - Revenant min (1m/s): 64.25bpm
-	// - Revenant max (3m/s): 210.99bpm (this is rough; very hard to measure)
-	// - Twin fast (1.9m/s): 130.64bpm
-	// - Twin slow (1.5m/s): 100.03bpm
-	// - Moroi max (2.25m/s): 158.95bpm
-	//
-	// When plotted, the quadratic regression fits very closely with all
-	// observations.
-	return 5.495996 * speed * speed + 58.2207731 * speed + 0.1638571;
 }
 
 function getSpeedMultiplier() {
