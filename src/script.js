@@ -36,6 +36,7 @@ const HANTU_MIN_SPEED = 1.4;
 
 const SLOWEST_SPEED = DEOGEN_MIN_SPEED;
 const FASTEST_SPEED = Math.max(Math.max(MOROI_MAX_SPEED, NORMAL_SPEED) * MAX_GHOST_LOS_SPEEDUP_MULTIPLIER, REVENANT_FAST_SPEED, DEOGEN_MAX_SPEED, THAYE_MAX_SPEED, HANTU_MAX_SPEED, JINN_LOS_SPEED);
+const SPEED_SCALE = [0, FASTEST_SPEED + SLOWEST_SPEED];
 
 const NARROW_BY_SPEED_LEEWAY = 0.05;
 
@@ -1612,8 +1613,7 @@ function updateSpeedMarkers() {
 }
 
 function toScale(speed) {
-	const scale = [0, FASTEST_SPEED + SLOWEST_SPEED];
-	return (speed - scale[0]) / (scale[1] - scale[0]);
+	return (speed - SPEED_SCALE[0]) / (SPEED_SCALE[1] - SPEED_SCALE[0]);
 }
 
 function updateTapTrace() {
@@ -1630,40 +1630,56 @@ function updateTapTrace() {
 	if (taps.length < 2) return;
 
 	const msToShow = Math.max(4e3, taps[taps.length - 1] - taps[1]);
-	const pxPerMs = canvas.width / msToShow;
+	const pxPerUnitTime = canvas.width / msToShow;
+	const pxPerUnitSpeed = canvas.height / (SPEED_SCALE[1] - SPEED_SCALE[0]);
+	function withUnitSpace(fn) {
+		ctx.save();
+		ctx.scale(pxPerUnitTime, pxPerUnitSpeed);
+		ctx.translate(0, -SPEED_SCALE[0]);
+		fn();
+		ctx.restore();
+	}
 
 	// Draw last-tap tempo line
 	ctx.beginPath();
-	for (let i = 1; i < taps.length; i++) {
-		const x = (taps[i] - taps[1]) * pxPerMs;
-		const y = canvas.height * toScale(tempoToSpeed(60e3 / (taps[i] - taps[i - 1])) / getSpeedMultiplier());
-		if (i === 1) ctx.moveTo(x, y);
-		else ctx.lineTo(x, y);
-	}
+	withUnitSpace(() => {
+		for (let i = 1; i < taps.length; i++) {
+			const x = taps[i] - taps[1];
+			const y = tempoToSpeed(60e3 / (taps[i] - taps[i - 1]));
+			if (i === 1) ctx.moveTo(x, y);
+			else ctx.lineTo(x, y);
+		}
+	});
+	ctx.save();
 	ctx.lineWidth = 3;
 	ctx.strokeStyle = "#fff2";
 	ctx.stroke();
+	ctx.restore();
 
 	// Draw rolling average tempo line
 	ctx.beginPath();
-	for (let i = 1; i < taps.length; i++) {
-		// Get the earliest sample within n seconds
-		let j = i;
-		while (j - 1 >= 0 && taps[i] - taps[j - 1] < ROLLING_AVERAGE_MS) j--;
-		const x = (taps[i] - taps[1]) * pxPerMs;
+	withUnitSpace(() => {
+		for (let i = 1; i < taps.length; i++) {
+			// Get the earliest sample within n seconds
+			let j = i;
+			while (j - 1 >= 0 && taps[i] - taps[j - 1] < ROLLING_AVERAGE_MS) j--;
+			const x = taps[i] - taps[1];
 
-		// Calculate the average over those samples
-		const y = canvas.height * toScale(tempoToSpeed(60e3 / (taps[i] - taps[j]) * (i - j)) / getSpeedMultiplier());
+			// Calculate the average over those samples
+			const y = tempoToSpeed(60e3 / (taps[i] - taps[j]) * (i - j));
 
-		if (i === 1) ctx.moveTo(x, y);
-		else ctx.lineTo(x, y);
-	}
+			if (i === 1) ctx.moveTo(x, y);
+			else ctx.lineTo(x, y);
+		}
+	});
+	ctx.save();
 	ctx.lineWidth = 8;
 	ctx.strokeStyle = "white";
 	ctx.stroke();
 	ctx.lineWidth = 4;
 	ctx.strokeStyle = "black";
 	ctx.stroke();
+	ctx.restore();
 
 	ctx.restore();
 }
