@@ -373,3 +373,10 @@ kbd {
 	gap: 1rem;
 	flex-wrap: wrap;
 }
+
+#average-box {
+	visibility: hidden;
+}
+#average-box.is-populated {
+	visibility: visible;
+}

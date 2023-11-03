@@ -1040,6 +1040,7 @@ function getAverageTempo() {
 
 function updateTempos() {
 	byId("narrow-by-speed").disabled = taps.length < 2;
+	byId("average-box").classList.toggle("is-populated", taps.length > 0);
 	if (taps.length === 0) {
 		byId("average-tempo").innerText = "";
 		byId("average-speed").innerText = "";
