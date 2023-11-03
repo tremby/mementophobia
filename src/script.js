@@ -1652,7 +1652,8 @@ function updateTapTrace() {
 	});
 	ctx.save();
 	ctx.lineWidth = 3;
-	ctx.strokeStyle = "#fff2";
+	ctx.strokeStyle = "#fff6";
+	ctx.setLineDash([1, 2]);
 	ctx.stroke();
 	ctx.restore();
 
@@ -1673,10 +1674,10 @@ function updateTapTrace() {
 		}
 	});
 	ctx.save();
-	ctx.lineWidth = 8;
+	ctx.lineWidth = 10;
 	ctx.strokeStyle = "white";
 	ctx.stroke();
-	ctx.lineWidth = 4;
+	ctx.lineWidth = 6;
 	ctx.strokeStyle = "black";
 	ctx.stroke();
 	ctx.restore();
