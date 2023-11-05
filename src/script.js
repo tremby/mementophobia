@@ -1,6 +1,7 @@
 import Polyfit from "./polyfit.js";
 
 const ROLLING_AVERAGE_MS = 2e3;
+const MIN_MS = 4e3;
 
 const MAX_GHOST_LOS_SPEEDUP_MULTIPLIER = 1.65;
 const MAX_GHOST_LOS_SPEEDUP_PERIOD_S = 13;
@@ -36,7 +37,7 @@ const HANTU_MIN_SPEED = 1.4;
 
 const SLOWEST_SPEED = DEOGEN_MIN_SPEED;
 const FASTEST_SPEED = Math.max(Math.max(MOROI_MAX_SPEED, NORMAL_SPEED) * MAX_GHOST_LOS_SPEEDUP_MULTIPLIER, REVENANT_FAST_SPEED, DEOGEN_MAX_SPEED, THAYE_MAX_SPEED, HANTU_MAX_SPEED, JINN_LOS_SPEED);
-const SPEED_SCALE = [0, FASTEST_SPEED + SLOWEST_SPEED];
+const SPEED_SCALE_100 = [0, FASTEST_SPEED + SLOWEST_SPEED];
 
 const NARROW_BY_SPEED_LEEWAY = 0.05;
 
@@ -131,6 +132,11 @@ const tempoToSpeed = new Polyfit(
 	observations.map(([multiplier, speed, tempo]) => tempo),
 	observations.map(([multiplier, speed, tempo]) => speed * multiplier),
 ).getPolynomial(2);
+
+function getSpeedScale() {
+	const multiplier = getSpeedMultiplier();
+	return SPEED_SCALE_100.map((speed) => speed * multiplier);
+}
 
 function getPreferencesFromForm() {
 	return Object.fromEntries(new FormData(byId("preferences")));
@@ -436,6 +442,7 @@ function updateAll() {
 	updateClearRulingsBySpeed();
 	updateResetManualRuleOuts();
 	updateConfidenceReadouts();
+	updateTapTrace();
 }
 
 function updateHuntSanityRangeReadout() {
@@ -1570,6 +1577,7 @@ function nameToIdentifier(name) {
 }
 
 function updateSpeedMarkers() {
+	const multiplier = getSpeedMultiplier();
 	const speedMarkers = getSpeedMarkers();
 	for (const [index, ghost] of speedMarkers.entries()) {
 		const identifier = nameToIdentifier(ghost.name);
@@ -1588,101 +1596,164 @@ function updateSpeedMarkers() {
 				const range = document.createElement("div");
 				div.appendChild(range);
 				range.classList.add("continuous-range");
-				range.style.bottom = `${toScale(slowestOf(ghost).speed) * 100}%`;
-				range.style.height = `${toScale(fastestOf(ghost).speed - slowestOf(ghost).speed) * 100}%`;
+				range.style.bottom = `${toScale(slowestOf(ghost).speed * multiplier) * 100}%`;
+				range.style.height = `${toScale((fastestOf(ghost).speed - slowestOf(ghost).speed) * multiplier) * 100}%`;
 				for (const speedChild of speed) {
 					const marker = document.createElement("div");
 					div.appendChild(marker);
 					marker.classList.add("marker");
-					marker.style.bottom = `calc(${toScale(speedChild.speed) * 100}% + var(--bottom-offset))`;
+					marker.style.bottom = `calc(${toScale(speedChild.speed * multiplier) * 100}% + var(--bottom-offset))`;
 					marker.title = speedChild.name;
 				}
 			} else {
 				div.classList.add("marker");
-				div.style.bottom = `calc(${toScale(speed.speed) * 100}% + var(--bottom-offset))`;
+				div.style.bottom = `calc(${toScale(speed.speed * multiplier) * 100}% + var(--bottom-offset))`;
 				div.title = speed.name;
 			}
 			return div;
 		}));
 		const label = ghostContainer.querySelector(".label");
-		label.style.bottom = `${toScale((slowestOf(ghost).speed + fastestOf(ghost).speed) / 2) * 100}%`;
+		label.style.bottom = `${toScale((slowestOf(ghost).speed + fastestOf(ghost).speed) * multiplier / 2) * 100}%`;
 		const entireRange = ghostContainer.querySelector(".entire-range");
-		entireRange.style.bottom = `${toScale(slowestOf(ghost).speed) * 100}%`;
-		entireRange.style.height = `${toScale(fastestOf(ghost).speed - slowestOf(ghost).speed) * 100}%`;
+		entireRange.style.bottom = `${toScale(slowestOf(ghost).speed * multiplier) * 100}%`;
+		entireRange.style.height = `${toScale((fastestOf(ghost).speed - slowestOf(ghost).speed) * multiplier) * 100}%`;
 	}
+	console.log("updated speed markers");
 }
 
 function toScale(speed) {
-	return (speed - SPEED_SCALE[0]) / (SPEED_SCALE[1] - SPEED_SCALE[0]);
+	const speedScale = getSpeedScale();
+	return (speed - speedScale[0]) / (speedScale[1] - speedScale[0]);
 }
 
 function updateTapTrace() {
+	const SPEED_TICKS_FONT = "14px sans-serif";
+	const SPEED_TICKS_GUTTER = 5;
+	const SPEED_TICKS_LENGTH_MIN = 10;
+	const SPEED_TICKS_LENGTH_MAJ = 15;
+
+	const speedScale = getSpeedScale();
+
 	const canvas = byId("tap-trace");
 	const ctx = canvas.getContext("2d");
 	ctx.save();
 
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-	// Transform so origin is in bottom left
-	ctx.translate(0, canvas.height);
-	ctx.scale(1, -1);
-
-	if (taps.length < 2) return;
-
-	const msToShow = Math.max(4e3, taps[taps.length - 1] - taps[1]);
+	const msToShow = taps.length < 2 ? MIN_MS : Math.max(MIN_MS, taps[taps.length - 1] - taps[1]);
 	const pxPerUnitTime = canvas.width / msToShow;
-	const pxPerUnitSpeed = canvas.height / (SPEED_SCALE[1] - SPEED_SCALE[0]);
+	const pxPerUnitSpeed = canvas.height / (speedScale[1] - speedScale[0]);
 	function withUnitSpace(fn) {
 		ctx.save();
+		ctx.translate(0, canvas.height);
+		ctx.scale(1, -1);
 		ctx.scale(pxPerUnitTime, pxPerUnitSpeed);
-		ctx.translate(0, -SPEED_SCALE[0]);
+		ctx.translate(0, -speedScale[0]);
 		fn();
 		ctx.restore();
 	}
+	function speedToY(speed) {
+		return canvas.height - (speed - speedScale[0]) * pxPerUnitSpeed;
+	}
+	function timeToX(time) {
+		return time * pxPerUnitTime;
+	}
 
-	// Draw last-tap tempo line
-	ctx.beginPath();
-	withUnitSpace(() => {
-		for (let i = 1; i < taps.length; i++) {
-			const x = taps[i] - taps[1];
-			const y = tempoToSpeed(60e3 / (taps[i] - taps[i - 1]));
-			if (i === 1) ctx.moveTo(x, y);
-			else ctx.lineTo(x, y);
+	function speedTicks(fn) {
+		ctx.save();
+		ctx.font = SPEED_TICKS_FONT;
+		ctx.textBaseline = "middle";
+		const metrics = ctx.measureText(meterPerSecondFormatter.format("1234567890.1m/s"));
+		const height = metrics.fontBoundingBoxAscent + metrics.fontBoundingBoxDescent;
+		const maxTicks = Math.floor(canvas.height / height);
+		const scaleSpan = speedScale[1] - speedScale[0];
+
+		// Try various tick increments until something fits
+		const [increment, ticksPerMajor] = [[0.01, 5], [0.02, 5], [0.025, 4], [0.05, 5], [0.1, 5], [0.2, 5], [0.25, 4], [0.5, 5], [1, 5], [2, 5], [5, 4], [10, 5]].find(([increment]) => scaleSpan / increment <= maxTicks);
+
+		const firstTickMultiplier = Math.ceil(speedScale[0] / increment);
+		const lastTickMultiplier = Math.floor(speedScale[1] / increment);
+
+		for (let tickMultiplier = firstTickMultiplier; tickMultiplier <= lastTickMultiplier; tickMultiplier++) {
+			const tickValue = tickMultiplier * increment;
+			const major = tickMultiplier % ticksPerMajor === 0;
+			const y = speedToY(tickValue);
+			fn(major, tickValue, y);
+		}
+		ctx.restore();
+	}
+
+	// Major lines across the whole width
+	speedTicks((isMajor, speed, y) => {
+		if (!isMajor) return;
+		const text = meterPerSecondFormatter.format(speed);
+		const metrics = ctx.measureText(text);
+		ctx.beginPath();
+		ctx.moveTo(SPEED_TICKS_LENGTH_MAJ + SPEED_TICKS_GUTTER + metrics.width + SPEED_TICKS_GUTTER, y);
+		ctx.lineTo(canvas.width, y);
+		ctx.strokeStyle = "#fff3";
+		ctx.setLineDash([4, 6]);
+		ctx.stroke();
+	});
+
+	if (taps.length >= 2) {
+		// Draw last-tap tempo line
+		ctx.beginPath();
+		withUnitSpace(() => {
+			for (let i = 1; i < taps.length; i++) {
+				const x = taps[i] - taps[1];
+				const y = tempoToSpeed(60e3 / (taps[i] - taps[i - 1]));
+				if (i === 1) ctx.moveTo(x, y);
+				else ctx.lineTo(x, y);
+			}
+		});
+		ctx.save();
+		ctx.lineWidth = 3;
+		ctx.strokeStyle = "#fff6";
+		ctx.setLineDash([1, 2]);
+		ctx.stroke();
+		ctx.restore();
+
+		// Draw rolling average tempo line
+		ctx.beginPath();
+		withUnitSpace(() => {
+			for (let i = 1; i < taps.length; i++) {
+				// Get the earliest sample within n seconds
+				let j = i;
+				while (j - 1 >= 0 && taps[i] - taps[j - 1] < ROLLING_AVERAGE_MS) j--;
+				const x = taps[i] - taps[1];
+
+				// Calculate the average over those samples
+				const y = tempoToSpeed(60e3 / (taps[i] - taps[j]) * (i - j));
+
+				if (i === 1) ctx.moveTo(x, y);
+				else ctx.lineTo(x, y);
+			}
+		});
+		ctx.save();
+		ctx.lineWidth = 10;
+		ctx.strokeStyle = "white";
+		ctx.stroke();
+		ctx.lineWidth = 6;
+		ctx.strokeStyle = "black";
+		ctx.stroke();
+		ctx.restore();
+	}
+
+	// Speed ticks and labels at left
+	speedTicks((isMajor, speed, y) => {
+		ctx.beginPath();
+		ctx.moveTo(0, y);
+		ctx.lineTo(isMajor ? SPEED_TICKS_LENGTH_MAJ : SPEED_TICKS_LENGTH_MIN, y);
+		ctx.lineWidth = 1;
+		ctx.strokeStyle = "#fffc";
+		ctx.stroke();
+		if (isMajor) {
+			const text = meterPerSecondFormatter.format(speed);
+			ctx.fillStyle = "#fffc";
+			ctx.fillText(text, SPEED_TICKS_LENGTH_MAJ + SPEED_TICKS_GUTTER, y);
 		}
 	});
-	ctx.save();
-	ctx.lineWidth = 3;
-	ctx.strokeStyle = "#fff6";
-	ctx.setLineDash([1, 2]);
-	ctx.stroke();
-	ctx.restore();
-
-	// Draw rolling average tempo line
-	ctx.beginPath();
-	withUnitSpace(() => {
-		for (let i = 1; i < taps.length; i++) {
-			// Get the earliest sample within n seconds
-			let j = i;
-			while (j - 1 >= 0 && taps[i] - taps[j - 1] < ROLLING_AVERAGE_MS) j--;
-			const x = taps[i] - taps[1];
-
-			// Calculate the average over those samples
-			const y = tempoToSpeed(60e3 / (taps[i] - taps[j]) * (i - j));
-
-			if (i === 1) ctx.moveTo(x, y);
-			else ctx.lineTo(x, y);
-		}
-	});
-	ctx.save();
-	ctx.lineWidth = 10;
-	ctx.strokeStyle = "white";
-	ctx.stroke();
-	ctx.lineWidth = 6;
-	ctx.strokeStyle = "black";
-	ctx.stroke();
-	ctx.restore();
-
-	ctx.restore();
 }
 
 let timerStart = null;
