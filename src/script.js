@@ -1632,17 +1632,16 @@ function updateTapTrace() {
 	const SPEED_TICKS_LENGTH_MIN = 10;
 	const SPEED_TICKS_LENGTH_MAJ = 15;
 
-	const speedScale = getSpeedScale();
-
 	const canvas = byId("tap-trace");
-	const ctx = canvas.getContext("2d");
-	ctx.save();
 
-	ctx.clearRect(0, 0, canvas.width, canvas.height);
-
+	const speedScale = getSpeedScale();
 	const msToShow = taps.length < 2 ? MIN_MS : Math.max(MIN_MS, taps[taps.length - 1] - taps[1]);
 	const pxPerUnitTime = canvas.width / msToShow;
 	const pxPerUnitSpeed = canvas.height / (speedScale[1] - speedScale[0]);
+
+	const ctx = canvas.getContext("2d");
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+
 	function withUnitSpace(fn) {
 		ctx.save();
 		ctx.translate(0, canvas.height);
@@ -1659,7 +1658,7 @@ function updateTapTrace() {
 		return time * pxPerUnitTime;
 	}
 
-	function speedTicks(fn) {
+	function forEachSpeedTick(fn) {
 		ctx.save();
 		ctx.font = SPEED_TICKS_FONT;
 		ctx.textBaseline = "middle";
@@ -1683,77 +1682,87 @@ function updateTapTrace() {
 		ctx.restore();
 	}
 
-	// Major lines across the whole width
-	speedTicks((isMajor, speed, y) => {
-		if (!isMajor) return;
-		const text = meterPerSecondFormatter.format(speed);
-		const metrics = ctx.measureText(text);
-		ctx.beginPath();
-		ctx.moveTo(SPEED_TICKS_LENGTH_MAJ + SPEED_TICKS_GUTTER + metrics.width + SPEED_TICKS_GUTTER, y);
-		ctx.lineTo(canvas.width, y);
-		ctx.strokeStyle = "#fff3";
-		ctx.setLineDash([4, 6]);
-		ctx.stroke();
-	});
-
-	if (taps.length >= 2) {
-		// Draw last-tap tempo line
-		ctx.beginPath();
-		withUnitSpace(() => {
-			for (let i = 1; i < taps.length; i++) {
-				const x = taps[i] - taps[1];
-				const y = tempoToSpeed(60e3 / (taps[i] - taps[i - 1]));
-				if (i === 1) ctx.moveTo(x, y);
-				else ctx.lineTo(x, y);
-			}
+	function drawGridLines() {
+		forEachSpeedTick((isMajor, speed, y) => {
+			if (!isMajor) return;
+			const text = meterPerSecondFormatter.format(speed);
+			const metrics = ctx.measureText(text);
+			ctx.beginPath();
+			ctx.moveTo(SPEED_TICKS_LENGTH_MAJ + SPEED_TICKS_GUTTER + metrics.width + SPEED_TICKS_GUTTER, y);
+			ctx.lineTo(canvas.width, y);
+			ctx.lineWidth = 1;
+			ctx.strokeStyle = "#fff3";
+			ctx.setLineDash([4, 6]);
+			ctx.stroke();
 		});
-		ctx.save();
-		ctx.lineWidth = 3;
-		ctx.strokeStyle = "#fff6";
-		ctx.setLineDash([1, 2]);
-		ctx.stroke();
-		ctx.restore();
-
-		// Draw rolling average tempo line
-		ctx.beginPath();
-		withUnitSpace(() => {
-			for (let i = 1; i < taps.length; i++) {
-				// Get the earliest sample within n seconds
-				let j = i;
-				while (j - 1 >= 0 && taps[i] - taps[j - 1] < ROLLING_AVERAGE_MS) j--;
-				const x = taps[i] - taps[1];
-
-				// Calculate the average over those samples
-				const y = tempoToSpeed(60e3 / (taps[i] - taps[j]) * (i - j));
-
-				if (i === 1) ctx.moveTo(x, y);
-				else ctx.lineTo(x, y);
-			}
-		});
-		ctx.save();
-		ctx.lineWidth = 10;
-		ctx.strokeStyle = "white";
-		ctx.stroke();
-		ctx.lineWidth = 6;
-		ctx.strokeStyle = "black";
-		ctx.stroke();
-		ctx.restore();
 	}
 
-	// Speed ticks and labels at left
-	speedTicks((isMajor, speed, y) => {
-		ctx.beginPath();
-		ctx.moveTo(0, y);
-		ctx.lineTo(isMajor ? SPEED_TICKS_LENGTH_MAJ : SPEED_TICKS_LENGTH_MIN, y);
-		ctx.lineWidth = 1;
-		ctx.strokeStyle = "#fffc";
-		ctx.stroke();
-		if (isMajor) {
-			const text = meterPerSecondFormatter.format(speed);
-			ctx.fillStyle = "#fffc";
-			ctx.fillText(text, SPEED_TICKS_LENGTH_MAJ + SPEED_TICKS_GUTTER, y);
+	function drawYAxis() {
+		forEachSpeedTick((isMajor, speed, y) => {
+			ctx.beginPath();
+			ctx.moveTo(0, y);
+			ctx.lineTo(isMajor ? SPEED_TICKS_LENGTH_MAJ : SPEED_TICKS_LENGTH_MIN, y);
+			ctx.lineWidth = 1;
+			ctx.strokeStyle = "#fffc";
+			ctx.stroke();
+			if (isMajor) {
+				const text = meterPerSecondFormatter.format(speed);
+				ctx.fillStyle = "#fffc";
+				ctx.fillText(text, SPEED_TICKS_LENGTH_MAJ + SPEED_TICKS_GUTTER, y);
+			}
+		});
+	}
+
+	function drawLastTapTempoLine() {
+		if (taps.length >= 2) {
+			ctx.beginPath();
+			withUnitSpace(() => {
+				for (let i = 1; i < taps.length; i++) {
+					const x = taps[i] - taps[1];
+					const y = tempoToSpeed(60e3 / (taps[i] - taps[i - 1]));
+					if (i === 1) ctx.moveTo(x, y);
+					else ctx.lineTo(x, y);
+				}
+			});
+			ctx.save();
+			ctx.lineWidth = 3;
+			ctx.strokeStyle = "#fff6";
+			ctx.setLineDash([1, 2]);
+			ctx.stroke();
+			ctx.restore();
 		}
-	});
+	}
+
+	function drawRollingAverageTempoLine() {
+		if (taps.length >= 2) {
+			ctx.beginPath();
+			withUnitSpace(() => {
+				for (let i = 1; i < taps.length; i++) {
+					// Get the earliest sample within n seconds
+					let j = i;
+					while (j - 1 >= 0 && taps[i] - taps[j - 1] < ROLLING_AVERAGE_MS) j--;
+					const x = taps[i] - taps[1];
+
+					// Calculate the average over those samples
+					const y = tempoToSpeed(60e3 / (taps[i] - taps[j]) * (i - j));
+
+					if (i === 1) ctx.moveTo(x, y);
+					else ctx.lineTo(x, y);
+				}
+			});
+			ctx.lineWidth = 10;
+			ctx.strokeStyle = "white";
+			ctx.stroke();
+			ctx.lineWidth = 6;
+			ctx.strokeStyle = "black";
+			ctx.stroke();
+		}
+	}
+
+	drawGridLines();
+	drawLastTapTempoLine();
+	drawRollingAverageTempoLine();
+	drawYAxis();
 }
 
 let timerStart = null;
