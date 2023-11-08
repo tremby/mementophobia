@@ -2241,233 +2241,231 @@
 					</fieldset>
 				</div>
 
-				<div id="tap-target" tabindex="0">
-					<div>
-						<div id="tap-button-box">
-							<div class="flex">
-								<button id="tap" type="button">Tap</button>
-								<span class="help">or give focus (press <kbd>t</kbd>) then tap <kbd>space</kbd> or any alphabetic key</span>
+				<div>
+					<div id="tap-button-box">
+						<div class="flex">
+							<button id="tap" type="button">Tap</button>
+							<span class="help">or <kbd>t</kbd></span>
+						</div>
+						<div>
+							<p>
+								<button id="reset-tempo" type="button">Reset</button>
+								<span class="help">or wait a moment then start tapping again</span>
+							</p>
+							<p>
+								<button id="narrow-by-speed" type="button" disabled>Rule out ghosts by speed</button>
+								<span class="help">using the average ± 5%</span>
+							</p>
+						</div>
+						<fieldset id="average-box">
+							<div class="centred-flex">
+								<label for="rolling-average-period">Rolling average period</label>
+								<input type="range" id="rolling-average-period" min="0" max="10" step="0.1" value="0" default="2">
+								<output id="rolling-average-period-readout" for="rolling-average-period" style="min-width: 4em">0 sec</output>
 							</div>
 							<div>
-								<p>
-									<button id="reset-tempo" type="button">Reset</button>
-									<span class="help">or wait a moment then start tapping again</span>
-								</p>
-								<p>
-									<button id="narrow-by-speed" type="button" disabled>Rule out ghosts by speed</button>
-									<span class="help">using the average ± 5%</span>
-								</p>
+								Average: <output id="average-tempo" for="tap">…</output>,
+								<output id="average-speed" for="tap ghost-speed">…</output>
 							</div>
-							<fieldset id="average-box">
-								<div class="centred-flex">
-									<label for="rolling-average-period">Rolling average period</label>
-									<input type="range" id="rolling-average-period" min="0" max="10" step="0.1" value="0" default="2">
-									<output id="rolling-average-period-readout" for="rolling-average-period" style="min-width: 4em">0 sec</output>
-								</div>
-								<div>
-									Average: <output id="average-tempo" for="tap">…</output>,
-									<output id="average-speed" for="tap ghost-speed">…</output>
-								</div>
-							</fieldset>
+						</fieldset>
+					</div>
+				</div>
+
+				<div id="chart">
+					<div class="ghost" data-ghost="spirit">
+						<div class="entire-range"></div>
+						<div class="label">
+							Spirit
+							<button type="button" aria-label="Rule this ghost out">&times;</button>
 						</div>
+						<div class="markers"></div>
+					</div>
+					<div class="ghost" data-ghost="wraith">
+						<div class="entire-range"></div>
+						<div class="label">
+							Wraith
+							<button type="button" aria-label="Rule this ghost out">&times;</button>
+						</div>
+						<div class="markers"></div>
+					</div>
+					<div class="ghost" data-ghost="phantom">
+						<div class="entire-range"></div>
+						<div class="label">
+							Phantom
+							<button type="button" aria-label="Rule this ghost out">&times;</button>
+						</div>
+						<div class="markers"></div>
+					</div>
+					<div class="ghost" data-ghost="poltergeist">
+						<div class="entire-range"></div>
+						<div class="label">
+							Poltergeist
+							<button type="button" aria-label="Rule this ghost out">&times;</button>
+						</div>
+						<div class="markers"></div>
+					</div>
+					<div class="ghost" data-ghost="banshee">
+						<div class="entire-range"></div>
+						<div class="label">
+							Banshee
+							<button type="button" aria-label="Rule this ghost out">&times;</button>
+						</div>
+						<div class="markers"></div>
+					</div>
+					<div class="ghost" data-ghost="jinn">
+						<div class="entire-range"></div>
+						<div class="label">
+							Jinn
+							<button type="button" aria-label="Rule this ghost out">&times;</button>
+						</div>
+						<div class="markers"></div>
+					</div>
+					<div class="ghost" data-ghost="mare">
+						<div class="entire-range"></div>
+						<div class="label">
+							Mare
+							<button type="button" aria-label="Rule this ghost out">&times;</button>
+						</div>
+						<div class="markers"></div>
+					</div>
+					<div class="ghost" data-ghost="revenant">
+						<div class="entire-range"></div>
+						<div class="label">
+							Revenant
+							<button type="button" aria-label="Rule this ghost out">&times;</button>
+						</div>
+						<div class="markers"></div>
+					</div>
+					<div class="ghost" data-ghost="shade">
+						<div class="entire-range"></div>
+						<div class="label">
+							Shade
+							<button type="button" aria-label="Rule this ghost out">&times;</button>
+						</div>
+						<div class="markers"></div>
+					</div>
+					<div class="ghost" data-ghost="demon">
+						<div class="entire-range"></div>
+						<div class="label">
+							Demon
+							<button type="button" aria-label="Rule this ghost out">&times;</button>
+						</div>
+						<div class="markers"></div>
+					</div>
+					<div class="ghost" data-ghost="yurei">
+						<div class="entire-range"></div>
+						<div class="label">
+							Yurei
+							<button type="button" aria-label="Rule this ghost out">&times;</button>
+						</div>
+						<div class="markers"></div>
+					</div>
+					<div class="ghost" data-ghost="oni">
+						<div class="entire-range"></div>
+						<div class="label">
+							Oni
+							<button type="button" aria-label="Rule this ghost out">&times;</button>
+						</div>
+						<div class="markers"></div>
+					</div>
+					<div class="ghost" data-ghost="yokai">
+						<div class="entire-range"></div>
+						<div class="label">
+							Yokai
+							<button type="button" aria-label="Rule this ghost out">&times;</button>
+						</div>
+						<div class="markers"></div>
+					</div>
+					<div class="ghost" data-ghost="hantu">
+						<div class="entire-range"></div>
+						<div class="label">
+							Hantu
+							<button type="button" aria-label="Rule this ghost out">&times;</button>
+						</div>
+						<div class="markers"></div>
+					</div>
+					<div class="ghost" data-ghost="goryo">
+						<div class="entire-range"></div>
+						<div class="label">
+							Goryo
+							<button type="button" aria-label="Rule this ghost out">&times;</button>
+						</div>
+						<div class="markers"></div>
+					</div>
+					<div class="ghost" data-ghost="myling">
+						<div class="entire-range"></div>
+						<div class="label">
+							Myling
+							<button type="button" aria-label="Rule this ghost out">&times;</button>
+						</div>
+						<div class="markers"></div>
+					</div>
+					<div class="ghost" data-ghost="onryo">
+						<div class="entire-range"></div>
+						<div class="label">
+							Onryo
+							<button type="button" aria-label="Rule this ghost out">&times;</button>
+						</div>
+						<div class="markers"></div>
+					</div>
+					<div class="ghost" data-ghost="the-twins">
+						<div class="entire-range"></div>
+						<div class="label">
+							The Twins
+							<button type="button" aria-label="Rule this ghost out">&times;</button>
+						</div>
+						<div class="markers"></div>
+					</div>
+					<div class="ghost" data-ghost="raiju">
+						<div class="entire-range"></div>
+						<div class="label">
+							Raiju
+							<button type="button" aria-label="Rule this ghost out">&times;</button>
+						</div>
+						<div class="markers"></div>
+					</div>
+					<div class="ghost" data-ghost="obake">
+						<div class="entire-range"></div>
+						<div class="label">
+							Obake
+							<button type="button" aria-label="Rule this ghost out">&times;</button>
+						</div>
+						<div class="markers"></div>
+					</div>
+					<div class="ghost" data-ghost="the-mimic">
+						<div class="entire-range"></div>
+						<div class="label">
+							The Mimic
+							<button type="button" aria-label="Rule this ghost out">&times;</button>
+						</div>
+						<div class="markers"></div>
+					</div>
+					<div class="ghost" data-ghost="moroi">
+						<div class="entire-range"></div>
+						<div class="label">
+							Moroi
+							<button type="button" aria-label="Rule this ghost out">&times;</button>
+						</div>
+						<div class="markers"></div>
+					</div>
+					<div class="ghost" data-ghost="deogen">
+						<div class="entire-range"></div>
+						<div class="label">
+							Deogen
+							<button type="button" aria-label="Rule this ghost out">&times;</button>
+						</div>
+						<div class="markers"></div>
+					</div>
+					<div class="ghost" data-ghost="thaye">
+						<div class="entire-range"></div>
+						<div class="label">
+							Thaye
+							<button type="button" aria-label="Rule this ghost out">&times;</button>
+						</div>
+						<div class="markers"></div>
 					</div>
 
-					<div id="chart">
-						<div class="ghost" data-ghost="spirit">
-							<div class="entire-range"></div>
-							<div class="label">
-								Spirit
-								<button type="button" aria-label="Rule this ghost out">&times;</button>
-							</div>
-							<div class="markers"></div>
-						</div>
-						<div class="ghost" data-ghost="wraith">
-							<div class="entire-range"></div>
-							<div class="label">
-								Wraith
-								<button type="button" aria-label="Rule this ghost out">&times;</button>
-							</div>
-							<div class="markers"></div>
-						</div>
-						<div class="ghost" data-ghost="phantom">
-							<div class="entire-range"></div>
-							<div class="label">
-								Phantom
-								<button type="button" aria-label="Rule this ghost out">&times;</button>
-							</div>
-							<div class="markers"></div>
-						</div>
-						<div class="ghost" data-ghost="poltergeist">
-							<div class="entire-range"></div>
-							<div class="label">
-								Poltergeist
-								<button type="button" aria-label="Rule this ghost out">&times;</button>
-							</div>
-							<div class="markers"></div>
-						</div>
-						<div class="ghost" data-ghost="banshee">
-							<div class="entire-range"></div>
-							<div class="label">
-								Banshee
-								<button type="button" aria-label="Rule this ghost out">&times;</button>
-							</div>
-							<div class="markers"></div>
-						</div>
-						<div class="ghost" data-ghost="jinn">
-							<div class="entire-range"></div>
-							<div class="label">
-								Jinn
-								<button type="button" aria-label="Rule this ghost out">&times;</button>
-							</div>
-							<div class="markers"></div>
-						</div>
-						<div class="ghost" data-ghost="mare">
-							<div class="entire-range"></div>
-							<div class="label">
-								Mare
-								<button type="button" aria-label="Rule this ghost out">&times;</button>
-							</div>
-							<div class="markers"></div>
-						</div>
-						<div class="ghost" data-ghost="revenant">
-							<div class="entire-range"></div>
-							<div class="label">
-								Revenant
-								<button type="button" aria-label="Rule this ghost out">&times;</button>
-							</div>
-							<div class="markers"></div>
-						</div>
-						<div class="ghost" data-ghost="shade">
-							<div class="entire-range"></div>
-							<div class="label">
-								Shade
-								<button type="button" aria-label="Rule this ghost out">&times;</button>
-							</div>
-							<div class="markers"></div>
-						</div>
-						<div class="ghost" data-ghost="demon">
-							<div class="entire-range"></div>
-							<div class="label">
-								Demon
-								<button type="button" aria-label="Rule this ghost out">&times;</button>
-							</div>
-							<div class="markers"></div>
-						</div>
-						<div class="ghost" data-ghost="yurei">
-							<div class="entire-range"></div>
-							<div class="label">
-								Yurei
-								<button type="button" aria-label="Rule this ghost out">&times;</button>
-							</div>
-							<div class="markers"></div>
-						</div>
-						<div class="ghost" data-ghost="oni">
-							<div class="entire-range"></div>
-							<div class="label">
-								Oni
-								<button type="button" aria-label="Rule this ghost out">&times;</button>
-							</div>
-							<div class="markers"></div>
-						</div>
-						<div class="ghost" data-ghost="yokai">
-							<div class="entire-range"></div>
-							<div class="label">
-								Yokai
-								<button type="button" aria-label="Rule this ghost out">&times;</button>
-							</div>
-							<div class="markers"></div>
-						</div>
-						<div class="ghost" data-ghost="hantu">
-							<div class="entire-range"></div>
-							<div class="label">
-								Hantu
-								<button type="button" aria-label="Rule this ghost out">&times;</button>
-							</div>
-							<div class="markers"></div>
-						</div>
-						<div class="ghost" data-ghost="goryo">
-							<div class="entire-range"></div>
-							<div class="label">
-								Goryo
-								<button type="button" aria-label="Rule this ghost out">&times;</button>
-							</div>
-							<div class="markers"></div>
-						</div>
-						<div class="ghost" data-ghost="myling">
-							<div class="entire-range"></div>
-							<div class="label">
-								Myling
-								<button type="button" aria-label="Rule this ghost out">&times;</button>
-							</div>
-							<div class="markers"></div>
-						</div>
-						<div class="ghost" data-ghost="onryo">
-							<div class="entire-range"></div>
-							<div class="label">
-								Onryo
-								<button type="button" aria-label="Rule this ghost out">&times;</button>
-							</div>
-							<div class="markers"></div>
-						</div>
-						<div class="ghost" data-ghost="the-twins">
-							<div class="entire-range"></div>
-							<div class="label">
-								The Twins
-								<button type="button" aria-label="Rule this ghost out">&times;</button>
-							</div>
-							<div class="markers"></div>
-						</div>
-						<div class="ghost" data-ghost="raiju">
-							<div class="entire-range"></div>
-							<div class="label">
-								Raiju
-								<button type="button" aria-label="Rule this ghost out">&times;</button>
-							</div>
-							<div class="markers"></div>
-						</div>
-						<div class="ghost" data-ghost="obake">
-							<div class="entire-range"></div>
-							<div class="label">
-								Obake
-								<button type="button" aria-label="Rule this ghost out">&times;</button>
-							</div>
-							<div class="markers"></div>
-						</div>
-						<div class="ghost" data-ghost="the-mimic">
-							<div class="entire-range"></div>
-							<div class="label">
-								The Mimic
-								<button type="button" aria-label="Rule this ghost out">&times;</button>
-							</div>
-							<div class="markers"></div>
-						</div>
-						<div class="ghost" data-ghost="moroi">
-							<div class="entire-range"></div>
-							<div class="label">
-								Moroi
-								<button type="button" aria-label="Rule this ghost out">&times;</button>
-							</div>
-							<div class="markers"></div>
-						</div>
-						<div class="ghost" data-ghost="deogen">
-							<div class="entire-range"></div>
-							<div class="label">
-								Deogen
-								<button type="button" aria-label="Rule this ghost out">&times;</button>
-							</div>
-							<div class="markers"></div>
-						</div>
-						<div class="ghost" data-ghost="thaye">
-							<div class="entire-range"></div>
-							<div class="label">
-								Thaye
-								<button type="button" aria-label="Rule this ghost out">&times;</button>
-							</div>
-							<div class="markers"></div>
-						</div>
-
-						<canvas id="tap-trace"></canvas>
-					</div>
+					<canvas id="tap-trace"></canvas>
 				</div>
 			</section>
 		</form>

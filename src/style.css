@@ -199,10 +199,6 @@ input[disabled] {
 #chart .ghost:is(:hover, :focus-within) .marker {
 	transform: scaleY(200%);
 }
-#tap-target:is(:focus, :focus-within) {
-	outline: 5px auto Highlight;
-	outline: 5px auto -webkit-focus-ring-color;
-}
 #tap-trace {
 	position: absolute;
 	left: 0;

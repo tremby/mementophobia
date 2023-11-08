@@ -190,7 +190,6 @@ function init() {
 	byId("secondary-evidence").addEventListener("mousedown", handleSecondaryEvidenceMouseDown);
 	byId("clear-filter").addEventListener("click", () => clearFilter());
 	byId("ghost-speed").addEventListener("change", () => updateGhostSpeed());
-	byId("tap-target").addEventListener("keydown", handleTapKeyDown);
 	byId("reset-tempo").addEventListener("click", () => resetTempo());
 	byId("narrow-by-speed").addEventListener("click", () => narrowBySpeed());
 	byId("clear-rulings-by-speed").addEventListener("click", () => clearRulingsBySpeed());
@@ -285,10 +284,11 @@ function handleDocumentKeyDown(event) {
 	switch (event.key) {
 		case "t":
 			event.preventDefault();
-			const tapTarget = byId("tap-target");
-			tapTarget.scrollIntoView({ behavior: "smooth", block: "nearest" });
-			tapTarget.focus();
-			handleTapKeyDown(event);
+			const tap = byId("tap");
+			const chart = byId("chart");
+			chart.scrollIntoView({ behavior: "smooth", block: "nearest" });
+			tap.focus();
+			handleTap();
 			return;
 		case "/":
 			event.preventDefault();
@@ -474,21 +474,6 @@ function resizeTapTraceCanvas() {
 	tapTrace.width = Math.round(tapTrace.clientWidth * devicePixelRatio);
 	tapTrace.height = Math.round(tapTrace.clientHeight * devicePixelRatio);
 	updateTapTrace();
-}
-
-function handleTapKeyDown(event) {
-	if (event.key === "Escape") {
-		event.preventDefault();
-		event.stopPropagation();
-		document.activeElement.blur();
-		return;
-	}
-	if (/^[a-z ]$/.test(event.key)) {
-		event.preventDefault();
-		event.stopPropagation();
-		handleTap();
-		return;
-	}
 }
 
 function resetManualRuleOuts() {
