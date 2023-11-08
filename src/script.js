@@ -1665,10 +1665,10 @@ function updateTapTrace() {
 		const metrics = ctx.measureText(meterPerSecondFormatter.format("1234567890.1m/s"));
 		const height = metrics.fontBoundingBoxAscent + metrics.fontBoundingBoxDescent;
 		const maxTicks = Math.floor(canvas.height / height);
-		const scaleSpan = speedScale[1] - speedScale[0];
+		const speedSpan = speedScale[1] - speedScale[0];
 
 		// Try various tick increments until something fits
-		const [increment, ticksPerMajor] = [[0.01, 5], [0.02, 5], [0.025, 4], [0.05, 5], [0.1, 5], [0.2, 5], [0.25, 4], [0.5, 5], [1, 5], [2, 5], [5, 4], [10, 5]].find(([increment]) => scaleSpan / increment <= maxTicks);
+		const [increment, ticksPerMajor] = [[0.01, 5], [0.02, 5], [0.025, 4], [0.05, 5], [0.1, 5], [0.2, 5], [0.25, 4], [0.5, 5], [1, 5], [2, 5], [5, 4], [10, 5]].find(([increment]) => speedSpan / increment <= maxTicks);
 
 		const firstTickMultiplier = Math.ceil(speedScale[0] / increment);
 		const lastTickMultiplier = Math.floor(speedScale[1] / increment);
