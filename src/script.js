@@ -1733,55 +1733,53 @@ function updateTapTrace() {
 	}
 
 	function drawLastTapTempoLine() {
-		if (samples.length >= 1) {
-			ctx.beginPath();
-			plotLastTapTempoLine();
-			ctx.save();
-			ctx.lineWidth = 3;
-			ctx.strokeStyle = "#fff6";
-			ctx.setLineDash([1, 2]);
-			ctx.stroke();
-			ctx.restore();
-		}
+		if (samples.length === 0) return;
+		ctx.beginPath();
+		plotLastTapTempoLine();
+		ctx.save();
+		ctx.lineWidth = 3;
+		ctx.strokeStyle = "#fff6";
+		ctx.setLineDash([1, 2]);
+		ctx.stroke();
+		ctx.restore();
 	}
 
 	function drawRollingAverageTempoLine(period) {
-		if (samples.length >= 1) {
-			ctx.beginPath();
-			if (period === 0) plotLastTapTempoLine();
-			else {
-				withUnitSpace(() => {
-					for (const [i, sample] of samples.entries()) {
-						const [x] = sample;
-						const samplesInRange = [sample];
-						for (let j = i; j >= 0 && Math.abs(samples[j][0] - x) < period / 2; j--) {
-							if (j === i) continue;
-							samplesInRange.unshift(samples[j]);
-						}
-						for (let j = i; j <= samples.length - 1 && Math.abs(samples[j][0] - x) < period / 2; j++) {
-							if (j === i) continue;
-							samplesInRange.push(samples[j]);
-						}
-						let y = 0;
-						let totalWeight = 0;
-						for (const [time, speed] of samplesInRange) {
-							const weight = 1 - Math.abs(time - x) / (period / 2);
-							y += speed * weight;
-							totalWeight += weight;
-						}
-						y /= totalWeight;
-						if (x === 0) ctx.moveTo(x, y);
-						else ctx.lineTo(x, y);
+		if (samples.length === 0) return;
+		ctx.beginPath();
+		if (period === 0) plotLastTapTempoLine();
+		else {
+			withUnitSpace(() => {
+				for (const [i, sample] of samples.entries()) {
+					const [x] = sample;
+					const samplesInRange = [sample];
+					for (let j = i; j >= 0 && Math.abs(samples[j][0] - x) < period / 2; j--) {
+						if (j === i) continue;
+						samplesInRange.unshift(samples[j]);
 					}
-				});
-			}
-			ctx.lineWidth = 10;
-			ctx.strokeStyle = "white";
-			ctx.stroke();
-			ctx.lineWidth = 6;
-			ctx.strokeStyle = "black";
-			ctx.stroke();
+					for (let j = i; j <= samples.length - 1 && Math.abs(samples[j][0] - x) < period / 2; j++) {
+						if (j === i) continue;
+						samplesInRange.push(samples[j]);
+					}
+					let y = 0;
+					let totalWeight = 0;
+					for (const [time, speed] of samplesInRange) {
+						const weight = 1 - Math.abs(time - x) / (period / 2);
+						y += speed * weight;
+						totalWeight += weight;
+					}
+					y /= totalWeight;
+					if (x === 0) ctx.moveTo(x, y);
+					else ctx.lineTo(x, y);
+				}
+			});
 		}
+		ctx.lineWidth = 10;
+		ctx.strokeStyle = "white";
+		ctx.stroke();
+		ctx.lineWidth = 6;
+		ctx.strokeStyle = "black";
+		ctx.stroke();
 	}
 
 	drawGridLines();
