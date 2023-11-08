@@ -1,6 +1,5 @@
 import Polyfit from "./polyfit.js";
 
-const ROLLING_AVERAGE_MS = 2e3;
 const MIN_MS = 4e3;
 
 const MAX_GHOST_LOS_SPEEDUP_MULTIPLIER = 1.65;
@@ -265,6 +264,7 @@ function init() {
 	byId("reset-manual-rule-outs").addEventListener("click", () => resetManualRuleOuts());
 	byId("timer-start-stop").addEventListener("click", () => startStopTimer());
 	byId("timer-adjust").addEventListener("input", () => updateTimerAdjust());
+	byId("rolling-average-period").addEventListener("input", () => updateRollingAveragePeriod());
 	for (const button of document.querySelectorAll("#chart .ghost .label button")) {
 		button.addEventListener("click", () => {
 			byId(button.closest("div.ghost").dataset.ghost).classList.add("impossible-by-speed");
@@ -437,6 +437,7 @@ function updateAll() {
 	updateGhostSpeedFactorsPreset();
 	updateEvidenceNum();
 	updateTimerAdjust();
+	updateRollingAveragePeriod();
 	updateHuntSanityRangeReadout();
 	updateIncenseHuntSuspensionRangeReadout();
 	updateClearRulingsBySpeed();
@@ -1048,11 +1049,7 @@ function getAverageTempo() {
 
 function updateTempos() {
 	byId("narrow-by-speed").disabled = taps.length < 2;
-	byId("average-box").classList.toggle("is-populated", taps.length > 0);
-	if (taps.length === 0) {
-		byId("average-tempo").innerText = "";
-		byId("average-speed").innerText = "";
-	} else if (taps.length === 1) {
+	if (taps.length < 2) {
 		byId("average-tempo").innerText = "…";
 		byId("average-speed").innerText = "…";
 	} else {
@@ -1626,6 +1623,17 @@ function toScale(speed) {
 	return (speed - speedScale[0]) / (speedScale[1] - speedScale[0]);
 }
 
+function getSpeedSamples(taps) {
+	if (taps.length < 2) return [];
+	const samples = [];
+	const startTime = (taps[0] + taps[1]) / 2;
+	for (let i = 1; i < taps.length; i++) {
+		const elapsed = taps[i] - taps[i - 1];
+		samples.push([taps[i - 1] + elapsed / 2 - startTime, tempoToSpeed(60e3 / elapsed)]);
+	}
+	return samples;
+}
+
 function updateTapTrace() {
 	const SPEED_TICKS_FONT = "14px sans-serif";
 	const SPEED_TICKS_GUTTER = 5;
@@ -1634,8 +1642,10 @@ function updateTapTrace() {
 
 	const canvas = byId("tap-trace");
 
+	const samples = getSpeedSamples(taps);
+
 	const speedScale = getSpeedScale();
-	const msToShow = taps.length < 2 ? MIN_MS : Math.max(MIN_MS, taps[taps.length - 1] - taps[1]);
+	const msToShow = samples.length > 0 ? Math.max(MIN_MS, samples[samples.length - 1][0]) : MIN_MS;
 	const pxPerUnitTime = canvas.width / msToShow;
 	const pxPerUnitSpeed = canvas.height / (speedScale[1] - speedScale[0]);
 
@@ -1713,17 +1723,19 @@ function updateTapTrace() {
 		});
 	}
 
+	function plotLastTapTempoLine() {
+		withUnitSpace(() => {
+			for (const [x, y] of samples) {
+				if (x === 0) ctx.moveTo(x, y);
+				else ctx.lineTo(x, y);
+			}
+		});
+	}
+
 	function drawLastTapTempoLine() {
-		if (taps.length >= 2) {
+		if (samples.length >= 1) {
 			ctx.beginPath();
-			withUnitSpace(() => {
-				for (let i = 1; i < taps.length; i++) {
-					const x = taps[i] - taps[1];
-					const y = tempoToSpeed(60e3 / (taps[i] - taps[i - 1]));
-					if (i === 1) ctx.moveTo(x, y);
-					else ctx.lineTo(x, y);
-				}
-			});
+			plotLastTapTempoLine();
 			ctx.save();
 			ctx.lineWidth = 3;
 			ctx.strokeStyle = "#fff6";
@@ -1733,23 +1745,36 @@ function updateTapTrace() {
 		}
 	}
 
-	function drawRollingAverageTempoLine() {
-		if (taps.length >= 2) {
+	function drawRollingAverageTempoLine(period) {
+		if (samples.length >= 1) {
 			ctx.beginPath();
-			withUnitSpace(() => {
-				for (let i = 1; i < taps.length; i++) {
-					// Get the earliest sample within n seconds
-					let j = i;
-					while (j - 1 >= 0 && taps[i] - taps[j - 1] < ROLLING_AVERAGE_MS) j--;
-					const x = taps[i] - taps[1];
-
-					// Calculate the average over those samples
-					const y = tempoToSpeed(60e3 / (taps[i] - taps[j]) * (i - j));
-
-					if (i === 1) ctx.moveTo(x, y);
-					else ctx.lineTo(x, y);
-				}
-			});
+			if (period === 0) plotLastTapTempoLine();
+			else {
+				withUnitSpace(() => {
+					for (const [i, sample] of samples.entries()) {
+						const [x] = sample;
+						const samplesInRange = [sample];
+						for (let j = i; j >= 0 && Math.abs(samples[j][0] - x) < period / 2; j--) {
+							if (j === i) continue;
+							samplesInRange.unshift(samples[j]);
+						}
+						for (let j = i; j <= samples.length - 1 && Math.abs(samples[j][0] - x) < period / 2; j++) {
+							if (j === i) continue;
+							samplesInRange.push(samples[j]);
+						}
+						let y = 0;
+						let totalWeight = 0;
+						for (const [time, speed] of samplesInRange) {
+							const weight = 1 - Math.abs(time - x) / (period / 2);
+							y += speed * weight;
+							totalWeight += weight;
+						}
+						y /= totalWeight;
+						if (x === 0) ctx.moveTo(x, y);
+						else ctx.lineTo(x, y);
+					}
+				});
+			}
 			ctx.lineWidth = 10;
 			ctx.strokeStyle = "white";
 			ctx.stroke();
@@ -1761,7 +1786,7 @@ function updateTapTrace() {
 
 	drawGridLines();
 	drawLastTapTempoLine();
-	drawRollingAverageTempoLine();
+	drawRollingAverageTempoLine(getRollingAveragePeriod());
 	drawYAxis();
 }
 
@@ -1796,6 +1821,15 @@ function updateTimerAdjust() {
 
 function getTimerAdjust() {
 	return parseInt(byId("timer-adjust").value) * 1e3;
+}
+
+function updateRollingAveragePeriod() {
+	byId("rolling-average-period-readout").innerText = secondsFormatter.format(getRollingAveragePeriod() / 1e3);
+	updateTapTrace();
+}
+
+function getRollingAveragePeriod() {
+	return parseFloat(byId("rolling-average-period").value) * 1e3;
 }
 
 function getHuntSafety(secondsSinceIncense) {

@@ -375,8 +375,6 @@ kbd {
 }
 
 #average-box {
-	visibility: hidden;
-}
-#average-box.is-populated {
-	visibility: visible;
+	display: grid;
+	gap: var(--fieldset-gap);
 }

@@ -2259,8 +2259,15 @@
 								</p>
 							</div>
 							<fieldset id="average-box">
-								Average: <output id="average-tempo" for="tap"></output>,
-								<output id="average-speed" for="tap ghost-speed"></output>
+								<div class="centred-flex">
+									<label for="rolling-average-period">Rolling average period</label>
+									<input type="range" id="rolling-average-period" min="0" max="10" step="0.1" value="0" default="2">
+									<output id="rolling-average-period-readout" for="rolling-average-period" style="min-width: 4em">0 sec</output>
+								</div>
+								<div>
+									Average: <output id="average-tempo" for="tap">…</output>,
+									<output id="average-speed" for="tap ghost-speed">…</output>
+								</div>
 							</fieldset>
 						</div>
 					</div>
